@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{22D8C142-6D0F-4D5E-8B46-9FCA34CE3A8E}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IronCow</RootNamespace>
+    <AssemblyName>IronCow</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication.cs" />
+    <Compile Include="AuthenticationPermissions.cs" />
+    <Compile Include="Cache\MemoryResponseCache.cs" />
+    <Compile Include="Cache\ResponseCacheEntry.cs" />
+    <Compile Include="Contact.cs" />
+    <Compile Include="ContactCollection.cs" />
+    <Compile Include="ContactGroup.cs" />
+    <Compile Include="ContactGroupCollection.cs" />
+    <Compile Include="ContactGroupContactCollection.cs" />
+    <Compile Include="DateConverter.cs" />
+    <Compile Include="DateFormat.cs" />
+    <Compile Include="ErrorCode.cs" />
+    <Compile Include="FirstSyncContactGroupData.cs" />
+    <Compile Include="FuzzyDateTime.cs" />
+    <Compile Include="IronCowException.cs" />
+    <Compile Include="ISyncing.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="LocationCollection.cs" />
+    <Compile Include="MD5.cs" />
+    <Compile Include="MultiRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recurrence.cs" />
+    <Compile Include="RecurrenceConverter.cs" />
+    <Compile Include="Request.cs" />
+    <Compile Include="RequestCollection.cs" />
+    <Compile Include="RequestManager.cs" />
+    <Compile Include="ResponseError.cs" />
+    <Compile Include="ResponseStatus.cs" />
+    <Compile Include="RestRequest.cs" />
+    <Compile Include="Rest\DisabledRestClient.cs" />
+    <Compile Include="Rest\IResponseCache.cs" />
+    <Compile Include="Rest\IRestClient.cs" />
+    <Compile Include="Rest\RawAuthentication.cs" />
+    <Compile Include="Rest\RawContact.cs" />
+    <Compile Include="Rest\RawGroup.cs" />
+    <Compile Include="Rest\RawList.cs" />
+    <Compile Include="Rest\RawLocation.cs" />
+    <Compile Include="Rest\RawNote.cs" />
+    <Compile Include="Rest\RawRepeatRule.cs" />
+    <Compile Include="Rest\RawRtmElement.cs" />
+    <Compile Include="Rest\RawSettings.cs" />
+    <Compile Include="Rest\RawTask.cs" />
+    <Compile Include="Rest\RawTaskSeries.cs" />
+    <Compile Include="Rest\RawTime.cs" />
+    <Compile Include="Rest\RawTimezone.cs" />
+    <Compile Include="Rest\RawTransaction.cs" />
+    <Compile Include="Rest\RawUser.cs" />
+    <Compile Include="Rest\Response.cs" />
+    <Compile Include="Rest\RestClient.cs" />
+    <Compile Include="Rest\TaskBundle.cs" />
+    <Compile Include="Rtm.cs" />
+    <Compile Include="RtmAuthentication.cs" />
+    <Compile Include="RtmCollection.cs" />
+    <Compile Include="RtmElement.cs" />
+    <Compile Include="RtmException.cs" />
+    <Compile Include="RtmFatElement.cs" />
+    <Compile Include="RtmThinElement.cs" />
+    <Compile Include="SearchMode.cs" />
+    <Compile Include="Search\BooleanNode.cs" />
+    <Compile Include="Search\BooleanType.cs" />
+    <Compile Include="Search\EmptyEnumerator.cs" />
+    <Compile Include="Search\GroupNode.cs" />
+    <Compile Include="Search\LexicalAnalyzer.cs" />
+    <Compile Include="Search\Node.cs" />
+    <Compile Include="Search\NodeContext.cs" />
+    <Compile Include="Search\OperatorNode.cs" />
+    <Compile Include="Search\ParenthesisGroupNode.cs" />
+    <Compile Include="Search\SearchContext.cs" />
+    <Compile Include="Search\TermNode.cs" />
+    <Compile Include="Search\Token.cs" />
+    <Compile Include="Search\TokenCollection.cs" />
+    <Compile Include="Search\UnaryNode.cs" />
+    <Compile Include="Stubbing\INotifyCollectionChanged.cs" />
+    <Compile Include="Stubbing\TraceSource.cs" />
+    <Compile Include="SynchronizedRtmCollection.cs" />
+    <Compile Include="SynchronizedTaskCollection.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="TaskList.cs" />
+    <Compile Include="TaskListCollection.cs" />
+    <Compile Include="TaskListFlags.cs" />
+    <Compile Include="TaskListTaskCollection.cs" />
+    <Compile Include="TaskNote.cs" />
+    <Compile Include="TaskPriority.cs" />
+    <Compile Include="TaskTagCollection.cs" />
+    <Compile Include="TaskTaskNoteCollection.cs" />
+    <Compile Include="TimeFormat.cs" />
+    <Compile Include="Transaction.cs" />
+    <Compile Include="UnsyncedScope.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserSettings.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
