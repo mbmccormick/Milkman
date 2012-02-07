@@ -79,6 +79,16 @@ namespace Milkman
             progressIndicator = new ProgressIndicator();
             progressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator = progressIndicator;
+
+            if (CurrentTask != null)
+            {
+                if (CurrentTask.Priority == TaskPriority.One)
+                    this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
+                else if (CurrentTask.Priority == TaskPriority.Two)
+                    this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
+                else if (CurrentTask.Priority == TaskPriority.Three)
+                    this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
+            }
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
