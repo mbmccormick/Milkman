@@ -207,8 +207,11 @@ namespace Milkman
 
             PeriodicTask task = new PeriodicTask("BackgroundWorker");
             task.Description = "Manages background syncing, task reminders, and live tile updates.";
-
+            
             ScheduledActionService.Add(task);
+
+            if (System.Diagnostics.Debugger.IsAttached)
+                ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -707,7 +710,10 @@ namespace Milkman
 
         private void mnuAbout_Click(object sender, EventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+            });
         }
 
         private void mnuHelp_Click(object sender, EventArgs e)

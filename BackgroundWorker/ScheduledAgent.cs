@@ -38,8 +38,27 @@ namespace BackgroundWorker
 
         protected override void OnInvoke(ScheduledTask task)
         {
-            App.LoadData();
-            LoadDataInBackground();
+            App.LoadData(); // load cached data
+
+            if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
+            {
+                App.RtmClient.SyncEverything(() =>
+                {
+                    LoadDataInBackground();
+
+                    if (System.Diagnostics.Debugger.IsAttached)
+                        ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+
+                    NotifyComplete();
+                });
+            }
+            else
+            {
+                if (System.Diagnostics.Debugger.IsAttached)
+                    ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+
+                NotifyComplete();
+            }
         }
 
         private void LoadDataInBackground()
@@ -112,28 +131,6 @@ namespace BackgroundWorker
                 tempNoDueTasks.Sort();
 
                 tempTags.Sort();
-
-                // delete all existing reminders
-                foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                {
-                    ScheduledActionService.Remove(item.Name);
-                }
-
-                // add new reminders
-                foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks))
-                {
-                    if (item.HasDueTime)
-                    {
-                        Reminder r = new Reminder(item.Id);
-                        r.Title = item.Name;
-                        r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
-                        r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
-                        r.BeginTime = item.DueDateTime.Value.AddHours(-1);
-                        r.ExpirationTime = item.DueDateTime.Value;
-
-                        ScheduledActionService.Add(r);
-                    }
-                }
 
                 // update live tile data
                 ShellTile primaryTile = ShellTile.ActiveTiles.First();
