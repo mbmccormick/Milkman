@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\App.cs" />
+    <Compile Include="Common\AppSettings.cs" />
     <Compile Include="Common\IsolatedStorageHelper.cs" />
     <Compile Include="Common\LocationHelper.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />

@@ -139,6 +139,7 @@ namespace Milkman
 
         ApplicationBarMenuItem about;
         ApplicationBarMenuItem help;
+        ApplicationBarMenuItem settings;
         ApplicationBarMenuItem logout;
 
         // Constructor
@@ -185,6 +186,10 @@ namespace Milkman
             help.Text = "shortcuts help";
             help.Click += mnuHelp_Click;
 
+            settings = new ApplicationBarMenuItem();
+            settings.Text = "settings";
+            settings.Click += mnuSettings_Click;
+
             logout = new ApplicationBarMenuItem();
             logout.Text = "logout";
             logout.Click += mnuLogout_Click;
@@ -205,13 +210,17 @@ namespace Milkman
             if (ScheduledActionService.Find("BackgroundWorker") != null)
                 ScheduledActionService.Remove("BackgroundWorker");
 
-            PeriodicTask task = new PeriodicTask("BackgroundWorker");
-            task.Description = "Manages background syncing, task reminders, and live tile updates.";
-            
-            ScheduledActionService.Add(task);
+            AppSettings settings = new AppSettings();
+            if (settings.BackgroundWorkerEnabled == true)
+            {
+                PeriodicTask task = new PeriodicTask("BackgroundWorker");
+                task.Description = "Manages background syncing, task reminders, and live tile updates.";
 
-            if (System.Diagnostics.Debugger.IsAttached)
-                ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+                ScheduledActionService.Add(task);
+
+                if (System.Diagnostics.Debugger.IsAttached)
+                    ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+            }
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
@@ -377,43 +386,61 @@ namespace Milkman
                     Tags = tempTags;
                 });
 
+                AppSettings settings = new AppSettings();
+
                 // delete all existing reminders
                 foreach (var item in ScheduledActionService.GetActions<Reminder>())
                 {
                     ScheduledActionService.Remove(item.Name);
                 }
 
-                // add new reminders
-                foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks))
+                if (settings.TaskRemindersEnabled == true)
                 {
-                    if (item.HasDueTime)
+                    // add new reminders
+                    foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks))
                     {
-                        Reminder r = new Reminder(item.Id);
-                        r.Title = item.Name;
-                        r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
-                        r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
-                        r.BeginTime = item.DueDateTime.Value.AddHours(-1);
-                        r.ExpirationTime = item.DueDateTime.Value;
+                        if (item.HasDueTime)
+                        {
+                            Reminder r = new Reminder(item.Id);
+                            r.Title = item.Name;
+                            r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
+                            r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
+                            r.BeginTime = item.DueDateTime.Value.AddHours(-1);
+                            r.ExpirationTime = item.DueDateTime.Value;
 
-                        ScheduledActionService.Add(r);
+                            ScheduledActionService.Add(r);
+                        }
                     }
                 }
 
-                // update live tile data
-                ShellTile primaryTile = ShellTile.ActiveTiles.First();
-                if (primaryTile != null)
+                if (settings.BackgroundWorkerEnabled == true)
                 {
-                    StandardTileData data = new StandardTileData();
+                    // update live tile data
+                    ShellTile primaryTile = ShellTile.ActiveTiles.First();
+                    if (primaryTile != null)
+                    {
+                        StandardTileData data = new StandardTileData();
 
-                    data.BackTitle = "Milkman";
-                    if (tempTodayTasks.Count == 0)
-                        data.BackContent = "No tasks due today";
-                    else if (tempTodayTasks.Count == 1)
-                        data.BackContent = tempTodayTasks.Count + " task due today";
-                    else
-                        data.BackContent = tempTodayTasks.Count + " tasks due today";
+                        data.BackTitle = "Milkman";
+                        if (tempTodayTasks.Count == 0)
+                            data.BackContent = "No tasks due today";
+                        else if (tempTodayTasks.Count == 1)
+                            data.BackContent = tempTodayTasks.Count + " task due today";
+                        else
+                            data.BackContent = tempTodayTasks.Count + " tasks due today";
 
-                    primaryTile.Update(data);
+                        primaryTile.Update(data);
+                    }
+                }
+                else
+                {
+                    // reset live tile data
+                    ShellTile primaryTile = ShellTile.ActiveTiles.First();
+                    if (primaryTile != null)
+                    {
+                        StandardTileData data = new StandardTileData();
+                        primaryTile.Update(data);
+                    }
                 }
             }
         }
@@ -683,6 +710,7 @@ namespace Milkman
 
                 ApplicationBar.MenuItems.Add(about);
                 ApplicationBar.MenuItems.Add(help);
+                ApplicationBar.MenuItems.Add(settings);
                 ApplicationBar.MenuItems.Add(logout);
             }
         }
@@ -719,6 +747,14 @@ namespace Milkman
         private void mnuHelp_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Milkman uses the Smart Add shortcuts for creating tasks: ^ for due date, ! for priority, # for lists and tags, @ for location, * for repeat, and = for time estimate.\n\nFor example, \"Pick up milk ^today at 2pm !1 #Personal @Grocery Store *weekly =15 minutes\" would create a task to pick up the milk that is due today at 2:00 PM with high priority on the Personal list at the Grocery Store that occurs every week for 15 minutes.", "Smart Add Shortcuts", MessageBoxButton.OK);
+        }
+
+        private void mnuSettings_Click(object sender, EventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
+            });
         }
 
         private void mnuLogout_Click(object sender, EventArgs e)

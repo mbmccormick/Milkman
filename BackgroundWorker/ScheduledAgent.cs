@@ -42,15 +42,20 @@ namespace BackgroundWorker
         protected override void OnInvoke(ScheduledTask task)
         {
             // load cached data
-            App.LoadData(); 
+            App.LoadData();
 
-            // update current location
-            GeoCoordinateWatcher watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
-            watcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>((object sender, GeoPositionChangedEventArgs<GeoCoordinate> e) =>
+            AppSettings settings = new AppSettings();
+
+            if (settings.LocationNotificationsEnabled == true)
             {
-                _position = e.Position;
-            });
-            watcher.Start();
+                // update current location
+                GeoCoordinateWatcher watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+                watcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>((object sender, GeoPositionChangedEventArgs<GeoCoordinate> e) =>
+                {
+                    _position = e.Position;
+                });
+                watcher.Start();
+            }
 
             // sync data
             if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
@@ -145,21 +150,26 @@ namespace BackgroundWorker
 
                 tempTags.Sort();
 
-                // check for nearby tasks
-                if (_position != null)
-                {
-                    foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks).Concat(tempNoDueTasks))
-                    {
-                        if (item.Location != null)
-                        {
-                            if (LocationHelper.Distance(_position.Location.Latitude, _position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) < 1609.344)
-                            {
-                                ShellToast toast = new ShellToast();
-                                toast.Title = "Milkman";
-                                toast.Content = item.Name + " at " + item.Location.Name + " is less than 1 mile away.";
-                                toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
+                AppSettings settings = new AppSettings();
 
-                                toast.Show();
+                if (settings.LocationNotificationsEnabled == true)
+                {
+                    // check for nearby tasks
+                    if (_position != null)
+                    {
+                        foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks).Concat(tempNoDueTasks))
+                        {
+                            if (item.Location != null)
+                            {
+                                if (LocationHelper.Distance(_position.Location.Latitude, _position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) < 1609.344)
+                                {
+                                    ShellToast toast = new ShellToast();
+                                    toast.Title = "Milkman";
+                                    toast.Content = item.Name + " at " + item.Location.Name + " is less than 1 mile away.";
+                                    toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
+
+                                    toast.Show();
+                                }
                             }
                         }
                     }

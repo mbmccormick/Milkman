@@ -187,6 +187,7 @@
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="about milkman" Click="mnuAbout_Click" />
                 <shell:ApplicationBarMenuItem Text="shortcuts help" Click="mnuHelp_Click" />
+                <shell:ApplicationBarMenuItem Text="settings" Click="mnuSettings_Click" />
                 <shell:ApplicationBarMenuItem Text="logout" Click="mnuLogout_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
