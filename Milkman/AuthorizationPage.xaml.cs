@@ -65,6 +65,7 @@ namespace Milkman
         private void AuthorizationPage_Loaded(object sender, RoutedEventArgs e)
         {
             StartAuth();
+            MessageBox.Show("Login to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue.", "Authorization", MessageBoxButton.OK);
         }
 
         #region Event Handling

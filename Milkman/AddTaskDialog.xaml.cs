@@ -90,7 +90,7 @@ namespace Milkman
         public void Open()
         {
             stbSwivelIn.Begin();
-            SystemTray.BackgroundColor = Color.FromArgb(255, 222, 222, 222);
+            SystemTray.BackgroundColor = Color.FromArgb(255, 222, 222, 222); // Color.FromArgb(255, 33, 33, 33);
             Visibility = Visibility.Visible;
             
             _isOpen = true;

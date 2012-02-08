@@ -185,7 +185,7 @@
                                             Text="sync"
                                             Click="btnSync_Click"/>
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="settings &amp; about" Click="mnuAbout_Click" />
+                <shell:ApplicationBarMenuItem Text="about milkman" Click="mnuAbout_Click" />
                 <shell:ApplicationBarMenuItem Text="shortcuts help" Click="mnuHelp_Click" />
                 <shell:ApplicationBarMenuItem Text="logout" Click="mnuLogOut_Click" />
             </shell:ApplicationBar.MenuItems>

@@ -141,7 +141,6 @@
     <Content Include="Resources\select.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BackgroundWorker\BackgroundWorker.csproj">
