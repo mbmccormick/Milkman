@@ -16,6 +16,7 @@ using IronCow;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Scheduler;
+using Microsoft.Phone.Tasks;
 
 namespace Milkman
 {
@@ -139,6 +140,7 @@ namespace Milkman
 
         ApplicationBarMenuItem about;
         ApplicationBarMenuItem help;
+        ApplicationBarMenuItem bugReport;
         ApplicationBarMenuItem settings;
         ApplicationBarMenuItem logout;
 
@@ -185,6 +187,10 @@ namespace Milkman
             help = new ApplicationBarMenuItem();
             help.Text = "shortcuts help";
             help.Click += mnuHelp_Click;
+
+            bugReport = new ApplicationBarMenuItem();
+            bugReport.Text = "submit bug report";
+            bugReport.Click += mnuBugReport_Click;
 
             settings = new ApplicationBarMenuItem();
             settings.Text = "settings";
@@ -710,6 +716,7 @@ namespace Milkman
 
                 ApplicationBar.MenuItems.Add(about);
                 ApplicationBar.MenuItems.Add(help);
+                ApplicationBar.MenuItems.Add(bugReport);
                 ApplicationBar.MenuItems.Add(settings);
                 ApplicationBar.MenuItems.Add(logout);
             }
@@ -747,6 +754,14 @@ namespace Milkman
         private void mnuHelp_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Milkman uses the Smart Add shortcuts for creating tasks: ^ for due date, ! for priority, # for lists and tags, @ for location, * for repeat, and = for time estimate.\n\nFor example, \"Pick up milk ^today at 2pm !1 #Personal @Grocery Store *weekly =15 minutes\" would create a task to pick up the milk that is due today at 2:00 PM with high priority on the Personal list at the Grocery Store that occurs every week for 15 minutes.", "Smart Add Shortcuts", MessageBoxButton.OK);
+        }
+
+        private void mnuBugReport_Click(object sender, EventArgs e)
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+            emailComposeTask.To = "milkmanwp@gmail.com";
+            emailComposeTask.Subject = "Milkman Bug Report";
+            emailComposeTask.Show();
         }
 
         private void mnuSettings_Click(object sender, EventArgs e)
