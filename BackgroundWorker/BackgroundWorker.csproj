@@ -43,6 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Phone" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -54,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Common\App.cs" />
     <Compile Include="Common\IsolatedStorageHelper.cs" />
+    <Compile Include="Common\LocationHelper.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
     <Compile Include="Common\SortableObservableCollection.cs" />
     <Compile Include="ScheduledAgent.cs" />

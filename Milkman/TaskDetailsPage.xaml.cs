@@ -25,7 +25,7 @@ namespace Milkman
         public static bool sReload = true;
 
         public static readonly DependencyProperty IsLoadingProperty =
-            DependencyProperty.Register("IsLoading", typeof(bool), typeof(MainPage),
+            DependencyProperty.Register("IsLoading", typeof(bool), typeof(TaskDetailsPage),
                 new PropertyMetadata((bool)false));
 
         public bool IsLoading
@@ -80,6 +80,8 @@ namespace Milkman
             progressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator = progressIndicator;
 
+            IsLoading = true;
+
             if (CurrentTask != null)
             {
                 if (CurrentTask.Priority == TaskPriority.One)
@@ -93,17 +95,37 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            ReloadTask();
+            IsLoading = true;
+            
+            if (e.IsNavigationInitiator)
+            {
+                ReloadTask();
+            }
+            else
+            {
+                App.RtmClient.SyncEverything(() =>
+                {
+                    ReloadTask();
+                });
+            }
         }
+
+        #endregion
+
+        #region Loading Data
 
         private void ReloadTask()
         {
-            string id;
-
-            if (NavigationContext.QueryString.TryGetValue("id", out id))
+            SmartDispatcher.BeginInvoke(() =>
             {
-                CurrentTask = App.RtmClient.GetTask(id);
-            }
+                string id;
+                if (NavigationContext.QueryString.TryGetValue("id", out id))
+                {
+                    CurrentTask = App.RtmClient.GetTask(id);
+                }
+
+                IsLoading = false;
+            });
         }
 
         #endregion
@@ -150,7 +172,7 @@ namespace Milkman
                             Dispatcher.BeginInvoke(() =>
                             {
                                 ReloadTask();
-                                IsLoading = false;                                
+                                IsLoading = false;
                             });
                         });
                     });
