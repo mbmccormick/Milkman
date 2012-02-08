@@ -76,12 +76,6 @@ namespace Milkman
 
         private void TaskDetailsPage_Loaded(object sender, RoutedEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
-
-            IsLoading = true;
-
             if (CurrentTask != null)
             {
                 if (CurrentTask.Priority == TaskPriority.One)
@@ -95,6 +89,10 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            progressIndicator = new ProgressIndicator();
+            progressIndicator.IsVisible = true;
+            SystemTray.ProgressIndicator = progressIndicator;
+
             IsLoading = true;
             
             if (e.IsNavigationInitiator)

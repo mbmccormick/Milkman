@@ -57,25 +57,28 @@ namespace BackgroundWorker
                 watcher.Start();
             }
 
-            // sync data
-            if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
+            if (settings.BackgroundWorkerEnabled == true)
             {
-                App.RtmClient.SyncEverything(() =>
+                // sync data
+                if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
                 {
-                    LoadDataInBackground();
+                    App.RtmClient.SyncEverything(() =>
+                    {
+                        LoadDataInBackground();
 
+                        if (System.Diagnostics.Debugger.IsAttached)
+                            ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+
+                        NotifyComplete();
+                    });
+                }
+                else
+                {
                     if (System.Diagnostics.Debugger.IsAttached)
                         ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
                     NotifyComplete();
-                });
-            }
-            else
-            {
-                if (System.Diagnostics.Debugger.IsAttached)
-                    ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
-
-                NotifyComplete();
+                }
             }
         }
 

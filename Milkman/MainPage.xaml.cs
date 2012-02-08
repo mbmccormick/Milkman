@@ -399,7 +399,7 @@ namespace Milkman
                     // add new reminders
                     foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks))
                     {
-                        if (item.HasDueTime)
+                        if (item.HasDueTime && item.DueDateTime >= DateTime.Now)
                         {
                             Reminder r = new Reminder(item.Id);
                             r.Title = item.Name;
