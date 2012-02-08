@@ -666,7 +666,7 @@ namespace Milkman
         {
             Task item = ((FrameworkElement)sender).DataContext as Task;
 
-            NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
+            this.NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
             
             MultiselectList target = null;
             if (this.pivLayout.SelectedIndex == 0)
@@ -701,6 +701,25 @@ namespace Milkman
                 target.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
             else if (task.Priority == TaskPriority.Three)
                 target.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
+        }
+
+        private void mnuAbout_Click(object sender, EventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+        }
+
+        private void mnuHelp_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Milkman uses the Smart Add shortcuts for creating tasks: ^ for due date, ! for priority, # for lists and tags, @ for location, * for repeat, and = for time estimate.\n\nFor example, \"Pick up milk ^today at 2pm !1 #Personal @Grocery Store *weekly =15 minutes\" would create a task to pick up the milk that is due today at 2:00 PM with high priority on the Personal list at the Grocery Store that occurs every week for 15 minutes.", "Smart Add Shortcuts", MessageBoxButton.OK);
+        }
+
+        private void mnuLogOut_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to logout of Milkman and remove all of your data?", "Logout", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                App.DeleteData();
+                Login();
+            }
         }
     }
 }

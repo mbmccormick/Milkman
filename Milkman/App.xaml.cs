@@ -15,6 +15,7 @@ using Microsoft.Phone.Shell;
 using Milkman.Common;
 using IronCow;
 using IronCow.Rest;
+using Microsoft.Phone.Scheduler;
 
 namespace Milkman
 {
@@ -101,6 +102,22 @@ namespace Milkman
             RtmClient = new Rtm(RtmApiKey, RtmSharedKey);
             ListsResponse = null;
             TasksResponse = null;
+
+            // stop background worker
+            if (ScheduledActionService.Find("BackgroundWorker") != null)
+                ScheduledActionService.Remove("BackgroundWorker");
+
+            // delete all existing reminders
+            foreach (var item in ScheduledActionService.GetActions<Reminder>())
+                ScheduledActionService.Remove(item.Name);
+
+            // reset live tile data
+            ShellTile primaryTile = ShellTile.ActiveTiles.First();
+            if (primaryTile != null)
+            {
+                StandardTileData data = new StandardTileData();
+                primaryTile.Update(data);
+            }
         }
 
         public static void OnCacheLists(Response response)

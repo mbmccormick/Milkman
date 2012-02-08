@@ -9,7 +9,7 @@ using System.Resources;
 [assembly: AssemblyTitle("Milkman")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Matt McCormick")]
 [assembly: AssemblyProduct("Milkman")]
 [assembly: AssemblyCopyright("Copyright © Matt McCormick 2012")]
 [assembly: AssemblyTrademark("")]

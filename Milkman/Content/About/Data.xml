@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<About>
+  <!-- The App element allows you to override the values that are extracted from the WMAppManifest.xml file automatically -->
+  <!-- The AdditionalNotes attribute has no equivalent in the WMAppManifest.xml; you can only define its content here -->
+  <!-- New in 1.1: Explicitly set any of the attributes to an empty string to remove it (including its label) from the dialog -->
+  <App Title="Milkman"
+       Author="Matt McCormick"
+       Description=""
+       AdditionalNotes="This application uses the Remember The Milk application programming interface but is not endorsed or certified by Remember The Milk.\n\nSwipe right to left for legal notices." />
+  <Items>
+    <MainItem Title="about"
+              AppAuthorLabel="by"
+              AppDescriptionLabel=""
+              AppPublisherLabel="Publisher:"
+              AppVersionLabel="Version:"
+              AppAdditionalNotesLabel="Additional Notes:"
+              AppReviewButtonContent="Review this app!">
+      <Links>
+        <Link NavigateUri="http://mbmccormick.com"
+              Content="http://mbmccormick.com"
+              Label="My website:" />
+      </Links>
+    </MainItem>
+    <Item Title="legal" Type="text">
+      Privacy Policy
+      Milkman is a client application designed for connecting you with the excellent Remember The Milk service. Note that by using the Remember The Milk service, you also are likely bound by their terms of service (available at https://www.rememberthemilk.com/help/terms.rtm) as well as their privacy policy (available at https://www.rememberthemilk.com/help/privacy.rtm). This policy is additive to that of the Remember The Milk privacy policy, since Milkman is only a client application.
+
+      Information Collected
+      In the event of an application error, crash, or problem, we may ask you to send an email message with crash information. Such an email may contain personally identifiable information, and it is your choice whether to send such a message. While using the app, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you and help you resolve support or assistance with the app. This will happen through a prompt asking for feedback, allowing you to send an e-mail message, and is not automatic. When you chose to interact with Remember The Milk, we collect an authentication token through an authentication mechanism with the service. As part of this process, we also will then validate the credentials by requesting the profile information for the primary account, and this information may include your email address, name, and any other fields returned from the user lookup with the Remember The Milk API. Your password is never stored by the application. In order to provide you with a better experience, to improve the application and its services, we may share non-identifying information (such as the current page within the application being viewed) to serve you better and analyze and understand how the app is used. There are application preferences that may enable or turn off such functionality.
+
+      Age Policy
+      Within accordance of Microsoft's Application Certification Requirements for Windows Phone, you must not create an account if you are not of the age of 13. As the Milkman application does not require an account, this clause is handled by the Remember The Milk terms of use, which designates that those younger than 13 may not use the service.
+
+      Notes
+      Remember The Milk is a trademark of Remember The Milk. This application uses the Remember The Milk application programming interface but is not endorsed or certified by Remember The Milk.
+
+      Contacting the Author
+      If you have any questions about this Privacy Policy, please contact us at support@mccormicktechnologies.com.
+
+    </Item>
+    <Item Title="what's new?" Type="text">
+      Version 1.0.0.0
+      This is the first release of Milkman. This release contains base featureset of Remember The Milk and fully integrates with the Windows Phone 7.5 experience.
+
+    </Item>
+  </Items>
+</About>
