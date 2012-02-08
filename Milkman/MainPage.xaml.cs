@@ -137,6 +137,10 @@ namespace Milkman
         ApplicationBarIconButton postpone;
         ApplicationBarIconButton delete;
 
+        ApplicationBarMenuItem about;
+        ApplicationBarMenuItem help;
+        ApplicationBarMenuItem logout;
+
         // Constructor
         public MainPage()
         {
@@ -172,6 +176,18 @@ namespace Milkman
             delete.IconUri = new Uri("/Resources/delete.png", UriKind.RelativeOrAbsolute);
             delete.Text = "delete";
             delete.Click += btnDelete_Click;
+
+            about = new ApplicationBarMenuItem();
+            about.Text = "about milkman";
+            about.Click += mnuAbout_Click;
+
+            help = new ApplicationBarMenuItem();
+            help.Text = "shortcuts help";
+            help.Click += mnuHelp_Click;
+
+            logout = new ApplicationBarMenuItem();
+            logout.Text = "logout";
+            logout.Click += mnuLogout_Click;
 
             IsLoading = false;
         }
@@ -659,6 +675,10 @@ namespace Milkman
                 ApplicationBar.Buttons.Add(add);
                 ApplicationBar.Buttons.Add(select);
                 ApplicationBar.Buttons.Add(sync);
+
+                ApplicationBar.MenuItems.Add(about);
+                ApplicationBar.MenuItems.Add(help);
+                ApplicationBar.MenuItems.Add(logout);
             }
         }
 
@@ -713,7 +733,7 @@ namespace Milkman
             MessageBox.Show("Milkman uses the Smart Add shortcuts for creating tasks: ^ for due date, ! for priority, # for lists and tags, @ for location, * for repeat, and = for time estimate.\n\nFor example, \"Pick up milk ^today at 2pm !1 #Personal @Grocery Store *weekly =15 minutes\" would create a task to pick up the milk that is due today at 2:00 PM with high priority on the Personal list at the Grocery Store that occurs every week for 15 minutes.", "Smart Add Shortcuts", MessageBoxButton.OK);
         }
 
-        private void mnuLogOut_Click(object sender, EventArgs e)
+        private void mnuLogout_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to logout of Milkman and remove all of your data?", "Logout", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
