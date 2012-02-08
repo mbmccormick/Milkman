@@ -403,10 +403,12 @@ namespace Milkman
                     StandardTileData data = new StandardTileData();
 
                     data.BackTitle = "Milkman";
-                    if (tempTodayTasks.Count > 1)
-                        data.BackContent = tempTodayTasks.Count + " tasks due today";
-                    else
+                    if (tempTodayTasks.Count == 0)
+                        data.BackContent = "No tasks due today";
+                    else if (tempTodayTasks.Count == 1)
                         data.BackContent = tempTodayTasks.Count + " task due today";
+                    else
+                        data.BackContent = tempTodayTasks.Count + " tasks due today";
 
                     primaryTile.Update(data);
                 }
@@ -686,28 +688,8 @@ namespace Milkman
         {
             Task item = ((FrameworkElement)sender).DataContext as Task;
 
-            this.NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
-            
-            MultiselectList target = null;
-            if (this.pivLayout.SelectedIndex == 0)
-                target = this.lstToday;
-            else if (this.pivLayout.SelectedIndex == 1)
-                target = this.lstTomorrow;
-            else if (this.pivLayout.SelectedIndex == 2)
-                target = this.lstOverdue;
-            else if (this.pivLayout.SelectedIndex == 3)
-                target = this.lstWeek;
-            else if (this.pivLayout.SelectedIndex == 4)
-                target = this.lstNoDue;
-
-            if (target.IsSelectionEnabled)
-            {
-                MultiselectItem container = target.ItemContainerGenerator.ContainerFromItem(item) as MultiselectItem;
-                if (container != null)
-                {
-                    container.IsSelected = !container.IsSelected;
-                }
-            }
+            if (item != null)
+                this.NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
         }
 
         private void ItemContent_Loaded(object sender, EventArgs e)

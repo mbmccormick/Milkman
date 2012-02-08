@@ -11,7 +11,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True"
     toolkit:TiltEffect.IsTiltEnabled="True"
@@ -47,7 +47,7 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Visible">
+            <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Hidden">
                 <TextBlock x:Name="txtName" Text="{Binding Name}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
             </ScrollViewer>
             <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>

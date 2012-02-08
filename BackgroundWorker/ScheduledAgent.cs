@@ -142,10 +142,12 @@ namespace BackgroundWorker
                     StandardTileData data = new StandardTileData();
 
                     data.BackTitle = "Milkman";
-                    if (tempTodayTasks.Count > 1)
-                        data.BackContent = tempTodayTasks.Count + " tasks due today";
-                    else
+                    if (tempTodayTasks.Count == 0)
+                        data.BackContent = "No tasks due today";
+                    else if (tempTodayTasks.Count == 1)
                         data.BackContent = tempTodayTasks.Count + " task due today";
+                    else
+                        data.BackContent = tempTodayTasks.Count + " tasks due today";
 
                     primaryTile.Update(data);
                 }
