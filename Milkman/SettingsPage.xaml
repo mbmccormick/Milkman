@@ -29,7 +29,7 @@
 
         <StackPanel x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <toolkit:ToggleSwitch x:Name="togBackgroundWorker" Content="On" IsChecked="true" Header="Sync data in the background" Checked="togBackgroundWorker_Checked" Unchecked="togBackgroundWorker_Unchecked" />
-            <toolkit:ToggleSwitch x:Name="togLocationService" Content="On" IsChecked="true" Header="Notify me when a tasks are nearby" />
+            <toolkit:ToggleSwitch x:Name="togLocationService" Content="On" IsChecked="true" Header="Notify me when tasks are nearby" />
             <toolkit:ToggleSwitch x:Name="togTaskReminders" Content="On" IsChecked="true" Header="Remind me before tasks are due" />
         </StackPanel>
     </Grid>
