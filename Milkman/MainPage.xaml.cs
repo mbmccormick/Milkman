@@ -279,6 +279,7 @@ namespace Milkman
                         App.RtmClient.SyncEverything(() =>
                         {
                             LoadData();
+                            SetupNotifications();
 
                             SmartDispatcher.BeginInvoke(() =>
                             {
@@ -296,68 +297,6 @@ namespace Milkman
             };
 
             b.RunWorkerAsync();
-
-            AppSettings settings = new AppSettings();
-
-            // delete all existing reminders
-            foreach (var item in ScheduledActionService.GetActions<Reminder>())
-            {
-                ScheduledActionService.Remove(item.Name);
-            }
-
-            if (settings.TaskRemindersEnabled == true)
-            {
-                // add new reminders
-                SmartDispatcher.BeginInvoke(() =>
-                {
-                    foreach (var item in TodayTasks.Concat(TomorrowTasks).Concat(WeekTasks))
-                    {
-                        if (item.HasDueTime && item.DueDateTime >= DateTime.Now)
-                        {
-                            Reminder r = new Reminder(item.Id);
-                            r.Title = item.Name;
-                            r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
-                            r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
-                            r.BeginTime = item.DueDateTime.Value.AddHours(-1);
-
-                            ScheduledActionService.Add(r);
-                        }
-                    }
-                });
-            }
-
-            if (settings.BackgroundWorkerEnabled == true)
-            {
-                // update live tile data
-                SmartDispatcher.BeginInvoke(() =>
-                {
-                    ShellTile primaryTile = ShellTile.ActiveTiles.First();
-                    if (primaryTile != null)
-                    {
-                        StandardTileData data = new StandardTileData();
-
-                        data.BackTitle = "Milkman";
-                        if (TodayTasks.Count == 0)
-                            data.BackContent = "No tasks due today";
-                        else if (TodayTasks.Count == 1)
-                            data.BackContent = TodayTasks.Count + " task due today";
-                        else
-                            data.BackContent = TodayTasks.Count + " tasks due today";
-
-                        primaryTile.Update(data);
-                    }
-                });
-            }
-            else
-            {
-                // reset live tile data
-                ShellTile primaryTile = ShellTile.ActiveTiles.First();
-                if (primaryTile != null)
-                {
-                    StandardTileData data = new StandardTileData();
-                    primaryTile.Update(data);
-                }
-            }
         }
 
         private void LoadData()
@@ -453,6 +392,71 @@ namespace Milkman
 
                     Tags = tempTags;
                 });
+            }
+        }
+
+        private void SetupNotifications()
+        {
+            AppSettings settings = new AppSettings();
+
+            // delete all existing reminders
+            foreach (var item in ScheduledActionService.GetActions<Reminder>())
+            {
+                ScheduledActionService.Remove(item.Name);
+            }
+
+            if (settings.TaskRemindersEnabled == true)
+            {
+                // add new reminders
+                SmartDispatcher.BeginInvoke(() =>
+                {
+                    foreach (var item in TodayTasks.Concat(TomorrowTasks).Concat(WeekTasks))
+                    {
+                        if (item.HasDueTime && item.DueDateTime.Value.AddHours(-1) >= DateTime.Now)
+                        {
+                            Reminder r = new Reminder(item.Id);
+                            r.Title = item.Name;
+                            r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
+                            r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
+                            r.BeginTime = item.DueDateTime.Value.AddHours(-1);
+
+                            ScheduledActionService.Add(r);
+                        }
+                    }
+                });
+            }
+
+            if (settings.BackgroundWorkerEnabled == true)
+            {
+                // update live tile data
+                SmartDispatcher.BeginInvoke(() =>
+                {
+                    ShellTile primaryTile = ShellTile.ActiveTiles.First();
+                    if (primaryTile != null)
+                    {
+                        StandardTileData data = new StandardTileData();
+
+                        data.BackTitle = "Milkman";
+                        if (TodayTasks.Count == 0)
+                            data.BackContent = "No tasks due today";
+                        else if (TodayTasks.Count == 1)
+                            data.BackContent = TodayTasks.Count + " task due today";
+                        else
+                            data.BackContent = TodayTasks.Count + " tasks due today";
+
+                        primaryTile.Update(data);
+                    }
+                });
+            }
+            else
+            {
+                // reset live tile data
+                ShellTile primaryTile = ShellTile.ActiveTiles.First();
+                if (primaryTile != null)
+                {
+                    StandardTileData data = new StandardTileData();
+                    primaryTile.Update(data);
+                }
             }
         }
 
