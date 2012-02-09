@@ -1313,14 +1313,19 @@ namespace IronCow
                     }
                     else
                     {
-                        if (this.DueDateTime.Value.Date == DateTime.Now.Date &&
-                            this.HasDueTime)
+                        if (this.DueDateTime.Value.Date == DateTime.Now.Date)
                         {
-                            return "Due today at " + this.DueDateTime.Value.ToString("h:mm tt");
+                            if (this.HasDueTime)
+                                return "Due today at " + this.DueDateTime.Value.ToString("h:mm tt");
+                            else
+                                return "Due today";
                         }
                         else
                         {
-                            return "Due " + this.DueString;
+                            if (this.HasDueTime)
+                                return "Due " + this.DueString + " at " + this.DueDateTime.Value.ToString("h:mm tt");
+                            else
+                                return "Due " + this.DueString;
                         }
                     }
                 }
