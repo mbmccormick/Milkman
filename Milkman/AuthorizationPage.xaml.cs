@@ -22,7 +22,7 @@ namespace Milkman
         public static bool sReload = true;
 
         public static readonly DependencyProperty IsLoadingProperty =
-            DependencyProperty.Register("IsLoading", typeof(bool), typeof(MainPage),
+            DependencyProperty.Register("IsLoading", typeof(bool), typeof(AuthorizationPage),
                 new PropertyMetadata((bool)false));
 
         public bool IsLoading
