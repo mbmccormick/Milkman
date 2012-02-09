@@ -167,8 +167,8 @@ namespace BackgroundWorker
                                 if (LocationHelper.Distance(_position.Location.Latitude, _position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) < 1609.344)
                                 {
                                     ShellToast toast = new ShellToast();
-                                    toast.Title = "Milkman";
-                                    toast.Content = item.Name + " at " + item.Location.Name + " is less than 1 mile away.";
+                                    toast.Title = item.Location.Name;
+                                    toast.Content = item.Name;
                                     toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
 
                                     toast.Show();
