@@ -41,19 +41,33 @@ namespace Milkman
             this.togTaskReminders.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
         }
 
-        private void togBackgroundWorker_Checked(object sender, RoutedEventArgs e)
+        private void ToggleSwitch_Checked(object sender, RoutedEventArgs e)
         {
-            this.togLocationService.IsEnabled = true;
-            this.togTaskReminders.IsEnabled = true;
+            ToggleSwitch target = (ToggleSwitch)sender;
+
+            target.Content = "On";
+
+            if (target == this.togBackgroundWorker)
+            {
+                this.togLocationService.IsEnabled = true;
+                this.togTaskReminders.IsEnabled = true;
+            }
         }
 
-        private void togBackgroundWorker_Unchecked(object sender, RoutedEventArgs e)
+        private void ToggleSwitch_Unchecked(object sender, RoutedEventArgs e)
         {
-            this.togLocationService.IsChecked = false;
-            this.togTaskReminders.IsChecked = false;
+            ToggleSwitch target = (ToggleSwitch)sender;
 
-            this.togLocationService.IsEnabled = false;
-            this.togTaskReminders.IsEnabled = false;
+            target.Content = "Off";
+
+            if (target == this.togBackgroundWorker)
+            {
+                this.togLocationService.IsChecked = false;
+                this.togTaskReminders.IsChecked = false;
+
+                this.togLocationService.IsEnabled = false;
+                this.togTaskReminders.IsEnabled = false;
+            }
         }
     }
 }
