@@ -62,8 +62,13 @@ namespace BackgroundWorker
             {
                 SyncData();
             }
+            else
+            {
+                if (System.Diagnostics.Debugger.IsAttached)
+                    ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
-            NotifyComplete();
+                NotifyComplete();
+            }
         }
 
         private void SyncData()
