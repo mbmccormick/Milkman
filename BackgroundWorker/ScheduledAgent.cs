@@ -46,9 +46,9 @@ namespace BackgroundWorker
 
             AppSettings settings = new AppSettings();
 
+            // update current location
             if (settings.LocationNotificationsEnabled == true)
             {
-                // update current location
                 GeoCoordinateWatcher watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
                 watcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>((object sender, GeoPositionChangedEventArgs<GeoCoordinate> e) =>
                 {
@@ -57,29 +57,41 @@ namespace BackgroundWorker
                 watcher.Start();
             }
 
+            // sync data
             if (settings.BackgroundWorkerEnabled == true)
             {
-                // sync data
-                if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
-                {
-                    App.RtmClient.SyncEverything(() =>
-                    {
-                        LoadDataInBackground();
+                SyncData();
+            }
 
-                        if (System.Diagnostics.Debugger.IsAttached)
-                            ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+            NotifyComplete();
+        }
 
-                        NotifyComplete();
-                    });
-                }
-                else
+        private void SyncData()
+        {
+            if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
+            {
+                App.RtmClient.SyncEverything(() =>
                 {
+                    LoadData();
+
                     if (System.Diagnostics.Debugger.IsAttached)
                         ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
                     NotifyComplete();
-                }
+                });
             }
+            else
+            {
+                if (System.Diagnostics.Debugger.IsAttached)
+                    ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+
+                NotifyComplete();
+            }
+        }
+
+        private void LoadData()
+        {
+            LoadDataInBackground();
         }
 
         private void LoadDataInBackground()
@@ -155,24 +167,21 @@ namespace BackgroundWorker
 
                 AppSettings settings = new AppSettings();
 
-                if (settings.LocationNotificationsEnabled == true)
+                // check for nearby tasks
+                if (_position != null)
                 {
-                    // check for nearby tasks
-                    if (_position != null)
+                    foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks).Concat(tempNoDueTasks))
                     {
-                        foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks).Concat(tempNoDueTasks))
+                        if (item.Location != null)
                         {
-                            if (item.Location != null)
+                            if (LocationHelper.Distance(_position.Location.Latitude, _position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) < 1609.344)
                             {
-                                if (LocationHelper.Distance(_position.Location.Latitude, _position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) < 1609.344)
-                                {
-                                    ShellToast toast = new ShellToast();
-                                    toast.Title = item.Location.Name;
-                                    toast.Content = item.Name;
-                                    toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
+                                ShellToast toast = new ShellToast();
+                                toast.Title = item.Location.Name;
+                                toast.Content = item.Name;
+                                toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
 
-                                    toast.Show();
-                                }
+                                toast.Show();
                             }
                         }
                     }

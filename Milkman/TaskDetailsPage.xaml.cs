@@ -128,29 +128,15 @@ namespace Milkman
 
         #endregion
 
+        #region Event Handlers
+
         private void btnComplete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to mark this task as complete?", "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 if (CurrentTask != null && !IsLoading)
                 {
-                    IsLoading = true;
-
-                    CurrentTask.Complete(() =>
-                    {
-                        App.RtmClient.CacheTasks(() =>
-                        {
-                            Dispatcher.BeginInvoke(() =>
-                            {
-                                IsLoading = false;
-
-                                if (this.NavigationService.CanGoBack)
-                                    this.NavigationService.GoBack();
-                                else
-                                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-                            });
-                        });
-                    });
+                    CompleteTask(CurrentTask);
                 }
             }
         }
@@ -161,19 +147,7 @@ namespace Milkman
             {
                 if (CurrentTask != null && !IsLoading)
                 {
-                    IsLoading = true;
-
-                    CurrentTask.Postpone(() =>
-                    {
-                        App.RtmClient.CacheTasks(() =>
-                        {
-                            Dispatcher.BeginInvoke(() =>
-                            {
-                                ReloadTask();
-                                IsLoading = false;
-                            });
-                        });
-                    });
+                    PostponeTask(CurrentTask);
                 }
             }
         }
@@ -184,25 +158,71 @@ namespace Milkman
             {
                 if (CurrentTask != null && !IsLoading)
                 {
-                    IsLoading = true;
-
-                    CurrentTask.Delete(() =>
-                    {
-                        App.RtmClient.CacheTasks(() =>
-                        {
-                            Dispatcher.BeginInvoke(() =>
-                            {
-                                IsLoading = false;
-
-                                if (this.NavigationService.CanGoBack)
-                                    this.NavigationService.GoBack();
-                                else
-                                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
-                            });
-                        });
-                    });
+                    DeleteTask(CurrentTask);
                 }
             }
         }
+
+        #endregion
+
+        #region Task Methods
+
+        private void CompleteTask(Task data)
+        {
+            IsLoading = true;
+            data.Complete(() =>
+            {
+                App.RtmClient.CacheTasks(() =>
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        IsLoading = false;
+
+                        if (this.NavigationService.CanGoBack)
+                            this.NavigationService.GoBack();
+                        else
+                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    });
+                });
+            });
+        }
+
+        private void PostponeTask(Task data)
+        {
+            IsLoading = true;
+            data.Postpone(() =>
+            {
+                App.RtmClient.CacheTasks(() =>
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        IsLoading = false;
+                        ReloadTask();
+                    });
+                });
+            });
+        }
+
+        private void DeleteTask(Task data)
+        {
+            IsLoading = true;
+            data.Delete(() =>
+            {
+                App.RtmClient.CacheTasks(() =>
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        IsLoading = false;
+
+                        if (this.NavigationService.CanGoBack)
+                            this.NavigationService.GoBack();
+                        else
+                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    });
+                });
+            });
+        }
+
+        #endregion
     }
 }

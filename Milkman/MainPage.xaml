@@ -48,6 +48,14 @@
                         </DataTemplate>
                     </toolkit:MultiselectList.ItemTemplate>
                 </toolkit:MultiselectList>
+
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu x:Name="ctxToday">
+                        <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
             </controls:PivotItem>
 
             <controls:PivotItem Header="tomorrow">
@@ -78,6 +86,14 @@
                         </DataTemplate>
                     </toolkit:MultiselectList.ItemTemplate>
                 </toolkit:MultiselectList>
+
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu x:Name="ctxTomorrow">
+                        <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
             </controls:PivotItem>
 
             <controls:PivotItem Header="overdue">
@@ -108,6 +124,14 @@
                         </DataTemplate>
                     </toolkit:MultiselectList.ItemTemplate>
                 </toolkit:MultiselectList>
+
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu x:Name="ctxOverdue">
+                        <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
             </controls:PivotItem>
 
             <controls:PivotItem Header="week">
@@ -138,6 +162,14 @@
                         </DataTemplate>
                     </toolkit:MultiselectList.ItemTemplate>
                 </toolkit:MultiselectList>
+
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu x:Name="ctxWeek">
+                        <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
             </controls:PivotItem>
 
             <controls:PivotItem Header="no due date">
@@ -168,6 +200,14 @@
                         </DataTemplate>
                     </toolkit:MultiselectList.ItemTemplate>
                 </toolkit:MultiselectList>
+
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu x:Name="ctxNoDue">
+                        <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                        <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
             </controls:PivotItem>
 
         </controls:Pivot>

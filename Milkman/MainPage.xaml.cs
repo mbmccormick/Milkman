@@ -242,7 +242,7 @@ namespace Milkman
                 target = this.lstWeek;
             else if (this.pivLayout.SelectedIndex == 4)
                 target = this.lstNoDue;
-            
+
             if (this.dlgAddTask.IsOpen)
             {
                 this.dlgAddTask.Close();
@@ -296,6 +296,68 @@ namespace Milkman
             };
 
             b.RunWorkerAsync();
+
+            AppSettings settings = new AppSettings();
+
+            // delete all existing reminders
+            foreach (var item in ScheduledActionService.GetActions<Reminder>())
+            {
+                ScheduledActionService.Remove(item.Name);
+            }
+
+            if (settings.TaskRemindersEnabled == true)
+            {
+                // add new reminders
+                SmartDispatcher.BeginInvoke(() =>
+                {
+                    foreach (var item in TodayTasks.Concat(TomorrowTasks).Concat(WeekTasks))
+                    {
+                        if (item.HasDueTime && item.DueDateTime >= DateTime.Now)
+                        {
+                            Reminder r = new Reminder(item.Id);
+                            r.Title = item.Name;
+                            r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
+                            r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
+                            r.BeginTime = item.DueDateTime.Value.AddHours(-1);
+
+                            ScheduledActionService.Add(r);
+                        }
+                    }
+                });
+            }
+
+            if (settings.BackgroundWorkerEnabled == true)
+            {
+                // update live tile data
+                SmartDispatcher.BeginInvoke(() =>
+                {
+                    ShellTile primaryTile = ShellTile.ActiveTiles.First();
+                    if (primaryTile != null)
+                    {
+                        StandardTileData data = new StandardTileData();
+
+                        data.BackTitle = "Milkman";
+                        if (TodayTasks.Count == 0)
+                            data.BackContent = "No tasks due today";
+                        else if (TodayTasks.Count == 1)
+                            data.BackContent = TodayTasks.Count + " task due today";
+                        else
+                            data.BackContent = TodayTasks.Count + " tasks due today";
+
+                        primaryTile.Update(data);
+                    }
+                });
+            }
+            else
+            {
+                // reset live tile data
+                ShellTile primaryTile = ShellTile.ActiveTiles.First();
+                if (primaryTile != null)
+                {
+                    StandardTileData data = new StandardTileData();
+                    primaryTile.Update(data);
+                }
+            }
         }
 
         private void LoadData()
@@ -391,63 +453,6 @@ namespace Milkman
 
                     Tags = tempTags;
                 });
-
-                AppSettings settings = new AppSettings();
-
-                // delete all existing reminders
-                foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                {
-                    ScheduledActionService.Remove(item.Name);
-                }
-
-                if (settings.TaskRemindersEnabled == true)
-                {
-                    // add new reminders
-                    foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks))
-                    {
-                        if (item.HasDueTime && item.DueDateTime >= DateTime.Now)
-                        {
-                            Reminder r = new Reminder(item.Id);
-                            r.Title = item.Name;
-                            r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
-                            r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
-                            r.BeginTime = item.DueDateTime.Value.AddHours(-1);
-                            r.ExpirationTime = item.DueDateTime.Value;
-
-                            ScheduledActionService.Add(r);
-                        }
-                    }
-                }
-
-                if (settings.BackgroundWorkerEnabled == true)
-                {
-                    // update live tile data
-                    ShellTile primaryTile = ShellTile.ActiveTiles.First();
-                    if (primaryTile != null)
-                    {
-                        StandardTileData data = new StandardTileData();
-
-                        data.BackTitle = "Milkman";
-                        if (tempTodayTasks.Count == 0)
-                            data.BackContent = "No tasks due today";
-                        else if (tempTodayTasks.Count == 1)
-                            data.BackContent = tempTodayTasks.Count + " task due today";
-                        else
-                            data.BackContent = tempTodayTasks.Count + " tasks due today";
-
-                        primaryTile.Update(data);
-                    }
-                }
-                else
-                {
-                    // reset live tile data
-                    ShellTile primaryTile = ShellTile.ActiveTiles.First();
-                    if (primaryTile != null)
-                    {
-                        StandardTileData data = new StandardTileData();
-                        primaryTile.Update(data);
-                    }
-                }
             }
         }
 
@@ -460,6 +465,8 @@ namespace Milkman
         }
 
         #endregion
+
+        #region Event Handlers
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -524,27 +531,11 @@ namespace Milkman
 
             if (MessageBox.Show(messageBoxText, "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                List<Task> toComplete = new List<Task>();
                 while (target.SelectedItems.Count > 0)
                 {
-                    toComplete.Add((Task)target.SelectedItems[0]);
+                    CompleteTask((Task)target.SelectedItems[0]);
                     target.SelectedItems.RemoveAt(0);
                 }
-
-                foreach (var item in toComplete)
-                {
-                    IsLoading = true;
-                    ((Task)item).Complete(() =>
-                    {
-                        App.RtmClient.CacheTasks(() =>
-                        {
-                            IsLoading = false;
-                        });
-                    });
-                }
-
-                sReload = true;
-                SyncData();
 
                 target.IsSelectionEnabled = false;
             }
@@ -572,27 +563,11 @@ namespace Milkman
 
             if (MessageBox.Show(messageBoxText, "Postpone", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                List<Task> toPostpone = new List<Task>();
                 while (target.SelectedItems.Count > 0)
                 {
-                    toPostpone.Add((Task)target.SelectedItems[0]);
+                    PostponeTask((Task)target.SelectedItems[0]);
                     target.SelectedItems.RemoveAt(0);
                 }
-
-                foreach (var item in toPostpone)
-                {
-                    IsLoading = true;
-                    ((Task)item).Postpone(() =>
-                    {
-                        App.RtmClient.CacheTasks(() =>
-                        {
-                            IsLoading = false;
-                        });
-                    });
-                }
-
-                sReload = true;
-                SyncData();
 
                 target.IsSelectionEnabled = false;
             }
@@ -620,27 +595,11 @@ namespace Milkman
 
             if (MessageBox.Show(messageBoxText, "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                List<Task> toDelete = new List<Task>();
                 while (target.SelectedItems.Count > 0)
                 {
-                    toDelete.Add((Task)target.SelectedItems[0]);
+                    DeleteTask((Task)target.SelectedItems[0]);
                     target.SelectedItems.RemoveAt(0);
                 }
-
-                foreach (var item in toDelete)
-                {
-                    IsLoading = true;
-                    ((Task)item).Delete(() =>
-                    {
-                        App.RtmClient.CacheTasks(() =>
-                        {
-                            IsLoading = false;
-                        });
-                    });
-                }
-
-                sReload = true;
-                SyncData();
 
                 target.IsSelectionEnabled = false;
             }
@@ -780,5 +739,99 @@ namespace Milkman
                 Login();
             }
         }
+
+        private Task MostRecentTaskClick
+        {
+            get;
+            set;
+        }
+
+        protected override void OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource is FrameworkElement)
+            {
+                FrameworkElement frameworkElement = (FrameworkElement)e.OriginalSource;
+                if (frameworkElement.DataContext is Task)
+                {
+                    MostRecentTaskClick = (Task)frameworkElement.DataContext;
+                }
+            }
+            base.OnMouseLeftButtonDown(e);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem target = (MenuItem)sender;
+            ContextMenu parent = (ContextMenu)target.Parent;
+
+            if (target.Header.ToString() == "complete")
+            {
+                if (MessageBox.Show("Are you sure you want to mark this task as complete?", "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    CompleteTask(MostRecentTaskClick);
+            }
+            else if (target.Header.ToString() == "postpone")
+            {
+                if (MessageBox.Show("Are you sure you want to postpone this task?", "Postpone", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    PostponeTask(MostRecentTaskClick);
+            }
+            else if (target.Header.ToString() == "delete")
+            {
+                if (MessageBox.Show("Are you sure you want to delete this task?", "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    DeleteTask(MostRecentTaskClick);
+            }
+        }
+
+        #endregion
+
+        #region Task Methods
+
+        private void CompleteTask(Task data)
+        {
+            IsLoading = true;
+            data.Complete(() =>
+            {
+                Dispatcher.BeginInvoke(() =>
+                {
+                    IsLoading = false;
+                });
+
+                sReload = true;
+                LoadData();
+            });
+        }
+
+        private void PostponeTask(Task data)
+        {
+            IsLoading = true;
+            data.Postpone(() =>
+            {
+                Dispatcher.BeginInvoke(() =>
+                {
+                    IsLoading = false;
+                });
+
+                sReload = true;
+                LoadData();
+            });
+        }
+
+        private void DeleteTask(Task data)
+        {
+            IsLoading = true;
+            data.Delete(() =>
+            {
+                Dispatcher.BeginInvoke(() =>
+                {
+                    IsLoading = false;
+                });
+
+                sReload = true;
+                LoadData();
+
+                SyncData();
+            });
+        }
+
+        #endregion
     }
 }
