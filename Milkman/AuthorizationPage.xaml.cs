@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using IronCow;
+using Microsoft.Phone.Shell;
 
 namespace Milkman
 {
@@ -18,31 +19,53 @@ namespace Milkman
     {
         #region IsLoading Property
 
-        /// <summary>
-        /// IsLoading Dependency Property
-        /// </summary>
+        public static bool sReload = true;
+
         public static readonly DependencyProperty IsLoadingProperty =
-            DependencyProperty.Register("IsLoading", typeof(bool), typeof(AuthorizationPage),
+            DependencyProperty.Register("IsLoading", typeof(bool), typeof(MainPage),
                 new PropertyMetadata((bool)false));
 
-        /// <summary>
-        /// Gets or sets the IsLoading property. This dependency property 
-        /// indicates whether we are currently loading.
-        /// </summary>
         public bool IsLoading
         {
-            get { return (bool)GetValue(IsLoadingProperty); }
-            set { SetValue(IsLoadingProperty, value); }
+            get
+            {
+                return (bool)GetValue(IsLoadingProperty);
+            }
+
+            set
+            {
+                try
+                {
+                    SetValue(IsLoadingProperty, value);
+                    if (progressIndicator != null)
+                        progressIndicator.IsIndeterminate = value;
+                }
+                catch (Exception ex)
+                {
+                }
+            }
         }
 
         #endregion
 
         private string Frob { get; set; }
 
+        ProgressIndicator progressIndicator;
+
         public AuthorizationPage()
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(AuthorizationPage_Loaded);
+        }
+
+        private void AuthorizationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            progressIndicator = new ProgressIndicator();
+            progressIndicator.IsVisible = true;
+            SystemTray.ProgressIndicator = progressIndicator;
+
+            StartAuth();
+            MessageBox.Show("Login to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue.", "Authorization", MessageBoxButton.OK);
         }
 
         private void StartAuth()
@@ -60,12 +83,6 @@ namespace Milkman
                     webAuthorization.Navigate(new Uri(url));
                 });
             });
-        }
-
-        private void AuthorizationPage_Loaded(object sender, RoutedEventArgs e)
-        {
-            StartAuth();
-            MessageBox.Show("Login to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue.", "Authorization", MessageBoxButton.OK);
         }
 
         #region Event Handling
