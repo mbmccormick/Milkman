@@ -493,6 +493,8 @@ namespace Milkman
 
                 sReload = true;
                 LoadData();
+
+                SetupNotifications();
             });
         }
 
