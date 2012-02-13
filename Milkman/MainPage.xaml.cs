@@ -848,13 +848,16 @@ namespace Milkman
             IsLoading = true;
             data.Complete(() =>
             {
-                Dispatcher.BeginInvoke(() =>
+                App.RtmClient.CacheTasks(() =>
                 {
-                    IsLoading = false;
-                });
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        IsLoading = false;
+                    });
 
-                sReload = true;
-                LoadData();
+                    sReload = true;
+                    LoadData();
+                });
             });
         }
 
@@ -863,13 +866,16 @@ namespace Milkman
             IsLoading = true;
             data.Postpone(() =>
             {
-                Dispatcher.BeginInvoke(() =>
+                App.RtmClient.CacheTasks(() =>
                 {
-                    IsLoading = false;
-                });
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        IsLoading = false;
+                    });
 
-                sReload = true;
-                LoadData();
+                    sReload = true;
+                    LoadData();
+                });
             });
         }
 
@@ -878,15 +884,16 @@ namespace Milkman
             IsLoading = true;
             data.Delete(() =>
             {
-                Dispatcher.BeginInvoke(() =>
+                App.RtmClient.CacheTasks(() =>
                 {
-                    IsLoading = false;
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        IsLoading = false;
+                    });
+
+                    sReload = true;
+                    LoadData();
                 });
-
-                sReload = true;
-                LoadData();
-
-                SyncData();
             });
         }
 
