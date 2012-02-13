@@ -21,7 +21,7 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Pivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold">
             <controls:PivotItem Header="today">
-                <StackPanel Margin="0">
+                <Grid Margin="0">
                     <toolkit:MultiselectList x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -59,11 +59,11 @@
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
                         </toolkit:ContextMenu>
                     </toolkit:ContextMenuService.ContextMenu>
-                </StackPanel>
+                </Grid>
             </controls:PivotItem>
 
             <controls:PivotItem Header="tomorrow">
-                <StackPanel Margin="0">
+                <Grid Margin="0">
                     <toolkit:MultiselectList x:Name="lstTomorrow" ItemsSource="{Binding TomorrowTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -101,11 +101,11 @@
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
                         </toolkit:ContextMenu>
                     </toolkit:ContextMenuService.ContextMenu>
-                </StackPanel>
+                </Grid>
             </controls:PivotItem>
 
             <controls:PivotItem Header="overdue">
-                <StackPanel Margin="0">
+                <Grid Margin="0">
                     <toolkit:MultiselectList x:Name="lstOverdue" ItemsSource="{Binding OverdueTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -143,11 +143,11 @@
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
                         </toolkit:ContextMenu>
                     </toolkit:ContextMenuService.ContextMenu>
-                </StackPanel>
+                </Grid>
             </controls:PivotItem>
 
             <controls:PivotItem Header="week">
-                <StackPanel Margin="0">
+                <Grid Margin="0">
                     <toolkit:MultiselectList x:Name="lstWeek" ItemsSource="{Binding WeekTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -177,7 +177,7 @@
                     </toolkit:MultiselectList>
 
                     <TextBlock x:Name="txtWeekEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-                    
+
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu x:Name="ctxWeek">
                             <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
@@ -185,11 +185,11 @@
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
                         </toolkit:ContextMenu>
                     </toolkit:ContextMenuService.ContextMenu>
-                </StackPanel>
+                </Grid>
             </controls:PivotItem>
 
             <controls:PivotItem Header="no due date">
-                <StackPanel Margin="0">
+                <Grid Margin="0">
                     <toolkit:MultiselectList x:Name="lstNoDue" ItemsSource="{Binding NoDueTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -219,7 +219,7 @@
                     </toolkit:MultiselectList>
 
                     <TextBlock x:Name="txtNoDueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-                    
+
                     <toolkit:ContextMenuService.ContextMenu>
                         <toolkit:ContextMenu x:Name="ctxNoDue">
                             <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
@@ -227,7 +227,7 @@
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
                         </toolkit:ContextMenu>
                     </toolkit:ContextMenuService.ContextMenu>
-                </StackPanel>
+                </Grid>
             </controls:PivotItem>
 
         </controls:Pivot>
