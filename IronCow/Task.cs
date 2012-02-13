@@ -437,6 +437,29 @@ namespace IronCow
             }
         }
 
+        public void ChangeLocation(Location location, VoidCallback callback)
+        {
+            if (location != mLocation)
+            {
+                string locationId = location == null ? RtmElement.UnsyncedId : location.Id;
+
+                RestRequest request = CreateSetLocationRequest(this, locationId, () =>
+                {
+                    mLocation = location;
+                    mLocationId = locationId;
+                    OnPropertyChanged("Location");
+                    OnPropertyChanged("LocationName");
+
+                    callback();
+                });
+                Owner.ExecuteRequest(request);
+            }
+            else
+            {
+                callback();
+            }
+        }
+
         private string mDue;
         public string Due
         {
@@ -716,6 +739,25 @@ namespace IronCow
                 }
             }
         }
+        public void ChangeRecurrence(string recurrence, VoidCallback callback)
+        {
+            if (recurrence != mRecurrence)
+            {
+                RestRequest request = CreateSetRecurrenceRequest(this, recurrence, () =>
+                {
+                    mRecurrence = recurrence;
+                    OnPropertyChanged("Recurrence");
+                    OnPropertyChanged("HasRecurrence");
+
+                    callback();
+                });
+                Owner.ExecuteRequest(request);
+            }
+            else
+            {
+                callback();
+            }
+        }
 
         public bool HasRecurrence
         {
@@ -743,6 +785,24 @@ namespace IronCow
 
                     OnPropertyChanged("Estimate");
                 }
+            }
+        }
+        public void ChangeEstimate(string estimate, VoidCallback callback)
+        {
+            if (estimate != mEstimate)
+            {
+                RestRequest request = CreateSetEstimateRequest(this, estimate, () =>
+                {
+                    mEstimate = estimate;
+                    OnPropertyChanged("Estimate");
+
+                    callback();
+                });
+                Owner.ExecuteRequest(request);
+            }
+            else
+            {
+                callback();
             }
         }
         #endregion

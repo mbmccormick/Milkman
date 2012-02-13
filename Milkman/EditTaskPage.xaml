@@ -1,0 +1,143 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Milkman.EditTaskPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding Task}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="MILKMAN" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
+            <TextBlock x:Name="PageTitle" Text="edit task" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
+            <Grid x:Name="ContentPanel">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                <TextBox x:Name="txtName" Text="{Binding Name}" Margin="-12,-12,0,12" Grid.Row="0" Grid.Column="1" />
+
+                <TextBlock Text="Due Date" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                <toolkit:ListPicker x:Name="lstDueDate" Margin="0,-12,12,24" Grid.Row="1" Grid.Column="1" SelectionChanged="lstDueDate_SelectionChanged">
+                    <toolkit:ListPickerItem Content="None" />
+                    <toolkit:ListPickerItem Content="Date" />
+                    <toolkit:ListPickerItem Content="Date &amp; Time" />
+                </toolkit:ListPicker>
+                
+                <toolkit:DatePicker Name="dtpDueDateNoTime" Grid.Row="2" Grid.Column="1" Margin="-12,-12,0,12" Visibility="Collapsed" Value="{Binding DueDateTime.Date}"/>
+                <Grid Name="dtpDueDateTime" Grid.Row="2" Grid.Column="1" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <toolkit:DatePicker Name="dtpDueDate" Grid.Column="0" Margin="-12,-24,0,12" Value="{Binding DueDateTime}"/>
+                    <toolkit:TimePicker Name="dtpDueTime" Grid.Column="1" Margin="-12,-24,0,12" Value="{Binding DueDateTime}"/>
+                </Grid>
+
+                <TextBlock Text="Priority" Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                <toolkit:ListPicker x:Name="lstPriority" Margin="0,-12,12,24" Grid.Row="3" Grid.Column="1">
+                    <toolkit:ListPickerItem Content="None" />
+                    <toolkit:ListPickerItem Content="1" />
+                    <toolkit:ListPickerItem Content="2" />
+                    <toolkit:ListPickerItem Content="3" />
+                </toolkit:ListPicker>
+
+                <TextBlock Text="List" Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                <toolkit:ListPicker x:Name="lstList" Margin="0,-12,12,24" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding TaskLists}">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                </toolkit:ListPicker>
+
+                <TextBlock Text="Tags" Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                <TextBox x:Name="txtTags" Text="{Binding TagsString}" Margin="-12,-12,0,12" Grid.Row="5" Grid.Column="1" />
+
+                <TextBlock Text="Repeat" Grid.Row="6" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                <TextBox x:Name="txtRepeat" Text="{Binding Recurrence}" Margin="-12,-12,0,12" Grid.Row="6" Grid.Column="1" />
+
+                <TextBlock Text="Estimate" Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                <TextBox x:Name="txtEstimate" Text="{Binding Estimate}" Margin="-12,-12,0,12" Grid.Row="7" Grid.Column="1" />
+
+                <TextBlock Text="Location" Grid.Row="8" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                <toolkit:ListPicker x:Name="lstLocation" Margin="0,-12,12,24" Grid.Row="8" Grid.Column="1" ItemsSource="{Binding TaskLocations}">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                </toolkit:ListPicker>
+
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" 
+                                            IconUri="/Resources/save.png" 
+                                            Text="save"
+                                            Click="btnSave_Click"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" 
+                                            IconUri="/Resources/cancel.png" 
+                                            Text="cancel"
+                                            Click="btnCancel_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+</phone:PhoneApplicationPage>

@@ -152,6 +152,14 @@ namespace Milkman
             }
         }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.NavigationService.Navigate(new Uri("/EditTaskPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
+            });
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to delete this task?", "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
