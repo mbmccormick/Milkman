@@ -53,34 +53,9 @@ namespace Milkman
 
         #region Task Property
 
-        public static readonly DependencyProperty TaskProperty =
-            DependencyProperty.Register("Task", typeof(Task), typeof(EditTaskPage), new PropertyMetadata(new Task()));
-
-        private Task CurrentTask
-        {
-            get { return (Task)GetValue(TaskProperty); }
-            set { SetValue(TaskProperty, value); }
-        }
-
-        public static readonly DependencyProperty TaskListsProperty =
-               DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(EditTaskPage),
-                   new PropertyMetadata(new ObservableCollection<TaskList>()));
-
-        public ObservableCollection<TaskList> TaskLists
-        {
-            get { return (ObservableCollection<TaskList>)GetValue(TaskListsProperty); }
-            set { SetValue(TaskListsProperty, value); }
-        }
-
-        public static readonly DependencyProperty TaskLocationsProperty =
-               DependencyProperty.Register("TaskLocations", typeof(ObservableCollection<Location>), typeof(EditTaskPage),
-                   new PropertyMetadata(new ObservableCollection<Location>()));
-
-        public ObservableCollection<Location> TaskLocations
-        {
-            get { return (ObservableCollection<Location>)GetValue(TaskLocationsProperty); }
-            set { SetValue(TaskLocationsProperty, value); }
-        }
+        private Task CurrentTask = null;
+        private ObservableCollection<TaskList> TaskLists = new ObservableCollection<TaskList>();
+        private ObservableCollection<Location> TaskLocations = new ObservableCollection<Location>();
 
         #endregion
 
@@ -117,93 +92,82 @@ namespace Milkman
         private void ReloadTask()
         {
             // bind lists list picker
-            if (TaskLists.Count == 0)
+            TaskLists.Clear();
+            foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
             {
-                TaskLists.Clear();
-                foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
-                {
-                    TaskLists.Add(l);
-                }
-                this.lstList.ItemsSource = TaskLists;
+                TaskLists.Add(l);
             }
+            this.lstList.ItemsSource = TaskLists;
 
             // bind locations list picker
-            if (TaskLocations.Count == 0)
+            TaskLocations.Clear();
+            TaskLocations.Add(new Location("None"));
+            foreach (Location l in App.RtmClient.Locations)
             {
-                TaskLocations.Clear();
-                TaskLocations.Add(new Location("None"));
-                foreach (Location l in App.RtmClient.Locations)
-                {
-                    TaskLocations.Add(l);
-                }
-                this.lstLocation.ItemsSource = TaskLocations;
+                TaskLocations.Add(l);
             }
+            this.lstLocation.ItemsSource = TaskLocations;
 
+            // load task
             string id;
             if (NavigationContext.QueryString.TryGetValue("id", out id))
             {
                 CurrentTask = App.RtmClient.GetTask(id);
-            }
 
-            if (CurrentTask == null)
-            {
-                IsLoading = false;
-                return;
-            }
+                // name
+                if (CurrentTask.Name != null)
+                    this.txtName.Text = CurrentTask.Name;
 
-            // name
-            if (CurrentTask.Name != null)
-                this.txtName.Text = CurrentTask.Name;
-
-            // due date
-            if (CurrentTask.DueDateTime.HasValue)
-            {
-                if (CurrentTask.HasDueTime)
+                // due date
+                if (CurrentTask.DueDateTime.HasValue)
                 {
-                    this.dtpDueDate.Value = CurrentTask.DueDateTime;
-                    this.dtpDueTime.Value = CurrentTask.DueDateTime;
-                    this.lstDueDate.SelectedIndex = 2;
+                    if (CurrentTask.HasDueTime)
+                    {
+                        this.dtpDueDate.Value = CurrentTask.DueDateTime;
+                        this.dtpDueTime.Value = CurrentTask.DueDateTime;
+                        this.lstDueDate.SelectedIndex = 2;
+                    }
+                    else
+                    {
+                        this.dtpDueDateNoTime.Value = CurrentTask.DueDateTime;
+                        this.lstDueDate.SelectedIndex = 1;
+                    }
                 }
-                else
+
+                // priority
+                switch (CurrentTask.Priority)
                 {
-                    this.dtpDueDateNoTime.Value = CurrentTask.DueDateTime;
-                    this.lstDueDate.SelectedIndex = 1;
+                    case TaskPriority.One:
+                        this.lstPriority.SelectedIndex = 1;
+                        break;
+                    case TaskPriority.Two:
+                        this.lstPriority.SelectedIndex = 2;
+                        break;
+                    case TaskPriority.Three:
+                        this.lstPriority.SelectedIndex = 3;
+                        break;
                 }
+
+                // list
+                if (CurrentTask.Parent != null)
+                    this.lstList.SelectedItem = CurrentTask.Parent;
+
+                // tags
+                if (CurrentTask.TagsString != null)
+                    this.txtTags.Text = CurrentTask.TagsString;
+
+                // reepeat
+                if (CurrentTask.Recurrence != null)
+                    this.txtRepeat.Text = CurrentTask.Recurrence;
+
+                // estimate
+                if (CurrentTask.Estimate != null)
+                    this.txtEstimate.Text = CurrentTask.Estimate;
+
+                // location
+                if (CurrentTask.Location != null)
+                    this.lstLocation.SelectedItem = CurrentTask.Location;
             }
-
-            // priority
-            switch (CurrentTask.Priority)
-            {
-                case TaskPriority.One:
-                    this.lstPriority.SelectedIndex = 1;
-                    break;
-                case TaskPriority.Two:
-                    this.lstPriority.SelectedIndex = 2;
-                    break;
-                case TaskPriority.Three:
-                    this.lstPriority.SelectedIndex = 3;
-                    break;
-            }
-
-            // list
-            if (CurrentTask.Parent != null)
-                this.lstList.SelectedItem = CurrentTask.Parent;
-
-            // tags
-            if (CurrentTask.TagsString != null)
-                this.txtTags.Text = CurrentTask.TagsString;
-
-            // reepeat
-            if (CurrentTask.Recurrence != null)
-                this.txtRepeat.Text = CurrentTask.Recurrence;
-
-            // estimate
-            if (CurrentTask.Estimate != null)
-                this.txtEstimate.Text = CurrentTask.Estimate;
-
-            // location
-            if (CurrentTask.Location != null)
-                this.lstLocation.SelectedItem = CurrentTask.Location;
 
             IsLoading = false;
         }

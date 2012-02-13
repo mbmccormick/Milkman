@@ -550,6 +550,8 @@ namespace Milkman
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
+            if (IsLoading) return;
+
             MultiselectList target = null;
             if (this.pivLayout.SelectedIndex == 0)
                 target = this.lstToday;
@@ -582,6 +584,8 @@ namespace Milkman
 
         private void btnPostpone_Click(object sender, EventArgs e)
         {
+            if (IsLoading) return;
+
             MultiselectList target = null;
             if (this.pivLayout.SelectedIndex == 0)
                 target = this.lstToday;
@@ -614,6 +618,8 @@ namespace Milkman
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (IsLoading) return;
+
             MultiselectList target = null;
             if (this.pivLayout.SelectedIndex == 0)
                 target = this.lstToday;
@@ -722,6 +728,8 @@ namespace Milkman
 
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            if (IsLoading) return;
+
             Task item = ((FrameworkElement)sender).DataContext as Task;
 
             if (item != null)
