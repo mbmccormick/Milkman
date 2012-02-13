@@ -106,6 +106,8 @@ namespace Milkman
                     ReloadTask();
                 });
             }
+
+            base.OnNavigatedTo(e);
         }
 
         #endregion

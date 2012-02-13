@@ -91,12 +91,6 @@ namespace Milkman
         public EditTaskPage()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(EditTaskPage_Loaded);
-        }
-
-        private void EditTaskPage_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -108,10 +102,12 @@ namespace Milkman
             if (!loadedDetails)
             {
                 IsLoading = true;
-                
+
                 ReloadTask();
                 loadedDetails = true;
             }
+
+            base.OnNavigatedTo(e);
         }
 
         #endregion
@@ -120,7 +116,8 @@ namespace Milkman
 
         private void ReloadTask()
         {
-            SmartDispatcher.BeginInvoke(() =>
+            // bind lists list picker
+            if (TaskLists.Count == 0)
             {
                 TaskLists.Clear();
                 foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
@@ -128,7 +125,11 @@ namespace Milkman
                     TaskLists.Add(l);
                 }
                 this.lstList.ItemsSource = TaskLists;
+            }
 
+            // bind locations list picker
+            if (TaskLocations.Count == 0)
+            {
                 TaskLocations.Clear();
                 TaskLocations.Add(new Location("None"));
                 foreach (Location l in App.RtmClient.Locations)
@@ -136,75 +137,75 @@ namespace Milkman
                     TaskLocations.Add(l);
                 }
                 this.lstLocation.ItemsSource = TaskLocations;
+            }
 
-                string id;
-                if (NavigationContext.QueryString.TryGetValue("id", out id))
+            string id;
+            if (NavigationContext.QueryString.TryGetValue("id", out id))
+            {
+                CurrentTask = App.RtmClient.GetTask(id);
+            }
+
+            if (CurrentTask == null)
+            {
+                IsLoading = false;
+                return;
+            }
+
+            // name
+            if (CurrentTask.Name != null)
+                this.txtName.Text = CurrentTask.Name;
+
+            // due date
+            if (CurrentTask.DueDateTime.HasValue)
+            {
+                if (CurrentTask.HasDueTime)
                 {
-                    CurrentTask = App.RtmClient.GetTask(id);
+                    this.dtpDueDate.Value = CurrentTask.DueDateTime;
+                    this.dtpDueTime.Value = CurrentTask.DueDateTime;
+                    this.lstDueDate.SelectedIndex = 2;
                 }
-
-                if (CurrentTask == null)
+                else
                 {
-                    IsLoading = false;
-                    return;
+                    this.dtpDueDateNoTime.Value = CurrentTask.DueDateTime;
+                    this.lstDueDate.SelectedIndex = 1;
                 }
+            }
 
-                // name
-                if (CurrentTask.Name != null)
-                    this.txtName.Text = CurrentTask.Name;
+            // priority
+            switch (CurrentTask.Priority)
+            {
+                case TaskPriority.One:
+                    this.lstPriority.SelectedIndex = 1;
+                    break;
+                case TaskPriority.Two:
+                    this.lstPriority.SelectedIndex = 2;
+                    break;
+                case TaskPriority.Three:
+                    this.lstPriority.SelectedIndex = 3;
+                    break;
+            }
 
-                // due date
-                if (CurrentTask.DueDateTime.HasValue)
-                {
-                    if (CurrentTask.HasDueTime)
-                    {
-                        this.dtpDueDate.Value = CurrentTask.DueDateTime;
-                        this.dtpDueTime.Value = CurrentTask.DueDateTime;
-                        this.lstDueDate.SelectedIndex = 2;
-                    }
-                    else
-                    {
-                        this.dtpDueDateNoTime.Value = CurrentTask.DueDateTime;
-                        this.lstDueDate.SelectedIndex = 1;
-                    }
-                }
+            // list
+            if (CurrentTask.Parent != null)
+                this.lstList.SelectedItem = CurrentTask.Parent;
 
-                // priority
-                switch (CurrentTask.Priority)
-                {
-                    case TaskPriority.One:
-                        this.lstPriority.SelectedIndex = 1;
-                        break;
-                    case TaskPriority.Two:
-                        this.lstPriority.SelectedIndex = 2;
-                        break;
-                    case TaskPriority.Three:
-                        this.lstPriority.SelectedIndex = 3;
-                        break;
-                }
+            // tags
+            if (CurrentTask.TagsString != null)
+                this.txtTags.Text = CurrentTask.TagsString;
 
-                // list
-                if (CurrentTask.Parent != null)
-                    this.lstList.SelectedItem = CurrentTask.Parent;
-
-                // tags
-                if (CurrentTask.TagsString != null)
-                    this.txtTags.Text = CurrentTask.TagsString;
-
-                // reepeat
-                if (CurrentTask.Recurrence != null)
+            // reepeat
+            if (CurrentTask.Recurrence != null)
                 this.txtRepeat.Text = CurrentTask.Recurrence;
 
-                // estimate
-                if (CurrentTask.Estimate != null)
-                    this.txtEstimate.Text = CurrentTask.Estimate;
+            // estimate
+            if (CurrentTask.Estimate != null)
+                this.txtEstimate.Text = CurrentTask.Estimate;
 
-                // location
-                if (CurrentTask.Location != null)
-                    this.lstLocation.SelectedItem = CurrentTask.Location;
+            // location
+            if (CurrentTask.Location != null)
+                this.lstLocation.SelectedItem = CurrentTask.Location;
 
-                IsLoading = false;
-            });
+            IsLoading = false;
         }
 
         #endregion
@@ -287,7 +288,7 @@ namespace Milkman
                                                 {
                                                     string[] tags = this.txtTags.Text.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
                                                     CurrentTask.ChangeTags(tags, () =>
-                                                    {    
+                                                    {
                                                         // change repeat
                                                         SmartDispatcher.BeginInvoke(() =>
                                                         {
