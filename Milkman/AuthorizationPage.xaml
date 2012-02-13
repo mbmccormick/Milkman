@@ -42,6 +42,9 @@
                                             IconUri="/Resources/retry.png" 
                                             Text="retry"
                                             Click="btnRetry_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="create account" Click="mnuCreate_Click" />
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

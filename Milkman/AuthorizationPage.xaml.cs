@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using IronCow;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 
 namespace Milkman
 {
@@ -47,6 +48,8 @@ namespace Milkman
         }
 
         #endregion
+
+        #region Construction and Navigation
 
         private string Frob { get; set; }
 
@@ -84,6 +87,8 @@ namespace Milkman
                 });
             });
         }
+
+        #endregion
 
         #region Event Handling
 
@@ -126,6 +131,13 @@ namespace Milkman
         private void webAuthorization_Navigating(object sender, NavigatingEventArgs e)
         {
             this.IsLoading = true;
+        }
+
+        private void mnuCreate_Click(object sender, EventArgs e)
+        {
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+            webBrowserTask.Uri = new Uri("http://www.rememberthemilk.com/signup/");
+            webBrowserTask.Show();
         }
 
         #endregion
