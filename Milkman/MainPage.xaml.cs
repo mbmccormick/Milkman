@@ -517,7 +517,18 @@ namespace Milkman
                 IsLoading = true;
             });
 
-            App.RtmClient.AddTask(e.Text, true, null, () =>
+            string input = e.Text;
+
+            if (input.Contains('#') == false)
+            {
+                if (App.RtmClient.UserSettings != null &&
+                    String.IsNullOrEmpty(App.RtmClient.UserSettings.DefaultList) == false)
+                {
+                    input = input + " #" + TaskLists.SingleOrDefault(l => l.Id == App.RtmClient.UserSettings.DefaultList).Name;
+                }
+            }
+
+            App.RtmClient.AddTask(input, true, null, () =>
             {
                 Dispatcher.BeginInvoke(() =>
                 {

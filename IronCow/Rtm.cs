@@ -77,15 +77,18 @@ namespace IronCow
                 });
             });*/
 
-            SyncLocations(() =>
+            SyncUserSettings(() =>
             {
-                CacheLists(() =>
+                SyncLocations(() =>
                 {
-                    CacheTasks(() =>
+                    CacheLists(() =>
                     {
-                        StartTimeline((timeline) =>
+                        CacheTasks(() =>
                         {
-                            callback();
+                            StartTimeline((timeline) =>
+                            {
+                                callback();
+                            });
                         });
                     });
                 });
