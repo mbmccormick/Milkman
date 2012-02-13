@@ -16,6 +16,11 @@ namespace IronCow
             Sync(location);
         }
 
+        public Location(string name)
+        {
+            Name = name;
+        }
+
         protected override void DoSync(bool firstSync, RawRtmElement element)
         {
             base.DoSync(firstSync, element);

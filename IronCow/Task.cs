@@ -39,7 +39,7 @@ namespace IronCow
         private static RestRequest CreateSetLocationRequest(Task task, string locationId, VoidCallback callback)
         {
             RestRequest request = CreateStandardRequest(task, "rtm.tasks.setLocation", callback);
-            if (locationId != null)
+            if (locationId != null && locationId != RtmElement.UnsyncedId)
                 request.Parameters.Add("location_id", locationId);
             return request;
         }

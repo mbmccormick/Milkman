@@ -22,11 +22,11 @@ namespace Milkman
     {
         #region IsLoading Property
 
-        public static bool sReload = true;
-
         public static readonly DependencyProperty IsLoadingProperty =
             DependencyProperty.Register("IsLoading", typeof(bool), typeof(EditTaskPage),
                 new PropertyMetadata((bool)false));
+
+        private bool loadedDetails = false;
 
         public bool IsLoading
         {
@@ -105,18 +105,12 @@ namespace Milkman
             progressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator = progressIndicator;
 
-            IsLoading = true;
-
-            if (e.IsNavigationInitiator)
+            if (!loadedDetails)
             {
+                IsLoading = true;
+                
                 ReloadTask();
-            }
-            else
-            {
-                App.RtmClient.SyncEverything(() =>
-                {
-                    ReloadTask();
-                });
+                loadedDetails = true;
             }
         }
 
@@ -136,7 +130,7 @@ namespace Milkman
                 this.lstList.ItemsSource = TaskLists;
 
                 TaskLocations.Clear();
-                TaskLocations.Add(null);
+                TaskLocations.Add(new Location("None"));
                 foreach (Location l in App.RtmClient.Locations)
                 {
                     TaskLocations.Add(l);
@@ -149,18 +143,33 @@ namespace Milkman
                     CurrentTask = App.RtmClient.GetTask(id);
                 }
 
+                if (CurrentTask == null)
+                {
+                    IsLoading = false;
+                    return;
+                }
+
+                // name
+                if (CurrentTask.Name != null)
+                    this.txtName.Text = CurrentTask.Name;
+
+                // due date
                 if (CurrentTask.DueDateTime.HasValue)
                 {
                     if (CurrentTask.HasDueTime)
                     {
+                        this.dtpDueDate.Value = CurrentTask.DueDateTime;
+                        this.dtpDueTime.Value = CurrentTask.DueDateTime;
                         this.lstDueDate.SelectedIndex = 2;
                     }
                     else
                     {
+                        this.dtpDueDateNoTime.Value = CurrentTask.DueDateTime;
                         this.lstDueDate.SelectedIndex = 1;
                     }
                 }
 
+                // priority
                 switch (CurrentTask.Priority)
                 {
                     case TaskPriority.One:
@@ -174,9 +183,25 @@ namespace Milkman
                         break;
                 }
 
-                this.lstList.SelectedItem = CurrentTask.Parent;
+                // list
+                if (CurrentTask.Parent != null)
+                    this.lstList.SelectedItem = CurrentTask.Parent;
 
-                this.lstLocation.SelectedItem = CurrentTask.Location;
+                // tags
+                if (CurrentTask.TagsString != null)
+                    this.txtTags.Text = CurrentTask.TagsString;
+
+                // reepeat
+                if (CurrentTask.Recurrence != null)
+                this.txtRepeat.Text = CurrentTask.Recurrence;
+
+                // estimate
+                if (CurrentTask.Estimate != null)
+                    this.txtEstimate.Text = CurrentTask.Estimate;
+
+                // location
+                if (CurrentTask.Location != null)
+                    this.lstLocation.SelectedItem = CurrentTask.Location;
 
                 IsLoading = false;
             });
@@ -276,7 +301,10 @@ namespace Milkman
                                                                         // change location
                                                                         SmartDispatcher.BeginInvoke(() =>
                                                                         {
-                                                                            CurrentTask.ChangeLocation((Location)this.lstLocation.SelectedItem, () =>
+                                                                            Location tmpLocation = (Location)this.lstLocation.SelectedItem;
+                                                                            if (this.lstLocation.SelectedIndex == 0) tmpLocation = null;
+
+                                                                            CurrentTask.ChangeLocation(tmpLocation, () =>
                                                                             {
                                                                                 // sync all tasks
                                                                                 App.RtmClient.CacheTasks(() =>
@@ -320,15 +348,5 @@ namespace Milkman
         }
 
         #endregion
-
-        private void TextBlock_Loaded(object sender, RoutedEventArgs e)
-        {
-            TextBlock target = (TextBlock)sender;
-
-            Location item = (Location)target.DataContext;
-
-            if (item == null)
-                target.Text = " ";
-        }
     }
 }
