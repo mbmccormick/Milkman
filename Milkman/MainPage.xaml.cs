@@ -392,7 +392,40 @@ namespace Milkman
 
                     Tags = tempTags;
                 });
+
+                ToggleEmptyText();
             }
+        }
+
+        private void ToggleEmptyText()
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                if (TodayTasks.Count == 0)
+                    this.txtTodayEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtTodayEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (TomorrowTasks.Count == 0)
+                    this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (OverdueTasks.Count == 0)
+                    this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (WeekTasks.Count == 0)
+                    this.txtWeekEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtWeekEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (NoDueTasks.Count == 0)
+                    this.txtNoDueEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtNoDueEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            });
         }
 
         private void SetupNotifications()
