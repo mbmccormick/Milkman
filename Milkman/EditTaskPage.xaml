@@ -29,6 +29,7 @@
         </StackPanel>
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
+        <!--<StackPanel Grid.Row="1" Margin="12,0,12,0" ScrollViewer.VerticalScrollBarVisibility="Auto">-->
             <Grid x:Name="ContentPanel">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"/>
@@ -57,7 +58,7 @@
                     <toolkit:ListPickerItem Content="Date &amp; Time" />
                 </toolkit:ListPicker>
                 
-                <toolkit:DatePicker Name="dtpDueDateNoTime" Grid.Row="2" Grid.Column="1" Margin="-12,-12,0,12" Visibility="Collapsed" Value="{Binding DueDateTime.Date}"/>
+                <toolkit:DatePicker Name="dtpDueDateNoTime" Grid.Row="2" Grid.Column="1" Margin="-12,-24,0,12" Visibility="Collapsed" Value="{Binding DueDateTime.Date}"/>
                 <Grid Name="dtpDueDateTime" Grid.Row="2" Grid.Column="1" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -97,13 +98,14 @@
                 <toolkit:ListPicker x:Name="lstLocation" Margin="0,-12,12,24" Grid.Row="8" Grid.Column="1" ItemsSource="{Binding TaskLocations}">
                     <toolkit:ListPicker.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Name}" />
+                            <TextBlock Text="{Binding Name}" Loaded="TextBlock_Loaded" />
                         </DataTemplate>
                     </toolkit:ListPicker.ItemTemplate>
                 </toolkit:ListPicker>
 
             </Grid>
         </ScrollViewer>
+        <!--</StackPanel>-->
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

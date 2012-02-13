@@ -321,10 +321,14 @@ namespace Milkman
 
         #endregion
 
-        #region Task Methods
+        private void TextBlock_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBlock target = (TextBlock)sender;
 
+            Location item = (Location)target.DataContext;
 
-
-        #endregion
+            if (item == null)
+                target.Text = " ";
+        }
     }
 }
