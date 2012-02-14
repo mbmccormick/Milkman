@@ -512,35 +512,7 @@ namespace Milkman
 
         private void dlgAddTask_Submit(object sender, SubmitEventArgs e)
         {
-            Dispatcher.BeginInvoke(() =>
-            {
-                IsLoading = true;
-            });
-
-            string input = e.Text;
-
-            if (input.Contains('#') == false)
-            {
-                if (App.RtmClient.UserSettings != null &&
-                    String.IsNullOrEmpty(App.RtmClient.UserSettings.DefaultList) == false &&
-                    App.RtmClient.UserSettings.DefaultList != "alltasks")
-                {
-                    input = input + " #" + TaskLists.SingleOrDefault(l => l.Id == App.RtmClient.UserSettings.DefaultList).Name;
-                }
-            }
-
-            App.RtmClient.AddTask(input, true, null, () =>
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    IsLoading = false;
-                });
-
-                sReload = true;
-                LoadData();
-
-                SetupNotifications();
-            });
+            AddTask(e.Text);
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -844,6 +816,35 @@ namespace Milkman
 
         #region Task Methods
 
+        private void AddTask(string smartAddText)
+        {
+            IsLoading = true;
+
+            string input = smartAddText;
+            if (input.Contains('#') == false)
+            {
+                if (App.RtmClient.UserSettings != null &&
+                    String.IsNullOrEmpty(App.RtmClient.UserSettings.DefaultList) == false &&
+                    App.RtmClient.UserSettings.DefaultList != "alltasks")
+                {
+                    input = input + " #" + TaskLists.SingleOrDefault(l => l.Id == App.RtmClient.UserSettings.DefaultList).Name;
+                }
+            }
+
+            App.RtmClient.AddTask(input, true, null, () =>
+            {
+                Dispatcher.BeginInvoke(() =>
+                {
+                    IsLoading = false;
+                });
+
+                sReload = true;
+                LoadData();
+
+                SetupNotifications();
+            });
+        }
+
         private void CompleteTask(Task data)
         {
             IsLoading = true;
@@ -858,6 +859,8 @@ namespace Milkman
 
                     sReload = true;
                     LoadData();
+
+                    SetupNotifications();
                 });
             });
         }
@@ -876,6 +879,8 @@ namespace Milkman
 
                     sReload = true;
                     LoadData();
+
+                    SetupNotifications();
                 });
             });
         }
@@ -894,6 +899,8 @@ namespace Milkman
 
                     sReload = true;
                     LoadData();
+
+                    SetupNotifications();
                 });
             });
         }
