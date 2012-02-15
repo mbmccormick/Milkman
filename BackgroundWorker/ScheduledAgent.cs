@@ -37,7 +37,7 @@ namespace BackgroundWorker
             }
         }
 
-        GeoPosition<GeoCoordinate> _position;
+        GeoCoordinateWatcher _watcher = null;
 
         protected override void OnInvoke(ScheduledTask task)
         {
@@ -49,12 +49,8 @@ namespace BackgroundWorker
             // update current location
             if (settings.LocationNotificationsEnabled == true)
             {
-                GeoCoordinateWatcher watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
-                watcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>((object sender, GeoPositionChangedEventArgs<GeoCoordinate> e) =>
-                {
-                    _position = e.Position;
-                });
-                watcher.Start();
+                _watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+                _watcher.Start();
             }
 
             // sync data
@@ -170,16 +166,40 @@ namespace BackgroundWorker
 
                 tempTags.Sort();
 
-                AppSettings settings = new AppSettings();
-
                 // check for nearby tasks
-                if (_position != null)
+                if (_watcher != null &&
+                    _watcher.Status != GeoPositionStatus.Disabled)
                 {
                     foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks).Concat(tempNoDueTasks))
                     {
                         if (item.Location != null)
                         {
-                            if (LocationHelper.Distance(_position.Location.Latitude, _position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) < 1609.344)
+                            int attempts;
+
+                            // wait for location service to initialize
+                            attempts = 0;
+                            while ((_watcher.Status != GeoPositionStatus.Ready) &&
+                                   attempts < 5)
+                            {
+                                attempts++;
+                                System.Threading.Thread.Sleep(1000);
+                            }
+
+                            if (attempts == 5) break;
+
+                            // wait for accuracy to be within 1 mile
+                            attempts = 0;
+                            while ((_watcher.Position.Location.HorizontalAccuracy > 1609.344 ||
+                                    _watcher.Position.Location.VerticalAccuracy > 1609.344) &&
+                                   attempts < 5)
+                            {
+                                attempts++;
+                                System.Threading.Thread.Sleep(1000);
+                            }
+
+                            if (attempts == 5) break;
+
+                            if (LocationHelper.Distance(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) < 1609.344)
                             {
                                 ShellToast toast = new ShellToast();
                                 toast.Title = item.Location.Name;
