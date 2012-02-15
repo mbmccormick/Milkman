@@ -165,6 +165,8 @@ namespace Milkman
         // Code to execute if a navigation fails
         private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
+            LittleWatson.ReportException(e.Exception, "RootFrame_NavigationFailed()");
+
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // A navigation has failed; break into the debugger
@@ -194,11 +196,11 @@ namespace Milkman
             }
             else
             {
+                LittleWatson.ReportException(e.ExceptionObject, "Application_UnhandledException()");
+
                 RootFrame.Dispatcher.BeginInvoke(() =>
                 {
-                    Exception ex = e.ExceptionObject;
-
-                    MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButton.OK);
+                    LittleWatson.CheckForPreviousException(false);
                 });
             }
 

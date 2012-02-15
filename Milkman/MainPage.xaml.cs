@@ -138,10 +138,10 @@ namespace Milkman
         ApplicationBarIconButton postpone;
         ApplicationBarIconButton delete;
 
-        ApplicationBarMenuItem about;
+        ApplicationBarMenuItem settings;
         ApplicationBarMenuItem help;
         ApplicationBarMenuItem bugReport;
-        ApplicationBarMenuItem settings;
+        ApplicationBarMenuItem about;
         ApplicationBarMenuItem logout;
 
         // Constructor
@@ -180,21 +180,21 @@ namespace Milkman
             delete.Text = "delete";
             delete.Click += btnDelete_Click;
 
-            about = new ApplicationBarMenuItem();
-            about.Text = "about milkman";
-            about.Click += mnuAbout_Click;
+            settings = new ApplicationBarMenuItem();
+            settings.Text = "settings";
+            settings.Click += mnuSettings_Click;
 
             help = new ApplicationBarMenuItem();
             help.Text = "shortcuts help";
             help.Click += mnuHelp_Click;
 
             bugReport = new ApplicationBarMenuItem();
-            bugReport.Text = "submit bug report";
+            bugReport.Text = "feedback";
             bugReport.Click += mnuBugReport_Click;
 
-            settings = new ApplicationBarMenuItem();
-            settings.Text = "settings";
-            settings.Click += mnuSettings_Click;
+            about = new ApplicationBarMenuItem();
+            about.Text = "about milkman";
+            about.Click += mnuAbout_Click;
 
             logout = new ApplicationBarMenuItem();
             logout.Text = "logout";
@@ -208,6 +208,8 @@ namespace Milkman
             progressIndicator = new ProgressIndicator();
             progressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator = progressIndicator;
+
+            LittleWatson.CheckForPreviousException(true);
 
             LoadData();
             SyncData();
@@ -702,10 +704,10 @@ namespace Milkman
                 ApplicationBar.Buttons.Add(select);
                 ApplicationBar.Buttons.Add(sync);
 
-                ApplicationBar.MenuItems.Add(about);
+                ApplicationBar.MenuItems.Add(settings);
                 ApplicationBar.MenuItems.Add(help);
                 ApplicationBar.MenuItems.Add(bugReport);
-                ApplicationBar.MenuItems.Add(settings);
+                ApplicationBar.MenuItems.Add(about);
                 ApplicationBar.MenuItems.Add(logout);
             }
         }
@@ -733,11 +735,11 @@ namespace Milkman
                 target.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
         }
 
-        private void mnuAbout_Click(object sender, EventArgs e)
+        private void mnuSettings_Click(object sender, EventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+                this.NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
             });
         }
 
@@ -750,15 +752,15 @@ namespace Milkman
         {
             EmailComposeTask emailComposeTask = new EmailComposeTask();
             emailComposeTask.To = "milkmanwp@gmail.com";
-            emailComposeTask.Subject = "Milkman Bug Report";
+            emailComposeTask.Subject = "Milkman Feedback";
             emailComposeTask.Show();
         }
 
-        private void mnuSettings_Click(object sender, EventArgs e)
+        private void mnuAbout_Click(object sender, EventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
+                this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
             });
         }
 

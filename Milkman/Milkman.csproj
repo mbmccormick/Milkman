@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="Common\AppSettings.cs" />
     <Compile Include="Common\IsolatedStorageHelper.cs" />
+    <Compile Include="Common\LittleWatson.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
     <Compile Include="Common\SortableObservableCollection.cs" />
     <Compile Include="Common\ThemeManager.cs" />
