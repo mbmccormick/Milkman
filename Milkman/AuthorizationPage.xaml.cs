@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using IronCow;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using Milkman.Common;
 
 namespace Milkman
 {
@@ -138,6 +139,22 @@ namespace Milkman
             WebBrowserTask webBrowserTask = new WebBrowserTask();
             webBrowserTask.Uri = new Uri("http://www.rememberthemilk.com/signup/");
             webBrowserTask.Show();
+        }
+
+        private void mnuBugReport_Click(object sender, EventArgs e)
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+            emailComposeTask.To = "milkmanwp@gmail.com";
+            emailComposeTask.Subject = "Milkman Feedback";
+            emailComposeTask.Show();
+        }
+
+        private void mnuAbout_Click(object sender, EventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+            });
         }
 
         #endregion

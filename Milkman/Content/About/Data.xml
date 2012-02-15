@@ -40,7 +40,7 @@
     </Item>
     <Item Title="what's new?" Type="text">
       Version 1.1.0.0
-      This release includes several bug fixes to improve reliability of location-based reminders, live tile updates, and reminder scheduling. The Edit Task page now has spell check and autocomplete functionality. When an exception occurs, users now have the option of sending a bug report with diagnostics information about the crash.       
+      This release includes several bug fixes to improve reliability of location-based reminders, live tile updates, and reminder scheduling. The Edit Task page now has spell check and autocomplete functionality. When an exception occurs, users now have the option of sending a bug report with diagnostics information about the crash to the developer.      
 
       Version 1.0.0.0
       This is the first release of Milkman and contains the basic features provided by Remember The Milk and fully integrates with the Windows Phone 7.5 experience.

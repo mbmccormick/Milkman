@@ -44,6 +44,8 @@
                                             Click="btnRetry_Click"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="create account" Click="mnuCreate_Click" />
+                <shell:ApplicationBarMenuItem Text="feedback" Click="mnuBugReport_Click" />
+                <shell:ApplicationBarMenuItem Text="about milkman" Click="mnuAbout_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
