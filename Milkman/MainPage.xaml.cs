@@ -306,10 +306,10 @@ namespace Milkman
             b.DoWork += (s, e) =>
             {
                 LoadDataInBackground();
+                SetupNotifications();
+
             };
             b.RunWorkerAsync();
-
-            SetupNotifications();
         }
 
         private void LoadDataInBackground()
