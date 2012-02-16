@@ -281,7 +281,6 @@ namespace Milkman
                         App.RtmClient.SyncEverything(() =>
                         {
                             LoadData();
-                            SetupNotifications();
 
                             SmartDispatcher.BeginInvoke(() =>
                             {
@@ -309,6 +308,8 @@ namespace Milkman
                 LoadDataInBackground();
             };
             b.RunWorkerAsync();
+
+            SetupNotifications();
         }
 
         private void LoadDataInBackground()
@@ -733,6 +734,8 @@ namespace Milkman
                 target.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
             else if (task.Priority == TaskPriority.Three)
                 target.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
+            else
+                target.Foreground = new SolidColorBrush(Colors.Black);
         }
 
         private void mnuSettings_Click(object sender, EventArgs e)

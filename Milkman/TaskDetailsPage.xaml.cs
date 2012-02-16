@@ -84,6 +84,8 @@ namespace Milkman
                     this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
                 else if (CurrentTask.Priority == TaskPriority.Three)
                     this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
+                else
+                    this.txtName.Foreground = new SolidColorBrush(Colors.Black);
             }
         }
 
