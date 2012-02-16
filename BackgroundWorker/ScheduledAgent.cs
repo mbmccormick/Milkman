@@ -170,7 +170,7 @@ namespace BackgroundWorker
                 if (_watcher != null &&
                     _watcher.Status != GeoPositionStatus.Disabled)
                 {
-                    foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempWeekTasks).Concat(tempNoDueTasks))
+                    foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempOverdueTasks).Concat(tempWeekTasks).Concat(tempNoDueTasks))
                     {
                         if (item.Location != null)
                         {
