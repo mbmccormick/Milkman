@@ -435,17 +435,16 @@ namespace Milkman
         {
             AppSettings settings = new AppSettings();
 
-            // delete all existing reminders
-            foreach (var item in ScheduledActionService.GetActions<Reminder>())
-            {
-                ScheduledActionService.Remove(item.Name);
-            }
-
             if (settings.TaskRemindersEnabled == true)
             {
                 // add new reminders
                 SmartDispatcher.BeginInvoke(() =>
                 {
+                    // delete all existing reminders
+                    foreach (var item in ScheduledActionService.GetActions<Reminder>())
+                        ScheduledActionService.Remove(item.Name);
+
+                    // create new reminders
                     foreach (var item in TodayTasks.Concat(TomorrowTasks).Concat(WeekTasks))
                     {
                         if (item.HasDueTime && item.DueDateTime.Value.AddHours(-1) >= DateTime.Now)
@@ -460,6 +459,12 @@ namespace Milkman
                         }
                     }
                 });
+            }
+            else
+            {
+                // delete all existing reminders
+                foreach (var item in ScheduledActionService.GetActions<Reminder>())
+                    ScheduledActionService.Remove(item.Name);
             }
 
             if (settings.BackgroundWorkerEnabled == true)
