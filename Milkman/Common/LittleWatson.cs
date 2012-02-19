@@ -28,6 +28,7 @@ namespace Milkman.Common
                     using (TextWriter output = new StreamWriter(store.CreateFile(filename)))
                     {
                         output.WriteLine(extra);
+                        output.WriteLine();
                         output.WriteLine(ex.Message);
                         output.WriteLine(ex.StackTrace);
                     }

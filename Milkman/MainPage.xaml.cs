@@ -150,6 +150,8 @@ namespace Milkman
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
 
+            TiltEffect.TiltableItems.Add(typeof(MultiselectItem));
+
             add = new ApplicationBarIconButton();
             add.IconUri = new Uri("/Resources/add.png", UriKind.RelativeOrAbsolute);
             add.Text = "add";
