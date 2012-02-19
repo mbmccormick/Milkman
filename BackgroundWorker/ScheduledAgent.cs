@@ -218,13 +218,15 @@ namespace BackgroundWorker
                 {
                     StandardTileData data = new StandardTileData();
 
+                    int tasksDueToday = tempTodayTasks.Count + tempOverdueTasks.Where(z => z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+
                     data.BackTitle = "Milkman";
-                    if (tempTodayTasks.Count == 0)
+                    if (tasksDueToday == 0)
                         data.BackContent = "No tasks due today";
-                    else if (tempTodayTasks.Count == 1)
-                        data.BackContent = tempTodayTasks.Count + " task due today";
+                    else if (tasksDueToday == 1)
+                        data.BackContent = tasksDueToday + " task due today";
                     else
-                        data.BackContent = tempTodayTasks.Count + " tasks due today";
+                        data.BackContent = tasksDueToday + " tasks due today";
 
                     primaryTile.Update(data);
                 }

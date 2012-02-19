@@ -479,13 +479,15 @@ namespace Milkman
                         {
                             StandardTileData data = new StandardTileData();
 
+                            int tasksDueToday = TodayTasks.Count + OverdueTasks.Where(z => z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+
                             data.BackTitle = "Milkman";
-                            if (TodayTasks.Count == 0)
+                            if (tasksDueToday == 0)
                                 data.BackContent = "No tasks due today";
-                            else if (TodayTasks.Count == 1)
-                                data.BackContent = TodayTasks.Count + " task due today";
+                            else if (tasksDueToday == 1)
+                                data.BackContent = tasksDueToday + " task due today";
                             else
-                                data.BackContent = TodayTasks.Count + " tasks due today";
+                                data.BackContent = tasksDueToday + " tasks due today";
 
                             primaryTile.Update(data);
                         }
