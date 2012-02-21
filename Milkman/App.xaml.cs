@@ -21,8 +21,8 @@ namespace Milkman
 {
     public partial class App : Application
     {
-        private static readonly string RtmApiKey = "09b03090fc9303804aedd945872fdefc";
-        private static readonly string RtmSharedKey = "d2ffaf49356b07f9";
+        private static readonly string RtmApiKey = "3e35f64d661f22a740860c36c30080f7";
+        private static readonly string RtmSharedKey = "4b90413fcdc5f38c";
 
         public static Rtm RtmClient;
         public static Response ListsResponse;
