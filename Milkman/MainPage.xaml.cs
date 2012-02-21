@@ -715,11 +715,11 @@ namespace Milkman
 
                 ApplicationBar.Buttons.Add(postpone);
                 ApplicationBarIconButton j = (ApplicationBarIconButton)ApplicationBar.Buttons[1];
-                i.IsEnabled = false;
+                j.IsEnabled = false;
 
                 ApplicationBar.Buttons.Add(delete);
                 ApplicationBarIconButton k = (ApplicationBarIconButton)ApplicationBar.Buttons[2];
-                j.IsEnabled = false;
+                k.IsEnabled = false;
             }
             else
             {
