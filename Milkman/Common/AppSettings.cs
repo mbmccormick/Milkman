@@ -21,6 +21,7 @@ namespace Milkman.Common
         const string BackgroundWorkerEnabledSettingKeyName = "BackgroundWorkerEnabled";
         const string LocationNotificationsEnabledSettingKeyName = "LocationNotificationsEnabled";
         const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
+        const string ManualSyncEnabledSettingKeyName = "ManualSyncEnabled";
 
         public AppSettings()
         {
@@ -127,6 +128,19 @@ namespace Milkman.Common
             set
             {
                 AddOrUpdateValue(TaskRemindersEnabledSettingKeyName, value);
+                Save();
+            }
+        }
+
+        public bool ManualSyncEnabled
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(ManualSyncEnabledSettingKeyName, false);
+            }
+            set
+            {
+                AddOrUpdateValue(ManualSyncEnabledSettingKeyName, value);
                 Save();
             }
         }

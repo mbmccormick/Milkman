@@ -213,14 +213,17 @@ namespace Milkman
 
             LittleWatson.CheckForPreviousException(true);
 
+            AppSettings settings = new AppSettings();
+            
             LoadData();
-            SyncData();
+
+            if (settings.ManualSyncEnabled == false)
+                SyncData();
 
             // stop and restart background worker
             if (ScheduledActionService.Find("BackgroundWorker") != null)
                 ScheduledActionService.Remove("BackgroundWorker");
 
-            AppSettings settings = new AppSettings();
             if (settings.BackgroundWorkerEnabled == true)
             {
                 PeriodicTask task = new PeriodicTask("BackgroundWorker");

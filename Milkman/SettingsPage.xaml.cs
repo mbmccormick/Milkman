@@ -39,6 +39,11 @@ namespace Milkman
             binding.Mode = BindingMode.TwoWay;
             binding.Source = settings;
             this.togTaskReminders.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+
+            binding = new Binding("ManualSyncEnabled");
+            binding.Mode = BindingMode.TwoWay;
+            binding.Source = settings;
+            this.togManualSync.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
         }
 
         private void ToggleSwitch_Checked(object sender, RoutedEventArgs e)
