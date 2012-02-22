@@ -39,8 +39,8 @@
 
     </Item>
     <Item Title="what's new?" Type="text">
-      Version 1.1.1.0
-      This minor release includes some small bug fixes for task reminders and some security fixes. It also includes higher-resolution icon images. The tilt effect now applies to the multiselect list items.
+      Version 1.2.0.0
+      This minor release includes some small bug fixes for task reminders and some security fixes. It also includes higher-resolution icon images.
       
       Version 1.1.0.0
       This release includes several bug fixes to improve reliability of location-based reminders, live tile updates, and reminder scheduling. The Edit Task page now has spell check and autocomplete functionality. When an exception occurs, users now have the option of sending a bug report with diagnostics information about the crash to the developer.

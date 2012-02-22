@@ -22,11 +22,10 @@ Application Development by Matt McCormick
 
 Graphic Design by Libby Puccinelli 
 
-What's new in Version 1.1: 
-- Several bug fixes 
-- Improved reliability of location-based reminders 
-- Edit Task page now has spell check and autocomplete 
-- Improved error handling and diagnostics
+What's new in Version 1.2:
+- Several bug fixes
+- Higher-resolution icon images
+
 
 
 Update description
