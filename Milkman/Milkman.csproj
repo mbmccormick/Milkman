@@ -52,7 +52,7 @@
     <Reference Include="Microsoft.Phone.Controls" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\PhoneToolkit\Bin\Release\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
-	</Reference>
+    </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
