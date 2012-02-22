@@ -313,5 +313,15 @@ namespace Milkman
         }
 
         #endregion
+
+        private void ListPicker_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ListPicker target = (ListPicker)sender;
+
+            if (target.Items.Count > 5)
+            {
+
+            }
+        }
     }
 }
