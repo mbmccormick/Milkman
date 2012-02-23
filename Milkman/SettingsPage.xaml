@@ -31,7 +31,7 @@
             <toolkit:ToggleSwitch x:Name="togBackgroundWorker" Content="On" IsChecked="true" Header="Sync data in the background" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" />
             <toolkit:ToggleSwitch x:Name="togLocationService" Content="On" IsChecked="true" Header="Notify me when tasks are nearby" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" />
             <toolkit:ToggleSwitch x:Name="togTaskReminders" Content="On" IsChecked="true" Header="Remind me before tasks are due" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" />
-            <toolkit:ToggleSwitch x:Name="togManualSync" Content="Off" IsChecked="false" Header="Manually sync tasks (faster loading)" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" />
+            <toolkit:ToggleSwitch x:Name="togManualSync" Content="Off" IsChecked="false" Header="Manually sync tasks (for faster loading)" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" />
         </StackPanel>
     </Grid>
 

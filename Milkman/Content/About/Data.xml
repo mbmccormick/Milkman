@@ -18,7 +18,7 @@
       <Links>
         <Link NavigateUri="http://mbmccormick.com"
               Content="http://mbmccormick.com"
-              Label="My website:" />
+              Label="Website:" />
       </Links>
     </MainItem>
     <Item Title="legal" Type="text">
@@ -39,13 +39,13 @@
 
     </Item>
     <Item Title="what's new?" Type="text">
-      Version 1.2.0.0
+      Version 1.2
       This minor release includes some small bug fixes for task reminders and some security fixes. It also includes higher-resolution icon images.
       
-      Version 1.1.0.0
+      Version 1.1
       This release includes several bug fixes to improve reliability of location-based reminders, live tile updates, and reminder scheduling. The Edit Task page now has spell check and autocomplete functionality. When an exception occurs, users now have the option of sending a bug report with diagnostics information about the crash to the developer.
 
-      Version 1.0.0.0
+      Version 1.0
       This is the first release of Milkman and contains the basic features provided by Remember The Milk and fully integrates with the Windows Phone 7.5 experience.
 
     </Item>
