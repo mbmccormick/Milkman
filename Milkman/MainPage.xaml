@@ -50,6 +50,7 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
+                    <TextBlock x:Name="txtTodayLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtTodayEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>
@@ -92,6 +93,7 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
+                    <TextBlock x:Name="txtTomorrowLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtTomorrowEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>
@@ -134,6 +136,7 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
+                    <TextBlock x:Name="txtOverdueLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtOverdueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>
@@ -176,6 +179,7 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
+                    <TextBlock x:Name="txtWeekLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtWeekEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>
@@ -218,6 +222,7 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
+                    <TextBlock x:Name="txtNoDueLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtNoDueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>

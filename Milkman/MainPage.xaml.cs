@@ -401,8 +401,21 @@ namespace Milkman
                     Tags = tempTags;
                 });
 
+                ToggleLoadingText();
                 ToggleEmptyText();
             }
+        }
+
+        private void ToggleLoadingText()
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.txtTodayLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtTomorrowLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtOverdueLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtWeekLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtNoDueLoading.Visibility = System.Windows.Visibility.Collapsed;
+            });
         }
 
         private void ToggleEmptyText()
