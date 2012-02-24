@@ -725,6 +725,8 @@ namespace Milkman
 
             if ((bool)e.NewValue)
             {
+                this.pivLayout.IsLocked = true;
+
                 ApplicationBar.Buttons.Add(complete);
                 ApplicationBarIconButton i = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
                 i.IsEnabled = false;
@@ -739,6 +741,8 @@ namespace Milkman
             }
             else
             {
+                this.pivLayout.IsLocked = false;
+
                 ApplicationBar.Buttons.Add(add);
                 ApplicationBar.Buttons.Add(select);
                 ApplicationBar.Buttons.Add(sync);

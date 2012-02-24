@@ -19,7 +19,7 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Pivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold">
+        <toolkit:LockablePivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold">
             <controls:PivotItem Header="today">
                 <Grid Margin="0">
                     <toolkit:MultiselectList x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
@@ -234,8 +234,7 @@
                     </toolkit:ContextMenuService.ContextMenu>
                 </Grid>
             </controls:PivotItem>
-
-        </controls:Pivot>
+        </toolkit:LockablePivot>
 
         <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" />
     </Grid>
