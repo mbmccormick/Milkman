@@ -68,10 +68,41 @@ namespace Milkman
 
         ProgressIndicator progressIndicator;
 
+        ApplicationBarIconButton complete;
+        ApplicationBarIconButton postpone;
+        ApplicationBarIconButton edit;
+        ApplicationBarIconButton delete;
+        ApplicationBarIconButton add;
+
         public TaskDetailsPage()
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(TaskDetailsPage_Loaded);
+
+            complete = new ApplicationBarIconButton();
+            complete.IconUri = new Uri("/Resources/complete.png", UriKind.RelativeOrAbsolute);
+            complete.Text = "complete";
+            complete.Click += btnComplete_Click;
+
+            postpone = new ApplicationBarIconButton();
+            postpone.IconUri = new Uri("/Resources/postpone.png", UriKind.RelativeOrAbsolute);
+            postpone.Text = "postpone";
+            postpone.Click += btnPostpone_Click;
+
+            edit = new ApplicationBarIconButton();
+            edit.IconUri = new Uri("/Resources/edit.png", UriKind.RelativeOrAbsolute);
+            edit.Text = "edit";
+            edit.Click += btnEdit_Click;
+
+            delete = new ApplicationBarIconButton();
+            delete.IconUri = new Uri("/Resources/delete.png", UriKind.RelativeOrAbsolute);
+            delete.Text = "delete";
+            delete.Click += btnDelete_Click;
+
+            add = new ApplicationBarIconButton();
+            add.IconUri = new Uri("/Resources/add.png", UriKind.RelativeOrAbsolute);
+            add.Text = "add";
+            add.Click += btnAdd_Click;
         }
 
         private void TaskDetailsPage_Loaded(object sender, RoutedEventArgs e)
@@ -179,6 +210,14 @@ namespace Milkman
             }
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.NavigationService.Navigate(new Uri("/AddNotePage.xaml?task=" + CurrentTask.Id, UriKind.Relative));
+            });
+        }
+
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (IsLoading) return;
@@ -188,7 +227,27 @@ namespace Milkman
             if (item != null)
                 this.NavigationService.Navigate(new Uri("/EditNotePage.xaml?task=" + CurrentTask.Id + "&id=" + item.Id, UriKind.Relative));
         }
-        
+
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            while (ApplicationBar.Buttons.Count > 0)
+            {
+                ApplicationBar.Buttons.RemoveAt(0);
+            }
+
+            if (this.pivLayout.SelectedIndex == 0)
+            {
+                ApplicationBar.Buttons.Add(complete);
+                ApplicationBar.Buttons.Add(postpone);
+                ApplicationBar.Buttons.Add(edit);
+                ApplicationBar.Buttons.Add(delete);
+            }
+            else if (this.pivLayout.SelectedIndex == 1)
+            {
+                ApplicationBar.Buttons.Add(add);
+            }
+        }
+
         #endregion
 
         #region Task Methods
