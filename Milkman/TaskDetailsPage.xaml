@@ -17,59 +17,66 @@
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding Task}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <controls:Pivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold" DataContext="{Binding Task}">
+            <controls:PivotItem Header="task details" FontWeight="Normal">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
+                    <Grid x:Name="ContentPanel" Margin="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="170"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MILKMAN" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
-            <TextBlock x:Name="PageTitle" Text="task details" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
-            <Grid x:Name="ContentPanel">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+                        <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
+                            <TextBlock x:Name="txtName" Text="{Binding Name}" TextWrapping="NoWrap" Margin="0" Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                        </ScrollViewer>
+                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+                        <TextBlock Text="List" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
-                <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                    <TextBlock x:Name="txtName" Text="{Binding Name}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                        <TextBlock Text="Tags" Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding TagsString}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+
+                        <TextBlock Text="Repeat" Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding Recurrence}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+
+                        <TextBlock Text="Estimate" Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding Estimate}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+
+                        <TextBlock Text="Location" Grid.Row="6" Grid.Column="0" TextWrapping="Wrap" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+
+                        <TextBlock Text="Postponed" Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding PostponedString}" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    </Grid>
                 </ScrollViewer>
-                <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+            </controls:PivotItem>
 
-                <TextBlock Text="List" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-
-                <TextBlock Text="Tags" Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBlock Text="{Binding TagsString}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-
-                <TextBlock Text="Repeat" Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBlock Text="{Binding Recurrence}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-
-                <TextBlock Text="Estimate" Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBlock Text="{Binding Estimate}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-
-                <TextBlock Text="Location" Grid.Row="6" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-
-                <TextBlock Text="Postponed" Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBlock Text="{Binding PostponedString}" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-            </Grid>
-        </ScrollViewer>
+            <controls:PivotItem Header="notes" FontWeight="Normal">
+                <ListBox x:Name="lstNotes" Margin="0,0,0,0" ItemsSource="{Binding Notes}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="0,0,0,17">
+                                <TextBlock Text="{Binding Path=Title}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                <TextBlock Text="{Binding Path=Body}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </controls:PivotItem>
+        </controls:Pivot>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
