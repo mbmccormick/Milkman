@@ -155,6 +155,11 @@ namespace Milkman
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
                 {
                     CurrentTask = App.RtmClient.GetTask(id);
+
+                    // bind location in codebehind as it does not like being bound in XAML
+                    this.txtLocation.Text = CurrentTask.LocationName;
+
+                    // toggle emtpy text display
                     if (CurrentTask.Notes.Count == 0)
                         this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
                     else

@@ -50,33 +50,6 @@ namespace IronCow
         
         public void SyncEverything(SyncCallback callback)
         {
-            /// This commented section is needed to sync EVERYTHING, but settings, 
-            /// locations and contacts are not yet fully supported, so add them 
-            /// to the uncommmented chain below as they are implemented.
-            /*
-            SyncUserSettings(() =>
-            {
-                SyncLocations(() =>
-                {
-                    SyncContacts(() =>
-                    {
-                        SyncContactGroups(() =>
-                        {
-                            SyncTaskLists(() =>
-                            {
-                                CacheTasks(() =>
-                                {
-                                    StartTimeline((timeline) =>
-                                    {
-                                        callback();
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
-            });*/
-
             SyncUserSettings(() =>
             {
                 SyncLocations(() =>
