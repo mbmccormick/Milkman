@@ -124,6 +124,10 @@ namespace Milkman
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
                 {
                     CurrentTask = App.RtmClient.GetTask(id);
+                    if (CurrentTask.Notes.Count == 0)
+                        this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+                    else
+                        this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
                 }
 
                 IsLoading = false;
@@ -175,6 +179,16 @@ namespace Milkman
             }
         }
 
+        private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (IsLoading) return;
+
+            TaskNote item = ((FrameworkElement)sender).DataContext as TaskNote;
+
+            if (item != null)
+                this.NavigationService.Navigate(new Uri("/EditNotePage.xaml?task=" + CurrentTask.Id + "&id=" + item.Id, UriKind.Relative));
+        }
+        
         #endregion
 
         #region Task Methods
@@ -230,6 +244,22 @@ namespace Milkman
                             this.NavigationService.GoBack();
                         else
                             NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    });
+                });
+            });
+        }
+
+        private void DeleteNote(TaskNote data)
+        {
+            IsLoading = true;
+            data.Delete(() =>
+            {
+                App.RtmClient.CacheTasks(() =>
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        IsLoading = false;
+                        ReloadTask();
                     });
                 });
             });

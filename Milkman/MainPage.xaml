@@ -54,7 +54,7 @@
                     <TextBlock x:Name="txtTodayEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu x:Name="ctxToday">
+                        <toolkit:ContextMenu>
                             <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
@@ -97,7 +97,7 @@
                     <TextBlock x:Name="txtTomorrowEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu x:Name="ctxTomorrow">
+                        <toolkit:ContextMenu>
                             <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
@@ -140,7 +140,7 @@
                     <TextBlock x:Name="txtOverdueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu x:Name="ctxOverdue">
+                        <toolkit:ContextMenu>
                             <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
@@ -183,7 +183,7 @@
                     <TextBlock x:Name="txtWeekEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu x:Name="ctxWeek">
+                        <toolkit:ContextMenu>
                             <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
@@ -226,7 +226,7 @@
                     <TextBlock x:Name="txtNoDueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                     <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu x:Name="ctxNoDue">
+                        <toolkit:ContextMenu>
                             <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
                             <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />

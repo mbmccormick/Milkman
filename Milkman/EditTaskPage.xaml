@@ -76,7 +76,7 @@
                 </toolkit:ListPicker>
 
                 <TextBlock Text="List" Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <toolkit:ListPicker x:Name="lstList" Margin="0,-12,12,24" Grid.Row="4" Grid.Column="1" FullModeHeader="List" Tap="ListPicker_Tap" >
+                <toolkit:ListPicker x:Name="lstList" Margin="0,-12,12,24" Grid.Row="4" Grid.Column="1" FullModeHeader="List">
                     <toolkit:ListPicker.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" />
@@ -100,7 +100,7 @@
                 <TextBox x:Name="txtEstimate" Margin="-12,-12,0,12" Grid.Row="7" Grid.Column="1" InputScope="Text" />
 
                 <TextBlock Text="Location" Grid.Row="8" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <toolkit:ListPicker x:Name="lstLocation" Margin="0,-12,12,24" Grid.Row="8" Grid.Column="1" FullModeHeader="Location" Tap="ListPicker_Tap">
+                <toolkit:ListPicker x:Name="lstLocation" Margin="0,-12,12,24" Grid.Row="8" Grid.Column="1" FullModeHeader="Location">
                     <toolkit:ListPicker.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}" />
