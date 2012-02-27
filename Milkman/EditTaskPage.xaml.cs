@@ -60,7 +60,7 @@ namespace Milkman
         #region TaskLists Property
         
         public static readonly DependencyProperty TaskListsProperty =
-            DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(TaskEditPage), new PropertyMetadata(new ObservableCollection<TaskList>()));
+            DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(EditTaskPage), new PropertyMetadata(new ObservableCollection<TaskList>()));
 
         private ObservableCollection<TaskList> TaskLists
         {
@@ -73,7 +73,7 @@ namespace Milkman
         #region TaskLocations Property
         
         public static readonly DependencyProperty TaskLocationsProperty =
-            DependencyProperty.Register("TaskLocations", typeof(ObservableCollection<Location>), typeof(TaskEditPage), new PropertyMetadata(new ObservableCollection<Location>()));
+            DependencyProperty.Register("TaskLocations", typeof(ObservableCollection<Location>), typeof(EditTaskPage), new PropertyMetadata(new ObservableCollection<Location>()));
 
         private ObservableCollection<Location> TaskLocations
         {
@@ -123,10 +123,11 @@ namespace Milkman
                 {
                     TaskLists.Add(l);
                 }
-                this.lstList.ItemsSource = TaskLists;
             }
 
-            // bind locations list picker\
+            this.lstList.ItemsSource = TaskLists;
+
+            // bind locations list picker
             if (TaskLocations.Count == 0)
             {
                 TaskLocations.Clear();
@@ -135,8 +136,9 @@ namespace Milkman
                 {
                     TaskLocations.Add(l);
                 }
-                this.lstLocation.ItemsSource = TaskLocations;
             }
+
+            this.lstLocation.ItemsSource = TaskLocations;
 
             // load task
             string id;

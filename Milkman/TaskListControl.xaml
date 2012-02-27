@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Milkman.TaskListControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}">
+
+    <Grid x:Name="LayoutRoot">
+        <toolkit:MultiselectList x:Name="lstTaskList" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
+            <toolkit:MultiselectList.ItemContainerStyle>
+                <Style TargetType="toolkit:MultiselectItem">
+                    <Setter Property="HintPanelHeight" Value="90"/>
+                </Style>
+            </toolkit:MultiselectList.ItemContainerStyle>
+            <toolkit:MultiselectList.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="-12,-12,0,0" Tap="ItemContent_Tap">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="130"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="ItemContent_Loaded"/>
+                        <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,24,6" Style="{StaticResource PhoneTextSubtleStyle}" />
+                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontWeight="Normal" />
+                        <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                    </Grid>
+                </DataTemplate>
+            </toolkit:MultiselectList.ItemTemplate>
+        </toolkit:MultiselectList>
+
+        <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+        <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+
+        <toolkit:ContextMenuService.ContextMenu>
+            <toolkit:ContextMenu x:Name="ctxContextMenu">
+                <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+            </toolkit:ContextMenu>
+        </toolkit:ContextMenuService.ContextMenu>
+    </Grid>
+</UserControl>
