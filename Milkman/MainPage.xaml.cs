@@ -149,6 +149,7 @@ namespace Milkman
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
+            App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             TiltEffect.TiltableItems.Add(typeof(MultiselectItem));
 
@@ -234,6 +235,14 @@ namespace Milkman
                 if (System.Diagnostics.Debugger.IsAttached)
                     ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
             }
+        }
+
+        private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                IsLoading = false;
+            });
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)

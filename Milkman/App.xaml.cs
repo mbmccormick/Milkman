@@ -28,6 +28,8 @@ namespace Milkman
         public static Response ListsResponse;
         public static Response TasksResponse;
 
+        public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -203,8 +205,11 @@ namespace Milkman
                     LittleWatson.CheckForPreviousException(false);
                 });
             }
-
+            
             e.Handled = true;
+
+            if (UnhandledExceptionHandled != null)
+                UnhandledExceptionHandled(sender, e);
 
             if (System.Diagnostics.Debugger.IsAttached)
             {

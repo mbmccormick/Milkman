@@ -78,6 +78,7 @@ namespace Milkman
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(TaskDetailsPage_Loaded);
+            App.UnhandledExceptionHandled +=new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             complete = new ApplicationBarIconButton();
             complete.IconUri = new Uri("/Resources/complete.png", UriKind.RelativeOrAbsolute);
@@ -118,6 +119,14 @@ namespace Milkman
                 else
                     this.txtName.Foreground = new SolidColorBrush(Colors.Black);
             }
+        }
+
+        private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                IsLoading = false;
+            });
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

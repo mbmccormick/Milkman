@@ -65,6 +65,15 @@ namespace Milkman
         public EditNotePage()
         {
             InitializeComponent();
+            App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
+        }
+
+        private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                IsLoading = false;
+            });
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

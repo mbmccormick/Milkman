@@ -60,6 +60,7 @@ namespace Milkman
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(AuthorizationPage_Loaded);
+            App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
         }
 
         private void AuthorizationPage_Loaded(object sender, RoutedEventArgs e)
@@ -70,6 +71,14 @@ namespace Milkman
 
             StartAuth();
             MessageBox.Show("Login to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue.", "Authorization", MessageBoxButton.OK);
+        }
+
+        private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                IsLoading = false;
+            });
         }
 
         private void StartAuth()
