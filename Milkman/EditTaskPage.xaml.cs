@@ -54,9 +54,33 @@ namespace Milkman
         #region Task Property
 
         private Task CurrentTask = null;
-        private ObservableCollection<TaskList> TaskLists = new ObservableCollection<TaskList>();
-        private ObservableCollection<Location> TaskLocations = new ObservableCollection<Location>();
+        
+        #endregion
+        
+        #region TaskLists Property
+        
+        public static readonly DependencyProperty TaskListsProperty =
+            DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(TaskEditPage), new PropertyMetadata(new ObservableCollection<TaskList>()));
 
+        private ObservableCollection<TaskList> TaskLists
+        {
+            get { return (ObservableCollection<TaskList>)GetValue(TaskListsProperty); }
+            set { SetValue(TaskListsProperty, value); }
+        }
+        
+        #endregion
+        
+        #region TaskLocations Property
+        
+        public static readonly DependencyProperty TaskLocationsProperty =
+            DependencyProperty.Register("TaskLocations", typeof(ObservableCollection<Location>), typeof(TaskEditPage), new PropertyMetadata(new ObservableCollection<Location>()));
+
+        private ObservableCollection<Location> TaskLocations
+        {
+            get { return (ObservableCollection<Location>)GetValue(TaskLocationsProperty); }
+            set { SetValue(TaskLocationsProperty, value); }
+        }
+        
         #endregion
 
         #region Construction and Navigation
@@ -92,21 +116,27 @@ namespace Milkman
         private void ReloadTask()
         {
             // bind lists list picker
-            TaskLists.Clear();
-            foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
+            if (TaskLists.Count == 0)
             {
-                TaskLists.Add(l);
+                TaskLists.Clear();
+                foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
+                {
+                    TaskLists.Add(l);
+                }
+                this.lstList.ItemsSource = TaskLists;
             }
-            this.lstList.ItemsSource = TaskLists;
 
-            // bind locations list picker
-            TaskLocations.Clear();
-            TaskLocations.Add(new Location("None"));
-            foreach (Location l in App.RtmClient.Locations)
+            // bind locations list picker\
+            if (TaskLocations.Count == 0)
             {
-                TaskLocations.Add(l);
+                TaskLocations.Clear();
+                TaskLocations.Add(new Location("None"));
+                foreach (Location l in App.RtmClient.Locations)
+                {
+                    TaskLocations.Add(l);
+                }
+                this.lstLocation.ItemsSource = TaskLocations;
             }
-            this.lstLocation.ItemsSource = TaskLocations;
 
             // load task
             string id;
