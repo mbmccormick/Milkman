@@ -479,7 +479,12 @@ namespace Milkman
                             if (item.HasDueTime && item.DueDateTime.Value.AddHours(-1) >= DateTime.Now)
                             {
                                 Reminder r = new Reminder(item.Id);
-                                r.Title = item.Name;
+                                
+                                if (item.Name.Length > 63)
+                                    r.Title = item.Name.Substring(0, 60) + "...";
+                                else
+                                    r.Title = item.Name;
+                                
                                 r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
                                 r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
                                 r.BeginTime = item.DueDateTime.Value.AddHours(-1);
