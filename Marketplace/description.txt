@@ -36,7 +36,7 @@ Not provided or no data available.
 
 
 Keywords
-milkman, task manager, todo, todo list, remember the milk, milk, winmilk, task, location, reminder
+remember the milk, task manager, todo list, reminder, winmilk
 
 
 Test Notes
