@@ -139,7 +139,17 @@ namespace Milkman
             }
         }
 
-        public void btnAdd_Click(object sender, EventArgs e)
+        private void Shortcut_Tap(object sender, GestureEventArgs e)
+        {
+            TextBlock target = (TextBlock)sender;
+
+            this.txtDetails.Text = this.txtDetails.Text + target.Text;
+
+            this.txtDetails.Focus();
+            this.txtDetails.SelectionStart = this.txtDetails.Text.Length;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             if (Submit != null)
             {
@@ -147,7 +157,7 @@ namespace Milkman
             }
         }
 
-        public void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
