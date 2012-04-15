@@ -457,7 +457,6 @@ namespace IronCow
 
         public void Sort()
         {
-            /*
             switch (this.mList.SortOrder)
             {
                 case TaskListSortOrder.Date:
@@ -469,8 +468,9 @@ namespace IronCow
                 default:
                     mImpl.Sort(Task.CompareByName);
                     break;
-            }*/
-            mImpl.Sort(Task.CompareByDate);
+            }
+            
+            // mImpl.Sort(Task.CompareByDate);
         }
     }
 }

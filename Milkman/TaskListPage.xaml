@@ -1,0 +1,120 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Milkman.TaskListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:uc="clr-namespace:Milkman"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding CurrentList}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="MILKMAN" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding NameLower}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <toolkit:MultiselectList x:Name="lstTasks" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
+                <toolkit:MultiselectList.ItemContainerStyle>
+                    <Style TargetType="toolkit:MultiselectItem">
+                        <Setter Property="HintPanelHeight" Value="90"/>
+                    </Style>
+                </toolkit:MultiselectList.ItemContainerStyle>
+                <toolkit:MultiselectList.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="-12,-12,0,0" Tap="ItemContent_Tap">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="130"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="ItemContent_Loaded"/>
+                            <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontWeight="Normal" />
+                            <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                        </Grid>
+                    </DataTemplate>
+                </toolkit:MultiselectList.ItemTemplate>
+            </toolkit:MultiselectList>
+
+            <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+            <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+
+            <toolkit:ContextMenuService.ContextMenu>
+                <toolkit:ContextMenu>
+                    <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                    <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                    <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                </toolkit:ContextMenu>
+            </toolkit:ContextMenuService.ContextMenu>
+        </Grid>
+
+        <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" />
+    </Grid>
+
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" 
+                                            IconUri="/Resources/add.png" 
+                                            Text="add"
+                                            Click="btnAdd_Click"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" 
+                                            IconUri="/Resources/select.png" 
+                                            Text="select"
+                                            Click="btnSelect_Click"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button3" 
+                                            IconUri="/Resources/retry.png" 
+                                            Text="sync"
+                                            Click="btnSync_Click"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="settings" Click="mnuSettings_Click" />
+                <shell:ApplicationBarMenuItem Text="shortcuts help" Click="mnuHelp_Click" />
+                <shell:ApplicationBarMenuItem Text="feedback" Click="mnuBugReport_Click" />
+                <shell:ApplicationBarMenuItem Text="about milkman" Click="mnuAbout_Click" />
+                <shell:ApplicationBarMenuItem Text="logout" Click="mnuLogout_Click" />
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+</phone:PhoneApplicationPage>

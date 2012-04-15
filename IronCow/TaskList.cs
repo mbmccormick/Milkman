@@ -78,6 +78,17 @@ namespace IronCow
             }
         }
 
+        public string NameLower
+        {
+            get
+            {
+                if (Name != null)
+                    return Name.ToLower();
+                else
+                    return null;
+            }
+        }
+
         public string LocName
         {
             get
@@ -111,6 +122,20 @@ namespace IronCow
         {
             get { return mTasks == null ? 0 : mTasks.Count; }
         }
+
+        public string CountString
+        {
+            get
+            {
+                if (Count == 0)
+                    return "No tasks";
+                else if (Count == 1)
+                    return "1 task";
+                else
+                    return Count + " tasks";
+            }
+        }
+
         #endregion
 
         #region Construction

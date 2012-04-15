@@ -50,7 +50,10 @@ namespace Milkman
             // Phone-specific initialization
             InitializePhoneApplication();
 
-            ThemeManager.ToLightTheme();
+            AppSettings settings = new AppSettings();
+
+            if (settings.LightThemeEnabled == true)
+                ThemeManager.ToLightTheme();
         }
 
         public static void LoadData()

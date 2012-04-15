@@ -115,15 +115,15 @@ namespace Milkman
                DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(MainPage),
                    new PropertyMetadata(new ObservableCollection<TaskList>()));
 
-        public readonly static DependencyProperty TagsProperty =
-            DependencyProperty.Register("Tags", typeof(SortableObservableCollection<string>), typeof(MainPage),
-                new PropertyMetadata((SortableObservableCollection<string>)null));
-
         public SortableObservableCollection<string> Tags
         {
             get { return (SortableObservableCollection<string>)GetValue(TagsProperty); }
             set { SetValue(TagsProperty, value); }
         }
+
+        public readonly static DependencyProperty TagsProperty =
+            DependencyProperty.Register("Tags", typeof(SortableObservableCollection<string>), typeof(MainPage),
+                new PropertyMetadata((SortableObservableCollection<string>)null));
 
         #endregion
 
@@ -215,26 +215,23 @@ namespace Milkman
             LittleWatson.CheckForPreviousException(true);
 
             AppSettings settings = new AppSettings();
-            
+
             LoadData();
 
-            if (settings.ManualSyncEnabled == false)
+            if (settings.AutomaticSyncEnabled == true)
                 SyncData();
 
             // stop and restart background worker
             if (ScheduledActionService.Find("BackgroundWorker") != null)
                 ScheduledActionService.Remove("BackgroundWorker");
 
-            if (settings.BackgroundWorkerEnabled == true)
-            {
-                PeriodicTask task = new PeriodicTask("BackgroundWorker");
-                task.Description = "Manages background syncing, task reminders, and live tile updates.";
+            PeriodicTask task = new PeriodicTask("BackgroundWorker");
+            task.Description = "Manages background syncing, task reminders, and live tile updates.";
 
-                ScheduledActionService.Add(task);
+            ScheduledActionService.Add(task);
 
-                if (System.Diagnostics.Debugger.IsAttached)
-                    ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
-            }
+            if (System.Diagnostics.Debugger.IsAttached)
+                ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -479,12 +476,12 @@ namespace Milkman
                             if (item.HasDueTime && item.DueDateTime.Value.AddHours(-1) >= DateTime.Now)
                             {
                                 Reminder r = new Reminder(item.Id);
-                                
+
                                 if (item.Name.Length > 63)
                                     r.Title = item.Name.Substring(0, 60) + "...";
                                 else
                                     r.Title = item.Name;
-                                
+
                                 r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
                                 r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
                                 r.BeginTime = item.DueDateTime.Value.AddHours(-1);
@@ -501,40 +498,27 @@ namespace Milkman
                         ScheduledActionService.Remove(item.Name);
                 }
 
-                if (settings.BackgroundWorkerEnabled == true)
+                // update live tile data
+                SmartDispatcher.BeginInvoke(() =>
                 {
-                    // update live tile data
-                    SmartDispatcher.BeginInvoke(() =>
-                    {
-                        ShellTile primaryTile = ShellTile.ActiveTiles.First();
-                        if (primaryTile != null)
-                        {
-                            StandardTileData data = new StandardTileData();
-
-                            int tasksDueToday = TodayTasks.Count + OverdueTasks.Where(z => z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-
-                            data.BackTitle = "Milkman";
-                            if (tasksDueToday == 0)
-                                data.BackContent = "No tasks due today";
-                            else if (tasksDueToday == 1)
-                                data.BackContent = tasksDueToday + " task due today";
-                            else
-                                data.BackContent = tasksDueToday + " tasks due today";
-
-                            primaryTile.Update(data);
-                        }
-                    });
-                }
-                else
-                {
-                    // reset live tile data
                     ShellTile primaryTile = ShellTile.ActiveTiles.First();
                     if (primaryTile != null)
                     {
                         StandardTileData data = new StandardTileData();
+
+                        int tasksDueToday = TodayTasks.Count + OverdueTasks.Where(z => z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+
+                        data.BackTitle = "Milkman";
+                        if (tasksDueToday == 0)
+                            data.BackContent = "No tasks due today";
+                        else if (tasksDueToday == 1)
+                            data.BackContent = tasksDueToday + " task due today";
+                        else
+                            data.BackContent = tasksDueToday + " tasks due today";
+
                         primaryTile.Update(data);
                     }
-                }
+                });
             }
             else
             {

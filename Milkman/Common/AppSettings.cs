@@ -18,10 +18,10 @@ namespace Milkman.Common
     {
         IsolatedStorageSettings isolatedStore;
 
-        const string BackgroundWorkerEnabledSettingKeyName = "BackgroundWorkerEnabled";
-        const string LocationNotificationsEnabledSettingKeyName = "LocationNotificationsEnabled";
+        const string AutomaticSyncEnabledSettingKeyName = "AutomaticSyncEnabled";
+        const string LocationServiceEnabledSettingKeyName = "LocationServiceEnabled";
         const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
-        const string ManualSyncEnabledSettingKeyName = "ManualSyncEnabled";
+        const string LightThemeEnabledSettingKeyName = "LightThemeEnabled";
 
         public AppSettings()
         {
@@ -93,28 +93,28 @@ namespace Milkman.Common
             isolatedStore.Save();
         }
 
-        public bool BackgroundWorkerEnabled
+        public bool AutomaticSyncEnabled
         {
             get
             {
-                return GetValueOrDefault<bool>(BackgroundWorkerEnabledSettingKeyName, true);
+                return GetValueOrDefault<bool>(AutomaticSyncEnabledSettingKeyName, true);
             }
             set
             {
-                AddOrUpdateValue(BackgroundWorkerEnabledSettingKeyName, value);
+                AddOrUpdateValue(AutomaticSyncEnabledSettingKeyName, value);
                 Save();
             }
         }
 
-        public bool LocationNotificationsEnabled
+        public bool LocationServiceEnabled
         {
             get
             {
-                return GetValueOrDefault<bool>(LocationNotificationsEnabledSettingKeyName, true);
+                return GetValueOrDefault<bool>(LocationServiceEnabledSettingKeyName, true);
             }
             set
             {
-                AddOrUpdateValue(LocationNotificationsEnabledSettingKeyName, value);
+                AddOrUpdateValue(LocationServiceEnabledSettingKeyName, value);
                 Save();
             }
         }
@@ -132,15 +132,15 @@ namespace Milkman.Common
             }
         }
 
-        public bool ManualSyncEnabled
+        public bool LightThemeEnabled
         {
             get
             {
-                return GetValueOrDefault<bool>(ManualSyncEnabledSettingKeyName, false);
+                return GetValueOrDefault<bool>(LightThemeEnabledSettingKeyName, true);
             }
             set
             {
-                AddOrUpdateValue(ManualSyncEnabledSettingKeyName, value);
+                AddOrUpdateValue(LightThemeEnabledSettingKeyName, value);
                 Save();
             }
         }

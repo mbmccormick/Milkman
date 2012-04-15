@@ -119,7 +119,9 @@ namespace Milkman
 
                             if (NavigationService.CanGoBack)
                             {
-                                MainPage.sReload = true;
+                                // MainPage.sReload = true;
+                                LandingPage.sReload = true;
+
                                 NavigationService.GoBack();
                             }
                         });

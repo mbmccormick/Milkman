@@ -705,7 +705,8 @@
                             ContentTemplate="{TemplateBinding ContentTemplate}"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            Margin="{TemplateBinding Padding}"/> <!--Foreground="{TemplateBinding Foreground}"-->
+                            Margin="{TemplateBinding Padding}"/>
+                        <!--Foreground="{TemplateBinding Foreground}"-->
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -1140,10 +1141,14 @@
                                                Foreground="{TemplateBinding Foreground}"
                                                TextWrapping="NoWrap"/>
                                 </Grid>
-                                <Image x:Name="Image" Grid.Row="1"
-                                       Height="173" Width="173"
-                                       Stretch="UniformToFill"
-                                       Source="{TemplateBinding Source}"/>
+                                <Grid Grid.Row="1"
+                                      Height="173" Width="173"
+                                      Background="{TemplateBinding Background}">
+                                    <Image x:Name="Image" 
+                                           Height="173" Width="173"
+                                           Stretch="UniformToFill"
+                                           Source="{TemplateBinding Source}"/>
+                                </Grid>
                             </Grid>
                         </StackPanel>
                     </ControlTemplate>
@@ -1634,7 +1639,7 @@
                                                 </DiscreteObjectKeyFrame.Value>
                                             </DiscreteObjectKeyFrame>
                                         </ObjectAnimationUsingKeyFrames>
-                                        
+
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                                        Storyboard.TargetProperty="Margin">
                                             <DiscreteObjectKeyFrame KeyTime="0:0:0"
@@ -1671,7 +1676,7 @@
                                             <DiscreteObjectKeyFrame KeyTime="0:0:0"
                                                                     Value="0, 0, 0, 0" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        
+
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="LengthIndicator">
                                             <DiscreteObjectKeyFrame KeyTime="0:0:0.350" Value="0"/>
                                         </ObjectAnimationUsingKeyFrames>
@@ -1773,6 +1778,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    
+
+
 </ResourceDictionary>

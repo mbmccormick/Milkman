@@ -25,12 +25,12 @@ namespace Milkman
 
             Binding binding;
 
-            binding = new Binding("BackgroundWorkerEnabled");
+            binding = new Binding("AutomaticSyncEnabled");
             binding.Mode = BindingMode.TwoWay;
             binding.Source = settings;
-            this.togBackgroundWorker.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+            this.togAutomaticSync.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
 
-            binding = new Binding("LocationNotificationsEnabled");
+            binding = new Binding("LocationServiceEnabled");
             binding.Mode = BindingMode.TwoWay;
             binding.Source = settings;
             this.togLocationService.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
@@ -40,39 +40,22 @@ namespace Milkman
             binding.Source = settings;
             this.togTaskReminders.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
 
-            binding = new Binding("ManualSyncEnabled");
+            binding = new Binding("LightThemeEnabled");
             binding.Mode = BindingMode.TwoWay;
             binding.Source = settings;
-            this.togManualSync.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+            this.togLightTheme.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
         }
 
         private void ToggleSwitch_Checked(object sender, RoutedEventArgs e)
         {
             ToggleSwitch target = (ToggleSwitch)sender;
-
             target.Content = "On";
-
-            if (target == this.togBackgroundWorker)
-            {
-                this.togLocationService.IsEnabled = true;
-                this.togTaskReminders.IsEnabled = true;
-            }
         }
 
         private void ToggleSwitch_Unchecked(object sender, RoutedEventArgs e)
         {
             ToggleSwitch target = (ToggleSwitch)sender;
-
             target.Content = "Off";
-
-            if (target == this.togBackgroundWorker)
-            {
-                this.togLocationService.IsChecked = false;
-                this.togTaskReminders.IsChecked = false;
-
-                this.togLocationService.IsEnabled = false;
-                this.togTaskReminders.IsEnabled = false;
-            }
         }
     }
 }
