@@ -458,7 +458,7 @@ namespace Milkman
             else if (task.Priority == TaskPriority.Three)
                 target.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
             else
-                target.Foreground = new SolidColorBrush(Colors.Black);
+                target.Foreground = (SolidColorBrush)Resources["PhoneForegroundBrush"];
         }
 
         private void mnuSettings_Click(object sender, EventArgs e)

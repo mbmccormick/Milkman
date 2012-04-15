@@ -90,9 +90,20 @@ namespace Milkman
         public void Open()
         {
             stbSwivelIn.Begin();
-            SystemTray.BackgroundColor = Color.FromArgb(255, 222, 222, 222); // Color.FromArgb(255, 33, 33, 33);
-            Visibility = Visibility.Visible;
             
+            if (Microsoft.Phone.Controls.ThemeManager.IsLightTheme())
+                SystemTray.BackgroundColor = Color.FromArgb(255, 222, 222, 222);
+            else
+                SystemTray.BackgroundColor = Color.FromArgb(255, 33, 33, 33);
+
+            if (Microsoft.Phone.Controls.ThemeManager.IsLightTheme())
+                this.grdMain.Background = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
+            else
+                this.grdMain.Background = new SolidColorBrush(Color.FromArgb(255, 33, 33, 33));
+
+            Visibility = Visibility.Visible;
+
+
             _isOpen = true;
             OnPropertyChanged("IsOpen");
         }
@@ -100,7 +111,10 @@ namespace Milkman
         public void Close()
         {
             stbSwivelOut.Begin();
-            SystemTray.BackgroundColor = Color.FromArgb(255, 255, 255, 255);
+            if (Microsoft.Phone.Controls.ThemeManager.IsLightTheme())
+                SystemTray.BackgroundColor = Color.FromArgb(255, 255, 255, 255);
+            else
+                SystemTray.BackgroundColor = Color.FromArgb(255, 0, 0, 0);
         }
 
         private void Overlay_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -124,7 +138,7 @@ namespace Milkman
             };
         }
 
-#endregion
+        #endregion
 
         public AddTaskDialog()
         {

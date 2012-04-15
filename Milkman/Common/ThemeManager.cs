@@ -227,6 +227,23 @@ namespace Microsoft.Phone.Controls
         {
             OverrideTheme(Theme.Dark);
         }
+        
+        public static bool IsLightTheme()
+        {
+            Color lightThemeBackground = Color.FromArgb(255, 255, 255, 255);
+            Color darkThemeBackground = Color.FromArgb(255, 0, 0, 0);
+
+            SolidColorBrush backgroundBrush = Application.Current.Resources["PhoneBackgroundBrush"] as SolidColorBrush;
+
+            if (backgroundBrush.Color == lightThemeBackground)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         /// <summary>
         /// Overrides the accent color and brush used at runtime to a new one.
