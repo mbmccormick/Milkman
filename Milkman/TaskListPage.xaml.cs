@@ -140,7 +140,9 @@ namespace Milkman
 
         private void TaskDetailsPage_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            progressIndicator = new ProgressIndicator();
+            progressIndicator.IsVisible = true;
+            SystemTray.ProgressIndicator = progressIndicator;
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -153,11 +155,9 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
-
             IsLoading = true;
+
+            AppSettings settings = new AppSettings();
 
             if (e.IsNavigationInitiator)
             {
@@ -165,8 +165,11 @@ namespace Milkman
             }
             else
             {
-                SyncData();
-                
+                LittleWatson.CheckForPreviousException(true);
+
+                if (settings.AutomaticSyncEnabled == true)
+                    SyncData();
+
                 LoadData();
             }
 

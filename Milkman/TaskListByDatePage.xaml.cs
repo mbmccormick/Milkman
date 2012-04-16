@@ -206,27 +206,6 @@ namespace Milkman
             progressIndicator = new ProgressIndicator();
             progressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator = progressIndicator;
-
-            LittleWatson.CheckForPreviousException(true);
-
-            AppSettings settings = new AppSettings();
-
-            LoadData();
-
-            if (settings.AutomaticSyncEnabled == true)
-                SyncData();
-
-            // stop and restart background worker
-            if (ScheduledActionService.Find("BackgroundWorker") != null)
-                ScheduledActionService.Remove("BackgroundWorker");
-
-            PeriodicTask task = new PeriodicTask("BackgroundWorker");
-            task.Description = "Manages background syncing, task reminders, and live tile updates.";
-
-            ScheduledActionService.Add(task);
-
-            if (System.Diagnostics.Debugger.IsAttached)
-                ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -235,6 +214,29 @@ namespace Milkman
             {
                 IsLoading = false;
             });
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            IsLoading = true;
+
+            AppSettings settings = new AppSettings();
+
+            if (e.IsNavigationInitiator)
+            {
+                LoadData();
+            }
+            else
+            {
+                LittleWatson.CheckForPreviousException(true);
+
+                if (settings.AutomaticSyncEnabled == true)
+                    SyncData();
+
+                LoadData();
+            }
+
+            base.OnNavigatedTo(e);
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
