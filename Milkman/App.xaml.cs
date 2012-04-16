@@ -210,7 +210,7 @@ namespace Milkman
             }
             else
             {
-                LittleWatson.ReportException(e.ExceptionObject, App.VersionNumber);
+                LittleWatson.ReportException(e.ExceptionObject, null);
 
                 RootFrame.Dispatcher.BeginInvoke(() =>
                 {
