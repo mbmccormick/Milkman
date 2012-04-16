@@ -155,8 +155,6 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            IsLoading = true;
-
             AppSettings settings = new AppSettings();
 
             if (e.IsNavigationInitiator)
@@ -165,6 +163,8 @@ namespace Milkman
             }
             else
             {
+                IsLoading = true;
+
                 LittleWatson.CheckForPreviousException(true);
 
                 if (settings.AutomaticSyncEnabled == true)
@@ -296,7 +296,7 @@ namespace Milkman
         {
             if (IsLoading) return;
 
-            string messageBoxText;
+            string messageBoxText = null;
             if (this.lstTasks.SelectedItems.Count == 1)
                 messageBoxText = "Are you sure you want to mark the selected task as complete?";
             else
@@ -318,7 +318,7 @@ namespace Milkman
         {
             if (IsLoading) return;
 
-            string messageBoxText;
+            string messageBoxText = null;
             if (this.lstTasks.SelectedItems.Count == 1)
                 messageBoxText = "Are you sure you want to postpone the selected task?";
             else
@@ -340,7 +340,7 @@ namespace Milkman
         {
             if (IsLoading) return;
 
-            string messageBoxText;
+            string messageBoxText = null;
             if (this.lstTasks.SelectedItems.Count == 1)
                 messageBoxText = "Are you sure you want to delete the selected task?";
             else

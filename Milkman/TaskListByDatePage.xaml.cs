@@ -218,8 +218,6 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            IsLoading = true;
-
             AppSettings settings = new AppSettings();
 
             if (e.IsNavigationInitiator)
@@ -228,6 +226,8 @@ namespace Milkman
             }
             else
             {
+                IsLoading = true;
+
                 LittleWatson.CheckForPreviousException(true);
 
                 if (settings.AutomaticSyncEnabled == true)
