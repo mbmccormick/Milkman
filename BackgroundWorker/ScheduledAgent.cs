@@ -101,70 +101,13 @@ namespace BackgroundWorker
             {
                 var tempTaskLists = new SortableObservableCollection<TaskList>();
 
-                var tempOverdueTasks = new SortableObservableCollection<Task>();
-                var tempTodayTasks = new SortableObservableCollection<Task>();
-                var tempTomorrowTasks = new SortableObservableCollection<Task>();
-                var tempWeekTasks = new SortableObservableCollection<Task>();
-                var tempNoDueTasks = new SortableObservableCollection<Task>();
-
-                var tempTags = new SortableObservableCollection<string>();
-
                 foreach (TaskList l in App.RtmClient.TaskLists)
                 {
-                    tempTaskLists.Add(l);
-
-                    if (l.IsNormal && l.Tasks != null)
-                    {
-                        foreach (Task task in l.Tasks)
-                        {
-                            // add tags
-                            foreach (string tag in task.Tags)
-                            {
-                                if (!tempTags.Contains(tag)) tempTags.Add(tag);
-                            }
-
-                            if (task.IsIncomplete)
-                            {
-                                if (task.DueDateTime.HasValue)
-                                {
-                                    // overdue
-                                    if (task.DueDateTime.Value < DateTime.Today || (task.HasDueTime && task.DueDateTime.Value < DateTime.Now))
-                                    {
-                                        tempOverdueTasks.Add(task);
-                                    }
-                                    // today
-                                    else if (task.DueDateTime.Value.Date == DateTime.Today)
-                                    {
-                                        tempTodayTasks.Add(task);
-                                    }
-                                    // tomorrow
-                                    else if (task.DueDateTime.Value.Date == DateTime.Today.AddDays(1))
-                                    {
-                                        tempTomorrowTasks.Add(task);
-                                    }
-                                    // this week
-                                    else if (task.DueDateTime.Value.Date > DateTime.Today.AddDays(1) && task.DueDateTime.Value.Date <= DateTime.Today.AddDays(6))
-                                    {
-                                        tempWeekTasks.Add(task);
-                                    }
-                                }
-                                else
-                                {
-                                    // no due
-                                    tempNoDueTasks.Add(task);
-                                }
-                            }
-                        }
-                    }
+                    if (l.Name.ToLower() == "all tasks")
+                        tempTaskLists.Insert(0, l);
+                    else
+                        tempTaskLists.Add(l);
                 }
-
-                tempOverdueTasks.Sort();
-                tempTodayTasks.Sort();
-                tempTomorrowTasks.Sort();
-                tempWeekTasks.Sort();
-                tempNoDueTasks.Sort();
-
-                tempTags.Sort();
 
                 // check for nearby tasks
                 if (_watcher != null &&
@@ -195,7 +138,7 @@ namespace BackgroundWorker
 
                         if (attempts < 5)
                         {
-                            foreach (var item in tempTodayTasks.Concat(tempTomorrowTasks).Concat(tempOverdueTasks).Concat(tempWeekTasks).Concat(tempNoDueTasks))
+                            foreach (Task item in App.RtmClient.Tasks)
                             {
                                 if (item.Location != null)
                                 {
@@ -214,15 +157,16 @@ namespace BackgroundWorker
                     }
                 }
 
-                // update live tile data
-                ShellTile primaryTile = ShellTile.ActiveTiles.First();
-                if (primaryTile != null)
+                // update live tiles
+                foreach (ShellTile tile in ShellTile.ActiveTiles)
                 {
                     StandardTileData data = new StandardTileData();
 
-                    int tasksDueToday = tempTodayTasks.Count + tempOverdueTasks.Where(z => z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                    string id = tile.NavigationUri.ToString().Split('=')[1];
+                    TaskList list = App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == id);
 
-                    data.BackTitle = "Milkman";
+                    int tasksDueToday = list.Tasks.Where(z => z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+
                     if (tasksDueToday == 0)
                         data.BackContent = "No tasks due today";
                     else if (tasksDueToday == 1)
@@ -230,7 +174,7 @@ namespace BackgroundWorker
                     else
                         data.BackContent = tasksDueToday + " tasks due today";
 
-                    primaryTile.Update(data);
+                    tile.Update(data);
                 }
             }
         }

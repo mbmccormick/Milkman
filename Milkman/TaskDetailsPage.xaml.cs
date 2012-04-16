@@ -280,7 +280,7 @@ namespace Milkman
                         if (this.NavigationService.CanGoBack)
                             this.NavigationService.GoBack();
                         else
-                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                            NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml", UriKind.Relative));
                     });
                 });
             });
@@ -316,7 +316,7 @@ namespace Milkman
                         if (this.NavigationService.CanGoBack)
                             this.NavigationService.GoBack();
                         else
-                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                            NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml", UriKind.Relative));
                     });
                 });
             });

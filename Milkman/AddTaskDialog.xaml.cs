@@ -103,7 +103,6 @@ namespace Milkman
 
             Visibility = Visibility.Visible;
 
-
             _isOpen = true;
             OnPropertyChanged("IsOpen");
         }

@@ -77,10 +77,9 @@ namespace Milkman
         ApplicationBarIconButton delete;
 
         ApplicationBarMenuItem settings;
-        ApplicationBarMenuItem help;
-        ApplicationBarMenuItem bugReport;
         ApplicationBarMenuItem about;
-        ApplicationBarMenuItem logout;
+        ApplicationBarMenuItem feedback;
+        ApplicationBarMenuItem signOut;
 
         public TaskListPage()
         {
@@ -124,21 +123,17 @@ namespace Milkman
             settings.Text = "settings";
             settings.Click += mnuSettings_Click;
 
-            help = new ApplicationBarMenuItem();
-            help.Text = "shortcuts help";
-            help.Click += mnuHelp_Click;
-
-            bugReport = new ApplicationBarMenuItem();
-            bugReport.Text = "feedback";
-            bugReport.Click += mnuBugReport_Click;
-
             about = new ApplicationBarMenuItem();
             about.Text = "about milkman";
             about.Click += mnuAbout_Click;
 
-            logout = new ApplicationBarMenuItem();
-            logout.Text = "logout";
-            logout.Click += mnuLogout_Click;
+            feedback = new ApplicationBarMenuItem();
+            feedback.Text = "feedback";
+            feedback.Click += mnuFeedback_Click;
+
+            signOut = new ApplicationBarMenuItem();
+            signOut.Text = "sign out";
+            signOut.Click += mnuSignOut_Click;
 
             IsLoading = false;
         }
@@ -429,10 +424,9 @@ namespace Milkman
                 ApplicationBar.Buttons.Add(sync);
 
                 ApplicationBar.MenuItems.Add(settings);
-                ApplicationBar.MenuItems.Add(help);
-                ApplicationBar.MenuItems.Add(bugReport);
                 ApplicationBar.MenuItems.Add(about);
-                ApplicationBar.MenuItems.Add(logout);
+                ApplicationBar.MenuItems.Add(feedback);
+                ApplicationBar.MenuItems.Add(signOut);
             }
         }
 
@@ -469,19 +463,6 @@ namespace Milkman
             });
         }
 
-        private void mnuHelp_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Milkman uses the Smart Add shortcuts for creating tasks: ^ for due date, ! for priority, # for lists and tags, @ for location, * for repeat, and = for time estimate.\n\nFor example, \"Pick up milk ^today at 2pm !1 #Personal @Grocery Store *weekly =15 minutes\" would create a task to pick up the milk that is due today at 2:00 PM with high priority on the Personal list at the Grocery Store that occurs every week for 15 minutes.", "Smart Add Shortcuts", MessageBoxButton.OK);
-        }
-
-        private void mnuBugReport_Click(object sender, EventArgs e)
-        {
-            EmailComposeTask emailComposeTask = new EmailComposeTask();
-            emailComposeTask.To = "milkmanwp@gmail.com";
-            emailComposeTask.Subject = "Milkman Feedback";
-            emailComposeTask.Show();
-        }
-
         private void mnuAbout_Click(object sender, EventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>
@@ -490,9 +471,18 @@ namespace Milkman
             });
         }
 
-        private void mnuLogout_Click(object sender, EventArgs e)
+        private void mnuFeedback_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to logout of Milkman and remove all of your data?", "Logout", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+            emailComposeTask.To = "milkmanwp@gmail.com";
+            emailComposeTask.Subject = "Milkman Feedback";
+            emailComposeTask.Body = "Version " + App.VersionNumber + "\n\n";
+            emailComposeTask.Show();
+        }
+
+        private void mnuSignOut_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to sign out of Milkman and remove all of your data?", "Logout", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 App.DeleteData();
                 Login();

@@ -30,6 +30,15 @@ namespace Milkman
 
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
 
+        public static string VersionNumber
+        {
+            get
+            {
+                string assembly = System.Reflection.Assembly.GetExecutingAssembly().FullName;
+                return assembly.Split('=')[1].Split(',')[0];
+            }
+        }
+
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -201,7 +210,7 @@ namespace Milkman
             }
             else
             {
-                LittleWatson.ReportException(e.ExceptionObject, "Application_UnhandledException()");
+                LittleWatson.ReportException(e.ExceptionObject, App.VersionNumber);
 
                 RootFrame.Dispatcher.BeginInvoke(() =>
                 {

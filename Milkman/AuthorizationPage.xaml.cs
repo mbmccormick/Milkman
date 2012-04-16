@@ -119,8 +119,8 @@ namespace Milkman
 
                             if (NavigationService.CanGoBack)
                             {
-                                // MainPage.sReload = true;
-                                LandingPage.sReload = true;
+                                // TaskListByDatePage.sReload = true;
+                                MainPage.sReload = true;
 
                                 NavigationService.GoBack();
                             }
