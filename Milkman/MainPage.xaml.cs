@@ -99,7 +99,7 @@ namespace Milkman
         {
             AppSettings settings = new AppSettings();
 
-            if (e.IsNavigationInitiator)
+            if (e.IsNavigationInitiator) // or came from LoginPage.xaml...
             {
                 LoadData();
             }
