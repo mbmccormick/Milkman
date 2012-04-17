@@ -197,8 +197,6 @@ namespace Milkman
             signOut = new ApplicationBarMenuItem();
             signOut.Text = "sign out";
             signOut.Click += mnuSignOut_Click;
-
-            IsLoading = false;
         }
 
         private void TaskListByDatePage_Loaded(object sender, RoutedEventArgs e)
@@ -206,6 +204,8 @@ namespace Milkman
             progressIndicator = new ProgressIndicator();
             progressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator = progressIndicator;
+
+            IsLoading = true;
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -226,8 +226,6 @@ namespace Milkman
             }
             else
             {
-                IsLoading = true;
-
                 LittleWatson.CheckForPreviousException(true);
 
                 if (settings.AutomaticSyncEnabled == true)
@@ -764,6 +762,8 @@ namespace Milkman
             TextBlock target = (TextBlock)sender;
 
             Task task = (Task)target.DataContext;
+
+            // set priority
             if (task.Priority == TaskPriority.One)
                 target.Foreground = new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
             else if (task.Priority == TaskPriority.Two)
@@ -772,6 +772,19 @@ namespace Milkman
                 target.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
             else
                 target.Foreground = (SolidColorBrush)Resources["PhoneForegroundBrush"];
+
+            // set due today
+            if (task.DueDateTime.HasValue &&
+                task.DueDateTime.Value.Date <= DateTime.Now.Date)
+                target.FontWeight = FontWeights.SemiBold;
+            else
+                target.FontWeight = FontWeights.Normal;
+
+            // set overdue
+            if (task.IsLate == true)
+                target.TextDecorations = TextDecorations.Underline;
+            else
+                target.TextDecorations = null;
         }
 
         private void mnuSettings_Click(object sender, EventArgs e)

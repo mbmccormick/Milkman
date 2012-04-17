@@ -76,8 +76,6 @@ namespace Milkman
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
-
-            IsLoading = false;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
@@ -85,6 +83,17 @@ namespace Milkman
             progressIndicator = new ProgressIndicator();
             progressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator = progressIndicator;
+
+            IsLoading = true;
+
+            LittleWatson.CheckForPreviousException(true);
+
+            AppSettings settings = new AppSettings();
+
+            if (settings.AutomaticSyncEnabled == true)
+                SyncData();
+
+            LoadData();
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -93,29 +102,6 @@ namespace Milkman
             {
                 IsLoading = false;
             });
-        }
-
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            AppSettings settings = new AppSettings();
-
-            if (e.IsNavigationInitiator) // or came from LoginPage.xaml...
-            {
-                LoadData();
-            }
-            else
-            {
-                IsLoading = true;
-
-                LittleWatson.CheckForPreviousException(true);
-
-                if (settings.AutomaticSyncEnabled == true)
-                    SyncData();
-
-                LoadData();
-            }
-
-            base.OnNavigatedTo(e);
         }
 
         #endregion
