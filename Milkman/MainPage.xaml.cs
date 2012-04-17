@@ -83,17 +83,6 @@ namespace Milkman
             progressIndicator = new ProgressIndicator();
             progressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator = progressIndicator;
-
-            IsLoading = true;
-
-            LittleWatson.CheckForPreviousException(true);
-
-            AppSettings settings = new AppSettings();
-
-            if (settings.AutomaticSyncEnabled == true)
-                SyncData();
-
-            LoadData();
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -102,6 +91,30 @@ namespace Milkman
             {
                 IsLoading = false;
             });
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            IsLoading = true;
+
+            AppSettings settings = new AppSettings();
+
+            if (e.IsNavigationInitiator &&
+                sReload == false)
+            {
+                LoadData();
+            }
+            else
+            {
+                LittleWatson.CheckForPreviousException(true);
+
+                if (settings.AutomaticSyncEnabled == true)
+                    SyncData();
+
+                LoadData();
+            }
+
+            base.OnNavigatedTo(e);
         }
 
         #endregion
@@ -266,7 +279,7 @@ namespace Milkman
 
         private void mnuSignOut_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to sign out of Milkman and remove all of your data?", "Logout", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show("Are you sure you want to sign out of Milkman and remove all of your data?", "Sign Out", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 App.DeleteData();
                 Login();

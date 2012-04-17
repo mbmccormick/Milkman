@@ -23,7 +23,7 @@ namespace Milkman
     {
         #region IsLoading Property
 
-        public static bool sReload = true;
+        public static bool sReload = false;
 
         public static readonly DependencyProperty IsLoadingProperty =
             DependencyProperty.Register("IsLoading", typeof(bool), typeof(TaskListPage),
@@ -141,8 +141,6 @@ namespace Milkman
             progressIndicator = new ProgressIndicator();
             progressIndicator.IsVisible = true;
             SystemTray.ProgressIndicator = progressIndicator;
-
-            IsLoading = true;
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -155,9 +153,12 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            IsLoading = true;
+
             AppSettings settings = new AppSettings();
 
-            if (e.IsNavigationInitiator)
+            if (e.IsNavigationInitiator &&
+                sReload == false)
             {
                 LoadData();
             }
@@ -441,7 +442,7 @@ namespace Milkman
                 this.NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
         }
 
-        private void ItemContent_Loaded(object sender, EventArgs e)
+        private void TaskName_Loaded(object sender, EventArgs e)
         {
             TextBlock target = (TextBlock)sender;
 
@@ -456,19 +457,20 @@ namespace Milkman
                 target.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
             else
                 target.Foreground = (SolidColorBrush)Resources["PhoneForegroundBrush"];
+        }
+
+        private void TaskFriendlyDueDate_Loaded(object sender, EventArgs e)
+        {
+            TextBlock target = (TextBlock)sender;
+
+            Task task = (Task)target.DataContext;
 
             // set due today
             if (task.DueDateTime.HasValue &&
                 task.DueDateTime.Value.Date <= DateTime.Now.Date)
-                target.FontWeight = FontWeights.SemiBold;
+                target.Foreground = (SolidColorBrush)Resources["PhoneAccentBrush"];
             else
-                target.FontWeight = FontWeights.Normal;
-
-            // set overdue
-            if (task.IsLate == true)
-                target.TextDecorations = TextDecorations.Underline;
-            else
-                target.TextDecorations = null;
+                target.Foreground = (SolidColorBrush)Resources["PhoneSubtleBrush"];
         }
 
         private void mnuSettings_Click(object sender, EventArgs e)
@@ -498,7 +500,7 @@ namespace Milkman
 
         private void mnuSignOut_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to sign out of Milkman and remove all of your data?", "Logout", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show("Are you sure you want to sign out of Milkman and remove all of your data?", "Sign Out", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 App.DeleteData();
                 Login();

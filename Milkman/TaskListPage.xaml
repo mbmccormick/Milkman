@@ -49,8 +49,8 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="{StaticResource PhoneForegroundBrush}" Loaded="ItemContent_Loaded"/>
-                            <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontWeight="Normal" />
+                            <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="{StaticResource PhoneForegroundBrush}" Loaded="TaskName_Loaded" />
+                            <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
                             <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                         </Grid>
                     </DataTemplate>
