@@ -153,8 +153,6 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            IsLoading = true;
-
             AppSettings settings = new AppSettings();
 
             if (e.IsNavigationInitiator &&
@@ -196,11 +194,6 @@ namespace Milkman
                         App.RtmClient.SyncEverything(() =>
                         {
                             LoadData();
-
-                            SmartDispatcher.BeginInvoke(() =>
-                            {
-                                IsLoading = false;
-                            });
                         });
                     }
                     else
@@ -230,6 +223,8 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
+                IsLoading = true;
+                
                 string id;
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
                 {

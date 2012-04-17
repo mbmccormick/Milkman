@@ -95,8 +95,6 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            IsLoading = true;
-
             AppSettings settings = new AppSettings();
 
             if (e.IsNavigationInitiator &&
@@ -138,11 +136,6 @@ namespace Milkman
                         App.RtmClient.SyncEverything(() =>
                         {
                             LoadData();
-
-                            SmartDispatcher.BeginInvoke(() =>
-                            {
-                                IsLoading = false;
-                            });
                         });
                     }
                     else
@@ -170,26 +163,30 @@ namespace Milkman
 
         private void LoadDataInBackground()
         {
-            if (App.RtmClient.TaskLists != null)
+            SmartDispatcher.BeginInvoke(() =>
             {
-                var tempTaskLists = new SortableObservableCollection<TaskList>();
+                this.IsLoading = true;
 
-                foreach (TaskList l in App.RtmClient.TaskLists)
+                if (App.RtmClient.TaskLists != null)
                 {
-                    if (l.Name.ToLower() == "all tasks")
-                        tempTaskLists.Insert(0, l);
-                    else
-                        tempTaskLists.Add(l);
+                    var tempTaskLists = new SortableObservableCollection<TaskList>();
+
+                    foreach (TaskList l in App.RtmClient.TaskLists)
+                    {
+                        if (l.Name.ToLower() == "all tasks")
+                            tempTaskLists.Insert(0, l);
+                        else
+                            tempTaskLists.Add(l);
+                    }
+
+                    TaskLists = tempTaskLists;
+
+                    ToggleLoadingText();
+                    ToggleEmptyText();
                 }
 
-                SmartDispatcher.BeginInvoke(() =>
-                {
-                    TaskLists = tempTaskLists;
-                });
-
-                ToggleLoadingText();
-                ToggleEmptyText();
-            }
+                IsLoading = false;
+            });
         }
 
         private void ToggleLoadingText()

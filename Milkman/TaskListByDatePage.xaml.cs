@@ -53,77 +53,16 @@ namespace Milkman
 
         #endregion
 
-        #region Task Lists Properties
+        #region Task List Property
 
-        public ObservableCollection<Task> TodayTasks
+        public static readonly DependencyProperty TaskListProperty =
+            DependencyProperty.Register("CurrentList", typeof(TaskList), typeof(TaskListPage), new PropertyMetadata(new TaskList()));
+
+        private TaskList CurrentList
         {
-            get { return (ObservableCollection<Task>)GetValue(TodayTasksProperty); }
-            set { SetValue(TodayTasksProperty, value); }
+            get { return (TaskList)GetValue(TaskListProperty); }
+            set { SetValue(TaskListProperty, value); }
         }
-
-        public static readonly DependencyProperty TodayTasksProperty =
-               DependencyProperty.Register("TodayTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage),
-                   new PropertyMetadata(new ObservableCollection<Task>()));
-
-        public ObservableCollection<Task> TomorrowTasks
-        {
-            get { return (ObservableCollection<Task>)GetValue(TomorrowTasksProperty); }
-            set { SetValue(TomorrowTasksProperty, value); }
-        }
-
-        public static readonly DependencyProperty TomorrowTasksProperty =
-               DependencyProperty.Register("TomorrowTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage),
-                   new PropertyMetadata(new ObservableCollection<Task>()));
-
-        public ObservableCollection<Task> OverdueTasks
-        {
-            get { return (ObservableCollection<Task>)GetValue(OverdueTasksProperty); }
-            set { SetValue(OverdueTasksProperty, value); }
-        }
-
-        public static readonly DependencyProperty OverdueTasksProperty =
-               DependencyProperty.Register("OverdueTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage),
-                   new PropertyMetadata(new ObservableCollection<Task>()));
-
-        public ObservableCollection<Task> NoDueTasks
-        {
-            get { return (ObservableCollection<Task>)GetValue(NoDueTasksProperty); }
-            set { SetValue(NoDueTasksProperty, value); }
-        }
-
-        public static readonly DependencyProperty NoDueTasksProperty =
-               DependencyProperty.Register("NoDueTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage),
-                   new PropertyMetadata(new ObservableCollection<Task>()));
-
-        public ObservableCollection<Task> WeekTasks
-        {
-            get { return (ObservableCollection<Task>)GetValue(WeekTasksProperty); }
-            set { SetValue(WeekTasksProperty, value); }
-        }
-
-        public static readonly DependencyProperty WeekTasksProperty =
-               DependencyProperty.Register("WeekTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage),
-                   new PropertyMetadata(new ObservableCollection<Task>()));
-
-        public ObservableCollection<TaskList> TaskLists
-        {
-            get { return (ObservableCollection<TaskList>)GetValue(TaskListsProperty); }
-            set { SetValue(TaskListsProperty, value); }
-        }
-
-        public static readonly DependencyProperty TaskListsProperty =
-               DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(TaskListByDatePage),
-                   new PropertyMetadata(new ObservableCollection<TaskList>()));
-
-        public SortableObservableCollection<string> Tags
-        {
-            get { return (SortableObservableCollection<string>)GetValue(TagsProperty); }
-            set { SetValue(TagsProperty, value); }
-        }
-
-        public readonly static DependencyProperty TagsProperty =
-            DependencyProperty.Register("Tags", typeof(SortableObservableCollection<string>), typeof(TaskListByDatePage),
-                new PropertyMetadata((SortableObservableCollection<string>)null));
 
         #endregion
 
@@ -216,8 +155,6 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            IsLoading = true;
-
             AppSettings settings = new AppSettings();
 
             if (e.IsNavigationInitiator &&
@@ -288,11 +225,6 @@ namespace Milkman
                         App.RtmClient.SyncEverything(() =>
                         {
                             LoadData();
-
-                            SmartDispatcher.BeginInvoke(() =>
-                            {
-                                IsLoading = false;
-                            });
                         });
                     }
                     else
@@ -313,99 +245,29 @@ namespace Milkman
             b.DoWork += (s, e) =>
             {
                 LoadDataInBackground();
-                SetupNotifications();
-
             };
             b.RunWorkerAsync();
         }
 
         private void LoadDataInBackground()
         {
-            if (App.RtmClient.TaskLists != null)
+            SmartDispatcher.BeginInvoke(() =>
             {
-                var tempTaskLists = new SortableObservableCollection<TaskList>();
+                IsLoading = true;
 
-                var tempOverdueTasks = new SortableObservableCollection<Task>();
-                var tempTodayTasks = new SortableObservableCollection<Task>();
-                var tempTomorrowTasks = new SortableObservableCollection<Task>();
-                var tempWeekTasks = new SortableObservableCollection<Task>();
-                var tempNoDueTasks = new SortableObservableCollection<Task>();
-
-                var tempTags = new SortableObservableCollection<string>();
-
-                foreach (TaskList l in App.RtmClient.TaskLists)
+                string id;
+                if (NavigationContext.QueryString.TryGetValue("id", out id))
                 {
-                    tempTaskLists.Add(l);
+                    CurrentList = App.RtmClient.TaskLists.SingleOrDefault<TaskList>(l => l.Id == id);
 
-                    if (l.IsNormal && l.Tasks != null)
-                    {
-                        foreach (Task task in l.Tasks)
-                        {
-                            // add tags
-                            foreach (string tag in task.Tags)
-                            {
-                                if (!tempTags.Contains(tag)) tempTags.Add(tag);
-                            }
+                    // this.lstTasks.ItemsSource = CurrentList.Tasks;
 
-                            if (task.IsIncomplete)
-                            {
-                                if (task.DueDateTime.HasValue)
-                                {
-                                    // overdue
-                                    if (task.DueDateTime.Value < DateTime.Today || (task.HasDueTime && task.DueDateTime.Value < DateTime.Now))
-                                    {
-                                        tempOverdueTasks.Add(task);
-                                    }
-                                    // today
-                                    else if (task.DueDateTime.Value.Date == DateTime.Today)
-                                    {
-                                        tempTodayTasks.Add(task);
-                                    }
-                                    // tomorrow
-                                    else if (task.DueDateTime.Value.Date == DateTime.Today.AddDays(1))
-                                    {
-                                        tempTomorrowTasks.Add(task);
-                                    }
-                                    // this week
-                                    else if (task.DueDateTime.Value.Date > DateTime.Today.AddDays(1) && task.DueDateTime.Value.Date <= DateTime.Today.AddDays(6))
-                                    {
-                                        tempWeekTasks.Add(task);
-                                    }
-                                }
-                                else
-                                {
-                                    // no due
-                                    tempNoDueTasks.Add(task);
-                                }
-                            }
-                        }
-                    }
+                    ToggleLoadingText();
+                    ToggleEmptyText();
                 }
 
-                tempOverdueTasks.Sort();
-                tempTodayTasks.Sort();
-                tempTomorrowTasks.Sort();
-                tempWeekTasks.Sort();
-                tempNoDueTasks.Sort();
-
-                tempTags.Sort();
-
-                SmartDispatcher.BeginInvoke(() =>
-                {
-                    TaskLists = tempTaskLists;
-
-                    TodayTasks = tempTodayTasks;
-                    TomorrowTasks = tempTomorrowTasks;
-                    OverdueTasks = tempOverdueTasks;
-                    WeekTasks = tempWeekTasks;
-                    NoDueTasks = tempNoDueTasks;
-
-                    Tags = tempTags;
-                });
-
-                ToggleLoadingText();
-                ToggleEmptyText();
-            }
+                IsLoading = false;
+            });
         }
 
         private void ToggleLoadingText()
@@ -422,110 +284,33 @@ namespace Milkman
 
         private void ToggleEmptyText()
         {
-            SmartDispatcher.BeginInvoke(() =>
-            {
-                if (TodayTasks.Count == 0)
-                    this.txtTodayEmpty.Visibility = System.Windows.Visibility.Visible;
-                else
-                    this.txtTodayEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            //    SmartDispatcher.BeginInvoke(() =>
+            //    {
+            //        if (TodayTasks.Count == 0)
+            //            this.txtTodayEmpty.Visibility = System.Windows.Visibility.Visible;
+            //        else
+            //            this.txtTodayEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if (TomorrowTasks.Count == 0)
-                    this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Visible;
-                else
-                    this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            //        if (TomorrowTasks.Count == 0)
+            //            this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Visible;
+            //        else
+            //            this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if (OverdueTasks.Count == 0)
-                    this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Visible;
-                else
-                    this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            //        if (OverdueTasks.Count == 0)
+            //            this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Visible;
+            //        else
+            //            this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if (WeekTasks.Count == 0)
-                    this.txtWeekEmpty.Visibility = System.Windows.Visibility.Visible;
-                else
-                    this.txtWeekEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            //        if (WeekTasks.Count == 0)
+            //            this.txtWeekEmpty.Visibility = System.Windows.Visibility.Visible;
+            //        else
+            //            this.txtWeekEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if (NoDueTasks.Count == 0)
-                    this.txtNoDueEmpty.Visibility = System.Windows.Visibility.Visible;
-                else
-                    this.txtNoDueEmpty.Visibility = System.Windows.Visibility.Collapsed;
-            });
-        }
-
-        private void SetupNotifications()
-        {
-            if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
-            {
-                AppSettings settings = new AppSettings();
-
-                if (settings.TaskRemindersEnabled == true)
-                {
-                    // add new reminders
-                    SmartDispatcher.BeginInvoke(() =>
-                    {
-                        // delete all existing reminders
-                        foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                            ScheduledActionService.Remove(item.Name);
-
-                        // create new reminders
-                        foreach (var item in TodayTasks.Concat(TomorrowTasks).Concat(WeekTasks))
-                        {
-                            if (item.HasDueTime && item.DueDateTime.Value.AddHours(-1) >= DateTime.Now)
-                            {
-                                Reminder r = new Reminder(item.Id);
-
-                                if (item.Name.Length > 63)
-                                    r.Title = item.Name.Substring(0, 60) + "...";
-                                else
-                                    r.Title = item.Name;
-
-                                r.Content = "This task is due " + item.FriendlyDueDate.Replace("Due ", "") + ".";
-                                r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
-                                r.BeginTime = item.DueDateTime.Value.AddHours(-1);
-
-                                ScheduledActionService.Add(r);
-                            }
-                        }
-                    });
-                }
-                else
-                {
-                    // delete all existing reminders
-                    foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                        ScheduledActionService.Remove(item.Name);
-                }
-
-                // update live tile data
-                SmartDispatcher.BeginInvoke(() =>
-                {
-                    ShellTile primaryTile = ShellTile.ActiveTiles.First();
-                    if (primaryTile != null)
-                    {
-                        StandardTileData data = new StandardTileData();
-
-                        int tasksDueToday = TodayTasks.Count + OverdueTasks.Where(z => z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-
-                        data.BackTitle = "Milkman";
-                        if (tasksDueToday == 0)
-                            data.BackContent = "No tasks due today";
-                        else if (tasksDueToday == 1)
-                            data.BackContent = tasksDueToday + " task due today";
-                        else
-                            data.BackContent = tasksDueToday + " tasks due today";
-
-                        primaryTile.Update(data);
-                    }
-                });
-            }
-            else
-            {
-                // reset live tile data
-                ShellTile primaryTile = ShellTile.ActiveTiles.First();
-                if (primaryTile != null)
-                {
-                    StandardTileData data = new StandardTileData();
-                    primaryTile.Update(data);
-                }
-            }
+            //        if (NoDueTasks.Count == 0)
+            //            this.txtNoDueEmpty.Visibility = System.Windows.Visibility.Visible;
+            //        else
+            //            this.txtNoDueEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            //    });
         }
 
         public void Login()
@@ -879,7 +664,7 @@ namespace Milkman
                     String.IsNullOrEmpty(App.RtmClient.UserSettings.DefaultList) == false &&
                     App.RtmClient.UserSettings.DefaultList != "alltasks")
                 {
-                    input = input + " #" + TaskLists.SingleOrDefault(l => l.Id == App.RtmClient.UserSettings.DefaultList).Name;
+                    input = input + " #" + App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == App.RtmClient.UserSettings.DefaultList).Name;
                 }
             }
 
@@ -892,8 +677,6 @@ namespace Milkman
 
                 sReload = true;
                 LoadData();
-
-                SetupNotifications();
             });
         }
 
@@ -911,8 +694,6 @@ namespace Milkman
 
                     sReload = true;
                     LoadData();
-
-                    SetupNotifications();
                 });
             });
         }
@@ -931,8 +712,6 @@ namespace Milkman
 
                     sReload = true;
                     LoadData();
-
-                    SetupNotifications();
                 });
             });
         }
@@ -951,8 +730,6 @@ namespace Milkman
 
                     sReload = true;
                     LoadData();
-
-                    SetupNotifications();
                 });
             });
         }
