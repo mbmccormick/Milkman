@@ -244,7 +244,7 @@ namespace Milkman
 
             if (item != null)
                 if (item.Name.ToLower() == "all tasks")
-                    this.NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml", UriKind.Relative));
+                    this.NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml?id=" + item.Id, UriKind.Relative));
                 else
                     this.NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
         }

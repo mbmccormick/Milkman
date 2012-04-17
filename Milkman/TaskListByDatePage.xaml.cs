@@ -56,7 +56,7 @@ namespace Milkman
         #region Task List Property
 
         public static readonly DependencyProperty TaskListProperty =
-            DependencyProperty.Register("CurrentList", typeof(TaskList), typeof(TaskListPage), new PropertyMetadata(new TaskList()));
+            DependencyProperty.Register("CurrentList", typeof(TaskList), typeof(TaskListByDatePage), new PropertyMetadata(new TaskList()));
 
         private TaskList CurrentList
         {
@@ -179,15 +179,15 @@ namespace Milkman
         {
             MultiselectList target = null;
             if (this.pivLayout.SelectedIndex == 0)
-                target = this.lstToday;
+                target = this.lstAll;
             else if (this.pivLayout.SelectedIndex == 1)
-                target = this.lstTomorrow;
+                target = this.lstToday;
             else if (this.pivLayout.SelectedIndex == 2)
-                target = this.lstOverdue;
+                target = this.lstTomorrow;
             else if (this.pivLayout.SelectedIndex == 3)
-                target = this.lstWeek;
+                target = this.lstOverdue;
             else if (this.pivLayout.SelectedIndex == 4)
-                target = this.lstNoDue;
+                target = this.lstWeek;
 
             if (this.dlgAddTask.IsOpen)
             {
@@ -260,7 +260,14 @@ namespace Milkman
                 {
                     CurrentList = App.RtmClient.TaskLists.SingleOrDefault<TaskList>(l => l.Id == id);
 
-                    // this.lstTasks.ItemsSource = CurrentList.Tasks;
+                    this.lstAll.ItemsSource = CurrentList.Tasks.ToList<Task>();
+                    this.lstToday.ItemsSource = CurrentList.Tasks.Where(t => t.DueDateTime.HasValue &&
+                                                                             t.DueDateTime.Value.Date == DateTime.Now.Date).ToList<Task>();
+                    this.lstTomorrow.ItemsSource = CurrentList.Tasks.Where(t => t.DueDateTime.HasValue &&
+                                                                                t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).ToList<Task>();
+                    this.lstOverdue.ItemsSource = CurrentList.Tasks.Where(t => t.IsLate == true).ToList<Task>();
+                    this.lstWeek.ItemsSource = CurrentList.Tasks.Where(t => t.DueDateTime.HasValue &&
+                                                                            t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7)).ToList<Task>();
 
                     ToggleLoadingText();
                     ToggleEmptyText();
@@ -274,43 +281,43 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
+                this.txtAllLoading.Visibility = System.Windows.Visibility.Collapsed;
                 this.txtTodayLoading.Visibility = System.Windows.Visibility.Collapsed;
                 this.txtTomorrowLoading.Visibility = System.Windows.Visibility.Collapsed;
                 this.txtOverdueLoading.Visibility = System.Windows.Visibility.Collapsed;
                 this.txtWeekLoading.Visibility = System.Windows.Visibility.Collapsed;
-                this.txtNoDueLoading.Visibility = System.Windows.Visibility.Collapsed;
             });
         }
 
         private void ToggleEmptyText()
         {
-            //    SmartDispatcher.BeginInvoke(() =>
-            //    {
-            //        if (TodayTasks.Count == 0)
-            //            this.txtTodayEmpty.Visibility = System.Windows.Visibility.Visible;
-            //        else
-            //            this.txtTodayEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                if ((this.lstAll.ItemsSource as List<Task>).Count() == 0)
+                    this.txtAllEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtAllEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-            //        if (TomorrowTasks.Count == 0)
-            //            this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Visible;
-            //        else
-            //            this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                if ((this.lstToday.ItemsSource as List<Task>).Count() == 0)
+                    this.txtTodayEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtTodayEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-            //        if (OverdueTasks.Count == 0)
-            //            this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Visible;
-            //        else
-            //            this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                if ((this.lstTomorrow.ItemsSource as List<Task>).Count() == 0)
+                    this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-            //        if (WeekTasks.Count == 0)
-            //            this.txtWeekEmpty.Visibility = System.Windows.Visibility.Visible;
-            //        else
-            //            this.txtWeekEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                if ((this.lstOverdue.ItemsSource as List<Task>).Count() == 0)
+                    this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-            //        if (NoDueTasks.Count == 0)
-            //            this.txtNoDueEmpty.Visibility = System.Windows.Visibility.Visible;
-            //        else
-            //            this.txtNoDueEmpty.Visibility = System.Windows.Visibility.Collapsed;
-            //    });
+                if ((this.lstWeek.ItemsSource as List<Task>).Count() == 0)
+                    this.txtWeekEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtWeekEmpty.Visibility = System.Windows.Visibility.Collapsed;
+            });
         }
 
         public void Login()
@@ -339,15 +346,15 @@ namespace Milkman
         {
             MultiselectList target = null;
             if (this.pivLayout.SelectedIndex == 0)
-                target = this.lstToday;
+                target = this.lstAll;
             else if (this.pivLayout.SelectedIndex == 1)
-                target = this.lstTomorrow;
+                target = this.lstToday;
             else if (this.pivLayout.SelectedIndex == 2)
-                target = this.lstOverdue;
+                target = this.lstTomorrow;
             else if (this.pivLayout.SelectedIndex == 3)
-                target = this.lstWeek;
+                target = this.lstOverdue;
             else if (this.pivLayout.SelectedIndex == 4)
-                target = this.lstNoDue;
+                target = this.lstWeek;
 
             target.IsSelectionEnabled = true;
         }
@@ -358,15 +365,15 @@ namespace Milkman
 
             MultiselectList target = null;
             if (this.pivLayout.SelectedIndex == 0)
-                target = this.lstToday;
+                target = this.lstAll;
             else if (this.pivLayout.SelectedIndex == 1)
-                target = this.lstTomorrow;
+                target = this.lstToday;
             else if (this.pivLayout.SelectedIndex == 2)
-                target = this.lstOverdue;
+                target = this.lstTomorrow;
             else if (this.pivLayout.SelectedIndex == 3)
-                target = this.lstWeek;
+                target = this.lstOverdue;
             else if (this.pivLayout.SelectedIndex == 4)
-                target = this.lstNoDue;
+                target = this.lstWeek;
 
             string messageBoxText;
             if (target.SelectedItems.Count == 1)
@@ -392,15 +399,15 @@ namespace Milkman
 
             MultiselectList target = null;
             if (this.pivLayout.SelectedIndex == 0)
-                target = this.lstToday;
+                target = this.lstAll;
             else if (this.pivLayout.SelectedIndex == 1)
-                target = this.lstTomorrow;
+                target = this.lstToday;
             else if (this.pivLayout.SelectedIndex == 2)
-                target = this.lstOverdue;
+                target = this.lstTomorrow;
             else if (this.pivLayout.SelectedIndex == 3)
-                target = this.lstWeek;
+                target = this.lstOverdue;
             else if (this.pivLayout.SelectedIndex == 4)
-                target = this.lstNoDue;
+                target = this.lstWeek;
 
             string messageBoxText;
             if (target.SelectedItems.Count == 1)
@@ -426,15 +433,15 @@ namespace Milkman
 
             MultiselectList target = null;
             if (this.pivLayout.SelectedIndex == 0)
-                target = this.lstToday;
+                target = this.lstAll;
             else if (this.pivLayout.SelectedIndex == 1)
-                target = this.lstTomorrow;
+                target = this.lstToday;
             else if (this.pivLayout.SelectedIndex == 2)
-                target = this.lstOverdue;
+                target = this.lstTomorrow;
             else if (this.pivLayout.SelectedIndex == 3)
-                target = this.lstWeek;
+                target = this.lstOverdue;
             else if (this.pivLayout.SelectedIndex == 4)
-                target = this.lstNoDue;
+                target = this.lstWeek;
 
             string messageBoxText;
             if (target.SelectedItems.Count == 1)
