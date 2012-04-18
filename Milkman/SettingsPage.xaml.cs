@@ -12,14 +12,18 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Milkman.Common;
 using System.Windows.Data;
+using Microsoft.Phone.Shell;
 
 namespace Milkman
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
+        public static bool IsLoading = true;
+
         public SettingsPage()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(SettingsPage_Loaded);
 
             AppSettings settings = new AppSettings();
 
@@ -46,12 +50,18 @@ namespace Milkman
             this.togLightTheme.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
         }
 
+        private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            IsLoading = false;
+        }
+
         private void ToggleSwitch_Checked(object sender, RoutedEventArgs e)
         {
             ToggleSwitch target = (ToggleSwitch)sender;
             target.Content = "On";
 
-            if (target == this.togLightTheme)
+            if (target == this.togLightTheme &&
+                IsLoading == false)
             {
                 MessageBox.Show("Your changes to the theme will take effect the next time you launch Milkman.", "Settings", MessageBoxButton.OK);
             }
