@@ -70,6 +70,7 @@ namespace Milkman
 
         ProgressIndicator progressIndicator;
 
+        ApplicationBarIconButton dashboard;
         ApplicationBarIconButton add;
         ApplicationBarIconButton select;
         ApplicationBarIconButton sync;
@@ -90,6 +91,11 @@ namespace Milkman
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             TiltEffect.TiltableItems.Add(typeof(MultiselectItem));
+
+            dashboard = new ApplicationBarIconButton();
+            dashboard.IconUri = new Uri("/Resources/dashboard.png", UriKind.RelativeOrAbsolute);
+            dashboard.Text = "dashboard";
+            dashboard.Click += btnDashboard_Click;
 
             add = new ApplicationBarIconButton();
             add.IconUri = new Uri("/Resources/add.png", UriKind.RelativeOrAbsolute);
@@ -274,9 +280,9 @@ namespace Milkman
 
                     ToggleLoadingText();
                     ToggleEmptyText();
-                }
 
-                IsLoading = false;
+                    IsLoading = false;
+                }
             });
         }
 
@@ -334,6 +340,17 @@ namespace Milkman
         #endregion
 
         #region Event Handlers
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                if (this.NavigationService.CanGoBack)
+                    this.NavigationService.GoBack();
+                else
+                    this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+            });
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -532,6 +549,7 @@ namespace Milkman
             {
                 this.pivLayout.IsLocked = false;
 
+                ApplicationBar.Buttons.Add(dashboard);
                 ApplicationBar.Buttons.Add(add);
                 ApplicationBar.Buttons.Add(select);
                 ApplicationBar.Buttons.Add(sync);

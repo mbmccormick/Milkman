@@ -189,9 +189,9 @@ namespace Milkman
 
                     ToggleLoadingText();
                     ToggleEmptyText();
-                }
 
-                IsLoading = false;
+                    IsLoading = false;
+                }
             });
         }
 

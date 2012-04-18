@@ -75,14 +75,18 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton x:Name="appbar_button1" 
+                                            IconUri="/Resources/dashboard.png" 
+                                            Text="dashboard"
+                                            Click="btnDashboard_Click"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" 
                                             IconUri="/Resources/add.png" 
                                             Text="add"
                                             Click="btnAdd_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" 
+            <shell:ApplicationBarIconButton x:Name="appbar_button3" 
                                             IconUri="/Resources/select.png" 
                                             Text="select"
                                             Click="btnSelect_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button3" 
+            <shell:ApplicationBarIconButton x:Name="appbar_button4" 
                                             IconUri="/Resources/retry.png" 
                                             Text="sync"
                                             Click="btnSync_Click"/>
