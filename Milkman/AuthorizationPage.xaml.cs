@@ -70,7 +70,7 @@ namespace Milkman
             SystemTray.ProgressIndicator = progressIndicator;
 
             StartAuth();
-            MessageBox.Show("Login to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue.", "Authorization", MessageBoxButton.OK);
+            MessageBox.Show("Sign in to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue.", "Authorization", MessageBoxButton.OK);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
