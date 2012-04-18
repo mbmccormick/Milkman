@@ -45,5 +45,23 @@ namespace Milkman
                 this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
             });
         }
+
+        private void mnuAbout_Click(object sender, EventArgs e)
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+            });
+        }
+
+        private void mnuFeedback_Click(object sender, EventArgs e)
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+
+            emailComposeTask.To = "milkmanwp@gmail.com";
+            emailComposeTask.Subject = "Milkman Feedback";
+            emailComposeTask.Body = "Version " + App.VersionNumber + "\n\n";
+            emailComposeTask.Show();
+        }
     }
 }

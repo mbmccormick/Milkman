@@ -145,29 +145,22 @@ namespace Milkman
             this.IsLoading = true;
         }
 
-        private void mnuCreate_Click(object sender, EventArgs e)
-        {
-            WebBrowserTask webBrowserTask = new WebBrowserTask();
-
-            webBrowserTask.Uri = new Uri("http://www.rememberthemilk.com/signup/");
-            webBrowserTask.Show();
-        }
-
-        private void mnuBugReport_Click(object sender, EventArgs e)
-        {
-            EmailComposeTask emailComposeTask = new EmailComposeTask();
-
-            emailComposeTask.To = "milkmanwp@gmail.com";
-            emailComposeTask.Subject = "Milkman Feedback";
-            emailComposeTask.Show();
-        }
-
         private void mnuAbout_Click(object sender, EventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>
             {
                 this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
             });
+        }
+
+        private void mnuFeedback_Click(object sender, EventArgs e)
+        {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
+
+            emailComposeTask.To = "milkmanwp@gmail.com";
+            emailComposeTask.Subject = "Milkman Feedback";
+            emailComposeTask.Body = "Version " + App.VersionNumber + "\n\n";
+            emailComposeTask.Show();
         }
 
         #endregion
