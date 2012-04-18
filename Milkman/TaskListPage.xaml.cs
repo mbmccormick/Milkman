@@ -182,6 +182,23 @@ namespace Milkman
             base.OnNavigatedTo(e);
         }
 
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            if (this.dlgAddTask.IsOpen)
+            {
+                this.dlgAddTask.Close();
+                e.Cancel = true;
+            }
+
+            if (this.lstTasks.IsSelectionEnabled)
+            {
+                this.lstTasks.IsSelectionEnabled = false;
+                e.Cancel = true;
+            }
+
+            base.OnBackKeyPress(e);
+        }
+
         #endregion
 
         #region Loading Data
