@@ -42,7 +42,7 @@
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
-                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,24,6" Style="{StaticResource PhoneTextSubtleStyle}" />
+                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,24,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
                                     <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                 </Grid>

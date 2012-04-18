@@ -50,12 +50,22 @@ namespace Milkman
         {
             ToggleSwitch target = (ToggleSwitch)sender;
             target.Content = "On";
+
+            if (target == this.togLightTheme)
+            {
+                MessageBox.Show("Your changes to the theme will take effect the next time you launch Milkman.", "Settings", MessageBoxButton.OK);
+            }
         }
 
         private void ToggleSwitch_Unchecked(object sender, RoutedEventArgs e)
         {
             ToggleSwitch target = (ToggleSwitch)sender;
             target.Content = "Off";
+
+            if (target == this.togLightTheme)
+            {
+                MessageBox.Show("Your changes to the theme will take effect the next time you launch Milkman.", "Settings", MessageBoxButton.OK);
+            }
         }
     }
 }

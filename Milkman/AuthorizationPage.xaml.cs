@@ -121,7 +121,8 @@ namespace Milkman
                             {
                                 MainPage.sReload = true;
 
-                                NavigationService.GoBack();
+                                NavigationService.RemoveBackEntry();
+                                NavigationService.Navigate(new Uri("/MainPage.xaml?IsFirstRun=true", UriKind.Relative));
                             }
                         });
                     });
@@ -147,6 +148,7 @@ namespace Milkman
         private void mnuCreate_Click(object sender, EventArgs e)
         {
             WebBrowserTask webBrowserTask = new WebBrowserTask();
+
             webBrowserTask.Uri = new Uri("http://www.rememberthemilk.com/signup/");
             webBrowserTask.Show();
         }
@@ -154,6 +156,7 @@ namespace Milkman
         private void mnuBugReport_Click(object sender, EventArgs e)
         {
             EmailComposeTask emailComposeTask = new EmailComposeTask();
+
             emailComposeTask.To = "milkmanwp@gmail.com";
             emailComposeTask.Subject = "Milkman Feedback";
             emailComposeTask.Show();

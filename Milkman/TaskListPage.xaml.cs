@@ -138,9 +138,6 @@ namespace Milkman
 
         private void TaskDetailsPage_Loaded(object sender, RoutedEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -153,6 +150,12 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            progressIndicator = new ProgressIndicator();
+            progressIndicator.IsVisible = true;
+            SystemTray.ProgressIndicator = progressIndicator;
+
+            IsLoading = true;
+
             AppSettings settings = new AppSettings();
 
             if (e.IsNavigationInitiator &&
@@ -263,7 +266,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/AuthorizationPage.xaml", UriKind.Relative));
+                this.NavigationService.Navigate(new Uri("/WelcomePage.xaml", UriKind.Relative));
             });
         }
 
@@ -487,6 +490,7 @@ namespace Milkman
         private void mnuFeedback_Click(object sender, EventArgs e)
         {
             EmailComposeTask emailComposeTask = new EmailComposeTask();
+
             emailComposeTask.To = "milkmanwp@gmail.com";
             emailComposeTask.Subject = "Milkman Feedback";
             emailComposeTask.Body = "Version " + App.VersionNumber + "\n\n";
