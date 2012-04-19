@@ -820,7 +820,15 @@ namespace IronCow
             string listName = UserSettings.DefaultList;
             if (string.IsNullOrEmpty(listName))
                 listName = "Inbox";
-            return TaskLists[listName];
+            
+            try
+            {
+                return TaskLists[listName];
+            }
+            catch (Exception ex)
+            {
+                return TaskLists.SingleOrDefault<TaskList>(l => l.Id == listName);
+            }
         }
 
         public IEnumerable<TaskList> GetParentableTaskLists(bool includeSmartLists)

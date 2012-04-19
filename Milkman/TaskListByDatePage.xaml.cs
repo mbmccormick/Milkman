@@ -269,14 +269,14 @@ namespace Milkman
                 {
                     CurrentList = App.RtmClient.TaskLists.SingleOrDefault<TaskList>(l => l.Id == id);
 
-                    this.lstAll.ItemsSource = CurrentList.Tasks.ToList<Task>();
+                    this.lstAll.ItemsSource = CurrentList.Tasks;
                     this.lstToday.ItemsSource = CurrentList.Tasks.Where(t => t.DueDateTime.HasValue &&
-                                                                             t.DueDateTime.Value.Date == DateTime.Now.Date).ToList<Task>();
+                                                                             t.DueDateTime.Value.Date == DateTime.Now.Date);
                     this.lstTomorrow.ItemsSource = CurrentList.Tasks.Where(t => t.DueDateTime.HasValue &&
-                                                                                t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).ToList<Task>();
-                    this.lstOverdue.ItemsSource = CurrentList.Tasks.Where(t => t.IsLate == true).ToList<Task>();
+                                                                                t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1));
+                    this.lstOverdue.ItemsSource = CurrentList.Tasks.Where(t => t.IsLate == true);
                     this.lstWeek.ItemsSource = CurrentList.Tasks.Where(t => t.DueDateTime.HasValue &&
-                                                                            t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7)).ToList<Task>();
+                                                                            t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7));
 
                     ToggleLoadingText();
                     ToggleEmptyText();
@@ -302,27 +302,27 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                if ((this.lstAll.ItemsSource as List<Task>).Count() == 0)
+                if (this.lstAll.Items.Count == 0)
                     this.txtAllEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
                     this.txtAllEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if ((this.lstToday.ItemsSource as List<Task>).Count() == 0)
+                if (this.lstToday.Items.Count == 0)
                     this.txtTodayEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
                     this.txtTodayEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if ((this.lstTomorrow.ItemsSource as List<Task>).Count() == 0)
+                if (this.lstTomorrow.Items.Count == 0)
                     this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
                     this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if ((this.lstOverdue.ItemsSource as List<Task>).Count() == 0)
+                if (this.lstOverdue.Items.Count == 0)
                     this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
                     this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Collapsed;
 
-                if ((this.lstWeek.ItemsSource as List<Task>).Count() == 0)
+                if (this.lstWeek.Items.Count == 0)
                     this.txtWeekEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
                     this.txtWeekEmpty.Visibility = System.Windows.Visibility.Collapsed;
@@ -689,12 +689,9 @@ namespace Milkman
             string input = smartAddText;
             if (input.Contains('#') == false)
             {
-                if (App.RtmClient.UserSettings != null &&
-                    String.IsNullOrEmpty(App.RtmClient.UserSettings.DefaultList) == false &&
-                    App.RtmClient.UserSettings.DefaultList != "alltasks")
-                {
-                    input = input + " #" + App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == App.RtmClient.UserSettings.DefaultList).Name;
-                }
+                TaskList defaultList = App.RtmClient.GetDefaultTaskList();
+                if (defaultList.IsSmart == false)
+                    input = input + " #" + defaultList.Name;
             }
 
             App.RtmClient.AddTask(input, true, null, () =>

@@ -255,7 +255,7 @@ namespace Milkman
                 {
                     CurrentList = App.RtmClient.TaskLists.SingleOrDefault<TaskList>(l => l.Id == id);
 
-                    this.lstTasks.ItemsSource = CurrentList.Tasks.ToList<Task>();
+                    this.lstTasks.ItemsSource = CurrentList.Tasks;
 
                     ToggleLoadingText();
                     ToggleEmptyText();
@@ -592,7 +592,16 @@ namespace Milkman
             string input = smartAddText;
             if (input.Contains('#') == false)
             {
-                input = input + " #" + CurrentList.Name;
+                if (CurrentList.IsSmart == false)
+                {
+                    input = input + " #" + CurrentList.Name;
+                }
+                else
+                {
+                    TaskList defaultList = App.RtmClient.GetDefaultTaskList();
+                    if (defaultList.IsSmart == false)
+                        input = input + " #" + defaultList.Name;
+                }
             }
 
             App.RtmClient.AddTask(input, true, null, () =>

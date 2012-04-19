@@ -358,12 +358,9 @@ namespace Milkman
             string input = smartAddText;
             if (input.Contains('#') == false)
             {
-                if (App.RtmClient.UserSettings != null &&
-                    String.IsNullOrEmpty(App.RtmClient.UserSettings.DefaultList) == false &&
-                    App.RtmClient.UserSettings.DefaultList != "alltasks")
-                {
-                    input = input + " #" + TaskLists.SingleOrDefault(l => l.Id == App.RtmClient.UserSettings.DefaultList).Name;
-                }
+                TaskList defaultList = App.RtmClient.GetDefaultTaskList();
+                if (defaultList.IsSmart == false)
+                    input = input + " #" + defaultList.Name;
             }
 
             App.RtmClient.AddTask(input, true, null, () =>
