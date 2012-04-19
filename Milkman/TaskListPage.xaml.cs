@@ -240,7 +240,6 @@ namespace Milkman
             b.DoWork += (s, e) =>
             {
                 LoadDataInBackground();
-
             };
             b.RunWorkerAsync();
         }
@@ -256,7 +255,7 @@ namespace Milkman
                 {
                     CurrentList = App.RtmClient.TaskLists.SingleOrDefault<TaskList>(l => l.Id == id);
 
-                    this.lstTasks.ItemsSource = CurrentList.Tasks;
+                    this.lstTasks.ItemsSource = CurrentList.Tasks.ToList<Task>();
 
                     ToggleLoadingText();
                     ToggleEmptyText();
