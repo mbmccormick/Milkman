@@ -270,6 +270,9 @@ namespace Milkman
                     {
                         foreach (Task t in CurrentList.Tasks)
                         {
+                            if (t.IsCompleted == true ||
+                                t.IsDeleted == true) continue;
+
                             tempAllTasks.Add(t);
                         }
                     }
@@ -296,7 +299,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                if (CurrentList.Count == 0)
+                if (this.lstTasks.Items.Count == 0)
                     this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
                     this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;

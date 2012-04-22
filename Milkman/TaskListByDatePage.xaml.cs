@@ -323,6 +323,9 @@ namespace Milkman
                     {
                         foreach (Task t in CurrentList.Tasks)
                         {
+                            if (t.IsCompleted == true ||
+                                t.IsDeleted == true) continue;
+
                             tempAllTasks.Add(t);
 
                             if (t.DueDateTime.HasValue &&

@@ -123,16 +123,36 @@ namespace IronCow
             get { return mTasks == null ? 0 : mTasks.Count; }
         }
 
+        public int ActiveCount
+        {
+            get
+            {
+                int count = 0;
+                if (mTasks != null)
+                {
+                    foreach (Task t in mTasks)
+                    {
+                        if (t.IsCompleted == true ||
+                            t.IsDeleted == true) continue;
+
+                        count++;
+                    }
+                }
+
+                return count;
+            }
+        }
+
         public string CountString
         {
             get
             {
-                if (Count == 0)
+                if (ActiveCount == 0)
                     return "No tasks";
-                else if (Count == 1)
+                else if (ActiveCount == 1)
                     return "1 task";
                 else
-                    return Count + " tasks";
+                    return ActiveCount + " tasks";
             }
         }
 
@@ -243,7 +263,7 @@ namespace IronCow
             mName = list.Name;
             Filter = list.Filter;
             Position = list.Position;
-            SortOrder = (TaskListSortOrder) list.SortOrder;
+            SortOrder = (TaskListSortOrder)list.SortOrder;
             SetFlag(TaskListFlags.Archived, list.Archived == 1);
             SetFlag(TaskListFlags.Deleted, list.Deleted == 1);
             SetFlag(TaskListFlags.Locked, list.Locked == 1);
@@ -256,7 +276,7 @@ namespace IronCow
 
             if (!GetFlag(TaskListFlags.Smart))
             {
-                tmp.Resync(() => 
+                tmp.Resync(() =>
                 {
                     mTasks = tmp;
                     OnPropertyChanged("Tasks");
