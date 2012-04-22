@@ -22,7 +22,7 @@
         <toolkit:LockablePivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold">
             <controls:PivotItem Header="all">
                 <Grid Margin="0">
-                    <toolkit:MultiselectList x:Name="lstAll" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
+                    <toolkit:MultiselectList x:Name="lstAll" ItemsSource="{Binding AllTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>
@@ -65,7 +65,7 @@
             
             <controls:PivotItem Header="today">
                 <Grid Margin="0">
-                    <toolkit:MultiselectList x:Name="lstToday" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
+                    <toolkit:MultiselectList x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>
@@ -108,7 +108,7 @@
 
             <controls:PivotItem Header="tomorrow">
                 <Grid Margin="0">
-                    <toolkit:MultiselectList x:Name="lstTomorrow" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
+                    <toolkit:MultiselectList x:Name="lstTomorrow" ItemsSource="{Binding TomorrowTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>
@@ -151,7 +151,7 @@
 
             <controls:PivotItem Header="overdue">
                 <Grid Margin="0">
-                    <toolkit:MultiselectList x:Name="lstOverdue" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
+                    <toolkit:MultiselectList x:Name="lstOverdue" ItemsSource="{Binding OverdueTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>
@@ -194,7 +194,7 @@
 
             <controls:PivotItem Header="week">
                 <Grid Margin="0">
-                    <toolkit:MultiselectList x:Name="lstWeek" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
+                    <toolkit:MultiselectList x:Name="lstWeek" ItemsSource="{Binding WeekTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>

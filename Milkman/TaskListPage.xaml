@@ -18,7 +18,7 @@
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding CurrentList}">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -26,11 +26,11 @@
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="MILKMAN" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
-            <TextBlock x:Name="PageTitle" Text="{Binding NameLower}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding CurrentList.NameLower}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <toolkit:MultiselectList x:Name="lstTasks" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
+            <toolkit:MultiselectList x:Name="lstTasks" ItemsSource="{Binding AllTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                 <toolkit:MultiselectList.ItemContainerStyle>
                     <Style TargetType="toolkit:MultiselectItem">
                         <Setter Property="HintPanelHeight" Value="90"/>

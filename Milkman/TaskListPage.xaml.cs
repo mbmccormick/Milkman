@@ -63,6 +63,15 @@ namespace Milkman
             set { SetValue(TaskListProperty, value); }
         }
 
+        public static readonly DependencyProperty AllTasksProperty =
+               DependencyProperty.Register("AllTasks", typeof(ObservableCollection<Task>), typeof(TaskListPage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> AllTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(AllTasksProperty); }
+            set { SetValue(AllTasksProperty, value); }
+        }
+
         #endregion
 
         #region Construction and Navigation
@@ -249,13 +258,23 @@ namespace Milkman
             SmartDispatcher.BeginInvoke(() =>
             {
                 IsLoading = true;
-                
+
                 string id;
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
                 {
                     CurrentList = App.RtmClient.TaskLists.SingleOrDefault<TaskList>(l => l.Id == id);
 
-                    this.lstTasks.ItemsSource = CurrentList.Tasks;
+                    var tempAllTasks = new SortableObservableCollection<Task>();
+
+                    if (CurrentList.Tasks != null)
+                    {
+                        foreach (Task t in CurrentList.Tasks)
+                        {
+                            tempAllTasks.Add(t);
+                        }
+                    }
+
+                    AllTasks = tempAllTasks;
 
                     ToggleLoadingText();
                     ToggleEmptyText();

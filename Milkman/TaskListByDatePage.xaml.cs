@@ -15,7 +15,6 @@ using Milkman.Common;
 using IronCow;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
-using Microsoft.Phone.Scheduler;
 using Microsoft.Phone.Tasks;
 
 namespace Milkman
@@ -62,6 +61,51 @@ namespace Milkman
         {
             get { return (TaskList)GetValue(TaskListProperty); }
             set { SetValue(TaskListProperty, value); }
+        }
+
+        public static readonly DependencyProperty AllTasksProperty =
+               DependencyProperty.Register("AllTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> AllTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(AllTasksProperty); }
+            set { SetValue(AllTasksProperty, value); }
+        }
+
+        public static readonly DependencyProperty TodayTasksProperty =
+               DependencyProperty.Register("TodayTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> TodayTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(TodayTasksProperty); }
+            set { SetValue(TodayTasksProperty, value); }
+        }
+
+        public static readonly DependencyProperty TomorrowTasksProperty =
+               DependencyProperty.Register("TomorrowTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> TomorrowTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(TomorrowTasksProperty); }
+            set { SetValue(TomorrowTasksProperty, value); }
+        }
+
+        public static readonly DependencyProperty OverdueTasksProperty =
+               DependencyProperty.Register("OverdueTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> OverdueTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(OverdueTasksProperty); }
+            set { SetValue(OverdueTasksProperty, value); }
+        }
+
+        public static readonly DependencyProperty WeekTasksProperty =
+               DependencyProperty.Register("WeekTasks", typeof(ObservableCollection<Task>), typeof(TaskListByDatePage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> WeekTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(WeekTasksProperty); }
+            set { SetValue(WeekTasksProperty, value); }
         }
 
         #endregion
@@ -269,14 +313,48 @@ namespace Milkman
                 {
                     CurrentList = App.RtmClient.TaskLists.SingleOrDefault<TaskList>(l => l.Id == id);
 
-                    this.lstAll.ItemsSource = CurrentList.Tasks;
-                    this.lstToday.ItemsSource = CurrentList.Tasks.Where(t => t.DueDateTime.HasValue &&
-                                                                             t.DueDateTime.Value.Date == DateTime.Now.Date);
-                    this.lstTomorrow.ItemsSource = CurrentList.Tasks.Where(t => t.DueDateTime.HasValue &&
-                                                                                t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1));
-                    this.lstOverdue.ItemsSource = CurrentList.Tasks.Where(t => t.IsLate == true);
-                    this.lstWeek.ItemsSource = CurrentList.Tasks.Where(t => t.DueDateTime.HasValue &&
-                                                                            t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7));
+                    var tempAllTasks = new SortableObservableCollection<Task>();
+                    var tempTodayTasks = new SortableObservableCollection<Task>();
+                    var tempTomorrowTasks = new SortableObservableCollection<Task>();
+                    var tempOverdueTasks = new SortableObservableCollection<Task>();
+                    var tempWeekTasks = new SortableObservableCollection<Task>();
+
+                    if (CurrentList.Tasks != null)
+                    {
+                        foreach (Task t in CurrentList.Tasks)
+                        {
+                            tempAllTasks.Add(t);
+
+                            if (t.DueDateTime.HasValue &&
+                                t.DueDateTime.Value.Date == DateTime.Now.Date)
+                            {
+                                tempTodayTasks.Add(t);
+                            }
+
+                            if (t.DueDateTime.HasValue &&
+                                t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1))
+                            {
+                                tempTomorrowTasks.Add(t);
+                            }
+
+                            if (t.IsLate == true)
+                            {
+                                tempOverdueTasks.Add(t);
+                            }
+
+                            if (t.DueDateTime.HasValue &&
+                                t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7))
+                            {
+                                tempWeekTasks.Add(t);
+                            }
+                        }
+                    }
+
+                    AllTasks = tempAllTasks;
+                    TodayTasks = tempTodayTasks;
+                    TomorrowTasks = tempTomorrowTasks;
+                    OverdueTasks = tempOverdueTasks;
+                    WeekTasks = tempWeekTasks;
 
                     ToggleLoadingText();
                     ToggleEmptyText();
@@ -348,7 +426,7 @@ namespace Milkman
                 if (this.NavigationService.CanGoBack)
                     this.NavigationService.GoBack();
                 else
-                    this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    this.NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml", UriKind.Relative));
             });
         }
 
