@@ -151,15 +151,6 @@ namespace Milkman
             signOut.Click += mnuSignOut_Click;
 
             watcher = new GeoCoordinateWatcher();
-            watcher.PositionChanged += new EventHandler<GeoPositionChangedEventArgs<GeoCoordinate>>((s, e) =>
-            {
-                if (watcher != null &&
-                    watcher.Status == GeoPositionStatus.Ready)
-                {
-                    currentLocation = watcher.Position.Location;
-                }
-            });
-
             watcher.Start();
         }
 
@@ -298,6 +289,14 @@ namespace Milkman
                     }
 
                     AllTasks = tempAllTasks;
+
+                    if (watcher.Position != null)
+                    {
+                        AllTasks.OrderBy(t => LocationHelper.Distance(watcher.Position.Location.Latitude,
+                                                                      watcher.Position.Location.Longitude,
+                                                                      t.Location.Latitude,
+                                                                      t.Location.Longitude));
+                    }
 
                     ToggleLoadingText();
                     ToggleEmptyText();
@@ -540,7 +539,10 @@ namespace Milkman
 
             Task task = (Task)target.DataContext;
 
-            double distance = LocationHelper.Distance(watcher.Position.Location.Latitude, watcher.Position.Location.Longitude, task.Location.Latitude, task.Location.Longitude);
+            double distance = LocationHelper.Distance(watcher.Position.Location.Latitude, 
+                                                      watcher.Position.Location.Longitude, 
+                                                      task.Location.Latitude, 
+                                                      task.Location.Longitude);
             double radius;
 
             AppSettings settings = new AppSettings();
@@ -549,7 +551,7 @@ namespace Milkman
             else if (settings.LocationServiceEnabled == 2)
                 radius = 2.0;
             else if (settings.LocationServiceEnabled == 3)
-                radius = 3.0;
+                radius = 5.0;
             else
                 radius = 1.0;
 
@@ -566,7 +568,10 @@ namespace Milkman
 
             Task task = (Task)target.DataContext;
 
-            double distance = LocationHelper.Distance(watcher.Position.Location.Latitude, watcher.Position.Location.Longitude, task.Location.Latitude, task.Location.Longitude);
+            double distance = LocationHelper.Distance(watcher.Position.Location.Latitude,
+                                                      watcher.Position.Location.Longitude, 
+                                                      task.Location.Latitude, 
+                                                      task.Location.Longitude);
 
             // set distance
             target.Text = String.Format("{0:0.00} miles", distance);

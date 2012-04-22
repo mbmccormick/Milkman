@@ -49,7 +49,7 @@ namespace BackgroundWorker
             // update current location
             if (settings.LocationServiceEnabled > 0)
             {
-                _watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
+                _watcher = new GeoCoordinateWatcher();
                 _watcher.Start();
             }
 
@@ -101,59 +101,31 @@ namespace BackgroundWorker
                         tempTaskLists.Add(l);
                 }
 
-                // check for nearby tasks
-                if (_watcher != null &&
-                    _watcher.Status != GeoPositionStatus.Disabled)
+                if (settings.LocationServiceEnabled > 0)
                 {
-                    int attempts;
-
-                    // wait for location service to initialize
-                    attempts = 0;
-                    while ((_watcher.Status != GeoPositionStatus.Ready) &&
-                           attempts < 5)
+                    // check for nearby tasks
+                    foreach (Task item in App.RtmClient.Tasks)
                     {
-                        attempts++;
-                        System.Threading.Thread.Sleep(1000);
-                    }
-
-                    if (attempts < 5)
-                    {
-                        // wait for accuracy to be within 1 mile
-                        attempts = 0;
-                        while ((_watcher.Position.Location.HorizontalAccuracy > 1609.344 ||
-                                _watcher.Position.Location.VerticalAccuracy > 1609.344) &&
-                               attempts < 5)
+                        if (item.Location != null)
                         {
-                            attempts++;
-                            System.Threading.Thread.Sleep(1000);
-                        }
+                            double radius;
+                            if (settings.LocationServiceEnabled == 1)
+                                radius = 1.0;
+                            else if (settings.LocationServiceEnabled == 2)
+                                radius = 2.0;
+                            else if (settings.LocationServiceEnabled == 3)
+                                radius = 5.0;
+                            else
+                                radius = 1.0;
 
-                        if (attempts < 5)
-                        {
-                            foreach (Task item in App.RtmClient.Tasks)
+                            if (LocationHelper.Distance(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) <= radius)
                             {
-                                if (item.Location != null)
-                                {
-                                    double radius;
-                                    if (settings.LocationServiceEnabled == 1)
-                                        radius = 1.0;
-                                    else if (settings.LocationServiceEnabled == 2)
-                                        radius = 2.0;
-                                    else if (settings.LocationServiceEnabled == 3)
-                                        radius = 3.0;
-                                    else
-                                        radius = 1.0;
+                                ShellToast toast = new ShellToast();
 
-                                    if (LocationHelper.Distance(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) <= radius)
-                                    {
-                                        ShellToast toast = new ShellToast();
-
-                                        toast.Title = item.Location.Name;
-                                        toast.Content = item.Name;
-                                        toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
-                                        toast.Show();
-                                    }
-                                }
+                                toast.Title = item.Location.Name;
+                                toast.Content = item.Name;
+                                toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
+                                toast.Show();
                             }
                         }
                     }
