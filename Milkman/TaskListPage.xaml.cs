@@ -89,6 +89,7 @@ namespace Milkman
         ApplicationBarMenuItem settings;
         ApplicationBarMenuItem about;
         ApplicationBarMenuItem feedback;
+        ApplicationBarMenuItem donate;
         ApplicationBarMenuItem signOut;
 
         public TaskListPage()
@@ -145,6 +146,10 @@ namespace Milkman
             feedback = new ApplicationBarMenuItem();
             feedback.Text = "feedback";
             feedback.Click += mnuFeedback_Click;
+
+            donate = new ApplicationBarMenuItem();
+            donate.Text = "donate";
+            donate.Click += mnuDonate_Click;
 
             signOut = new ApplicationBarMenuItem();
             signOut.Text = "sign out";
@@ -482,6 +487,7 @@ namespace Milkman
                 ApplicationBar.MenuItems.Add(settings);
                 ApplicationBar.MenuItems.Add(about);
                 ApplicationBar.MenuItems.Add(feedback);
+                ApplicationBar.MenuItems.Add(donate);
                 ApplicationBar.MenuItems.Add(signOut);
             }
         }
@@ -551,6 +557,14 @@ namespace Milkman
             emailComposeTask.Subject = "Milkman Feedback";
             emailComposeTask.Body = "Version " + App.VersionNumber + "\n\n";
             emailComposeTask.Show();
+        }
+
+        private void mnuDonate_Click(object sender, EventArgs e)
+        {
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+
+            webBrowserTask.Uri = new Uri("http://mbmccormick.com/donate/", UriKind.Absolute);
+            webBrowserTask.Show();
         }
 
         private void mnuSignOut_Click(object sender, EventArgs e)

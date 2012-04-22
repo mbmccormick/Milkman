@@ -63,5 +63,13 @@ namespace Milkman
             emailComposeTask.Body = "Version " + App.VersionNumber + "\n\n";
             emailComposeTask.Show();
         }
+
+        private void mnuDonate_Click(object sender, EventArgs e)
+        {
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+
+            webBrowserTask.Uri = new Uri("http://mbmccormick.com/donate/", UriKind.Absolute);
+            webBrowserTask.Show();
+        }
     }
 }

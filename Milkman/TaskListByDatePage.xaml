@@ -261,6 +261,7 @@
                 <shell:ApplicationBarMenuItem Text="settings" Click="mnuSettings_Click" />
                 <shell:ApplicationBarMenuItem Text="about milkman" Click="mnuAbout_Click" />
                 <shell:ApplicationBarMenuItem Text="feedback" Click="mnuFeedback_Click" />
+                <shell:ApplicationBarMenuItem Text="donate" Click="mnuDonate_Click" />
                 <shell:ApplicationBarMenuItem Text="sign out" Click="mnuSignOut_Click" />
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>

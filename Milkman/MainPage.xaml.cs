@@ -281,6 +281,14 @@ namespace Milkman
             emailComposeTask.Show();
         }
 
+        private void mnuDonate_Click(object sender, EventArgs e)
+        {
+            WebBrowserTask webBrowserTask = new WebBrowserTask();
+
+            webBrowserTask.Uri = new Uri("http://mbmccormick.com/donate/", UriKind.Absolute);
+            webBrowserTask.Show();
+        }
+
         private void mnuSignOut_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to sign out of Milkman and remove all of your data?", "Sign Out", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
