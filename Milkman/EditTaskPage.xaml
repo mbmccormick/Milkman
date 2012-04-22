@@ -52,9 +52,9 @@
 
                 <TextBlock Text="Due Date" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                 <toolkit:ListPicker x:Name="lstDueDate" Margin="0,-12,12,24" Grid.Row="1" Grid.Column="1" SelectionChanged="lstDueDate_SelectionChanged">
-                    <toolkit:ListPickerItem Content="None" />
-                    <toolkit:ListPickerItem Content="Date" />
-                    <toolkit:ListPickerItem Content="Date &amp; Time" />
+                    <toolkit:ListPickerItem Content="none" />
+                    <toolkit:ListPickerItem Content="date" />
+                    <toolkit:ListPickerItem Content="date &amp; time" />
                 </toolkit:ListPicker>
                 
                 <toolkit:DatePicker Name="dtpDueDateNoTime" Grid.Row="2" Grid.Column="1" Margin="-12,-24,0,12" Visibility="Collapsed" />
@@ -69,7 +69,7 @@
 
                 <TextBlock Text="Priority" Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                 <toolkit:ListPicker x:Name="lstPriority" Margin="0,-12,12,24" Grid.Row="3" Grid.Column="1">
-                    <toolkit:ListPickerItem Content="None" />
+                    <toolkit:ListPickerItem Content="none" />
                     <toolkit:ListPickerItem Content="1" />
                     <toolkit:ListPickerItem Content="2" />
                     <toolkit:ListPickerItem Content="3" />

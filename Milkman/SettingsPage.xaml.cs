@@ -34,20 +34,20 @@ namespace Milkman
             binding.Source = settings;
             this.togAutomaticSync.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
 
-            binding = new Binding("LocationServiceEnabled");
-            binding.Mode = BindingMode.TwoWay;
-            binding.Source = settings;
-            this.togLocationService.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
-
-            binding = new Binding("TaskRemindersEnabled");
-            binding.Mode = BindingMode.TwoWay;
-            binding.Source = settings;
-            this.togTaskReminders.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
-
             binding = new Binding("LightThemeEnabled");
             binding.Mode = BindingMode.TwoWay;
             binding.Source = settings;
             this.togLightTheme.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+
+            binding = new Binding("TaskRemindersEnabled");
+            binding.Mode = BindingMode.TwoWay;
+            binding.Source = settings;
+            this.lstTaskReminders.SetBinding(ListPicker.SelectedIndexProperty, binding);
+
+            binding = new Binding("LocationServiceEnabled");
+            binding.Mode = BindingMode.TwoWay;
+            binding.Source = settings;
+            this.lstLocationService.SetBinding(ListPicker.SelectedIndexProperty, binding);
         }
 
         private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
@@ -72,7 +72,8 @@ namespace Milkman
             ToggleSwitch target = (ToggleSwitch)sender;
             target.Content = "Off";
 
-            if (target == this.togLightTheme)
+            if (target == this.togLightTheme &&
+                IsLoading == false)
             {
                 MessageBox.Show("Your changes to the theme will take effect the next time you launch Milkman.", "Settings", MessageBoxButton.OK);
             }

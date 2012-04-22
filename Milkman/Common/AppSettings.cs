@@ -19,9 +19,9 @@ namespace Milkman.Common
         IsolatedStorageSettings isolatedStore;
 
         const string AutomaticSyncEnabledSettingKeyName = "AutomaticSyncEnabled";
-        const string LocationServiceEnabledSettingKeyName = "LocationServiceEnabled";
-        const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
         const string LightThemeEnabledSettingKeyName = "LightThemeEnabled";
+        const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
+        const string LocationServiceEnabledSettingKeyName = "LocationServiceEnabled";
 
         public AppSettings()
         {
@@ -106,32 +106,6 @@ namespace Milkman.Common
             }
         }
 
-        public bool LocationServiceEnabled
-        {
-            get
-            {
-                return GetValueOrDefault<bool>(LocationServiceEnabledSettingKeyName, true);
-            }
-            set
-            {
-                AddOrUpdateValue(LocationServiceEnabledSettingKeyName, value);
-                Save();
-            }
-        }
-
-        public bool TaskRemindersEnabled
-        {
-            get
-            {
-                return GetValueOrDefault<bool>(TaskRemindersEnabledSettingKeyName, true);
-            }
-            set
-            {
-                AddOrUpdateValue(TaskRemindersEnabledSettingKeyName, value);
-                Save();
-            }
-        }
-
         public bool LightThemeEnabled
         {
             get
@@ -141,6 +115,32 @@ namespace Milkman.Common
             set
             {
                 AddOrUpdateValue(LightThemeEnabledSettingKeyName, value);
+                Save();
+            }
+        }
+
+        public int TaskRemindersEnabled
+        {
+            get
+            {
+                return GetValueOrDefault<int>(TaskRemindersEnabledSettingKeyName, 1);
+            }
+            set
+            {
+                AddOrUpdateValue(TaskRemindersEnabledSettingKeyName, value);
+                Save();
+            }
+        }
+
+        public int LocationServiceEnabled
+        {
+            get
+            {
+                return GetValueOrDefault<int>(LocationServiceEnabledSettingKeyName, 2);
+            }
+            set
+            {
+                AddOrUpdateValue(LocationServiceEnabledSettingKeyName, value);
                 Save();
             }
         }

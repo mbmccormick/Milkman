@@ -18,9 +18,10 @@ namespace BackgroundWorker.Common
     {
         IsolatedStorageSettings isolatedStore;
 
-        const string BackgroundWorkerEnabledSettingKeyName = "BackgroundWorkerEnabled";
-        const string LocationNotificationsEnabledSettingKeyName = "LocationNotificationsEnabled";
+        const string AutomaticSyncEnabledSettingKeyName = "AutomaticSyncEnabled";
+        const string LightThemeEnabledSettingKeyName = "LightThemeEnabled";
         const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
+        const string LocationServiceEnabledSettingKeyName = "LocationServiceEnabled";
 
         public AppSettings()
         {
@@ -92,41 +93,54 @@ namespace BackgroundWorker.Common
             isolatedStore.Save();
         }
 
-        public bool BackgroundWorkerEnabled
+        public bool AutomaticSyncEnabled
         {
             get
             {
-                return GetValueOrDefault<bool>(BackgroundWorkerEnabledSettingKeyName, true);
+                return GetValueOrDefault<bool>(AutomaticSyncEnabledSettingKeyName, true);
             }
             set
             {
-                AddOrUpdateValue(BackgroundWorkerEnabledSettingKeyName, value);
+                AddOrUpdateValue(AutomaticSyncEnabledSettingKeyName, value);
                 Save();
             }
         }
 
-        public bool LocationNotificationsEnabled
+        public bool LightThemeEnabled
         {
             get
             {
-                return GetValueOrDefault<bool>(LocationNotificationsEnabledSettingKeyName, true);
+                return GetValueOrDefault<bool>(LightThemeEnabledSettingKeyName, true);
             }
             set
             {
-                AddOrUpdateValue(LocationNotificationsEnabledSettingKeyName, value);
+                AddOrUpdateValue(LightThemeEnabledSettingKeyName, value);
                 Save();
             }
         }
 
-        public bool TaskRemindersEnabled
+        public int TaskRemindersEnabled
         {
             get
             {
-                return GetValueOrDefault<bool>(TaskRemindersEnabledSettingKeyName, true);
+                return GetValueOrDefault<int>(TaskRemindersEnabledSettingKeyName, 1);
             }
             set
             {
                 AddOrUpdateValue(TaskRemindersEnabledSettingKeyName, value);
+                Save();
+            }
+        }
+
+        public int LocationServiceEnabled
+        {
+            get
+            {
+                return GetValueOrDefault<int>(LocationServiceEnabledSettingKeyName, 2);
+            }
+            set
+            {
+                AddOrUpdateValue(LocationServiceEnabledSettingKeyName, value);
                 Save();
             }
         }

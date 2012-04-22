@@ -140,7 +140,7 @@ namespace Milkman
             if (TaskLocations.Count == 0)
             {
                 TaskLocations.Clear();
-                TaskLocations.Add(new Location("None"));
+                TaskLocations.Add(new Location("none"));
                 foreach (Location l in App.RtmClient.Locations)
                 {
                     TaskLocations.Add(l);

@@ -47,24 +47,14 @@ namespace BackgroundWorker
             AppSettings settings = new AppSettings();
 
             // update current location
-            if (settings.LocationNotificationsEnabled == true)
+            if (settings.LocationServiceEnabled > 0)
             {
                 _watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
                 _watcher.Start();
             }
 
             // sync data
-            if (settings.BackgroundWorkerEnabled == true)
-            {
-                SyncData();
-            }
-            else
-            {
-                if (System.Diagnostics.Debugger.IsAttached)
-                    ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
-
-                NotifyComplete();
-            }
+            SyncData();
         }
 
         private void SyncData()
@@ -97,6 +87,8 @@ namespace BackgroundWorker
 
         private void LoadDataInBackground()
         {
+            AppSettings settings = new AppSettings();
+
             if (App.RtmClient.TaskLists != null)
             {
                 var tempTaskLists = new SortableObservableCollection<TaskList>();
@@ -142,13 +134,23 @@ namespace BackgroundWorker
                             {
                                 if (item.Location != null)
                                 {
-                                    if (LocationHelper.Distance(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) < 1609.344)
+                                    double radius;
+                                    if (settings.LocationServiceEnabled == 1)
+                                        radius = 1.0;
+                                    else if (settings.LocationServiceEnabled == 2)
+                                        radius = 2.0;
+                                    else if (settings.LocationServiceEnabled == 3)
+                                        radius = 3.0;
+                                    else
+                                        radius = 1.0;
+
+                                    if (LocationHelper.Distance(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, item.Location.Latitude, item.Location.Longitude) <= radius)
                                     {
                                         ShellToast toast = new ShellToast();
+
                                         toast.Title = item.Location.Name;
                                         toast.Content = item.Name;
                                         toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative);
-
                                         toast.Show();
                                     }
                                 }

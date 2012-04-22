@@ -69,6 +69,7 @@
       <HintPath>..\PhoneToolkit\Bin\Release\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -96,6 +97,7 @@
     <Compile Include="Common\AppSettings.cs" />
     <Compile Include="Common\IsolatedStorageHelper.cs" />
     <Compile Include="Common\LittleWatson.cs" />
+    <Compile Include="Common\LocationHelper.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
     <Compile Include="Common\SortableObservableCollection.cs" />
     <Compile Include="Common\ThemeManager.cs" />
@@ -118,6 +120,9 @@
     <Compile Include="TaskDetailsPage.xaml.cs">
       <DependentUpon>TaskDetailsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TaskListByLocationPage.xaml.cs">
+      <DependentUpon>TaskListByLocationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="TaskListPage.xaml.cs">
       <DependentUpon>TaskListPage.xaml</DependentUpon>
@@ -164,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TaskDetailsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TaskListByLocationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,7 +272,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
+      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

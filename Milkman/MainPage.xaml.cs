@@ -79,7 +79,7 @@ namespace Milkman
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
-        {            
+        {
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -196,6 +196,10 @@ namespace Milkman
                             tempTaskLists.Add(l);
                     }
 
+                    // insert the nearby list placeholder
+                    TaskList nearby = new TaskList("Nearby");
+                    tempTaskLists.Insert(1, nearby);
+
                     TaskLists = tempTaskLists;
 
                     ToggleLoadingText();
@@ -262,6 +266,8 @@ namespace Milkman
             if (item != null)
                 if (item.Name.ToLower() == "all tasks")
                     this.NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml?id=" + item.Id, UriKind.Relative));
+                else if (item.Name.ToLower() == "nearby")
+                    this.NavigationService.Navigate(new Uri("/TaskListByLocationPage.xaml?id=" + item.Id, UriKind.Relative));
                 else
                     this.NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
         }
