@@ -173,7 +173,7 @@ namespace Milkman
             b.DoWork += (s, e) =>
             {
                 LoadDataInBackground();
-
+                NotificationsManager.SetupNotifications();
             };
             b.RunWorkerAsync();
         }
