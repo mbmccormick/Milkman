@@ -272,6 +272,53 @@ namespace Milkman
                     this.NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
         }
 
+        private void TaskListCount_Loaded(object sender, EventArgs e)
+        {
+            TextBlock target = (TextBlock)sender;
+
+            TaskList task = (TaskList)target.DataContext;
+
+            if (App.RtmClient.Locations == null) return;
+
+            // set count
+            if (task.Name.ToLower() == "nearby")
+            {
+                int count = 0;
+                List<string> alreadyCounted = new List<string>();
+
+                if (App.RtmClient.TaskLists != null)
+                {
+                    foreach (TaskList l in App.RtmClient.TaskLists)
+                    {
+                        if (l.Tasks != null)
+                        {
+                            foreach (Task t in l.Tasks)
+                            {
+                                if (t.IsCompleted == true ||
+                                    t.IsDeleted == true) continue;
+
+                                if (t.Location != null)
+                                {
+                                    if (alreadyCounted.Contains(t.Id) == false)
+                                    {
+                                        count++;
+                                        alreadyCounted.Add(t.Id);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (count == 0)
+                    target.Text = "No tasks";
+                else if (count == 1)
+                    target.Text = "1 task";
+                else
+                    target.Text = count + " tasks";
+            }
+        }
+
         private void mnuSettings_Click(object sender, EventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>

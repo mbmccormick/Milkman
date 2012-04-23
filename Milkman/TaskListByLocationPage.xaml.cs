@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -293,7 +293,7 @@ namespace Milkman
 
                     if (watcher.Position != null)
                     {
-                        AllTasks.OrderBy(t => LocationHelper.Distance(watcher.Position.Location.Latitude,
+                        AllTasks.OrderByDescending(t => LocationHelper.Distance(watcher.Position.Location.Latitude,
                                                                       watcher.Position.Location.Longitude,
                                                                       t.Location.Latitude,
                                                                       t.Location.Longitude));

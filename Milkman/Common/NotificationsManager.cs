@@ -37,13 +37,19 @@ namespace Milkman.Common
             if (System.Diagnostics.Debugger.IsAttached)
                 ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
-
             // setup task reminders
             if (settings.TaskRemindersEnabled > 0)
             {
                 // delete all existing reminders
-                foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                    ScheduledActionService.Remove(item.Name);
+                try
+                {
+                    foreach (var item in ScheduledActionService.GetActions<Reminder>())
+                        ScheduledActionService.Remove(item.Name);
+                }
+                catch (Exception ex)
+                {
+                    // do nothing
+                }
 
                 // create new reminders
                 if (App.RtmClient.TaskLists != null)
@@ -78,7 +84,14 @@ namespace Milkman.Common
                                     r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
                                     r.BeginTime = t.DueDateTime.Value.AddHours(interval);
 
-                                    ScheduledActionService.Add(r);
+                                    try
+                                    {
+                                        ScheduledActionService.Add(r);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        // do nothing
+                                    }
                                 }
                             }
                         }
@@ -87,14 +100,23 @@ namespace Milkman.Common
             }
             else
             {
-                // delete all existing reminders
-                foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                    ScheduledActionService.Remove(item.Name);
+                try
+                {
+                    // delete all existing reminders
+                    foreach (var item in ScheduledActionService.GetActions<Reminder>())
+                        ScheduledActionService.Remove(item.Name);
+                }
+                catch (Exception ex)
+                {
+                    // do nothing
+                }
             }
 
             // update live tiles
             foreach (ShellTile tile in ShellTile.ActiveTiles)
             {
+                if (tile.NavigationUri.ToString() == "/") continue;
+
                 StandardTileData data = new StandardTileData();
 
                 string id = tile.NavigationUri.ToString().Split('=')[1];
