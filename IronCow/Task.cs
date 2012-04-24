@@ -199,7 +199,10 @@ namespace IronCow
         {
             get
             {
-                return Parent.LocName;
+                if (Parent != null)
+                    return Parent.LocName;
+                else
+                    return null;
             }
         }
 
