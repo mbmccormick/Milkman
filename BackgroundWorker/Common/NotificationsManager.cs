@@ -28,19 +28,22 @@ namespace BackgroundWorker.Common
             // setup location notifications
             if (settings.LocationServiceEnabled > 0)
             {
-                // delete all existing reminders
-                foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                    ScheduledActionService.Remove(item.Name);
-
-                // create new reminders
+                // check for nearby tasks
                 if (App.RtmClient.TaskLists != null)
                 {
+                    List<string> alreadyCounted = new List<string>();
+
                     foreach (TaskList l in App.RtmClient.TaskLists)
                     {
                         if (l.Tasks != null)
                         {
                             foreach (Task t in l.Tasks)
                             {
+                                if (alreadyCounted.Contains(t.Id))
+                                    continue;
+                                else
+                                    alreadyCounted.Add(t.Id);
+
                                 double radius;
                                 if (settings.LocationServiceEnabled == 1)
                                     radius = 1.0;

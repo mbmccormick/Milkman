@@ -54,12 +54,19 @@ namespace Milkman.Common
                 // create new reminders
                 if (App.RtmClient.TaskLists != null)
                 {
+                    List<string> alreadyCounted = new List<string>();
+
                     foreach (TaskList l in App.RtmClient.TaskLists)
                     {
                         if (l.Tasks != null)
                         {
                             foreach (Task t in l.Tasks)
                             {
+                                if (alreadyCounted.Contains(t.Id))
+                                    continue;
+                                else
+                                    alreadyCounted.Add(t.Id);
+
                                 double interval;
                                 if (settings.TaskRemindersEnabled == 1)
                                     interval = 0.5;
