@@ -108,21 +108,6 @@ namespace Milkman
 
         private void TaskDetailsPage_Loaded(object sender, RoutedEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
-
-            if (CurrentTask != null)
-            {
-                if (CurrentTask.Priority == TaskPriority.One)
-                    this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
-                else if (CurrentTask.Priority == TaskPriority.Two)
-                    this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
-                else if (CurrentTask.Priority == TaskPriority.Three)
-                    this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
-                else
-                    this.txtName.Foreground = (SolidColorBrush)Resources["PhoneForegroundBrush"];
-            }
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -135,11 +120,16 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            progressIndicator = new ProgressIndicator();
+            progressIndicator.IsVisible = true;
+            SystemTray.ProgressIndicator = progressIndicator;
+
             IsLoading = true;
             
-            if (e.IsNavigationInitiator)
+            if (e.IsNavigationInitiator &&
+                sReload == false)
             {
-                ReloadTask();
+                LoadData();
             }
             else
             {
@@ -147,7 +137,7 @@ namespace Milkman
 
                 App.RtmClient.SyncEverything(() =>
                 {
-                    ReloadTask();
+                    LoadData();
                 });
             }
 
@@ -158,7 +148,7 @@ namespace Milkman
 
         #region Loading Data
 
-        private void ReloadTask()
+        private void LoadData()
         {
             SmartDispatcher.BeginInvoke(() =>
             {
@@ -170,14 +160,41 @@ namespace Milkman
                     // bind location in codebehind as it does not like being bound in XAML
                     this.txtLocation.Text = CurrentTask.LocationName;
 
-                    // toggle emtpy text display
-                    if (CurrentTask.Notes.Count == 0)
-                        this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+                    // set priority
+                    if (CurrentTask.Priority == TaskPriority.One)
+                        this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
+                    else if (CurrentTask.Priority == TaskPriority.Two)
+                        this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
+                    else if (CurrentTask.Priority == TaskPriority.Three)
+                        this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
                     else
-                        this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                        this.txtName.Foreground = (SolidColorBrush)Resources["PhoneForegroundBrush"];
+
+                    ToggleLoadingText();
+                    ToggleEmptyText();
                 }
 
                 IsLoading = false;
+            });
+        }
+
+        private void ToggleLoadingText()
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.ContentPanel.Visibility = System.Windows.Visibility.Visible;
+            });
+        }
+
+        private void ToggleEmptyText()
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                if (CurrentTask.Notes.Count == 0)
+                    this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
             });
         }
 
@@ -298,7 +315,7 @@ namespace Milkman
                     Dispatcher.BeginInvoke(() =>
                     {
                         IsLoading = false;
-                        ReloadTask();
+                        LoadData();
                     });
                 });
             });
@@ -334,7 +351,7 @@ namespace Milkman
                     Dispatcher.BeginInvoke(() =>
                     {
                         IsLoading = false;
-                        ReloadTask();
+                        LoadData();
                     });
                 });
             });
