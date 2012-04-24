@@ -157,9 +157,6 @@ namespace Milkman
                 {
                     CurrentTask = App.RtmClient.GetTask(id);
 
-                    // bind location in codebehind as it does not like being bound in XAML
-                    this.txtLocation.Text = CurrentTask.LocationName;
-
                     // set priority
                     if (CurrentTask.Priority == TaskPriority.One)
                         this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
@@ -183,7 +180,7 @@ namespace Milkman
             SmartDispatcher.BeginInvoke(() =>
             {
                 this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
-                this.ContentPanel.Visibility = System.Windows.Visibility.Visible;
+                this.grdTaskDetails.Visibility = System.Windows.Visibility.Visible;
             });
         }
 
