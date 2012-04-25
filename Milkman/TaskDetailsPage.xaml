@@ -21,7 +21,7 @@
         <controls:Pivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged">
             <controls:PivotItem Header="task details" FontWeight="Normal">
                 <Grid Margin="0">
-                    <Grid x:Name="grdTaskDetails" Margin="0" Visibility="Collapsed">
+                    <Grid x:Name="grdTaskDetails" Margin="12,0,0,0" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="170"/>
                             <ColumnDefinition />

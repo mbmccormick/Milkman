@@ -394,7 +394,8 @@ namespace Milkman
                 {
                     StandardTileData data = new StandardTileData();
 
-                    int tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                    int tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                                 z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
 
                     data.BackgroundImage = new Uri("Background.png", UriKind.Relative);
                     data.Title = "Milkman";

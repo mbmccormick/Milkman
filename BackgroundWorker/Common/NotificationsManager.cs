@@ -82,7 +82,8 @@ namespace BackgroundWorker.Common
                 string id = tile.NavigationUri.ToString().Split('=')[1];
                 TaskList list = App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == id);
 
-                int tasksDueToday = list.Tasks.Where(z => z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                int tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                          z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
 
                 if (tasksDueToday == 0)
                     data.BackContent = "No tasks due today";
