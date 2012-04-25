@@ -196,9 +196,9 @@ namespace Milkman
                             tempTaskLists.Add(l);
                     }
 
-                    // insert the nearby list placeholder
-                    TaskList nearby = new TaskList("Nearby");
-                    tempTaskLists.Insert(1, nearby);
+                    // // insert the nearby list placeholder
+                    // TaskList nearby = new TaskList("Nearby");
+                    // tempTaskLists.Insert(1, nearby);
 
                     TaskLists = tempTaskLists;
 
@@ -397,7 +397,7 @@ namespace Milkman
                     int tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
                                                                                  z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
 
-                    data.BackgroundImage = new Uri("Background.png", UriKind.Relative);
+                    data.BackgroundImage = new Uri("BackgroundPinned.png", UriKind.Relative);
                     data.Title = "Milkman";
 
                     data.BackTitle = MostRecentTaskListClick.Name;

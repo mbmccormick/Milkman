@@ -129,9 +129,25 @@ namespace Milkman.Common
 
                 if (tile.NavigationUri.ToString() == "/")
                 {
+                    var tempAllTasks = new SortableObservableCollection<Task>();
+
+                    foreach (TaskList l in App.RtmClient.TaskLists)
+                    {
+                        if (l.Tasks != null)
+                        {
+                            foreach (Task t in l.Tasks)
+                            {
+                                if (tempAllTasks.Contains(t))
+                                    continue;
+                                else
+                                    tempAllTasks.Add(t);
+                            }
+                        }
+                    }
+
                     tasksListName = "All Tasks";
-                    tasksDueToday = App.RtmClient.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                   z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                    tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
+                                                            z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
                 }
                 else
                 {
@@ -143,8 +159,8 @@ namespace Milkman.Common
                                                           z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
                 }
 
-                data.BackTitle = tasksListName; 
-                
+                data.BackTitle = tasksListName;
+
                 if (tasksDueToday == 0)
                     data.BackContent = "No tasks due today";
                 else if (tasksDueToday == 1)
