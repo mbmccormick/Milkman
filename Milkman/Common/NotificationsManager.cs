@@ -122,16 +122,29 @@ namespace Milkman.Common
             // update live tiles
             foreach (ShellTile tile in ShellTile.ActiveTiles)
             {
-                if (tile.NavigationUri.ToString() == "/") continue;
-
                 StandardTileData data = new StandardTileData();
 
-                string id = tile.NavigationUri.ToString().Split('=')[1];
-                TaskList list = App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == id);
+                string tasksListName = null;
+                int tasksDueToday = 0;
 
-                int tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
+                if (tile.NavigationUri.ToString() == "/")
+                {
+                    tasksListName = "All Tasks";
+                    tasksDueToday = App.RtmClient.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                   z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                }
+                else
+                {
+                    string id = tile.NavigationUri.ToString().Split('=')[1];
+                    TaskList list = App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == id);
+
+                    tasksListName = list.Name;
+                    tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
                                                           z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                }
 
+                data.BackTitle = tasksListName; 
+                
                 if (tasksDueToday == 0)
                     data.BackContent = "No tasks due today";
                 else if (tasksDueToday == 1)

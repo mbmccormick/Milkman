@@ -319,7 +319,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                if (this.lstTasks.Items.Count == 0)
+                if (AllTasks.Count == 0)
                     this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
                     this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
