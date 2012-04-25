@@ -22,7 +22,7 @@ namespace Milkman
     {
         #region IsLoading Property
 
-        public static bool sReload = true;
+        public static bool sReload = false;
 
         public static readonly DependencyProperty IsLoadingProperty =
             DependencyProperty.Register("IsLoading", typeof(bool), typeof(TaskDetailsPage),
