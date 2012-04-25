@@ -18,12 +18,14 @@ This application uses the Remember The Milk application programming interface bu
 
 Application Development by Matt McCormick 
 
-Graphic Design by Libby Puccinelli 
+User Interface by Libby Puccinelli 
 
-What's new in Version 1.3:
-- You can now add, edit, and delete notes for tasks
-- Option to manually sync your tasks, to improve speed of the application
-- Several user interface enhancements
+What's new in Version 2.0:
+- You can now view tasks by date, list, or smart list
+- Customize your task reminders and location notifications
+- Pin any list or smart list as a live tile on your start screen
+- Choose between light or dark theme
+- Faster, more streamlined Add Task dialog
 - Several bug fixes
 
 
