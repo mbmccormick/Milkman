@@ -69,13 +69,13 @@ namespace Milkman.Common
 
                                 double interval;
                                 if (settings.TaskRemindersEnabled == 1)
-                                    interval = 0.5;
+                                    interval = -0.5;
                                 else if (settings.TaskRemindersEnabled == 2)
-                                    interval = 1.0;
+                                    interval = -1.0;
                                 else if (settings.TaskRemindersEnabled == 3)
-                                    interval = 2.0;
+                                    interval = -2.0;
                                 else
-                                    interval = 1.0;
+                                    interval = -1.0;
 
                                 if (t.HasDueTime &&
                                     t.DueDateTime.Value.AddHours(interval) >= DateTime.Now)
