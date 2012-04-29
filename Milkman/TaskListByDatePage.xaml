@@ -20,8 +20,8 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <toolkit:LockablePivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold">
-            <controls:PivotItem Header="all">
-                <Grid Margin="0">
+            <controls:PivotItem Header="all" Margin="12,12,0,0">
+                <Grid Margin="0,12,0,0">
                     <toolkit:MultiselectList x:Name="lstAll" ItemsSource="{Binding AllTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -42,9 +42,9 @@
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
-                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,24,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
@@ -62,9 +62,9 @@
                     </toolkit:ContextMenuService.ContextMenu>
                 </Grid>
             </controls:PivotItem>
-            
-            <controls:PivotItem Header="today">
-                <Grid Margin="0">
+
+            <controls:PivotItem Header="today" Margin="12,12,0,0">
+                <Grid Margin="0,12,0,0">
                     <toolkit:MultiselectList x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -85,9 +85,9 @@
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
-                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,24,6" Style="{StaticResource PhoneTextSubtleStyle}" />
+                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
@@ -106,8 +106,8 @@
                 </Grid>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="tomorrow">
-                <Grid Margin="0">
+            <controls:PivotItem Header="tomorrow" Margin="12,12,0,0">
+                <Grid Margin="0,12,0,0">
                     <toolkit:MultiselectList x:Name="lstTomorrow" ItemsSource="{Binding TomorrowTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -128,9 +128,9 @@
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
-                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,24,6" Style="{StaticResource PhoneTextSubtleStyle}" />
+                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
@@ -149,8 +149,8 @@
                 </Grid>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="overdue">
-                <Grid Margin="0">
+            <controls:PivotItem Header="overdue" Margin="12,12,0,0">
+                <Grid Margin="0,12,0,0">
                     <toolkit:MultiselectList x:Name="lstOverdue" ItemsSource="{Binding OverdueTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -171,9 +171,9 @@
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
-                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,24,6" Style="{StaticResource PhoneTextSubtleStyle}" />
+                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
@@ -192,8 +192,8 @@
                 </Grid>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="week">
-                <Grid Margin="0">
+            <controls:PivotItem Header="week" Margin="12,12,0,0">
+                <Grid Margin="0,12,0,0">
                     <toolkit:MultiselectList x:Name="lstWeek" ItemsSource="{Binding WeekTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
                             <Style TargetType="toolkit:MultiselectItem">
@@ -214,9 +214,9 @@
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
-                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,24,6" Style="{StaticResource PhoneTextSubtleStyle}" />
+                                    <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
