@@ -20,6 +20,10 @@ Application Development by Matt McCormick
 
 User Interface by Libby Puccinelli 
 
+What's new in Version 2.1:
+- Critical bug fix for task reminders
+- Minor UI adjustments
+
 What's new in Version 2.0:
 - You can now view tasks by date, list, or smart list
 - Customize your task reminders and location notifications
