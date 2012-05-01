@@ -82,34 +82,40 @@ namespace BackgroundWorker.Common
 
                 if (tile.NavigationUri.ToString() == "/")
                 {
-                    var tempAllTasks = new SortableObservableCollection<Task>();
-
-                    foreach (TaskList l in App.RtmClient.TaskLists)
+                    if (App.RtmClient.TaskLists != null)
                     {
-                        if (l.Tasks != null)
+                        var tempAllTasks = new SortableObservableCollection<Task>();
+
+                        foreach (TaskList l in App.RtmClient.TaskLists)
                         {
-                            foreach (Task t in l.Tasks)
+                            if (l.Tasks != null)
                             {
-                                if (tempAllTasks.Contains(t))
-                                    continue;
-                                else
-                                    tempAllTasks.Add(t);
+                                foreach (Task t in l.Tasks)
+                                {
+                                    if (tempAllTasks.Contains(t))
+                                        continue;
+                                    else
+                                        tempAllTasks.Add(t);
+                                }
                             }
                         }
-                    }
 
-                    tasksListName = "All Tasks";
-                    tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
-                                                            z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                        tasksListName = "All Tasks";
+                        tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
+                                                                z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                    }
                 }
                 else
                 {
-                    string id = tile.NavigationUri.ToString().Split('=')[1];
-                    TaskList list = App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == id);
+                    if (App.RtmClient.TaskLists != null)
+                    {
+                        string id = tile.NavigationUri.ToString().Split('=')[1];
+                        TaskList list = App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == id);
 
-                    tasksListName = list.Name;
-                    tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                          z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                        tasksListName = list.Name;
+                        tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                              z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                    }
                 }
 
                 data.BackTitle = tasksListName;

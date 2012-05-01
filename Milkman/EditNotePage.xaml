@@ -36,9 +36,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Title" Grid.Row="0" Margin="12,0,0,-6" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+            <TextBlock Text="Title" Grid.Row="0" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
             <TextBox x:Name="txtTitle" Grid.Row="1" Margin="0,0,0,0" InputScope="Text" />
-            <TextBlock Text="Body" Grid.Row="2" Margin="12,0,0,-6" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+            <TextBlock Text="Body" Grid.Row="2" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
             <TextBox x:Name="txtBody" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,12" InputScope="Text" />
         </Grid>
     </Grid>

@@ -21,7 +21,7 @@
         <controls:Pivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged">
             <controls:PivotItem Header="task details" FontWeight="Normal" Margin="12,12,0,0">
                 <Grid Margin="0,12,0,0">
-                    <Grid x:Name="grdTaskDetails" Margin="0" Visibility="Collapsed">
+                    <Grid x:Name="grdTaskDetails" Margin="12,0,0,0" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="170"/>
                             <ColumnDefinition />
@@ -62,7 +62,7 @@
                         <TextBlock Text="{Binding PostponedString}" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                     </Grid>
 
-                    <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="0" />
                 </Grid>
             </controls:PivotItem>
 
@@ -72,8 +72,8 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,0,0,17" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Path=Title}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}" Margin="0,0,12,0" />
-                                    <TextBlock Text="{Binding Path=Body}" TextWrapping="Wrap" Margin="12,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock Text="{Binding Path=Title}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}" Margin="12,0,0,0" />
+                                    <TextBlock Text="{Binding Path=Body}" TextWrapping="Wrap" Margin="12,0,24,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
