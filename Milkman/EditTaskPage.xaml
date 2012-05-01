@@ -28,8 +28,8 @@
             <TextBlock x:Name="PageTitle" Text="edit task" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
-            <Grid x:Name="ContentPanel">
+        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,0,0">
+            <Grid x:Name="ContentPanel" Margin="0,0,12,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="170"/>
                     <ColumnDefinition />

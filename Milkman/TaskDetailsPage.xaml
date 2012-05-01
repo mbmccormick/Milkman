@@ -19,9 +19,9 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Pivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged">
-            <controls:PivotItem Header="task details" FontWeight="Normal">
-                <Grid Margin="0">
-                    <Grid x:Name="grdTaskDetails" Margin="12,0,0,0" Visibility="Collapsed">
+            <controls:PivotItem Header="task details" FontWeight="Normal" Margin="12,12,0,0">
+                <Grid Margin="0,12,0,0">
+                    <Grid x:Name="grdTaskDetails" Margin="0" Visibility="Collapsed">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="170"/>
                             <ColumnDefinition />
@@ -44,36 +44,36 @@
                         <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
                         <TextBlock Text="List" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                        <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
                         <TextBlock Text="Tags" Grid.Row="3" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                        <TextBlock Text="{Binding TagsString}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding TagsString}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
                         <TextBlock Text="Repeat" Grid.Row="4" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                        <TextBlock Text="{Binding Recurrence}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding Recurrence}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
                         <TextBlock Text="Estimate" Grid.Row="5" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                        <TextBlock Text="{Binding Estimate}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding Estimate}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
                         <TextBlock Text="Location" Grid.Row="6" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                        <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
                         <TextBlock Text="Postponed" Grid.Row="7" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                        <TextBlock Text="{Binding PostponedString}" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                        <TextBlock Text="{Binding PostponedString}" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                     </Grid>
 
                     <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                 </Grid>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="notes" FontWeight="Normal">
-                <Grid Margin="0">
-                    <ListBox x:Name="lstNotes" Margin="0,0,0,0" ItemsSource="{Binding Notes}">
+            <controls:PivotItem Header="notes" FontWeight="Normal" Margin="12,12,0,0">
+                <Grid Margin="0,12,0,0">
+                    <ListBox x:Name="lstNotes" Margin="0" ItemsSource="{Binding Notes}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,0,0,17" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Path=Title}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}"/>
-                                    <TextBlock Text="{Binding Path=Body}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock Text="{Binding Path=Title}" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}" Margin="0,0,12,0" />
+                                    <TextBlock Text="{Binding Path=Body}" TextWrapping="Wrap" Margin="12,-6,24,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
