@@ -48,7 +48,7 @@ namespace Milkman
 
         private void StartAuth()
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
 
             App.RtmClient.GetFrob((string frob) =>
             {
@@ -72,7 +72,8 @@ namespace Milkman
             // only do something if Frob is present
             if (!string.IsNullOrEmpty(Frob))
             {
-                GlobalLoading.Instance.IsLoading = true;
+                GlobalLoading.Instance.IsLoadingText("Authorizing...");
+
                 App.RtmClient.GetToken(Frob, (string token, User user) =>
                 {
                     // create timeline
@@ -107,7 +108,7 @@ namespace Milkman
 
         private void webAuthorization_Navigating(object sender, NavigatingEventArgs e)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
         }
 
         private void mnuAbout_Click(object sender, EventArgs e)

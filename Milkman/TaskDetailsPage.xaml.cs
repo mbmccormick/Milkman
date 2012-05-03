@@ -89,7 +89,7 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
             
             if (e.IsNavigationInitiator &&
                 sReload == false)
@@ -249,7 +249,7 @@ namespace Milkman
 
         private void CompleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
             data.Complete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -269,7 +269,7 @@ namespace Milkman
 
         private void PostponeTask(Task data)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
             data.Postpone(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -285,7 +285,7 @@ namespace Milkman
 
         private void DeleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -305,7 +305,7 @@ namespace Milkman
 
         private void DeleteNote(TaskNote data)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>

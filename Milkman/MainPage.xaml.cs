@@ -60,7 +60,7 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
 
             if (NavigationContext.QueryString.ContainsKey("IsFirstRun") == true)
                 NavigationService.RemoveBackEntry();
@@ -111,7 +111,7 @@ namespace Milkman
                     {
                         SmartDispatcher.BeginInvoke(() =>
                         {
-                            GlobalLoading.Instance.IsLoading = true;
+                            GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
                         });
 
                         App.RtmClient.SyncEverything(() =>
@@ -146,7 +146,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                GlobalLoading.Instance.IsLoading = true;
+                GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
 
                 if (App.RtmClient.TaskLists != null)
                 {
@@ -390,7 +390,7 @@ namespace Milkman
 
         private void AddTask(string smartAddText)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Adding task...");
 
             string input = smartAddText;
             if (input.Contains('#') == false)
@@ -410,7 +410,7 @@ namespace Milkman
                 sReload = true;
                 LoadData();
 
-                // SetupNotifications();
+                NotificationsManager.SetupNotifications();
             });
         }
 

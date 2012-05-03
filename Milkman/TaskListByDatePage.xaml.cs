@@ -175,7 +175,7 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Loading...");
 
             AppSettings settings = new AppSettings();
 
@@ -241,7 +241,7 @@ namespace Milkman
                     {
                         SmartDispatcher.BeginInvoke(() =>
                         {
-                            GlobalLoading.Instance.IsLoading = true;
+                            GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
                         });
 
                         App.RtmClient.SyncEverything(() =>
@@ -276,7 +276,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                GlobalLoading.Instance.IsLoading = true;
+                GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
 
                 string id;
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
@@ -744,7 +744,7 @@ namespace Milkman
 
         private void AddTask(string smartAddText)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Adding task...");
 
             string input = smartAddText;
             if (input.Contains('#') == false)
@@ -768,7 +768,7 @@ namespace Milkman
 
         private void CompleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Completing task...");
             data.Complete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -786,7 +786,7 @@ namespace Milkman
 
         private void PostponeTask(Task data)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Postponing task...");
             data.Postpone(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -804,7 +804,7 @@ namespace Milkman
 
         private void DeleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoading = true;
+            GlobalLoading.Instance.IsLoadingText("Deleting task...");
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>

@@ -48,7 +48,7 @@ namespace Milkman
         {
             if (!loadedDetails)
             {
-                GlobalLoading.Instance.IsLoading = true;
+                GlobalLoading.Instance.IsLoadingText("Loading...");
 
                 ReloadTask();
                 loadedDetails = true;
@@ -81,7 +81,7 @@ namespace Milkman
         {
             if (!GlobalLoading.Instance.IsLoading)
             {
-                GlobalLoading.Instance.IsLoading = true;
+                GlobalLoading.Instance.IsLoadingText("Loading...");
 
                 // add note
                 SmartDispatcher.BeginInvoke(() =>

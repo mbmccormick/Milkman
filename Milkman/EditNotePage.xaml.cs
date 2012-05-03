@@ -49,7 +49,7 @@ namespace Milkman
         {
             if (!loadedDetails)
             {
-                GlobalLoading.Instance.IsLoading = true;
+                GlobalLoading.Instance.IsLoadingText("Loading...");
 
                 ReloadNote();
                 loadedDetails = true;
@@ -95,7 +95,7 @@ namespace Milkman
         {
             if (!GlobalLoading.Instance.IsLoading)
             {
-                GlobalLoading.Instance.IsLoading = true;
+                GlobalLoading.Instance.IsLoadingText("Loading...");
 
                 // edit note
                 SmartDispatcher.BeginInvoke(() =>
@@ -128,7 +128,7 @@ namespace Milkman
             {
                 if (MessageBox.Show("Are you sure you want to delete this note?", "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
-                    GlobalLoading.Instance.IsLoading = true;
+                    GlobalLoading.Instance.IsLoadingText("Loading...");
 
                     // delete note
                     SmartDispatcher.BeginInvoke(() =>
