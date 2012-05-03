@@ -20,36 +20,7 @@ namespace Milkman
 {
     public partial class TaskDetailsPage : PhoneApplicationPage
     {
-        #region IsLoading Property
-
         public static bool sReload = false;
-
-        public static readonly DependencyProperty IsLoadingProperty =
-            DependencyProperty.Register("IsLoading", typeof(bool), typeof(TaskDetailsPage),
-                new PropertyMetadata((bool)false));
-
-        public bool IsLoading
-        {
-            get
-            {
-                return (bool)GetValue(IsLoadingProperty);
-            }
-
-            set
-            {
-                try
-                {
-                    SetValue(IsLoadingProperty, value);
-                    if (progressIndicator != null)
-                        progressIndicator.IsIndeterminate = value;
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-        }
-
-        #endregion
 
         #region Task Property
 
@@ -65,8 +36,6 @@ namespace Milkman
         #endregion
 
         #region Construction and Navigation
-
-        ProgressIndicator progressIndicator;
 
         ApplicationBarIconButton complete;
         ApplicationBarIconButton postpone;
@@ -114,17 +83,13 @@ namespace Milkman
         {
             Dispatcher.BeginInvoke(() =>
             {
-                IsLoading = false;
+                GlobalLoading.Instance.IsLoading = false;
             });
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
-
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
             
             if (e.IsNavigationInitiator &&
                 sReload == false)
@@ -171,7 +136,7 @@ namespace Milkman
                     ToggleEmptyText();
                 }
 
-                IsLoading = false;
+                GlobalLoading.Instance.IsLoading = false;
             });
         }
 
@@ -203,7 +168,7 @@ namespace Milkman
         {
             if (MessageBox.Show("Are you sure you want to mark this task as complete?", "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                if (CurrentTask != null && !IsLoading)
+                if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                 {
                     CompleteTask(CurrentTask);
                 }
@@ -214,7 +179,7 @@ namespace Milkman
         {
             if (MessageBox.Show("Are you sure you want to postpone this task?", "Postpone", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                if (CurrentTask != null && !IsLoading)
+                if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                 {
                     PostponeTask(CurrentTask);
                 }
@@ -233,7 +198,7 @@ namespace Milkman
         {
             if (MessageBox.Show("Are you sure you want to delete this task?", "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                if (CurrentTask != null && !IsLoading)
+                if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                 {
                     DeleteTask(CurrentTask);
                 }
@@ -250,7 +215,7 @@ namespace Milkman
 
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (IsLoading) return;
+            if (GlobalLoading.Instance.IsLoading) return;
 
             TaskNote item = ((FrameworkElement)sender).DataContext as TaskNote;
 
@@ -284,14 +249,14 @@ namespace Milkman
 
         private void CompleteTask(Task data)
         {
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
             data.Complete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
                 {
                     Dispatcher.BeginInvoke(() =>
                     {
-                        IsLoading = false;
+                        GlobalLoading.Instance.IsLoading = false;
 
                         if (this.NavigationService.CanGoBack)
                             this.NavigationService.GoBack();
@@ -304,14 +269,14 @@ namespace Milkman
 
         private void PostponeTask(Task data)
         {
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
             data.Postpone(() =>
             {
                 App.RtmClient.CacheTasks(() =>
                 {
                     Dispatcher.BeginInvoke(() =>
                     {
-                        IsLoading = false;
+                        GlobalLoading.Instance.IsLoading = false;
                         LoadData();
                     });
                 });
@@ -320,14 +285,14 @@ namespace Milkman
 
         private void DeleteTask(Task data)
         {
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
                 {
                     Dispatcher.BeginInvoke(() =>
                     {
-                        IsLoading = false;
+                        GlobalLoading.Instance.IsLoading = false;
 
                         if (this.NavigationService.CanGoBack)
                             this.NavigationService.GoBack();
@@ -340,14 +305,14 @@ namespace Milkman
 
         private void DeleteNote(TaskNote data)
         {
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
                 {
                     Dispatcher.BeginInvoke(() =>
                     {
-                        IsLoading = false;
+                        GlobalLoading.Instance.IsLoading = false;
                         LoadData();
                     });
                 });

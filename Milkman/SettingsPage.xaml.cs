@@ -18,8 +18,6 @@ namespace Milkman
 {
     public partial class SettingsPage : PhoneApplicationPage
     {
-        public static bool IsLoading = true;
-
         public SettingsPage()
         {
             InitializeComponent();
@@ -52,7 +50,7 @@ namespace Milkman
 
         private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
         {
-            IsLoading = false;
+            GlobalLoading.Instance.IsLoading = false;
         }
 
         private void ToggleSwitch_Checked(object sender, RoutedEventArgs e)
@@ -61,7 +59,7 @@ namespace Milkman
             target.Content = "On";
 
             if (target == this.togLightTheme &&
-                IsLoading == false)
+                GlobalLoading.Instance.IsLoading == false)
             {
                 MessageBox.Show("Your changes to the theme will take effect the next time you launch Milkman.", "Settings", MessageBoxButton.OK);
             }
@@ -73,7 +71,7 @@ namespace Milkman
             target.Content = "Off";
 
             if (target == this.togLightTheme &&
-                IsLoading == false)
+                GlobalLoading.Instance.IsLoading == false)
             {
                 MessageBox.Show("Your changes to the theme will take effect the next time you launch Milkman.", "Settings", MessageBoxButton.OK);
             }

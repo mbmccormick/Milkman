@@ -20,36 +20,7 @@ namespace Milkman
 {
     public partial class EditTaskPage : PhoneApplicationPage
     {
-        #region IsLoading Property
-
-        public static readonly DependencyProperty IsLoadingProperty =
-            DependencyProperty.Register("IsLoading", typeof(bool), typeof(EditTaskPage),
-                new PropertyMetadata((bool)false));
-
         private bool loadedDetails = false;
-
-        public bool IsLoading
-        {
-            get
-            {
-                return (bool)GetValue(IsLoadingProperty);
-            }
-
-            set
-            {
-                try
-                {
-                    SetValue(IsLoadingProperty, value);
-                    if (progressIndicator != null)
-                        progressIndicator.IsIndeterminate = value;
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-        }
-
-        #endregion
 
         #region Task Property
 
@@ -85,8 +56,6 @@ namespace Milkman
 
         #region Construction and Navigation
 
-        ProgressIndicator progressIndicator;
-
         public EditTaskPage()
         {
             InitializeComponent();
@@ -97,19 +66,15 @@ namespace Milkman
         {
             Dispatcher.BeginInvoke(() =>
             {
-                IsLoading = false;
+                GlobalLoading.Instance.IsLoading = false;
             });
         }
                 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
-
             if (!loadedDetails)
             {
-                IsLoading = true;
+                GlobalLoading.Instance.IsLoading = true;
 
                 ReloadTask();
                 loadedDetails = true;
@@ -210,7 +175,7 @@ namespace Milkman
                     this.lstLocation.SelectedItem = CurrentTask.Location;
             }
 
-            IsLoading = false;
+            GlobalLoading.Instance.IsLoading = false;
         }
 
         #endregion
@@ -241,9 +206,9 @@ namespace Milkman
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!IsLoading)
+            if (!GlobalLoading.Instance.IsLoading)
             {
-                IsLoading = true;
+                GlobalLoading.Instance.IsLoading = true;
 
                 // change name
                 SmartDispatcher.BeginInvoke(() =>
@@ -318,7 +283,7 @@ namespace Milkman
                                                                                     // now we can go back to task page
                                                                                     SmartDispatcher.BeginInvoke(() =>
                                                                                     {
-                                                                                        IsLoading = false;
+                                                                                        GlobalLoading.Instance.IsLoading = false;
 
                                                                                         if (this.NavigationService.CanGoBack)
                                                                                             this.NavigationService.GoBack();

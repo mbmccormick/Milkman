@@ -237,8 +237,9 @@ namespace Milkman
 
             RootFrame = new TransitionFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
-
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
+
+            GlobalLoading.Instance.Initialize(RootFrame);
 
             phoneApplicationInitialized = true;
         }

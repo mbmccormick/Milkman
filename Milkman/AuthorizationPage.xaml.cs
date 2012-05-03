@@ -19,42 +19,11 @@ namespace Milkman
 {
     public partial class AuthorizationPage : PhoneApplicationPage
     {
-        #region IsLoading Property
-
         public static bool sReload = true;
-
-        public static readonly DependencyProperty IsLoadingProperty =
-            DependencyProperty.Register("IsLoading", typeof(bool), typeof(AuthorizationPage),
-                new PropertyMetadata((bool)false));
-
-        public bool IsLoading
-        {
-            get
-            {
-                return (bool)GetValue(IsLoadingProperty);
-            }
-
-            set
-            {
-                try
-                {
-                    SetValue(IsLoadingProperty, value);
-                    if (progressIndicator != null)
-                        progressIndicator.IsIndeterminate = value;
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-        }
-
-        #endregion
 
         #region Construction and Navigation
 
         private string Frob { get; set; }
-
-        ProgressIndicator progressIndicator;
 
         public AuthorizationPage()
         {
@@ -65,10 +34,6 @@ namespace Milkman
 
         private void AuthorizationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
-
             StartAuth();
             MessageBox.Show("Sign in to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue.", "Authorization", MessageBoxButton.OK);
         }
@@ -77,13 +42,13 @@ namespace Milkman
         {
             Dispatcher.BeginInvoke(() =>
             {
-                IsLoading = false;
+                GlobalLoading.Instance.IsLoading = false;
             });
         }
 
         private void StartAuth()
         {
-            this.IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
 
             App.RtmClient.GetFrob((string frob) =>
             {
@@ -92,7 +57,7 @@ namespace Milkman
 
                 Dispatcher.BeginInvoke(() =>
                 {
-                    this.IsLoading = false;
+                    GlobalLoading.Instance.IsLoading = false;
                     webAuthorization.Navigate(new Uri(url));
                 });
             });
@@ -107,7 +72,7 @@ namespace Milkman
             // only do something if Frob is present
             if (!string.IsNullOrEmpty(Frob))
             {
-                IsLoading = true;
+                GlobalLoading.Instance.IsLoading = true;
                 App.RtmClient.GetToken(Frob, (string token, User user) =>
                 {
                     // create timeline
@@ -115,7 +80,7 @@ namespace Milkman
                     {
                         Dispatcher.BeginInvoke(() =>
                         {
-                            IsLoading = false;
+                            GlobalLoading.Instance.IsLoading = false;
 
                             if (NavigationService.CanGoBack)
                             {
@@ -137,12 +102,12 @@ namespace Milkman
 
         private void webAuthorization_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
-            this.IsLoading = false;
+            GlobalLoading.Instance.IsLoading = false;
         }
 
         private void webAuthorization_Navigating(object sender, NavigatingEventArgs e)
         {
-            this.IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
         }
 
         private void mnuAbout_Click(object sender, EventArgs e)

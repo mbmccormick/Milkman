@@ -20,36 +20,7 @@ namespace Milkman
 {
     public partial class AddNotePage : PhoneApplicationPage
     {
-        #region IsLoading Property
-
-        public static readonly DependencyProperty IsLoadingProperty =
-            DependencyProperty.Register("IsLoading", typeof(bool), typeof(AddNotePage),
-                new PropertyMetadata((bool)false));
-
         private bool loadedDetails = false;
-
-        public bool IsLoading
-        {
-            get
-            {
-                return (bool)GetValue(IsLoadingProperty);
-            }
-
-            set
-            {
-                try
-                {
-                    SetValue(IsLoadingProperty, value);
-                    if (progressIndicator != null)
-                        progressIndicator.IsIndeterminate = value;
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-        }
-
-        #endregion
 
         #region Task Property
 
@@ -58,8 +29,6 @@ namespace Milkman
         #endregion
 
         #region Construction and Navigation
-
-        ProgressIndicator progressIndicator;
 
         public AddNotePage()
         {
@@ -71,19 +40,15 @@ namespace Milkman
         {
             Dispatcher.BeginInvoke(() =>
             {
-                IsLoading = false;
+                GlobalLoading.Instance.IsLoading = false;
             });
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
-
             if (!loadedDetails)
             {
-                IsLoading = true;
+                GlobalLoading.Instance.IsLoading = true;
 
                 ReloadTask();
                 loadedDetails = true;
@@ -105,7 +70,7 @@ namespace Milkman
                 CurrentTask = App.RtmClient.GetTask(taskId);
             }
 
-            IsLoading = false;
+            GlobalLoading.Instance.IsLoading = false;
         }
 
         #endregion
@@ -114,9 +79,9 @@ namespace Milkman
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!IsLoading)
+            if (!GlobalLoading.Instance.IsLoading)
             {
-                IsLoading = true;
+                GlobalLoading.Instance.IsLoading = true;
 
                 // add note
                 SmartDispatcher.BeginInvoke(() =>
@@ -129,7 +94,7 @@ namespace Milkman
                         {
                             Dispatcher.BeginInvoke(() =>
                             {
-                                IsLoading = false;
+                                GlobalLoading.Instance.IsLoading = false;
                                 NavigationService.GoBack();
                             });
                         });

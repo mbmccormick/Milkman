@@ -22,36 +22,7 @@ namespace Milkman
 {
     public partial class TaskListByLocationPage : PhoneApplicationPage
     {
-        #region IsLoading Property
-
         public static bool sReload = false;
-
-        public static readonly DependencyProperty IsLoadingProperty =
-            DependencyProperty.Register("IsLoading", typeof(bool), typeof(TaskListByLocationPage),
-                new PropertyMetadata((bool)false));
-
-        public bool IsLoading
-        {
-            get
-            {
-                return (bool)GetValue(IsLoadingProperty);
-            }
-
-            set
-            {
-                try
-                {
-                    SetValue(IsLoadingProperty, value);
-                    if (progressIndicator != null)
-                        progressIndicator.IsIndeterminate = value;
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-        }
-
-        #endregion
 
         #region Task List Property
 
@@ -67,8 +38,6 @@ namespace Milkman
         #endregion
 
         #region Construction and Navigation
-
-        ProgressIndicator progressIndicator;
 
         GeoCoordinateWatcher watcher;
         GeoCoordinate currentLocation;
@@ -162,17 +131,13 @@ namespace Milkman
         {
             Dispatcher.BeginInvoke(() =>
             {
-                IsLoading = false;
+                GlobalLoading.Instance.IsLoading = false;
             });
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
-
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
 
             AppSettings settings = new AppSettings();
 
@@ -226,7 +191,7 @@ namespace Milkman
                     {
                         SmartDispatcher.BeginInvoke(() =>
                         {
-                            this.IsLoading = true;
+                            GlobalLoading.Instance.IsLoading = true;
                         });
 
                         App.RtmClient.SyncEverything(() =>
@@ -261,7 +226,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                IsLoading = true;
+                GlobalLoading.Instance.IsLoading = true;
 
                 string id;
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
@@ -302,7 +267,7 @@ namespace Milkman
                     ToggleLoadingText();
                     ToggleEmptyText();
 
-                    IsLoading = false;
+                    GlobalLoading.Instance.IsLoading = false;
                 }
             });
         }
@@ -366,7 +331,7 @@ namespace Milkman
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
-            if (IsLoading) return;
+            if (GlobalLoading.Instance.IsLoading) return;
 
             string messageBoxText = null;
             if (this.lstTasks.SelectedItems.Count == 1)
@@ -388,7 +353,7 @@ namespace Milkman
 
         private void btnPostpone_Click(object sender, EventArgs e)
         {
-            if (IsLoading) return;
+            if (GlobalLoading.Instance.IsLoading) return;
 
             string messageBoxText = null;
             if (this.lstTasks.SelectedItems.Count == 1)
@@ -410,7 +375,7 @@ namespace Milkman
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (IsLoading) return;
+            if (GlobalLoading.Instance.IsLoading) return;
 
             string messageBoxText = null;
             if (this.lstTasks.SelectedItems.Count == 1)
@@ -509,7 +474,7 @@ namespace Milkman
 
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (IsLoading) return;
+            if (GlobalLoading.Instance.IsLoading) return;
 
             Task item = ((FrameworkElement)sender).DataContext as Task;
 
@@ -668,7 +633,7 @@ namespace Milkman
 
         private void AddTask(string smartAddText)
         {
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
 
             string input = smartAddText;
             if (input.Contains('#') == false)
@@ -682,7 +647,7 @@ namespace Milkman
             {
                 Dispatcher.BeginInvoke(() =>
                 {
-                    IsLoading = false;
+                    GlobalLoading.Instance.IsLoading = false;
                 });
 
                 sReload = true;
@@ -692,14 +657,14 @@ namespace Milkman
 
         private void CompleteTask(Task data)
         {
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
             data.Complete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
                 {
                     Dispatcher.BeginInvoke(() =>
                     {
-                        IsLoading = false;
+                        GlobalLoading.Instance.IsLoading = false;
                     });
 
                     sReload = true;
@@ -710,14 +675,14 @@ namespace Milkman
 
         private void PostponeTask(Task data)
         {
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
             data.Postpone(() =>
             {
                 App.RtmClient.CacheTasks(() =>
                 {
                     Dispatcher.BeginInvoke(() =>
                     {
-                        IsLoading = false;
+                        GlobalLoading.Instance.IsLoading = false;
                     });
 
                     sReload = true;
@@ -728,14 +693,14 @@ namespace Milkman
 
         private void DeleteTask(Task data)
         {
-            IsLoading = true;
+            GlobalLoading.Instance.IsLoading = true;
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
                 {
                     Dispatcher.BeginInvoke(() =>
                     {
-                        IsLoading = false;
+                        GlobalLoading.Instance.IsLoading = false;
                     });
 
                     sReload = true;

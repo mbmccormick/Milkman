@@ -20,36 +20,7 @@ namespace Milkman
 {
     public partial class EditNotePage : PhoneApplicationPage
     {
-        #region IsLoading Property
-
-        public static readonly DependencyProperty IsLoadingProperty =
-            DependencyProperty.Register("IsLoading", typeof(bool), typeof(EditNotePage),
-                new PropertyMetadata((bool)false));
-
         private bool loadedDetails = false;
-
-        public bool IsLoading
-        {
-            get
-            {
-                return (bool)GetValue(IsLoadingProperty);
-            }
-
-            set
-            {
-                try
-                {
-                    SetValue(IsLoadingProperty, value);
-                    if (progressIndicator != null)
-                        progressIndicator.IsIndeterminate = value;
-                }
-                catch (Exception ex)
-                {
-                }
-            }
-        }
-
-        #endregion
 
         #region Task Property
 
@@ -59,8 +30,6 @@ namespace Milkman
         #endregion
 
         #region Construction and Navigation
-
-        ProgressIndicator progressIndicator;
 
         public EditNotePage()
         {
@@ -72,19 +41,15 @@ namespace Milkman
         {
             Dispatcher.BeginInvoke(() =>
             {
-                IsLoading = false;
+                GlobalLoading.Instance.IsLoading = false;
             });
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            progressIndicator = new ProgressIndicator();
-            progressIndicator.IsVisible = true;
-            SystemTray.ProgressIndicator = progressIndicator;
-
             if (!loadedDetails)
             {
-                IsLoading = true;
+                GlobalLoading.Instance.IsLoading = true;
 
                 ReloadNote();
                 loadedDetails = true;
@@ -119,7 +84,7 @@ namespace Milkman
                 }
             }
 
-            IsLoading = false;
+            GlobalLoading.Instance.IsLoading = false;
         }
 
         #endregion
@@ -128,9 +93,9 @@ namespace Milkman
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!IsLoading)
+            if (!GlobalLoading.Instance.IsLoading)
             {
-                IsLoading = true;
+                GlobalLoading.Instance.IsLoading = true;
 
                 // edit note
                 SmartDispatcher.BeginInvoke(() =>
@@ -141,7 +106,7 @@ namespace Milkman
                     {
                         Dispatcher.BeginInvoke(() =>
                         {
-                            IsLoading = false;
+                            GlobalLoading.Instance.IsLoading = false;
                             NavigationService.GoBack();
                         });
                     });
@@ -159,11 +124,11 @@ namespace Milkman
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (!IsLoading)
+            if (!GlobalLoading.Instance.IsLoading)
             {
                 if (MessageBox.Show("Are you sure you want to delete this note?", "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
-                    IsLoading = true;
+                    GlobalLoading.Instance.IsLoading = true;
 
                     // delete note
                     SmartDispatcher.BeginInvoke(() =>
@@ -174,7 +139,7 @@ namespace Milkman
                             {
                                 Dispatcher.BeginInvoke(() =>
                                 {
-                                    IsLoading = false;
+                                    GlobalLoading.Instance.IsLoading = false;
                                     NavigationService.GoBack();
                                 });
                             });
