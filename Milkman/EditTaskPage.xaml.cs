@@ -208,7 +208,7 @@ namespace Milkman
         {
             if (!GlobalLoading.Instance.IsLoading)
             {
-                GlobalLoading.Instance.IsLoadingText("Loading...");
+                GlobalLoading.Instance.IsLoadingText("Saving task...");
 
                 // change name
                 SmartDispatcher.BeginInvoke(() =>

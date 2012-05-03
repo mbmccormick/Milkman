@@ -249,7 +249,7 @@ namespace Milkman
 
         private void CompleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText("Completing task...");
             data.Complete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -261,7 +261,7 @@ namespace Milkman
                         if (this.NavigationService.CanGoBack)
                             this.NavigationService.GoBack();
                         else
-                            NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml", UriKind.Relative));
+                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
                     });
                 });
             });
@@ -269,7 +269,7 @@ namespace Milkman
 
         private void PostponeTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText("Postponing task...");
             data.Postpone(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -285,7 +285,7 @@ namespace Milkman
 
         private void DeleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText("Deleting task...");
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -297,7 +297,7 @@ namespace Milkman
                         if (this.NavigationService.CanGoBack)
                             this.NavigationService.GoBack();
                         else
-                            NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml", UriKind.Relative));
+                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
                     });
                 });
             });
@@ -305,7 +305,7 @@ namespace Milkman
 
         private void DeleteNote(TaskNote data)
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText("Deleting note...");
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
