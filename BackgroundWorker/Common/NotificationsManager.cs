@@ -130,5 +130,26 @@ namespace BackgroundWorker.Common
                 tile.Update(data);
             }
         }
+
+        public static void ClearNotifications()
+        {
+            // remove live tiles
+            foreach (ShellTile tile in ShellTile.ActiveTiles)
+            {
+                if (tile.NavigationUri.ToString() == "/")
+                {
+                    StandardTileData data = new StandardTileData();
+
+                    data.BackTitle = null;
+                    data.BackContent = null;
+
+                    tile.Update(data);
+                }
+                else
+                {
+                    tile.Delete();
+                }
+            }
+        }
     }
 }

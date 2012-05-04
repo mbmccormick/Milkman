@@ -38,7 +38,7 @@
                 </toolkit:MultiselectList.ItemContainerStyle>
                 <toolkit:MultiselectList.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="-12,-12,0,0" Tap="ItemContent_Tap">
+                        <Grid Margin="-12,-12,24,0" Tap="ItemContent_Tap">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width="212"/>
@@ -49,9 +49,9 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="{StaticResource PhoneForegroundBrush}" Loaded="TaskName_Loaded" />
+                            <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="NoWrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="{StaticResource PhoneForegroundBrush}" Loaded="TaskName_Loaded" />
                             <TextBlock Text="{Binding LocationName}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskLocationName_Loaded" />
-                            <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,48,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" Loaded="TaskDistance_Loaded" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" Loaded="TaskDistance_Loaded" />
 
                             <toolkit:ContextMenuService.ContextMenu>
                                 <toolkit:ContextMenu>

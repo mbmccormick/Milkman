@@ -177,5 +177,37 @@ namespace Milkman.Common
                 tile.Update(data);
             }
         }
+
+        public static void ClearNotifications()
+        {
+            try
+            {
+                // delete all existing reminders
+                foreach (var item in ScheduledActionService.GetActions<Reminder>())
+                    ScheduledActionService.Remove(item.Name);
+            }
+            catch (Exception ex)
+            {
+                // do nothing
+            }
+
+            // remove live tiles
+            foreach (ShellTile tile in ShellTile.ActiveTiles)
+            {
+                if (tile.NavigationUri.ToString() == "/")
+                {
+                    StandardTileData data = new StandardTileData();
+
+                    data.BackTitle = null;
+                    data.BackContent = null;
+
+                    tile.Update(data);
+                }
+                else
+                {
+                    tile.Delete();
+                }
+            }
+        }
     }
 }

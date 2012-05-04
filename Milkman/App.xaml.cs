@@ -109,6 +109,8 @@ namespace Milkman
             ListsResponse = null;
             TasksResponse = null;
 
+            NotificationsManager.ClearNotifications();
+
             if (ScheduledActionService.Find("BackgroundWorker") != null)
                 ScheduledActionService.Remove("BackgroundWorker");
 
