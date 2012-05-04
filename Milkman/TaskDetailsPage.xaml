@@ -63,7 +63,7 @@
                             <TextBlock Text="{Binding PostponedString}" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                         </Grid>
 
-                        <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="0" />
+                        <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,0,0,0" />
                     </Grid>
                 </ScrollViewer>
             </controls:PivotItem>
