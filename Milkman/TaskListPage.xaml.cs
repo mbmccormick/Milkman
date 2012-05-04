@@ -21,7 +21,7 @@ namespace Milkman
 {
     public partial class TaskListPage : PhoneApplicationPage
     {
-        public static bool sReload = false;
+        public static bool sReload = true;
 
         #region Task List Property
 
