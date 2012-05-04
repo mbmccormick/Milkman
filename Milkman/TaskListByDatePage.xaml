@@ -45,6 +45,14 @@
                                     <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,48,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
                                     <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,48,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
@@ -52,14 +60,6 @@
 
                     <TextBlock x:Name="txtAllLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtAllEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-
-                    <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu>
-                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
-                        </toolkit:ContextMenu>
-                    </toolkit:ContextMenuService.ContextMenu>
                 </Grid>
             </controls:PivotItem>
 
@@ -88,6 +88,14 @@
                                     <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,48,6" Style="{StaticResource PhoneTextSubtleStyle}" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
                                     <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,48,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
@@ -95,14 +103,6 @@
 
                     <TextBlock x:Name="txtTodayLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtTodayEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-
-                    <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu>
-                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
-                        </toolkit:ContextMenu>
-                    </toolkit:ContextMenuService.ContextMenu>
                 </Grid>
             </controls:PivotItem>
 
@@ -131,6 +131,14 @@
                                     <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,48,6" Style="{StaticResource PhoneTextSubtleStyle}" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
                                     <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,48,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
@@ -138,14 +146,6 @@
 
                     <TextBlock x:Name="txtTomorrowLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtTomorrowEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-
-                    <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu>
-                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
-                        </toolkit:ContextMenu>
-                    </toolkit:ContextMenuService.ContextMenu>
                 </Grid>
             </controls:PivotItem>
 
@@ -174,6 +174,14 @@
                                     <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,48,6" Style="{StaticResource PhoneTextSubtleStyle}" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
                                     <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,48,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
@@ -182,13 +190,6 @@
                     <TextBlock x:Name="txtOverdueLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtOverdueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
-                    <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu>
-                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
-                        </toolkit:ContextMenu>
-                    </toolkit:ContextMenuService.ContextMenu>
                 </Grid>
             </controls:PivotItem>
 
@@ -217,6 +218,14 @@
                                     <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,48,6" Style="{StaticResource PhoneTextSubtleStyle}" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
                                     <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,48,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+
+                                    <toolkit:ContextMenuService.ContextMenu>
+                                        <toolkit:ContextMenu>
+                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                        </toolkit:ContextMenu>
+                                    </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
                             </DataTemplate>
                         </toolkit:MultiselectList.ItemTemplate>
@@ -225,13 +234,6 @@
                     <TextBlock x:Name="txtWeekLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtWeekEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
 
-                    <toolkit:ContextMenuService.ContextMenu>
-                        <toolkit:ContextMenu>
-                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
-                        </toolkit:ContextMenu>
-                    </toolkit:ContextMenuService.ContextMenu>
                 </Grid>
             </controls:PivotItem>
         </toolkit:LockablePivot>
