@@ -78,7 +78,7 @@ namespace Milkman
 
                 App.RtmClient.SyncEverything(() =>
                 {
-                    ReloadTask();
+                    LoadData();
                 });
 
                 loadedDetails = true;
@@ -91,97 +91,110 @@ namespace Milkman
 
         #region Loading Data
 
-        private void ReloadTask()
+        private void LoadData()
         {
-            // load task
-            string id;
-            if (NavigationContext.QueryString.TryGetValue("id", out id))
+            SmartDispatcher.BeginInvoke(() =>
             {
-                // bind lists list picker
-                if (TaskLists.Count == 0)
+                string id;
+                if (NavigationContext.QueryString.TryGetValue("id", out id))
                 {
-                    TaskLists.Clear();
-                    foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
+                    // bind lists list picker
+                    if (TaskLists.Count == 0)
                     {
-                        TaskLists.Add(l);
+                        TaskLists.Clear();
+                        foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
+                        {
+                            TaskLists.Add(l);
+                        }
                     }
+
+                    this.lstList.ItemsSource = TaskLists;
+
+                    // bind locations list picker
+                    if (TaskLocations.Count == 0)
+                    {
+                        TaskLocations.Clear();
+                        TaskLocations.Add(new Location("none"));
+                        foreach (Location l in App.RtmClient.Locations)
+                        {
+                            TaskLocations.Add(l);
+                        }
+                    }
+
+                    this.lstLocation.ItemsSource = TaskLocations;
+
+                    CurrentTask = App.RtmClient.GetTask(id);
+
+                    // name
+                    if (CurrentTask.Name != null)
+                        this.txtName.Text = CurrentTask.Name;
+
+                    // due date
+                    if (CurrentTask.DueDateTime.HasValue)
+                    {
+                        if (CurrentTask.HasDueTime)
+                        {
+                            this.dtpDueDate.Value = CurrentTask.DueDateTime;
+                            this.dtpDueTime.Value = CurrentTask.DueDateTime;
+                            this.lstDueDate.SelectedIndex = 2;
+                        }
+                        else
+                        {
+                            this.dtpDueDateNoTime.Value = CurrentTask.DueDateTime;
+                            this.lstDueDate.SelectedIndex = 1;
+                        }
+                    }
+
+                    // priority
+                    switch (CurrentTask.Priority)
+                    {
+                        case TaskPriority.One:
+                            this.lstPriority.SelectedIndex = 1;
+                            break;
+                        case TaskPriority.Two:
+                            this.lstPriority.SelectedIndex = 2;
+                            break;
+                        case TaskPriority.Three:
+                            this.lstPriority.SelectedIndex = 3;
+                            break;
+                    }
+
+                    // list
+                    if (CurrentTask.Parent != null &&
+                        this.lstList.Items.Contains(CurrentTask.Parent))
+                        this.lstList.SelectedItem = CurrentTask.Parent;
+
+                    // tags
+                    if (CurrentTask.TagsString != null)
+                        this.txtTags.Text = CurrentTask.TagsString;
+
+                    // repeat
+                    if (CurrentTask.Recurrence != null)
+                        this.txtRepeat.Text = CurrentTask.Recurrence;
+
+                    // estimate
+                    if (CurrentTask.Estimate != null)
+                        this.txtEstimate.Text = CurrentTask.Estimate;
+
+                    // location
+                    if (CurrentTask.Location != null &&
+                        this.lstLocation.Items.Contains(CurrentTask.Location))
+                        this.lstLocation.SelectedItem = CurrentTask.Location;
+
+                    ToggleLoadingText();
                 }
 
-                this.lstList.ItemsSource = TaskLists;
+                GlobalLoading.Instance.IsLoading = false;
+            });
+        }
 
-                // bind locations list picker
-                if (TaskLocations.Count == 0)
-                {
-                    TaskLocations.Clear();
-                    TaskLocations.Add(new Location("none"));
-                    foreach (Location l in App.RtmClient.Locations)
-                    {
-                        TaskLocations.Add(l);
-                    }
-                }
-
-                this.lstLocation.ItemsSource = TaskLocations;
-
-                CurrentTask = App.RtmClient.GetTask(id);
-
-                // name
-                if (CurrentTask.Name != null)
-                    this.txtName.Text = CurrentTask.Name;
-
-                // due date
-                if (CurrentTask.DueDateTime.HasValue)
-                {
-                    if (CurrentTask.HasDueTime)
-                    {
-                        this.dtpDueDate.Value = CurrentTask.DueDateTime;
-                        this.dtpDueTime.Value = CurrentTask.DueDateTime;
-                        this.lstDueDate.SelectedIndex = 2;
-                    }
-                    else
-                    {
-                        this.dtpDueDateNoTime.Value = CurrentTask.DueDateTime;
-                        this.lstDueDate.SelectedIndex = 1;
-                    }
-                }
-
-                // priority
-                switch (CurrentTask.Priority)
-                {
-                    case TaskPriority.One:
-                        this.lstPriority.SelectedIndex = 1;
-                        break;
-                    case TaskPriority.Two:
-                        this.lstPriority.SelectedIndex = 2;
-                        break;
-                    case TaskPriority.Three:
-                        this.lstPriority.SelectedIndex = 3;
-                        break;
-                }
-
-                // list
-                if (CurrentTask.Parent != null &&
-                    this.lstList.Items.Contains(CurrentTask.Parent))
-                    this.lstList.SelectedItem = CurrentTask.Parent;
-
-                // tags
-                if (CurrentTask.TagsString != null)
-                    this.txtTags.Text = CurrentTask.TagsString;
-
-                // repeat
-                if (CurrentTask.Recurrence != null)
-                    this.txtRepeat.Text = CurrentTask.Recurrence;
-
-                // estimate
-                if (CurrentTask.Estimate != null)
-                    this.txtEstimate.Text = CurrentTask.Estimate;
-
-                // location
-                if (CurrentTask.Location != null &&
-                    this.lstLocation.Items.Contains(CurrentTask.Location))
-                    this.lstLocation.SelectedItem = CurrentTask.Location;
-            }
-
-            GlobalLoading.Instance.IsLoading = false;
+        private void ToggleLoadingText()
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.grdTaskDetails.Visibility = System.Windows.Visibility.Visible;
+            });
         }
 
         #endregion

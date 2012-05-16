@@ -30,89 +30,93 @@
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,0,0">
             <Grid x:Name="ContentPanel" Margin="0,0,12,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"/>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBox x:Name="txtName" Margin="-12,-12,0,12" Grid.Row="0" Grid.Column="1" InputScope="Text" />
-
-                <TextBlock Text="Due Date" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <toolkit:ListPicker x:Name="lstDueDate" Margin="0,-12,12,24" Grid.Row="1" Grid.Column="1" SelectionChanged="lstDueDate_SelectionChanged">
-                    <toolkit:ListPickerItem Content="none" />
-                    <toolkit:ListPickerItem Content="date" />
-                    <toolkit:ListPickerItem Content="date &amp; time" />
-                </toolkit:ListPicker>
-                
-                <toolkit:DatePicker Name="dtpDueDateNoTime" Grid.Row="2" Grid.Column="1" Margin="-12,-24,0,12" Visibility="Collapsed" />
-                <Grid Name="dtpDueDateTime" Grid.Row="2" Grid.Column="1" Visibility="Collapsed">
+                <Grid x:Name="grdTaskDetails" Margin="0" Visibility="Collapsed">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <toolkit:DatePicker Name="dtpDueDate" Grid.Column="0" Margin="-12,-24,0,12" />
-                    <toolkit:TimePicker Name="dtpDueTime" Grid.Column="1" Margin="-12,-24,0,12" />
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    <TextBox x:Name="txtName" Margin="-12,-12,0,12" Grid.Row="0" Grid.Column="1" InputScope="Text" />
+
+                    <TextBlock Text="Due Date" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    <toolkit:ListPicker x:Name="lstDueDate" Margin="0,-12,12,24" Grid.Row="1" Grid.Column="1" SelectionChanged="lstDueDate_SelectionChanged">
+                        <toolkit:ListPickerItem Content="none" />
+                        <toolkit:ListPickerItem Content="date" />
+                        <toolkit:ListPickerItem Content="date &amp; time" />
+                    </toolkit:ListPicker>
+
+                    <toolkit:DatePicker Name="dtpDueDateNoTime" Grid.Row="2" Grid.Column="1" Margin="-12,-24,0,12" Visibility="Collapsed" />
+                    <Grid Name="dtpDueDateTime" Grid.Row="2" Grid.Column="1" Visibility="Collapsed">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <toolkit:DatePicker Name="dtpDueDate" Grid.Column="0" Margin="-12,-24,0,12" />
+                        <toolkit:TimePicker Name="dtpDueTime" Grid.Column="1" Margin="-12,-24,0,12" />
+                    </Grid>
+
+                    <TextBlock Text="Priority" Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    <toolkit:ListPicker x:Name="lstPriority" Margin="0,-12,12,24" Grid.Row="3" Grid.Column="1">
+                        <toolkit:ListPickerItem Content="none" />
+                        <toolkit:ListPickerItem Content="1" />
+                        <toolkit:ListPickerItem Content="2" />
+                        <toolkit:ListPickerItem Content="3" />
+                    </toolkit:ListPicker>
+
+                    <TextBlock Text="List" Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    <toolkit:ListPicker x:Name="lstList" Margin="0,-12,12,24" Grid.Row="4" Grid.Column="1" FullModeHeader="List">
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+
+                        <toolkit:ListPicker.FullModeItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" Margin="0,12,12,12" />
+                            </DataTemplate>
+                        </toolkit:ListPicker.FullModeItemTemplate>
+                    </toolkit:ListPicker>
+
+                    <TextBlock Text="Tags" Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    <TextBox x:Name="txtTags" Margin="-12,-12,0,12" Grid.Row="5" Grid.Column="1" InputScope="Text" />
+
+                    <TextBlock Text="Repeat" Grid.Row="6" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    <TextBox x:Name="txtRepeat" Margin="-12,-12,0,12" Grid.Row="6" Grid.Column="1" InputScope="Text" />
+
+                    <TextBlock Text="Estimate" Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    <TextBox x:Name="txtEstimate" Margin="-12,-12,0,12" Grid.Row="7" Grid.Column="1" InputScope="Text" />
+
+                    <TextBlock Text="Location" Grid.Row="8" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                    <toolkit:ListPicker x:Name="lstLocation" Margin="0,-12,12,24" Grid.Row="8" Grid.Column="1" FullModeHeader="Location">
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+
+                        <toolkit:ListPicker.FullModeItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" Margin="0,12,12,24" />
+                            </DataTemplate>
+                        </toolkit:ListPicker.FullModeItemTemplate>
+                    </toolkit:ListPicker>
                 </Grid>
 
-                <TextBlock Text="Priority" Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <toolkit:ListPicker x:Name="lstPriority" Margin="0,-12,12,24" Grid.Row="3" Grid.Column="1">
-                    <toolkit:ListPickerItem Content="none" />
-                    <toolkit:ListPickerItem Content="1" />
-                    <toolkit:ListPickerItem Content="2" />
-                    <toolkit:ListPickerItem Content="3" />
-                </toolkit:ListPicker>
-
-                <TextBlock Text="List" Grid.Row="4" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <toolkit:ListPicker x:Name="lstList" Margin="0,-12,12,24" Grid.Row="4" Grid.Column="1" FullModeHeader="List">
-                    <toolkit:ListPicker.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" />
-                        </DataTemplate>
-                    </toolkit:ListPicker.ItemTemplate>
-
-                    <toolkit:ListPicker.FullModeItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" Margin="0,12,12,12" />
-                        </DataTemplate>
-                    </toolkit:ListPicker.FullModeItemTemplate>
-                </toolkit:ListPicker>
-
-                <TextBlock Text="Tags" Grid.Row="5" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBox x:Name="txtTags" Margin="-12,-12,0,12" Grid.Row="5" Grid.Column="1" InputScope="Text" />
-
-                <TextBlock Text="Repeat" Grid.Row="6" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBox x:Name="txtRepeat" Margin="-12,-12,0,12" Grid.Row="6" Grid.Column="1" InputScope="Text" />
-
-                <TextBlock Text="Estimate" Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <TextBox x:Name="txtEstimate" Margin="-12,-12,0,12" Grid.Row="7" Grid.Column="1" InputScope="Text" />
-
-                <TextBlock Text="Location" Grid.Row="8" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                <toolkit:ListPicker x:Name="lstLocation" Margin="0,-12,12,24" Grid.Row="8" Grid.Column="1" FullModeHeader="Location">
-                    <toolkit:ListPicker.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" />
-                        </DataTemplate>
-                    </toolkit:ListPicker.ItemTemplate>
-
-                    <toolkit:ListPicker.FullModeItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilySemiLight}" Margin="0,12,12,24" />
-                        </DataTemplate>
-                    </toolkit:ListPicker.FullModeItemTemplate>
-                </toolkit:ListPicker>
+                <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,0,12,0" />
             </Grid>
         </ScrollViewer>
     </Grid>
