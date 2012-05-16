@@ -76,7 +76,11 @@ namespace Milkman
             {
                 GlobalLoading.Instance.IsLoadingText("Loading...");
 
-                ReloadTask();
+                App.RtmClient.SyncEverything(() =>
+                {
+                    ReloadTask();
+                });
+
                 loadedDetails = true;
             }
 
@@ -89,35 +93,35 @@ namespace Milkman
 
         private void ReloadTask()
         {
-            // bind lists list picker
-            if (TaskLists.Count == 0)
-            {
-                TaskLists.Clear();
-                foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
-                {
-                    TaskLists.Add(l);
-                }
-            }
-
-            this.lstList.ItemsSource = TaskLists;
-
-            // bind locations list picker
-            if (TaskLocations.Count == 0)
-            {
-                TaskLocations.Clear();
-                TaskLocations.Add(new Location("none"));
-                foreach (Location l in App.RtmClient.Locations)
-                {
-                    TaskLocations.Add(l);
-                }
-            }
-
-            this.lstLocation.ItemsSource = TaskLocations;
-
             // load task
             string id;
             if (NavigationContext.QueryString.TryGetValue("id", out id))
             {
+                // bind lists list picker
+                if (TaskLists.Count == 0)
+                {
+                    TaskLists.Clear();
+                    foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
+                    {
+                        TaskLists.Add(l);
+                    }
+                }
+
+                this.lstList.ItemsSource = TaskLists;
+
+                // bind locations list picker
+                if (TaskLocations.Count == 0)
+                {
+                    TaskLocations.Clear();
+                    TaskLocations.Add(new Location("none"));
+                    foreach (Location l in App.RtmClient.Locations)
+                    {
+                        TaskLocations.Add(l);
+                    }
+                }
+
+                this.lstLocation.ItemsSource = TaskLocations;
+
                 CurrentTask = App.RtmClient.GetTask(id);
 
                 // name
@@ -155,14 +159,15 @@ namespace Milkman
                 }
 
                 // list
-                if (CurrentTask.Parent != null)
+                if (CurrentTask.Parent != null &&
+                    this.lstList.Items.Contains(CurrentTask.Parent))
                     this.lstList.SelectedItem = CurrentTask.Parent;
 
                 // tags
                 if (CurrentTask.TagsString != null)
                     this.txtTags.Text = CurrentTask.TagsString;
 
-                // reepeat
+                // repeat
                 if (CurrentTask.Recurrence != null)
                     this.txtRepeat.Text = CurrentTask.Recurrence;
 
@@ -171,7 +176,8 @@ namespace Milkman
                     this.txtEstimate.Text = CurrentTask.Estimate;
 
                 // location
-                if (CurrentTask.Location != null)
+                if (CurrentTask.Location != null &&
+                    this.lstLocation.Items.Contains(CurrentTask.Location))
                     this.lstLocation.SelectedItem = CurrentTask.Location;
             }
 
