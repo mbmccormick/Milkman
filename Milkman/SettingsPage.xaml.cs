@@ -27,25 +27,53 @@ namespace Milkman
 
             Binding binding;
 
-            binding = new Binding("AutomaticSyncEnabled");
-            binding.Mode = BindingMode.TwoWay;
-            binding.Source = settings;
-            this.togAutomaticSync.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+            try
+            {
+                binding = new Binding("AutomaticSyncEnabled");
+                binding.Mode = BindingMode.TwoWay;
+                binding.Source = settings;
+                this.togAutomaticSync.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.", "Error", MessageBoxButton.OK);
+            }
 
-            binding = new Binding("LightThemeEnabled");
-            binding.Mode = BindingMode.TwoWay;
-            binding.Source = settings;
-            this.togLightTheme.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+            try
+            {
+                binding = new Binding("LightThemeEnabled");
+                binding.Mode = BindingMode.TwoWay;
+                binding.Source = settings;
+                this.togLightTheme.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.", "Error", MessageBoxButton.OK);
+            }
 
-            binding = new Binding("TaskRemindersEnabled");
-            binding.Mode = BindingMode.TwoWay;
-            binding.Source = settings;
-            this.lstTaskReminders.SetBinding(ListPicker.SelectedIndexProperty, binding);
+            try
+            {
+                binding = new Binding("TaskRemindersEnabled");
+                binding.Mode = BindingMode.TwoWay;
+                binding.Source = settings;
+                this.lstTaskReminders.SetBinding(ListPicker.SelectedIndexProperty, binding);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.", "Error", MessageBoxButton.OK);
+            }
 
-            binding = new Binding("LocationServiceEnabled");
-            binding.Mode = BindingMode.TwoWay;
-            binding.Source = settings;
-            this.lstLocationService.SetBinding(ListPicker.SelectedIndexProperty, binding);
+            try
+            {
+                binding = new Binding("LocationServiceEnabled");
+                binding.Mode = BindingMode.TwoWay;
+                binding.Source = settings;
+                this.lstLocationService.SetBinding(ListPicker.SelectedIndexProperty, binding);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.", "Error", MessageBoxButton.OK);
+            }
         }
 
         private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
