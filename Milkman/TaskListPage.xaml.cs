@@ -43,6 +43,42 @@ namespace Milkman
             set { SetValue(AllTasksProperty, value); }
         }
 
+        public static readonly DependencyProperty TodayTasksProperty =
+               DependencyProperty.Register("TodayTasks", typeof(ObservableCollection<Task>), typeof(TaskListPage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> TodayTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(TodayTasksProperty); }
+            set { SetValue(TodayTasksProperty, value); }
+        }
+
+        public static readonly DependencyProperty TomorrowTasksProperty =
+               DependencyProperty.Register("TomorrowTasks", typeof(ObservableCollection<Task>), typeof(TaskListPage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> TomorrowTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(TomorrowTasksProperty); }
+            set { SetValue(TomorrowTasksProperty, value); }
+        }
+
+        public static readonly DependencyProperty OverdueTasksProperty =
+               DependencyProperty.Register("OverdueTasks", typeof(ObservableCollection<Task>), typeof(TaskListPage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> OverdueTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(OverdueTasksProperty); }
+            set { SetValue(OverdueTasksProperty, value); }
+        }
+
+        public static readonly DependencyProperty WeekTasksProperty =
+               DependencyProperty.Register("WeekTasks", typeof(ObservableCollection<Task>), typeof(TaskListPage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> WeekTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(WeekTasksProperty); }
+            set { SetValue(WeekTasksProperty, value); }
+        }
+
         #endregion
 
         #region Construction and Navigation
@@ -64,7 +100,7 @@ namespace Milkman
         public TaskListPage()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(TaskDetailsPage_Loaded);
+            this.Loaded += new RoutedEventHandler(TaskListPage_Loaded);
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             TiltEffect.TiltableItems.Add(typeof(MultiselectItem));
@@ -125,7 +161,7 @@ namespace Milkman
             signOut.Click += mnuSignOut_Click;
         }
 
-        private void TaskDetailsPage_Loaded(object sender, RoutedEventArgs e)
+        private void TaskListPage_Loaded(object sender, RoutedEventArgs e)
         {
         }
 
@@ -163,15 +199,27 @@ namespace Milkman
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
+            MultiselectList target = null;
+            if (this.pivLayout.SelectedIndex == 0)
+                target = this.lstAll;
+            else if (this.pivLayout.SelectedIndex == 1)
+                target = this.lstToday;
+            else if (this.pivLayout.SelectedIndex == 2)
+                target = this.lstTomorrow;
+            else if (this.pivLayout.SelectedIndex == 3)
+                target = this.lstOverdue;
+            else if (this.pivLayout.SelectedIndex == 4)
+                target = this.lstWeek;
+
             if (this.dlgAddTask.IsOpen)
             {
                 this.dlgAddTask.Close();
                 e.Cancel = true;
             }
 
-            if (this.lstTasks.IsSelectionEnabled)
+            if (target.IsSelectionEnabled)
             {
-                this.lstTasks.IsSelectionEnabled = false;
+                target.IsSelectionEnabled = false;
                 e.Cancel = true;
             }
 
@@ -235,7 +283,13 @@ namespace Milkman
                 {
                     CurrentList = App.RtmClient.TaskLists.SingleOrDefault<TaskList>(l => l.Id == id);
 
+                    this.pivLayout.Title = "MILKMAN - " + CurrentList.Name.ToUpper();
+
                     var tempAllTasks = new SortableObservableCollection<Task>();
+                    var tempTodayTasks = new SortableObservableCollection<Task>();
+                    var tempTomorrowTasks = new SortableObservableCollection<Task>();
+                    var tempOverdueTasks = new SortableObservableCollection<Task>();
+                    var tempWeekTasks = new SortableObservableCollection<Task>();
 
                     if (CurrentList.Tasks != null)
                     {
@@ -245,10 +299,37 @@ namespace Milkman
                                 t.IsDeleted == true) continue;
 
                             tempAllTasks.Add(t);
+
+                            if (t.DueDateTime.HasValue &&
+                                t.DueDateTime.Value.Date == DateTime.Now.Date)
+                            {
+                                tempTodayTasks.Add(t);
+                            }
+
+                            if (t.DueDateTime.HasValue &&
+                                t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1))
+                            {
+                                tempTomorrowTasks.Add(t);
+                            }
+
+                            if (t.IsLate == true)
+                            {
+                                tempOverdueTasks.Add(t);
+                            }
+
+                            if (t.DueDateTime.HasValue &&
+                                t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7))
+                            {
+                                tempWeekTasks.Add(t);
+                            }
                         }
                     }
 
                     AllTasks = tempAllTasks;
+                    TodayTasks = tempTodayTasks;
+                    TomorrowTasks = tempTomorrowTasks;
+                    OverdueTasks = tempOverdueTasks;
+                    WeekTasks = tempWeekTasks;
 
                     ToggleLoadingText();
                     ToggleEmptyText();
@@ -262,7 +343,11 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtAllLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtTodayLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtTomorrowLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtOverdueLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtWeekLoading.Visibility = System.Windows.Visibility.Collapsed;
             });
         }
 
@@ -271,9 +356,29 @@ namespace Milkman
             SmartDispatcher.BeginInvoke(() =>
             {
                 if (AllTasks.Count == 0)
-                    this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+                    this.txtAllEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
-                    this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                    this.txtAllEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (TodayTasks.Count == 0)
+                    this.txtTodayEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtTodayEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (TomorrowTasks.Count == 0)
+                    this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtTomorrowEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (OverdueTasks.Count == 0)
+                    this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtOverdueEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (WeekTasks.Count == 0)
+                    this.txtWeekEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtWeekEmpty.Visibility = System.Windows.Visibility.Collapsed;
             });
         }
 
@@ -296,7 +401,7 @@ namespace Milkman
                 if (this.NavigationService.CanGoBack)
                     this.NavigationService.GoBack();
                 else
-                    this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    this.NavigationService.Navigate(new Uri("/TaskListPage.xaml", UriKind.Relative));
             });
         }
 
@@ -312,28 +417,52 @@ namespace Milkman
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            this.lstTasks.IsSelectionEnabled = true;
+            MultiselectList target = null;
+            if (this.pivLayout.SelectedIndex == 0)
+                target = this.lstAll;
+            else if (this.pivLayout.SelectedIndex == 1)
+                target = this.lstToday;
+            else if (this.pivLayout.SelectedIndex == 2)
+                target = this.lstTomorrow;
+            else if (this.pivLayout.SelectedIndex == 3)
+                target = this.lstOverdue;
+            else if (this.pivLayout.SelectedIndex == 4)
+                target = this.lstWeek;
+
+            target.IsSelectionEnabled = true;
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            string messageBoxText = null;
-            if (this.lstTasks.SelectedItems.Count == 1)
+            MultiselectList target = null;
+            if (this.pivLayout.SelectedIndex == 0)
+                target = this.lstAll;
+            else if (this.pivLayout.SelectedIndex == 1)
+                target = this.lstToday;
+            else if (this.pivLayout.SelectedIndex == 2)
+                target = this.lstTomorrow;
+            else if (this.pivLayout.SelectedIndex == 3)
+                target = this.lstOverdue;
+            else if (this.pivLayout.SelectedIndex == 4)
+                target = this.lstWeek;
+
+            string messageBoxText;
+            if (target.SelectedItems.Count == 1)
                 messageBoxText = "Are you sure you want to mark the selected task as complete?";
             else
                 messageBoxText = "Are you sure you want to mark the selected tasks as complete?";
 
             if (MessageBox.Show(messageBoxText, "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                while (this.lstTasks.SelectedItems.Count > 0)
+                while (target.SelectedItems.Count > 0)
                 {
-                    CompleteTask((Task)this.lstTasks.SelectedItems[0]);
-                    this.lstTasks.SelectedItems.RemoveAt(0);
+                    CompleteTask((Task)target.SelectedItems[0]);
+                    target.SelectedItems.RemoveAt(0);
                 }
 
-                this.lstTasks.IsSelectionEnabled = false;
+                target.IsSelectionEnabled = false;
             }
         }
 
@@ -341,21 +470,33 @@ namespace Milkman
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            string messageBoxText = null;
-            if (this.lstTasks.SelectedItems.Count == 1)
+            MultiselectList target = null;
+            if (this.pivLayout.SelectedIndex == 0)
+                target = this.lstAll;
+            else if (this.pivLayout.SelectedIndex == 1)
+                target = this.lstToday;
+            else if (this.pivLayout.SelectedIndex == 2)
+                target = this.lstTomorrow;
+            else if (this.pivLayout.SelectedIndex == 3)
+                target = this.lstOverdue;
+            else if (this.pivLayout.SelectedIndex == 4)
+                target = this.lstWeek;
+
+            string messageBoxText;
+            if (target.SelectedItems.Count == 1)
                 messageBoxText = "Are you sure you want to postpone the selected task?";
             else
                 messageBoxText = "Are you sure you want to postpone the selected tasks?";
 
             if (MessageBox.Show(messageBoxText, "Postpone", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                while (this.lstTasks.SelectedItems.Count > 0)
+                while (target.SelectedItems.Count > 0)
                 {
-                    PostponeTask((Task)this.lstTasks.SelectedItems[0]);
-                    this.lstTasks.SelectedItems.RemoveAt(0);
+                    PostponeTask((Task)target.SelectedItems[0]);
+                    target.SelectedItems.RemoveAt(0);
                 }
 
-                this.lstTasks.IsSelectionEnabled = false;
+                target.IsSelectionEnabled = false;
             }
         }
 
@@ -363,21 +504,33 @@ namespace Milkman
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            string messageBoxText = null;
-            if (this.lstTasks.SelectedItems.Count == 1)
+            MultiselectList target = null;
+            if (this.pivLayout.SelectedIndex == 0)
+                target = this.lstAll;
+            else if (this.pivLayout.SelectedIndex == 1)
+                target = this.lstToday;
+            else if (this.pivLayout.SelectedIndex == 2)
+                target = this.lstTomorrow;
+            else if (this.pivLayout.SelectedIndex == 3)
+                target = this.lstOverdue;
+            else if (this.pivLayout.SelectedIndex == 4)
+                target = this.lstWeek;
+
+            string messageBoxText;
+            if (target.SelectedItems.Count == 1)
                 messageBoxText = "Are you sure you want to delete the selected task?";
             else
                 messageBoxText = "Are you sure you want to delete the selected tasks?";
 
             if (MessageBox.Show(messageBoxText, "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                while (this.lstTasks.SelectedItems.Count > 0)
+                while (target.SelectedItems.Count > 0)
                 {
-                    DeleteTask((Task)this.lstTasks.SelectedItems[0]);
-                    this.lstTasks.SelectedItems.RemoveAt(0);
+                    DeleteTask((Task)target.SelectedItems[0]);
+                    target.SelectedItems.RemoveAt(0);
                 }
 
-                this.lstTasks.IsSelectionEnabled = false;
+                target.IsSelectionEnabled = false;
             }
         }
 
@@ -431,6 +584,8 @@ namespace Milkman
 
             if ((bool)e.NewValue)
             {
+                this.pivLayout.IsLocked = true;
+
                 ApplicationBar.Buttons.Add(complete);
                 ApplicationBarIconButton i = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
                 i.IsEnabled = false;
@@ -445,6 +600,8 @@ namespace Milkman
             }
             else
             {
+                this.pivLayout.IsLocked = false;
+
                 ApplicationBar.Buttons.Add(dashboard);
                 ApplicationBar.Buttons.Add(add);
                 ApplicationBar.Buttons.Add(select);
@@ -594,16 +751,9 @@ namespace Milkman
             string input = smartAddText;
             if (input.Contains('#') == false)
             {
-                if (CurrentList.IsSmart == false)
-                {
-                    input = input + " #" + CurrentList.Name;
-                }
-                else
-                {
-                    TaskList defaultList = App.RtmClient.GetDefaultTaskList();
-                    if (defaultList.IsSmart == false)
-                        input = input + " #" + defaultList.Name;
-                }
+                TaskList defaultList = App.RtmClient.GetDefaultTaskList();
+                if (defaultList.IsSmart == false)
+                    input = input + " #" + defaultList.Name;
             }
 
             App.RtmClient.AddTask(input, true, null, () =>

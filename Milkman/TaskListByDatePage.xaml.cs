@@ -283,6 +283,8 @@ namespace Milkman
                 {
                     CurrentList = App.RtmClient.TaskLists.SingleOrDefault<TaskList>(l => l.Id == id);
 
+                    this.pivLayout.Title = CurrentList.Name.ToUpper();
+
                     var tempAllTasks = new SortableObservableCollection<Task>();
                     var tempTodayTasks = new SortableObservableCollection<Task>();
                     var tempTomorrowTasks = new SortableObservableCollection<Task>();
