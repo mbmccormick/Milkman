@@ -47,7 +47,7 @@ namespace Milkman
         {
             InitializeComponent();
             this.Loaded += new RoutedEventHandler(TaskDetailsPage_Loaded);
-            App.UnhandledExceptionHandled +=new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
+            App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             complete = new ApplicationBarIconButton();
             complete.IconUri = new Uri("/Resources/complete.png", UriKind.RelativeOrAbsolute);
@@ -90,7 +90,7 @@ namespace Milkman
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             GlobalLoading.Instance.IsLoadingText("Loading...");
-            
+
             if (e.IsNavigationInitiator &&
                 sReload == false)
             {
@@ -131,6 +131,13 @@ namespace Milkman
                         this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
                     else
                         this.txtName.Foreground = (SolidColorBrush)Resources["PhoneForegroundBrush"];
+
+                    // set due date
+                    if (CurrentTask.DueDateTime.HasValue &&
+                        CurrentTask.DueDateTime.Value.Date <= DateTime.Now.Date)
+                        this.txtDueDate.Foreground = (SolidColorBrush)Resources["PhoneAccentBrush"];
+                    else
+                        this.txtDueDate.Foreground = (SolidColorBrush)Resources["PhoneSubtleBrush"];
 
                     ToggleLoadingText();
                     ToggleEmptyText();

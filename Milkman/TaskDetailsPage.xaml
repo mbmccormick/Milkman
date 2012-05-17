@@ -42,7 +42,7 @@
                             <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
                                 <TextBlock x:Name="txtName" Text="{Binding Name}" TextWrapping="NoWrap" Margin="0" Style="{StaticResource PhoneTextExtraLargeStyle}" />
                             </ScrollViewer>
-                            <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+                            <TextBlock x:Name="txtDueDate" Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource PhoneSubtleBrush}"/>
 
                             <TextBlock Text="List" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
