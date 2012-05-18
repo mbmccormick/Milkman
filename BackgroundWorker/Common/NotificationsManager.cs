@@ -79,6 +79,7 @@ namespace BackgroundWorker.Common
 
                 string tasksListName = null;
                 int tasksDueToday = 0;
+                int tasksOverdue = 0;
 
                 if (tile.NavigationUri.ToString() == "/")
                 {
@@ -103,6 +104,8 @@ namespace BackgroundWorker.Common
                         tasksListName = "All Tasks";
                         tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                 z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                        tasksOverdue = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
+                                                               z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                     }
                 }
                 else
@@ -115,6 +118,8 @@ namespace BackgroundWorker.Common
                         tasksListName = list.Name;
                         tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
                                                               z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                        tasksOverdue = list.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                             z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                     }
                 }
 
@@ -126,6 +131,9 @@ namespace BackgroundWorker.Common
                     data.BackContent = tasksDueToday + " task due today";
                 else
                     data.BackContent = tasksDueToday + " tasks due today";
+
+                if (tasksOverdue > 0)
+                    data.BackContent += ", " + tasksOverdue + " overdue";
 
                 tile.Update(data);
             }

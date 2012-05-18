@@ -20,7 +20,7 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <toolkit:LockablePivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold">
-            <controls:PivotItem Header="all" Margin="12,12,0,0">
+            <controls:PivotItem Header="all" Margin="12,24,0,0">
                 <Grid Margin="0,12,0,0">
                     <toolkit:MultiselectList x:Name="lstAll" ItemsSource="{Binding AllTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
@@ -41,9 +41,9 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -83,9 +83,9 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -125,9 +125,9 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -167,9 +167,9 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -210,9 +210,9 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
                                     <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>

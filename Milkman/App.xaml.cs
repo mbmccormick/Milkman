@@ -55,6 +55,9 @@ namespace Milkman
 
             if (settings.LightThemeEnabled == true)
                 ThemeManager.ToLightTheme();
+
+            if (System.Diagnostics.Debugger.IsAttached)
+                MetroGridHelper.IsVisible = true;
         }
 
         public static void LoadData()
@@ -216,7 +219,7 @@ namespace Milkman
                     LittleWatson.CheckForPreviousException(false);
                 });
             }
-            
+
             e.Handled = true;
 
             if (UnhandledExceptionHandled != null)
