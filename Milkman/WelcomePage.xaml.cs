@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Milkman.Common;
 using Microsoft.Phone.Tasks;
+using Microsoft.Phone.Shell;
 
 namespace Milkman
 {
@@ -20,6 +21,19 @@ namespace Milkman
         public WelcomePage()
         {
             InitializeComponent();
+
+            // build application bar
+            ApplicationBarMenuItem about = new ApplicationBarMenuItem(Strings.AboutMenuLower);
+            about.Click += mnuAbout_Click;
+            ApplicationBar.MenuItems.Add(about);
+
+            ApplicationBarMenuItem feedback = new ApplicationBarMenuItem(Strings.FeedbackMenuLower);
+            feedback.Click += mnuFeedback_Click;
+            ApplicationBar.MenuItems.Add(feedback);
+
+            ApplicationBarMenuItem donate = new ApplicationBarMenuItem(Strings.DonateMenuLower);
+            donate.Click += mnuDonate_Click;
+            ApplicationBar.MenuItems.Add(donate);
         }
 
         private void stkSignIn_Tap(object sender, System.Windows.Input.GestureEventArgs e)

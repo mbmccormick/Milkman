@@ -100,6 +100,7 @@ namespace Milkman
         public TaskListByDatePage()
         {
             InitializeComponent();
+
             this.Loaded += new RoutedEventHandler(TaskListByDatePage_Loaded);
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
