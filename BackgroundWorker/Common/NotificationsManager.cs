@@ -116,10 +116,13 @@ namespace BackgroundWorker.Common
                         TaskList list = App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == id);
 
                         tasksListName = list.Name;
-                        tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                              z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-                        tasksOverdue = list.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                             z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                        if (list.Tasks != null)
+                        {
+                            tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                  z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                            tasksOverdue = list.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                 z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                        }
                     }
                 }
 
