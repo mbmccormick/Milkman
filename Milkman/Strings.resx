@@ -402,6 +402,15 @@
   <data name="WelcomeUpper" xml:space="preserve">
     <value>WELCOME</value>
   </data>
+  <data name="CompleteDialog" xml:space="preserve">
+    <value>Are you sure you want to mark this task as complete?</value>
+  </data>
+  <data name="CompleteDialogTitle" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="CompletingTask" xml:space="preserve">
+    <value>Completing task...</value>
+  </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
@@ -435,11 +444,29 @@
   <data name="DeleteNoteDialogTitle" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="DeleteTaskDialog" xml:space="preserve">
+    <value>Are you sure you want to delete this task?</value>
+  </data>
+  <data name="DeleteTaskDialogTitle" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="DeletingNote" xml:space="preserve">
     <value>Deleting note...</value>
   </data>
+  <data name="DeletingTask" xml:space="preserve">
+    <value>Deleting task...</value>
+  </data>
   <data name="DueDate" xml:space="preserve">
     <value>Due Date</value>
+  </data>
+  <data name="EditMenu" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditMenuLower" xml:space="preserve">
+    <value>edit</value>
+  </data>
+  <data name="EditMenuUpper" xml:space="preserve">
+    <value>EDIT</value>
   </data>
   <data name="EditNote" xml:space="preserve">
     <value>Edit Note</value>
@@ -458,6 +485,9 @@
   </data>
   <data name="EditTaskUpper" xml:space="preserve">
     <value>EDIT TASK</value>
+  </data>
+  <data name="EmptyNotes" xml:space="preserve">
+    <value>There are no notes for this task.</value>
   </data>
   <data name="Estimate" xml:space="preserve">
     <value>Estimate</value>
@@ -480,6 +510,36 @@
   <data name="NoneUpper" xml:space="preserve">
     <value>NONE</value>
   </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="NotesLower" xml:space="preserve">
+    <value>notes</value>
+  </data>
+  <data name="NotesUpper" xml:space="preserve">
+    <value>NOTES</value>
+  </data>
+  <data name="Postponed" xml:space="preserve">
+    <value>Postponed</value>
+  </data>
+  <data name="PostponeDialog" xml:space="preserve">
+    <value>Are you sure you want to postpone this task?</value>
+  </data>
+  <data name="PostponeDialogTitle" xml:space="preserve">
+    <value>Postpone</value>
+  </data>
+  <data name="PostponeMenu" xml:space="preserve">
+    <value>Postpone</value>
+  </data>
+  <data name="PostponeMenuLower" xml:space="preserve">
+    <value>postpone</value>
+  </data>
+  <data name="PostponeMenuUpper" xml:space="preserve">
+    <value>POSTPONE</value>
+  </data>
+  <data name="PostponingTask" xml:space="preserve">
+    <value>Postponing task...</value>
+  </data>
   <data name="Priority" xml:space="preserve">
     <value>Priority</value>
   </data>
@@ -494,5 +554,14 @@
   </data>
   <data name="Tags" xml:space="preserve">
     <value>Tags</value>
+  </data>
+  <data name="TaskDetails" xml:space="preserve">
+    <value>Task Details</value>
+  </data>
+  <data name="TaskDetailsLower" xml:space="preserve">
+    <value>task details</value>
+  </data>
+  <data name="TaskDetailsUpper" xml:space="preserve">
+    <value>TASK DETAILS</value>
   </data>
 </root>

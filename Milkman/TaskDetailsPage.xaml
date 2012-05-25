@@ -18,8 +18,8 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Pivot x:Name="pivLayout" Title="MILKMAN" FontWeight="Bold" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged">
-            <controls:PivotItem Header="task details" FontWeight="Normal" Margin="12,12,0,0">
+        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontWeight="Bold" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged">
+            <controls:PivotItem Header="{Binding Resources.TaskDetailsLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,12,0,0">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <Grid Margin="0,12,0,0">
                         <Grid x:Name="grdTaskDetails" Margin="12,0,12,0" Visibility="Collapsed">
@@ -44,31 +44,31 @@
                             </ScrollViewer>
                             <TextBlock x:Name="txtDueDate" Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource PhoneSubtleBrush}"/>
 
-                            <TextBlock Text="List" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.List, Source={StaticResource Strings}}" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
-                            <TextBlock Text="Tags" Grid.Row="3" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Tags, Source={StaticResource Strings}}" Grid.Row="3" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             <TextBlock Text="{Binding TagsString}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
-                            <TextBlock Text="Repeat" Grid.Row="4" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Repeat, Source={StaticResource Strings}}" Grid.Row="4" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             <TextBlock Text="{Binding Recurrence}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
-                            <TextBlock Text="Estimate" Grid.Row="5" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Estimate, Source={StaticResource Strings}}" Grid.Row="5" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             <TextBlock Text="{Binding Estimate}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
-                            <TextBlock Text="Location" Grid.Row="6" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Location, Source={StaticResource Strings}}" Grid.Row="6" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
-                            <TextBlock Text="Postponed" Grid.Row="7" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Postponed, Source={StaticResource Strings}}" Grid.Row="7" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             <TextBlock Text="{Binding PostponedString}" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                         </Grid>
 
-                        <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,0,12,0" />
+                        <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,0,12,0" />
                     </Grid>
                 </ScrollViewer>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="notes" FontWeight="Normal" Margin="12,12,0,0">
+            <controls:PivotItem Header="{Binding Resources.NotesLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,12,0,0">
                 <Grid Margin="0,12,0,0">
                     <ListBox x:Name="lstNotes" Margin="0" ItemsSource="{Binding Notes}">
                         <ListBox.ItemTemplate>
@@ -81,7 +81,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="There are no notes for this task." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>
@@ -89,22 +89,6 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="appbar_button1" 
-                                            IconUri="/Resources/complete.png" 
-                                            Text="complete"
-                                            Click="btnComplete_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" 
-                                            IconUri="/Resources/postpone.png" 
-                                            Text="postpone"
-                                            Click="btnPostpone_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button3" 
-                                            IconUri="/Resources/edit.png" 
-                                            Text="edit"
-                                            Click="btnEdit_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button4" 
-                                            IconUri="/Resources/delete.png" 
-                                            Text="delete"
-                                            Click="btnDelete_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

@@ -349,6 +349,24 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to mark this task as complete?.
+        /// </summary>
+        public static string CompleteDialog {
+            get {
+                return ResourceManager.GetString("CompleteDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        public static string CompleteDialogTitle {
+            get {
+                return ResourceManager.GetString("CompleteDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Complete.
         /// </summary>
         public static string CompleteMenu {
@@ -372,6 +390,15 @@ namespace Milkman {
         public static string CompleteMenuUpper {
             get {
                 return ResourceManager.GetString("CompleteMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completing task....
+        /// </summary>
+        public static string CompletingTask {
+            get {
+                return ResourceManager.GetString("CompletingTask", resourceCulture);
             }
         }
         
@@ -502,11 +529,38 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this task?.
+        /// </summary>
+        public static string DeleteTaskDialog {
+            get {
+                return ResourceManager.GetString("DeleteTaskDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteTaskDialogTitle {
+            get {
+                return ResourceManager.GetString("DeleteTaskDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleting note....
         /// </summary>
         public static string DeletingNote {
             get {
                 return ResourceManager.GetString("DeletingNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting task....
+        /// </summary>
+        public static string DeletingTask {
+            get {
+                return ResourceManager.GetString("DeletingTask", resourceCulture);
             }
         }
         
@@ -543,6 +597,33 @@ namespace Milkman {
         public static string DueDate {
             get {
                 return ResourceManager.GetString("DueDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EditMenu {
+            get {
+                return ResourceManager.GetString("EditMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to edit.
+        /// </summary>
+        public static string EditMenuLower {
+            get {
+                return ResourceManager.GetString("EditMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EDIT.
+        /// </summary>
+        public static string EditMenuUpper {
+            get {
+                return ResourceManager.GetString("EditMenuUpper", resourceCulture);
             }
         }
         
@@ -606,6 +687,15 @@ namespace Milkman {
         public static string EmptyDashboard {
             get {
                 return ResourceManager.GetString("EmptyDashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no notes for this task..
+        /// </summary>
+        public static string EmptyNotes {
+            get {
+                return ResourceManager.GetString("EmptyNotes", resourceCulture);
             }
         }
         
@@ -835,6 +925,33 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notes.
+        /// </summary>
+        public static string Notes {
+            get {
+                return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to notes.
+        /// </summary>
+        public static string NotesLower {
+            get {
+                return ResourceManager.GetString("NotesLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NOTES.
+        /// </summary>
+        public static string NotesUpper {
+            get {
+                return ResourceManager.GetString("NotesUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pin to Start.
         /// </summary>
         public static string PinToStart {
@@ -876,6 +993,69 @@ namespace Milkman {
         public static string PinToStartUpper {
             get {
                 return ResourceManager.GetString("PinToStartUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postponed.
+        /// </summary>
+        public static string Postponed {
+            get {
+                return ResourceManager.GetString("Postponed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to postpone this task?.
+        /// </summary>
+        public static string PostponeDialog {
+            get {
+                return ResourceManager.GetString("PostponeDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postpone.
+        /// </summary>
+        public static string PostponeDialogTitle {
+            get {
+                return ResourceManager.GetString("PostponeDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postpone.
+        /// </summary>
+        public static string PostponeMenu {
+            get {
+                return ResourceManager.GetString("PostponeMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to postpone.
+        /// </summary>
+        public static string PostponeMenuLower {
+            get {
+                return ResourceManager.GetString("PostponeMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to POSTPONE.
+        /// </summary>
+        public static string PostponeMenuUpper {
+            get {
+                return ResourceManager.GetString("PostponeMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Postponing task....
+        /// </summary>
+        public static string PostponingTask {
+            get {
+                return ResourceManager.GetString("PostponingTask", resourceCulture);
             }
         }
         
@@ -1137,6 +1317,33 @@ namespace Milkman {
         public static string Tags {
             get {
                 return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Task Details.
+        /// </summary>
+        public static string TaskDetails {
+            get {
+                return ResourceManager.GetString("TaskDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task details.
+        /// </summary>
+        public static string TaskDetailsLower {
+            get {
+                return ResourceManager.GetString("TaskDetailsLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TASK DETAILS.
+        /// </summary>
+        public static string TaskDetailsUpper {
+            get {
+                return ResourceManager.GetString("TaskDetailsUpper", resourceCulture);
             }
         }
         

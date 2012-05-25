@@ -46,37 +46,44 @@ namespace Milkman
         public TaskDetailsPage()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(TaskDetailsPage_Loaded);
+
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
+            this.BuildApplicationBar();
+        }
+
+        private void BuildApplicationBar()
+        {
             complete = new ApplicationBarIconButton();
             complete.IconUri = new Uri("/Resources/complete.png", UriKind.RelativeOrAbsolute);
-            complete.Text = "complete";
+            complete.Text = Strings.CompleteMenuLower;
             complete.Click += btnComplete_Click;
 
             postpone = new ApplicationBarIconButton();
             postpone.IconUri = new Uri("/Resources/postpone.png", UriKind.RelativeOrAbsolute);
-            postpone.Text = "postpone";
+            postpone.Text = Strings.PostponeMenuLower;
             postpone.Click += btnPostpone_Click;
 
             edit = new ApplicationBarIconButton();
             edit.IconUri = new Uri("/Resources/edit.png", UriKind.RelativeOrAbsolute);
-            edit.Text = "edit";
+            edit.Text = Strings.EditMenuLower;
             edit.Click += btnEdit_Click;
 
             delete = new ApplicationBarIconButton();
             delete.IconUri = new Uri("/Resources/delete.png", UriKind.RelativeOrAbsolute);
-            delete.Text = "delete";
+            delete.Text = Strings.DeleteMenuLower;
             delete.Click += btnDelete_Click;
 
             add = new ApplicationBarIconButton();
             add.IconUri = new Uri("/Resources/add.png", UriKind.RelativeOrAbsolute);
-            add.Text = "add";
+            add.Text = Strings.AddMenuLower;
             add.Click += btnAdd_Click;
-        }
 
-        private void TaskDetailsPage_Loaded(object sender, RoutedEventArgs e)
-        {
+            // build application bar
+            ApplicationBar.MenuItems.Add(complete);
+            ApplicationBar.MenuItems.Add(postpone);
+            ApplicationBar.MenuItems.Add(edit);
+            ApplicationBar.MenuItems.Add(delete);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -89,7 +96,7 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
             if (e.IsNavigationInitiator &&
                 sReload == false)
@@ -173,7 +180,7 @@ namespace Milkman
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to mark this task as complete?", "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(Strings.CompleteDialog, Strings.CompleteDialog , MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                 {
@@ -184,7 +191,7 @@ namespace Milkman
 
         private void btnPostpone_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to postpone this task?", "Postpone", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(Strings.PostponeDialog, Strings.PostponeDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                 {
@@ -203,7 +210,7 @@ namespace Milkman
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to delete this task?", "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(Strings.DeleteTaskDialog, Strings.DeleteTaskDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                 {
@@ -256,7 +263,7 @@ namespace Milkman
 
         private void CompleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Completing task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.CompletingTask);
             data.Complete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -276,7 +283,7 @@ namespace Milkman
 
         private void PostponeTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Postponing task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.PostponingTask);
             data.Postpone(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -292,7 +299,7 @@ namespace Milkman
 
         private void DeleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Deleting task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.DeletingTask);
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -312,7 +319,7 @@ namespace Milkman
 
         private void DeleteNote(TaskNote data)
         {
-            GlobalLoading.Instance.IsLoadingText("Deleting note...");
+            GlobalLoading.Instance.IsLoadingText(Strings.DeletingNote);
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
