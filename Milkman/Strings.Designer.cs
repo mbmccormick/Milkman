@@ -205,6 +205,24 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string All {
+            get {
+                return ResourceManager.GetString("All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to all.
+        /// </summary>
+        public static string AllLower {
+            get {
+                return ResourceManager.GetString("AllLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All Tasks.
         /// </summary>
         public static string AllTasks {
@@ -228,6 +246,15 @@ namespace Milkman {
         public static string AllTasksUpper {
             get {
                 return ResourceManager.GetString("AllTasksUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALL.
+        /// </summary>
+        public static string AllUpper {
+            get {
+                return ResourceManager.GetString("AllUpper", resourceCulture);
             }
         }
         
@@ -282,6 +309,15 @@ namespace Milkman {
         public static string Authorizing {
             get {
                 return ResourceManager.GetString("Authorizing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync data automatically.
+        /// </summary>
+        public static string AutomaticSyncSetting {
+            get {
+                return ResourceManager.GetString("AutomaticSyncSetting", resourceCulture);
             }
         }
         
@@ -394,6 +430,24 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to mark the selected tasks as complete?.
+        /// </summary>
+        public static string CompleteTaskPluralDialog {
+            get {
+                return ResourceManager.GetString("CompleteTaskPluralDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to mark the selected task as complete?.
+        /// </summary>
+        public static string CompleteTaskSingleDialog {
+            get {
+                return ResourceManager.GetString("CompleteTaskSingleDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Completing task....
         /// </summary>
         public static string CompletingTask {
@@ -417,6 +471,33 @@ namespace Milkman {
         public static string DashboardLower {
             get {
                 return ResourceManager.GetString("DashboardLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string DashboardMenu {
+            get {
+                return ResourceManager.GetString("DashboardMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dashboard.
+        /// </summary>
+        public static string DashboardMenuLower {
+            get {
+                return ResourceManager.GetString("DashboardMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DASHBOARD.
+        /// </summary>
+        public static string DashboardMenuUpper {
+            get {
+                return ResourceManager.GetString("DashboardMenuUpper", resourceCulture);
             }
         }
         
@@ -547,6 +628,24 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the selected tasks?.
+        /// </summary>
+        public static string DeleteTaskPluralDialog {
+            get {
+                return ResourceManager.GetString("DeleteTaskPluralDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete the selected task?.
+        /// </summary>
+        public static string DeleteTaskSingleDialog {
+            get {
+                return ResourceManager.GetString("DeleteTaskSingleDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deleting note....
         /// </summary>
         public static string DeletingNote {
@@ -561,6 +660,15 @@ namespace Milkman {
         public static string DeletingTask {
             get {
                 return ResourceManager.GetString("DeletingTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to disabled.
+        /// </summary>
+        public static string DisabledOptionSetting {
+            get {
+                return ResourceManager.GetString("DisabledOptionSetting", resourceCulture);
             }
         }
         
@@ -700,6 +808,15 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have no incomplete tasks in this list. Hooray!.
+        /// </summary>
+        public static string EmptyTaskList {
+            get {
+                return ResourceManager.GetString("EmptyTaskList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estimate.
         /// </summary>
         public static string Estimate {
@@ -736,6 +853,15 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 5 miles.
+        /// </summary>
+        public static string FiveMilesOptionSetting {
+            get {
+                return ResourceManager.GetString("FiveMilesOptionSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No tasks.
         /// </summary>
         public static string HubTileEmpty {
@@ -768,6 +894,15 @@ namespace Milkman {
         public static string JustAMoment {
             get {
                 return ResourceManager.GetString("JustAMoment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Always use light theme.
+        /// </summary>
+        public static string LightThemeSetting {
+            get {
+                return ResourceManager.GetString("LightThemeSetting", resourceCulture);
             }
         }
         
@@ -831,6 +966,15 @@ namespace Milkman {
         public static string Location {
             get {
                 return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notify me when tasks are nearby.
+        /// </summary>
+        public static string LocationServiceSetting {
+            get {
+                return ResourceManager.GetString("LocationServiceSetting", resourceCulture);
             }
         }
         
@@ -952,6 +1096,69 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Off.
+        /// </summary>
+        public static string Off {
+            get {
+                return ResourceManager.GetString("Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On.
+        /// </summary>
+        public static string On {
+            get {
+                return ResourceManager.GetString("On", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 hour.
+        /// </summary>
+        public static string OneHourOptionSetting {
+            get {
+                return ResourceManager.GetString("OneHourOptionSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 mile.
+        /// </summary>
+        public static string OneMileOptionSetting {
+            get {
+                return ResourceManager.GetString("OneMileOptionSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overdue.
+        /// </summary>
+        public static string Overdue {
+            get {
+                return ResourceManager.GetString("Overdue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to overdue.
+        /// </summary>
+        public static string OverdueLower {
+            get {
+                return ResourceManager.GetString("OverdueLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OVERDUE.
+        /// </summary>
+        public static string OverdueUpper {
+            get {
+                return ResourceManager.GetString("OverdueUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pin to Start.
         /// </summary>
         public static string PinToStart {
@@ -1047,6 +1254,24 @@ namespace Milkman {
         public static string PostponeMenuUpper {
             get {
                 return ResourceManager.GetString("PostponeMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to postpone the selected tasks?.
+        /// </summary>
+        public static string PostponeTaskPluralDialog {
+            get {
+                return ResourceManager.GetString("PostponeTaskPluralDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to postpone the selected task?.
+        /// </summary>
+        public static string PostponeTaskSingleDialog {
+            get {
+                return ResourceManager.GetString("PostponeTaskSingleDialog", resourceCulture);
             }
         }
         
@@ -1177,6 +1402,69 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        public static string SelectMenu {
+            get {
+                return ResourceManager.GetString("SelectMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select.
+        /// </summary>
+        public static string SelectMenuLower {
+            get {
+                return ResourceManager.GetString("SelectMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SELECT.
+        /// </summary>
+        public static string SelectMenuUpper {
+            get {
+                return ResourceManager.GetString("SelectMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly..
+        /// </summary>
+        public static string SettingsErrorDialog {
+            get {
+                return ResourceManager.GetString("SettingsErrorDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string SettingsErrorDialogTitle {
+            get {
+                return ResourceManager.GetString("SettingsErrorDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to settings.
+        /// </summary>
+        public static string SettingsLower {
+            get {
+                return ResourceManager.GetString("SettingsLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string SettingsMenu {
@@ -1200,6 +1488,33 @@ namespace Milkman {
         public static string SettingsMenuUpper {
             get {
                 return ResourceManager.GetString("SettingsMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your changes to the theme will take effect the next time you launch Milkman..
+        /// </summary>
+        public static string SettingsThemeDialog {
+            get {
+                return ResourceManager.GetString("SettingsThemeDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsThemeDialogTitle {
+            get {
+                return ResourceManager.GetString("SettingsThemeDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SETTINGS.
+        /// </summary>
+        public static string SettingsUpper {
+            get {
+                return ResourceManager.GetString("SettingsUpper", resourceCulture);
             }
         }
         
@@ -1348,6 +1663,24 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notify me before tasks are due.
+        /// </summary>
+        public static string TaskRemindersSetting {
+            get {
+                return ResourceManager.GetString("TaskRemindersSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30 minutes.
+        /// </summary>
+        public static string ThirtyMinutesOptionSetting {
+            get {
+                return ResourceManager.GetString("ThirtyMinutesOptionSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string Title {
@@ -1371,6 +1704,105 @@ namespace Milkman {
         public static string TitleUpper {
             get {
                 return ResourceManager.GetString("TitleUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string Today {
+            get {
+                return ResourceManager.GetString("Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to today.
+        /// </summary>
+        public static string TodayLower {
+            get {
+                return ResourceManager.GetString("TodayLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TODAY.
+        /// </summary>
+        public static string TodayUpper {
+            get {
+                return ResourceManager.GetString("TodayUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tomorrow.
+        /// </summary>
+        public static string Tomorrow {
+            get {
+                return ResourceManager.GetString("Tomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tomorrow.
+        /// </summary>
+        public static string TomorrowLower {
+            get {
+                return ResourceManager.GetString("TomorrowLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TOMORROW.
+        /// </summary>
+        public static string TomorrowUpper {
+            get {
+                return ResourceManager.GetString("TomorrowUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 hours.
+        /// </summary>
+        public static string TwoHoursOptionSetting {
+            get {
+                return ResourceManager.GetString("TwoHoursOptionSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 miles.
+        /// </summary>
+        public static string TwoMilesOptionSetting {
+            get {
+                return ResourceManager.GetString("TwoMilesOptionSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week.
+        /// </summary>
+        public static string Week {
+            get {
+                return ResourceManager.GetString("Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to week.
+        /// </summary>
+        public static string WeekLower {
+            get {
+                return ResourceManager.GetString("WeekLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WEEK.
+        /// </summary>
+        public static string WeekUpper {
+            get {
+                return ResourceManager.GetString("WeekUpper", resourceCulture);
             }
         }
         

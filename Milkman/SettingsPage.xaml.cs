@@ -36,7 +36,7 @@ namespace Milkman
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.", "Error", MessageBoxButton.OK);
+                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
             }
 
             try
@@ -48,7 +48,7 @@ namespace Milkman
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.", "Error", MessageBoxButton.OK);
+                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
             }
 
             try
@@ -60,7 +60,8 @@ namespace Milkman
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.", "Error", MessageBoxButton.OK);
+                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
+
             }
 
             try
@@ -72,7 +73,8 @@ namespace Milkman
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.", "Error", MessageBoxButton.OK);
+                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
+
             }
         }
 
@@ -84,24 +86,24 @@ namespace Milkman
         private void ToggleSwitch_Checked(object sender, RoutedEventArgs e)
         {
             ToggleSwitch target = (ToggleSwitch)sender;
-            target.Content = "On";
+            target.Content = Strings.On;
 
             if (target == this.togLightTheme &&
                 GlobalLoading.Instance.IsLoading == false)
             {
-                MessageBox.Show("Your changes to the theme will take effect the next time you launch Milkman.", "Settings", MessageBoxButton.OK);
+                MessageBox.Show(Strings.SettingsThemeDialog, Strings.SettingsThemeDialogTitle, MessageBoxButton.OK);
             }
         }
 
         private void ToggleSwitch_Unchecked(object sender, RoutedEventArgs e)
         {
             ToggleSwitch target = (ToggleSwitch)sender;
-            target.Content = "Off";
+            target.Content = Strings.Off;
 
             if (target == this.togLightTheme &&
                 GlobalLoading.Instance.IsLoading == false)
             {
-                MessageBox.Show("Your changes to the theme will take effect the next time you launch Milkman.", "Settings", MessageBoxButton.OK);
+                MessageBox.Show(Strings.SettingsThemeDialog, Strings.SettingsThemeDialogTitle, MessageBoxButton.OK);
             }
         }
     }

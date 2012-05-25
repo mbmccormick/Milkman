@@ -564,4 +564,148 @@
   <data name="TaskDetailsUpper" xml:space="preserve">
     <value>TASK DETAILS</value>
   </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="AllLower" xml:space="preserve">
+    <value>all</value>
+  </data>
+  <data name="AllUpper" xml:space="preserve">
+    <value>ALL</value>
+  </data>
+  <data name="CompleteTaskPluralDialog" xml:space="preserve">
+    <value>Are you sure you want to mark the selected tasks as complete?</value>
+  </data>
+  <data name="CompleteTaskSingleDialog" xml:space="preserve">
+    <value>Are you sure you want to mark the selected task as complete?</value>
+  </data>
+  <data name="DashboardMenu" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="DashboardMenuLower" xml:space="preserve">
+    <value>dashboard</value>
+  </data>
+  <data name="DashboardMenuUpper" xml:space="preserve">
+    <value>DASHBOARD</value>
+  </data>
+  <data name="DeleteTaskPluralDialog" xml:space="preserve">
+    <value>Are you sure you want to delete the selected tasks?</value>
+  </data>
+  <data name="DeleteTaskSingleDialog" xml:space="preserve">
+    <value>Are you sure you want to delete the selected task?</value>
+  </data>
+  <data name="EmptyTaskList" xml:space="preserve">
+    <value>You have no incomplete tasks in this list. Hooray!</value>
+  </data>
+  <data name="Overdue" xml:space="preserve">
+    <value>Overdue</value>
+  </data>
+  <data name="OverdueLower" xml:space="preserve">
+    <value>overdue</value>
+  </data>
+  <data name="OverdueUpper" xml:space="preserve">
+    <value>OVERDUE</value>
+  </data>
+  <data name="PostponeTaskPluralDialog" xml:space="preserve">
+    <value>Are you sure you want to postpone the selected tasks?</value>
+  </data>
+  <data name="PostponeTaskSingleDialog" xml:space="preserve">
+    <value>Are you sure you want to postpone the selected task?</value>
+  </data>
+  <data name="SelectMenu" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectMenuLower" xml:space="preserve">
+    <value>select</value>
+  </data>
+  <data name="SelectMenuUpper" xml:space="preserve">
+    <value>SELECT</value>
+  </data>
+  <data name="Today" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="TodayLower" xml:space="preserve">
+    <value>today</value>
+  </data>
+  <data name="TodayUpper" xml:space="preserve">
+    <value>TODAY</value>
+  </data>
+  <data name="Tomorrow" xml:space="preserve">
+    <value>Tomorrow</value>
+  </data>
+  <data name="TomorrowLower" xml:space="preserve">
+    <value>tomorrow</value>
+  </data>
+  <data name="TomorrowUpper" xml:space="preserve">
+    <value>TOMORROW</value>
+  </data>
+  <data name="Week" xml:space="preserve">
+    <value>Week</value>
+  </data>
+  <data name="WeekLower" xml:space="preserve">
+    <value>week</value>
+  </data>
+  <data name="WeekUpper" xml:space="preserve">
+    <value>WEEK</value>
+  </data>
+  <data name="AutomaticSyncSetting" xml:space="preserve">
+    <value>Sync data automatically</value>
+  </data>
+  <data name="DisabledOptionSetting" xml:space="preserve">
+    <value>disabled</value>
+  </data>
+  <data name="FiveMilesOptionSetting" xml:space="preserve">
+    <value>5 miles</value>
+  </data>
+  <data name="LightThemeSetting" xml:space="preserve">
+    <value>Always use light theme</value>
+  </data>
+  <data name="LocationServiceSetting" xml:space="preserve">
+    <value>Notify me when tasks are nearby</value>
+  </data>
+  <data name="OneHourOptionSetting" xml:space="preserve">
+    <value>1 hour</value>
+  </data>
+  <data name="OneMileOptionSetting" xml:space="preserve">
+    <value>1 mile</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SettingsLower" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="SettingsUpper" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="TaskRemindersSetting" xml:space="preserve">
+    <value>Notify me before tasks are due</value>
+  </data>
+  <data name="ThirtyMinutesOptionSetting" xml:space="preserve">
+    <value>30 minutes</value>
+  </data>
+  <data name="TwoHoursOptionSetting" xml:space="preserve">
+    <value>2 hours</value>
+  </data>
+  <data name="TwoMilesOptionSetting" xml:space="preserve">
+    <value>2 miles</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="On" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="SettingsErrorDialog" xml:space="preserve">
+    <value>Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.</value>
+  </data>
+  <data name="SettingsErrorDialogTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="SettingsThemeDialog" xml:space="preserve">
+    <value>Your changes to the theme will take effect the next time you launch Milkman.</value>
+  </data>
+  <data name="SettingsThemeDialogTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
 </root>

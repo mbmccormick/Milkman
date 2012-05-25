@@ -101,69 +101,81 @@ namespace Milkman
         {
             InitializeComponent();
 
-            this.Loaded += new RoutedEventHandler(TaskListByDatePage_Loaded);
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             TiltEffect.TiltableItems.Add(typeof(MultiselectItem));
 
+            this.BuildApplicationBar();
+        }
+
+        private void BuildApplicationBar()
+        {
             dashboard = new ApplicationBarIconButton();
             dashboard.IconUri = new Uri("/Resources/dashboard.png", UriKind.RelativeOrAbsolute);
-            dashboard.Text = "dashboard";
+            dashboard.Text = Strings.DashboardMenuLower;
             dashboard.Click += btnDashboard_Click;
 
             add = new ApplicationBarIconButton();
             add.IconUri = new Uri("/Resources/add.png", UriKind.RelativeOrAbsolute);
-            add.Text = "add";
+            add.Text = Strings.AddMenuLower;
             add.Click += btnAdd_Click;
 
             select = new ApplicationBarIconButton();
             select.IconUri = new Uri("/Resources/select.png", UriKind.RelativeOrAbsolute);
-            select.Text = "select";
+            select.Text = Strings.SelectMenuLower;
             select.Click += btnSelect_Click;
 
             sync = new ApplicationBarIconButton();
             sync.IconUri = new Uri("/Resources/retry.png", UriKind.RelativeOrAbsolute);
-            sync.Text = "sync";
+            sync.Text = Strings.SyncMenuLower;
             sync.Click += btnSync_Click;
 
             complete = new ApplicationBarIconButton();
             complete.IconUri = new Uri("/Resources/complete.png", UriKind.RelativeOrAbsolute);
-            complete.Text = "complete";
+            complete.Text = Strings.CompleteMenuLower;
             complete.Click += btnComplete_Click;
 
             postpone = new ApplicationBarIconButton();
             postpone.IconUri = new Uri("/Resources/postpone.png", UriKind.RelativeOrAbsolute);
-            postpone.Text = "postpone";
+            postpone.Text = Strings.PostponeMenuLower;
             postpone.Click += btnPostpone_Click;
 
             delete = new ApplicationBarIconButton();
             delete.IconUri = new Uri("/Resources/delete.png", UriKind.RelativeOrAbsolute);
-            delete.Text = "delete";
+            delete.Text = Strings.DeleteMenuLower;
             delete.Click += btnDelete_Click;
 
             settings = new ApplicationBarMenuItem();
-            settings.Text = "settings";
+            settings.Text = Strings.SettingsMenuLower;
             settings.Click += mnuSettings_Click;
 
             about = new ApplicationBarMenuItem();
-            about.Text = "about milkman";
+            about.Text = Strings.AboutMenuLower;
             about.Click += mnuAbout_Click;
 
             feedback = new ApplicationBarMenuItem();
-            feedback.Text = "feedback";
+            feedback.Text = Strings.DonateMenuLower;
             feedback.Click += mnuFeedback_Click;
 
             donate = new ApplicationBarMenuItem();
-            donate.Text = "donate";
+            donate.Text = Strings.DonateMenuLower;
             donate.Click += mnuDonate_Click;
 
             signOut = new ApplicationBarMenuItem();
-            signOut.Text = "sign out";
+            signOut.Text = Strings.SignOutMenuLower;
             signOut.Click += mnuSignOut_Click;
-        }
 
-        private void TaskListByDatePage_Loaded(object sender, RoutedEventArgs e)
-        {
+            // build application bar
+            ApplicationBar.MenuItems.Add(dashboard);
+            ApplicationBar.MenuItems.Add(add);
+            ApplicationBar.MenuItems.Add(select);
+            ApplicationBar.MenuItems.Add(sync);
+
+            ApplicationBar.MenuItems.Add(settings);
+            ApplicationBar.MenuItems.Add(about);
+            ApplicationBar.MenuItems.Add(feedback);
+            ApplicationBar.MenuItems.Add(donate);
+            ApplicationBar.MenuItems.Add(signOut);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -176,7 +188,7 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
             AppSettings settings = new AppSettings();
 
@@ -242,7 +254,7 @@ namespace Milkman
                     {
                         SmartDispatcher.BeginInvoke(() =>
                         {
-                            GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
+                            GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
                         });
 
                         App.RtmClient.SyncEverything(() =>
@@ -277,7 +289,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
+                GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
 
                 string id;
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
@@ -451,11 +463,11 @@ namespace Milkman
 
             string messageBoxText;
             if (target.SelectedItems.Count == 1)
-                messageBoxText = "Are you sure you want to mark the selected task as complete?";
+                messageBoxText = Strings.CompleteTaskSingleDialog;
             else
-                messageBoxText = "Are you sure you want to mark the selected tasks as complete?";
+                messageBoxText = Strings.CompleteTaskPluralDialog;
 
-            if (MessageBox.Show(messageBoxText, "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(messageBoxText, Strings.CompleteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 while (target.SelectedItems.Count > 0)
                 {
@@ -485,11 +497,11 @@ namespace Milkman
 
             string messageBoxText;
             if (target.SelectedItems.Count == 1)
-                messageBoxText = "Are you sure you want to postpone the selected task?";
+                messageBoxText = Strings.PostponeTaskSingleDialog;
             else
-                messageBoxText = "Are you sure you want to postpone the selected tasks?";
+                messageBoxText = Strings.PostponeTaskPluralDialog;
 
-            if (MessageBox.Show(messageBoxText, "Postpone", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(messageBoxText, Strings.PostponeDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 while (target.SelectedItems.Count > 0)
                 {
@@ -519,11 +531,11 @@ namespace Milkman
 
             string messageBoxText;
             if (target.SelectedItems.Count == 1)
-                messageBoxText = "Are you sure you want to delete the selected task?";
+                messageBoxText = Strings.DeleteTaskSingleDialog;
             else
-                messageBoxText = "Are you sure you want to delete the selected tasks?";
+                messageBoxText = Strings.DeleteTaskPluralDialog;
 
-            if (MessageBox.Show(messageBoxText, "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(messageBoxText, Strings.DeleteTaskDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 while (target.SelectedItems.Count > 0)
                 {
@@ -693,7 +705,7 @@ namespace Milkman
 
         private void mnuSignOut_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to sign out of Milkman and remove all of your data?", "Sign Out", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(Strings.SignOutDialog, Strings.SignOutDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 App.DeleteData();
                 Login();
@@ -724,19 +736,19 @@ namespace Milkman
             MenuItem target = (MenuItem)sender;
             ContextMenu parent = (ContextMenu)target.Parent;
 
-            if (target.Header.ToString() == "complete")
+            if (target.Header.ToString() == Strings.CompleteMenuLower)
             {
-                if (MessageBox.Show("Are you sure you want to mark this task as complete?", "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show(Strings.CompleteDialog, Strings.CompleteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     CompleteTask(MostRecentTaskClick);
             }
-            else if (target.Header.ToString() == "postpone")
+            else if (target.Header.ToString() == Strings.PostponeMenuLower)
             {
-                if (MessageBox.Show("Are you sure you want to postpone this task?", "Postpone", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show(Strings.PostponeDialog, Strings.PostponeDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     PostponeTask(MostRecentTaskClick);
             }
-            else if (target.Header.ToString() == "delete")
+            else if (target.Header.ToString() == Strings.DeleteMenuLower)
             {
-                if (MessageBox.Show("Are you sure you want to delete this task?", "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show(Strings.DeleteTaskDialog, Strings.DeleteTaskDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     DeleteTask(MostRecentTaskClick);
             }
         }
@@ -747,7 +759,7 @@ namespace Milkman
 
         private void AddTask(string smartAddText)
         {
-            GlobalLoading.Instance.IsLoadingText("Adding task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.AddingTask);
 
             string input = smartAddText;
             if (input.Contains('#') == false)
@@ -771,7 +783,7 @@ namespace Milkman
 
         private void CompleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Completing task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.CompletingTask);
             data.Complete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -789,7 +801,7 @@ namespace Milkman
 
         private void PostponeTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Postponing task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.PostponingTask);
             data.Postpone(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -807,7 +819,7 @@ namespace Milkman
 
         private void DeleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Deleting task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.DeletingTask);
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>

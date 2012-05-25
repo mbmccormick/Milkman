@@ -23,30 +23,30 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MILKMAN" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
-            <TextBlock x:Name="PageTitle" Text="settings" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Resources.SettingsLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <toolkit:ToggleSwitch x:Name="togAutomaticSync" IsChecked="true" Header="Sync data automatically" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" />
-                <toolkit:ToggleSwitch x:Name="togLightTheme" IsChecked="false" Header="Always use light theme" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" />
+                <toolkit:ToggleSwitch x:Name="togAutomaticSync" IsChecked="true" Header="{Binding Resources.AutomaticSyncSetting, Source={StaticResource Strings}}" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" />
+                <toolkit:ToggleSwitch x:Name="togLightTheme" IsChecked="false" Header="{Binding Resources.LightThemeSetting, Source={StaticResource Strings}}" Checked="ToggleSwitch_Checked" Unchecked="ToggleSwitch_Unchecked" />
                 <StackPanel Margin="12,12,12,12">
                     <TextBlock Text="Notify me before tasks are due" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
                     <toolkit:ListPicker x:Name="lstTaskReminders" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1">
-                        <toolkit:ListPickerItem Content="disabled" />
-                        <toolkit:ListPickerItem Content="30 minutes" />
-                        <toolkit:ListPickerItem Content="1 hour" />
-                        <toolkit:ListPickerItem Content="2 hours" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.DisabledOptionSetting, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.ThirtyMinutesOptionSetting, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.OneHourOptionSetting, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.TwoHoursOptionSetting, Source={StaticResource Strings}}" />
                     </toolkit:ListPicker>
                 </StackPanel>
                 <StackPanel Margin="12,12,12,12">
                     <TextBlock Text="Notify me when tasks are nearby" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
                     <toolkit:ListPicker x:Name="lstLocationService" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1">
-                        <toolkit:ListPickerItem Content="disabled" />
-                        <toolkit:ListPickerItem Content="1 mile" />
-                        <toolkit:ListPickerItem Content="2 miles" />
-                        <toolkit:ListPickerItem Content="5 miles" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.DisabledOptionSetting, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.OneMileOptionSetting, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.TwoMilesOptionSetting, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.FiveMilesOptionSetting, Source={StaticResource Strings}}" />
                     </toolkit:ListPicker>
                 </StackPanel>
             </StackPanel>
