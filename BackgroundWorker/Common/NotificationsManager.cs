@@ -101,7 +101,7 @@ namespace BackgroundWorker.Common
                             }
                         }
 
-                        tasksListName = "All Tasks";
+                        tasksListName = Strings.AllTasks;
                         tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                 z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
                         tasksOverdue = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
@@ -129,14 +129,14 @@ namespace BackgroundWorker.Common
                 data.BackTitle = tasksListName;
 
                 if (tasksDueToday == 0)
-                    data.BackContent = "No tasks due today";
+                    data.BackContent = Strings.LiveTileEmpty;
                 else if (tasksDueToday == 1)
-                    data.BackContent = tasksDueToday + " task due today";
+                    data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
                 else
-                    data.BackContent = tasksDueToday + " tasks due today";
+                    data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
 
                 if (tasksOverdue > 0)
-                    data.BackContent += ", " + tasksOverdue + " overdue";
+                    data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
 
                 tile.Update(data);
             }

@@ -60,11 +60,11 @@ namespace Milkman.Common
                 {
                     string messageText = null;
                     if (isFirstRun)
-                        messageText = "An unhandled error occurred the last time you ran this application. Would you like to send an email to report it?";
+                        messageText = Strings.UnhandledCrashDialog;
                     else
-                        messageText = "An unhandled error has just occurred. Would you like to send an email to report it?";
+                        messageText = Strings.UnhandledErrorDialog;
 
-                    if (MessageBox.Show(messageText, "Error Report", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    if (MessageBox.Show(messageText, Strings.UnhandledErrorDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     {
                         EmailComposeTask email = new EmailComposeTask();
                         email.To = "milkmanwp@gmail.com";

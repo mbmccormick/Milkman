@@ -30,7 +30,7 @@ namespace Milkman.Common
                 ScheduledActionService.Remove("BackgroundWorker");
 
             PeriodicTask task = new PeriodicTask("BackgroundWorker");
-            task.Description = "Manages task reminders, location notifications, and live tile updates.";
+            task.Description = Strings.PeriodicTaskDescription;
 
             ScheduledActionService.Add(task);
 
@@ -87,7 +87,7 @@ namespace Milkman.Common
                                     else
                                         r.Title = t.Name;
 
-                                    r.Content = "This task is due " + t.FriendlyDueDate.Replace("Due ", "") + ".";
+                                    r.Content = Strings.TaskReminderPrefix + " " + t.FriendlyDueDate.Replace(Strings.Due + " ", "") + ".";
                                     r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
                                     r.BeginTime = t.DueDateTime.Value.AddHours(interval);
 
@@ -148,7 +148,7 @@ namespace Milkman.Common
                             }
                         }
 
-                        tasksListName = "All Tasks";
+                        tasksListName = Strings.AllTasks;
                         tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                 z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
                         tasksOverdue = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
@@ -176,14 +176,14 @@ namespace Milkman.Common
                 data.BackTitle = tasksListName;
 
                 if (tasksDueToday == 0)
-                    data.BackContent = "No tasks due today";
+                    data.BackContent = Strings.LiveTileEmpty;
                 else if (tasksDueToday == 1)
-                    data.BackContent = tasksDueToday + " task due today";
+                    data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
                 else
-                    data.BackContent = tasksDueToday + " tasks due today";
+                    data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
 
                 if (tasksOverdue > 0)
-                    data.BackContent += ", " + tasksOverdue + " overdue";
+                    data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
 
                 tile.Update(data);
             }

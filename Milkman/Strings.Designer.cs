@@ -700,6 +700,15 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Due.
+        /// </summary>
+        public static string Due {
+            get {
+                return ResourceManager.GetString("Due", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due Date.
         /// </summary>
         public static string DueDate {
@@ -1155,6 +1164,15 @@ namespace Milkman {
         public static string OverdueUpper {
             get {
                 return ResourceManager.GetString("OverdueUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manages task reminders, location notifications, and live tile updates..
+        /// </summary>
+        public static string PeriodicTaskDescription {
+            get {
+                return ResourceManager.GetString("PeriodicTaskDescription", resourceCulture);
             }
         }
         
@@ -1663,6 +1681,15 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This task is due.
+        /// </summary>
+        public static string TaskReminderPrefix {
+            get {
+                return ResourceManager.GetString("TaskReminderPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notify me before tasks are due.
         /// </summary>
         public static string TaskRemindersSetting {
@@ -1776,6 +1803,33 @@ namespace Milkman {
         public static string TwoMilesOptionSetting {
             get {
                 return ResourceManager.GetString("TwoMilesOptionSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unhandled error occurred the last time you ran this application. Would you like to send an email to report it?.
+        /// </summary>
+        public static string UnhandledCrashDialog {
+            get {
+                return ResourceManager.GetString("UnhandledCrashDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unhandled error has just occurred. Would you like to send an email to report it?.
+        /// </summary>
+        public static string UnhandledErrorDialog {
+            get {
+                return ResourceManager.GetString("UnhandledErrorDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Report.
+        /// </summary>
+        public static string UnhandledErrorDialogTitle {
+            get {
+                return ResourceManager.GetString("UnhandledErrorDialogTitle", resourceCulture);
             }
         }
         

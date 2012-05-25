@@ -708,4 +708,22 @@
   <data name="SettingsThemeDialogTitle" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Due" xml:space="preserve">
+    <value>Due</value>
+  </data>
+  <data name="PeriodicTaskDescription" xml:space="preserve">
+    <value>Manages task reminders, location notifications, and live tile updates.</value>
+  </data>
+  <data name="TaskReminderPrefix" xml:space="preserve">
+    <value>This task is due</value>
+  </data>
+  <data name="UnhandledCrashDialog" xml:space="preserve">
+    <value>An unhandled error occurred the last time you ran this application. Would you like to send an email to report it?</value>
+  </data>
+  <data name="UnhandledErrorDialog" xml:space="preserve">
+    <value>An unhandled error has just occurred. Would you like to send an email to report it?</value>
+  </data>
+  <data name="UnhandledErrorDialogTitle" xml:space="preserve">
+    <value>Error Report</value>
+  </data>
 </root>
