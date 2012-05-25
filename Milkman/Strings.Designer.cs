@@ -115,6 +115,402 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to add.
+        /// </summary>
+        public static string AddButton {
+            get {
+                return ResourceManager.GetString("AddButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding note....
+        /// </summary>
+        public static string AddingNote {
+            get {
+                return ResourceManager.GetString("AddingNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adding task....
+        /// </summary>
+        public static string AddingTask {
+            get {
+                return ResourceManager.GetString("AddingTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddMenu {
+            get {
+                return ResourceManager.GetString("AddMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add.
+        /// </summary>
+        public static string AddMenuLower {
+            get {
+                return ResourceManager.GetString("AddMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD.
+        /// </summary>
+        public static string AddMenuUpper {
+            get {
+                return ResourceManager.GetString("AddMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Note.
+        /// </summary>
+        public static string AddNote {
+            get {
+                return ResourceManager.GetString("AddNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add note.
+        /// </summary>
+        public static string AddNoteLower {
+            get {
+                return ResourceManager.GetString("AddNoteLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD NOTE.
+        /// </summary>
+        public static string AddNoteUpper {
+            get {
+                return ResourceManager.GetString("AddNoteUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Task.
+        /// </summary>
+        public static string AddTaskDialogTitle {
+            get {
+                return ResourceManager.GetString("AddTaskDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Tasks.
+        /// </summary>
+        public static string AllTasks {
+            get {
+                return ResourceManager.GetString("AllTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to all tasks.
+        /// </summary>
+        public static string AllTasksLower {
+            get {
+                return ResourceManager.GetString("AllTasksLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ALL TASKS.
+        /// </summary>
+        public static string AllTasksUpper {
+            get {
+                return ResourceManager.GetString("AllTasksUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authorization.
+        /// </summary>
+        public static string Authorization {
+            get {
+                return ResourceManager.GetString("Authorization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign in to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue..
+        /// </summary>
+        public static string AuthorizationDialog {
+            get {
+                return ResourceManager.GetString("AuthorizationDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authorization.
+        /// </summary>
+        public static string AuthorizationDialogTitle {
+            get {
+                return ResourceManager.GetString("AuthorizationDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to authorization.
+        /// </summary>
+        public static string AuthorizationLower {
+            get {
+                return ResourceManager.GetString("AuthorizationLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AUTHORIZATION.
+        /// </summary>
+        public static string AuthorizationUpper {
+            get {
+                return ResourceManager.GetString("AuthorizationUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authorizing....
+        /// </summary>
+        public static string Authorizing {
+            get {
+                return ResourceManager.GetString("Authorizing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Body.
+        /// </summary>
+        public static string Body {
+            get {
+                return ResourceManager.GetString("Body", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to body.
+        /// </summary>
+        public static string BodyLower {
+            get {
+                return ResourceManager.GetString("BodyLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BODY.
+        /// </summary>
+        public static string BodyUpper {
+            get {
+                return ResourceManager.GetString("BodyUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cancel.
+        /// </summary>
+        public static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelMenu {
+            get {
+                return ResourceManager.GetString("CancelMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cancel.
+        /// </summary>
+        public static string CancelMenuLower {
+            get {
+                return ResourceManager.GetString("CancelMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CANCEL.
+        /// </summary>
+        public static string CancelMenuUpper {
+            get {
+                return ResourceManager.GetString("CancelMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        public static string CompleteMenu {
+            get {
+                return ResourceManager.GetString("CompleteMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to complete.
+        /// </summary>
+        public static string CompleteMenuLower {
+            get {
+                return ResourceManager.GetString("CompleteMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to COMPLETE.
+        /// </summary>
+        public static string CompleteMenuUpper {
+            get {
+                return ResourceManager.GetString("CompleteMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string Dashboard {
+            get {
+                return ResourceManager.GetString("Dashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dashboard.
+        /// </summary>
+        public static string DashboardLower {
+            get {
+                return ResourceManager.GetString("DashboardLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DASHBOARD.
+        /// </summary>
+        public static string DashboardUpper {
+            get {
+                return ResourceManager.GetString("DashboardUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Date {
+            get {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to date.
+        /// </summary>
+        public static string DateLower {
+            get {
+                return ResourceManager.GetString("DateLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date &amp;amp; Time.
+        /// </summary>
+        public static string DateTime {
+            get {
+                return ResourceManager.GetString("DateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to date &amp;amp; time.
+        /// </summary>
+        public static string DateTimeLower {
+            get {
+                return ResourceManager.GetString("DateTimeLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DATE &amp;amp; TIME.
+        /// </summary>
+        public static string DateTimeUpper {
+            get {
+                return ResourceManager.GetString("DateTimeUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DATE.
+        /// </summary>
+        public static string DateUpper {
+            get {
+                return ResourceManager.GetString("DateUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteMenu {
+            get {
+                return ResourceManager.GetString("DeleteMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to delete.
+        /// </summary>
+        public static string DeleteMenuLower {
+            get {
+                return ResourceManager.GetString("DeleteMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE.
+        /// </summary>
+        public static string DeleteMenuUpper {
+            get {
+                return ResourceManager.GetString("DeleteMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this note?.
+        /// </summary>
+        public static string DeleteNoteDialog {
+            get {
+                return ResourceManager.GetString("DeleteNoteDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteNoteDialogTitle {
+            get {
+                return ResourceManager.GetString("DeleteNoteDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleting note....
+        /// </summary>
+        public static string DeletingNote {
+            get {
+                return ResourceManager.GetString("DeletingNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Donate.
         /// </summary>
         public static string DonateMenu {
@@ -138,6 +534,87 @@ namespace Milkman {
         public static string DonateMenuUpper {
             get {
                 return ResourceManager.GetString("DonateMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Due Date.
+        /// </summary>
+        public static string DueDate {
+            get {
+                return ResourceManager.GetString("DueDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Note.
+        /// </summary>
+        public static string EditNote {
+            get {
+                return ResourceManager.GetString("EditNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to edit note.
+        /// </summary>
+        public static string EditNoteLower {
+            get {
+                return ResourceManager.GetString("EditNoteLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EDIT NOTE.
+        /// </summary>
+        public static string EditNoteUpper {
+            get {
+                return ResourceManager.GetString("EditNoteUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Task.
+        /// </summary>
+        public static string EditTask {
+            get {
+                return ResourceManager.GetString("EditTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to edit task.
+        /// </summary>
+        public static string EditTaskLower {
+            get {
+                return ResourceManager.GetString("EditTaskLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EDIT TASK.
+        /// </summary>
+        public static string EditTaskUpper {
+            get {
+                return ResourceManager.GetString("EditTaskUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have no lists to display..
+        /// </summary>
+        public static string EmptyDashboard {
+            get {
+                return ResourceManager.GetString("EmptyDashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Estimate.
+        /// </summary>
+        public static string Estimate {
+            get {
+                return ResourceManager.GetString("Estimate", resourceCulture);
             }
         }
         
@@ -169,6 +646,105 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No tasks.
+        /// </summary>
+        public static string HubTileEmpty {
+            get {
+                return ResourceManager.GetString("HubTileEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tasks.
+        /// </summary>
+        public static string HubTilePlural {
+            get {
+                return ResourceManager.GetString("HubTilePlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task.
+        /// </summary>
+        public static string HubTileSingle {
+            get {
+                return ResourceManager.GetString("HubTileSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Just a moment....
+        /// </summary>
+        public static string JustAMoment {
+            get {
+                return ResourceManager.GetString("JustAMoment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List.
+        /// </summary>
+        public static string List {
+            get {
+                return ResourceManager.GetString("List", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No tasks due today.
+        /// </summary>
+        public static string LiveTileEmpty {
+            get {
+                return ResourceManager.GetString("LiveTileEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to overdue.
+        /// </summary>
+        public static string LiveTileOverdue {
+            get {
+                return ResourceManager.GetString("LiveTileOverdue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tasks due today.
+        /// </summary>
+        public static string LiveTilePlural {
+            get {
+                return ResourceManager.GetString("LiveTilePlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task due today.
+        /// </summary>
+        public static string LiveTileSingle {
+            get {
+                return ResourceManager.GetString("LiveTileSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        public static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        public static string Location {
+            get {
+                return ResourceManager.GetString("Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Milkman.
         /// </summary>
         public static string Milkman {
@@ -192,6 +768,123 @@ namespace Milkman {
         public static string MilkmanUpper {
             get {
                 return ResourceManager.GetString("MilkmanUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nearby.
+        /// </summary>
+        public static string Nearby {
+            get {
+                return ResourceManager.GetString("Nearby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nearby.
+        /// </summary>
+        public static string NearbyLower {
+            get {
+                return ResourceManager.GetString("NearbyLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NEARBY.
+        /// </summary>
+        public static string NearbyUpper {
+            get {
+                return ResourceManager.GetString("NearbyUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to none.
+        /// </summary>
+        public static string NoneLower {
+            get {
+                return ResourceManager.GetString("NoneLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NONE.
+        /// </summary>
+        public static string NoneUpper {
+            get {
+                return ResourceManager.GetString("NoneUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pin to Start.
+        /// </summary>
+        public static string PinToStart {
+            get {
+                return ResourceManager.GetString("PinToStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This list is already pinned to your start screen. If you need to replace it, remove the tile from your start screen and then reopen Milkman..
+        /// </summary>
+        public static string PinToStartDialog {
+            get {
+                return ResourceManager.GetString("PinToStartDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pin To Start.
+        /// </summary>
+        public static string PinToStartDialogTitle {
+            get {
+                return ResourceManager.GetString("PinToStartDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pin to start.
+        /// </summary>
+        public static string PinToStartLower {
+            get {
+                return ResourceManager.GetString("PinToStartLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PIN TO START.
+        /// </summary>
+        public static string PinToStartUpper {
+            get {
+                return ResourceManager.GetString("PinToStartUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Priority.
+        /// </summary>
+        public static string Priority {
+            get {
+                return ResourceManager.GetString("Priority", resourceCulture);
             }
         }
         
@@ -223,6 +916,114 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Repeat.
+        /// </summary>
+        public static string Repeat {
+            get {
+                return ResourceManager.GetString("Repeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retry.
+        /// </summary>
+        public static string RetryMenu {
+            get {
+                return ResourceManager.GetString("RetryMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to retry.
+        /// </summary>
+        public static string RetryMenuLower {
+            get {
+                return ResourceManager.GetString("RetryMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RETRY.
+        /// </summary>
+        public static string RetryMenuUpper {
+            get {
+                return ResourceManager.GetString("RetryMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaveMenu {
+            get {
+                return ResourceManager.GetString("SaveMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        public static string SaveMenuLower {
+            get {
+                return ResourceManager.GetString("SaveMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SAVE.
+        /// </summary>
+        public static string SaveMenuUpper {
+            get {
+                return ResourceManager.GetString("SaveMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving note....
+        /// </summary>
+        public static string SavingNote {
+            get {
+                return ResourceManager.GetString("SavingNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving task....
+        /// </summary>
+        public static string SavingTask {
+            get {
+                return ResourceManager.GetString("SavingTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsMenu {
+            get {
+                return ResourceManager.GetString("SettingsMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to settings.
+        /// </summary>
+        public static string SettingsMenuLower {
+            get {
+                return ResourceManager.GetString("SettingsMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SETTINGS.
+        /// </summary>
+        public static string SettingsMenuUpper {
+            get {
+                return ResourceManager.GetString("SettingsMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sign In.
         /// </summary>
         public static string SignIn {
@@ -246,6 +1047,123 @@ namespace Milkman {
         public static string SignInUpper {
             get {
                 return ResourceManager.GetString("SignInUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to sign out of Milkman and remove all of your data?.
+        /// </summary>
+        public static string SignOutDialog {
+            get {
+                return ResourceManager.GetString("SignOutDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Out.
+        /// </summary>
+        public static string SignOutDialogTitle {
+            get {
+                return ResourceManager.GetString("SignOutDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Out.
+        /// </summary>
+        public static string SignOutMenu {
+            get {
+                return ResourceManager.GetString("SignOutMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sign out.
+        /// </summary>
+        public static string SignOutMenuLower {
+            get {
+                return ResourceManager.GetString("SignOutMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SIGN OUT.
+        /// </summary>
+        public static string SignOutMenuUpper {
+            get {
+                return ResourceManager.GetString("SignOutMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Syncing tasks....
+        /// </summary>
+        public static string SyncingTasks {
+            get {
+                return ResourceManager.GetString("SyncingTasks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync.
+        /// </summary>
+        public static string SyncMenu {
+            get {
+                return ResourceManager.GetString("SyncMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sync.
+        /// </summary>
+        public static string SyncMenuLower {
+            get {
+                return ResourceManager.GetString("SyncMenuLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SYNC.
+        /// </summary>
+        public static string SyncMenuUpper {
+            get {
+                return ResourceManager.GetString("SyncMenuUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags.
+        /// </summary>
+        public static string Tags {
+            get {
+                return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to title.
+        /// </summary>
+        public static string TitleLower {
+            get {
+                return ResourceManager.GetString("TitleLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TITLE.
+        /// </summary>
+        public static string TitleUpper {
+            get {
+                return ResourceManager.GetString("TitleUpper", resourceCulture);
             }
         }
         

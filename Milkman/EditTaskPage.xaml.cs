@@ -56,10 +56,33 @@ namespace Milkman
 
         #region Construction and Navigation
 
+        ApplicationBarIconButton save;
+        ApplicationBarIconButton cancel;
+
         public EditTaskPage()
         {
             InitializeComponent();
+
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
+
+            this.BuildApplicationBar();
+        }
+
+        private void BuildApplicationBar()
+        {
+            save = new ApplicationBarIconButton();
+            save.IconUri = new Uri("/Resources/save.png", UriKind.RelativeOrAbsolute);
+            save.Text = Strings.SaveMenuLower;
+            save.Click += btnSave_Click;
+
+            cancel = new ApplicationBarIconButton();
+            cancel.IconUri = new Uri("/Resources/cancel.png", UriKind.RelativeOrAbsolute);
+            cancel.Text = Strings.CancelMenuLower;
+            cancel.Click += btnCancel_Click;
+
+            // build application bar
+            ApplicationBar.MenuItems.Add(save);
+            ApplicationBar.MenuItems.Add(cancel);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -74,7 +97,7 @@ namespace Milkman
         {
             if (!loadedDetails)
             {
-                GlobalLoading.Instance.IsLoadingText("Loading...");
+                GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
                 App.RtmClient.SyncEverything(() =>
                 {
@@ -114,7 +137,7 @@ namespace Milkman
                     if (TaskLocations.Count == 0)
                     {
                         TaskLocations.Clear();
-                        TaskLocations.Add(new Location("none"));
+                        TaskLocations.Add(new Location(Strings.NoneLower));
                         foreach (Location l in App.RtmClient.Locations)
                         {
                             TaskLocations.Add(l);
@@ -227,7 +250,7 @@ namespace Milkman
         {
             if (!GlobalLoading.Instance.IsLoading)
             {
-                GlobalLoading.Instance.IsLoadingText("Saving task...");
+                GlobalLoading.Instance.IsLoadingText(Strings.SavingTask);
 
                 // change name
                 SmartDispatcher.BeginInvoke(() =>

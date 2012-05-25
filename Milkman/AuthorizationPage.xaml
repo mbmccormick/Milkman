@@ -23,8 +23,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MILKMAN" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
-            <TextBlock x:Name="PageTitle" Text="authorization" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Resources.AuthorizationLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -34,19 +34,6 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="appbar_button1" 
-                                            IconUri="/Resources/complete.png" 
-                                            Text="complete"
-                                            Click="btnComplete_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" 
-                                            IconUri="/Resources/retry.png" 
-                                            Text="retry"
-                                            Click="btnRetry_Click"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="about milkman" Click="mnuAbout_Click" />
-                <shell:ApplicationBarMenuItem Text="feedback" Click="mnuFeedback_Click" />
-                <shell:ApplicationBarMenuItem Text="donate" Click="mnuDonate_Click" />
-            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

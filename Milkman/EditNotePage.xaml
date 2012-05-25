@@ -24,8 +24,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MILKMAN" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
-            <TextBlock x:Name="PageTitle" Text="edit note" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Resources.EditNoteLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -36,27 +36,15 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="Title" Grid.Row="0" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+            <TextBlock Text="{Binding Resources.Title, Source={StaticResource Strings}}" Grid.Row="0" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
             <TextBox x:Name="txtTitle" Grid.Row="1" Margin="0,0,0,0" InputScope="Text" />
-            <TextBlock Text="Body" Grid.Row="2" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
+            <TextBlock Text="{Binding Resources.Body, Source={StaticResource Strings}}" Grid.Row="2" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
             <TextBox x:Name="txtBody" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,12" InputScope="Text" />
         </Grid>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="appbar_button1" 
-                                            IconUri="/Resources/save.png" 
-                                            Text="save"
-                                            Click="btnSave_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" 
-                                            IconUri="/Resources/delete.png" 
-                                            Text="delete"
-                                            Click="btnDelete_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button3" 
-                                            IconUri="/Resources/cancel.png" 
-                                            Text="cancel"
-                                            Click="btnCancel_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

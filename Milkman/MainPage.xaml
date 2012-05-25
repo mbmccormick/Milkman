@@ -25,8 +25,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MILKMAN" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
-            <TextBlock x:Name="PageTitle" Text="dashboard" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Resources.DashboardLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -44,7 +44,7 @@
 
                             <toolkit:ContextMenuService.ContextMenu>
                                 <toolkit:ContextMenu>
-                                    <toolkit:MenuItem Header="pin to start" Click="MenuItem_Click" Foreground="Black" />
+                                    <toolkit:MenuItem Header="{Binding Resources.PinToStartLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
                                 </toolkit:ContextMenu>
                             </toolkit:ContextMenuService.ContextMenu>
                         </StackPanel>
@@ -52,8 +52,8 @@
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-            <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no lists to display." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+            <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+            <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboard, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
         </Grid>
 
         <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" />
@@ -61,21 +61,6 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="appbar_button1" 
-                                            IconUri="/Resources/add.png" 
-                                            Text="add"
-                                            Click="btnAdd_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" 
-                                            IconUri="/Resources/retry.png" 
-                                            Text="sync"
-                                            Click="btnSync_Click"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="settings" Click="mnuSettings_Click" />
-                <shell:ApplicationBarMenuItem Text="about milkman" Click="mnuAbout_Click" />
-                <shell:ApplicationBarMenuItem Text="feedback" Click="mnuFeedback_Click" />
-                <shell:ApplicationBarMenuItem Text="donate" Click="mnuDonate_Click" />
-                <shell:ApplicationBarMenuItem Text="sign out" Click="mnuSignOut_Click" />
-            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

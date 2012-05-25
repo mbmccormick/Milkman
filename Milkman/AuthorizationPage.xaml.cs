@@ -19,23 +19,64 @@ namespace Milkman
 {
     public partial class AuthorizationPage : PhoneApplicationPage
     {
-        public static bool sReload = true;
-
         #region Construction and Navigation
 
         private string Frob { get; set; }
 
+        ApplicationBarIconButton complete;
+        ApplicationBarIconButton retry;
+
+        ApplicationBarMenuItem about;
+        ApplicationBarMenuItem feedback;
+        ApplicationBarMenuItem donate;
+
         public AuthorizationPage()
         {
             InitializeComponent();
+
             this.Loaded += new RoutedEventHandler(AuthorizationPage_Loaded);
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
+
+            this.BuildApplicationBar();
+        }
+
+        private void BuildApplicationBar()
+        {
+            complete = new ApplicationBarIconButton();
+            complete.IconUri = new Uri("/Resources/complete.png", UriKind.RelativeOrAbsolute);
+            complete.Text = Strings.CompleteMenuLower;
+            complete.Click += btnComplete_Click;
+
+            retry = new ApplicationBarIconButton();
+            retry.IconUri = new Uri("/Resources/retry.png", UriKind.RelativeOrAbsolute);
+            retry.Text = Strings.RetryMenuLower;
+            retry.Click += btnRetry_Click;
+
+            about = new ApplicationBarMenuItem();
+            about.Text = Strings.AboutMenuLower;
+            about.Click += mnuAbout_Click;
+
+            feedback = new ApplicationBarMenuItem();
+            feedback.Text = Strings.FeedbackMenuLower;
+            feedback.Click += mnuFeedback_Click;
+
+            donate = new ApplicationBarMenuItem();
+            donate.Text = Strings.DonateMenuLower;
+            donate.Click += mnuDonate_Click;
+
+            // build application bar
+            ApplicationBar.MenuItems.Add(complete);
+            ApplicationBar.MenuItems.Add(retry);
+
+            ApplicationBar.MenuItems.Add(about);
+            ApplicationBar.MenuItems.Add(feedback);
+            ApplicationBar.MenuItems.Add(donate);
         }
 
         private void AuthorizationPage_Loaded(object sender, RoutedEventArgs e)
         {
             StartAuth();
-            MessageBox.Show("Sign in to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue.", "Authorization", MessageBoxButton.OK);
+            MessageBox.Show(Strings.AuthorizationDialog, Strings.AuthorizationDialogTitle, MessageBoxButton.OK);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -48,7 +89,7 @@ namespace Milkman
 
         private void StartAuth()
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
             App.RtmClient.GetFrob((string frob) =>
             {
@@ -72,7 +113,7 @@ namespace Milkman
             // only do something if Frob is present
             if (!string.IsNullOrEmpty(Frob))
             {
-                GlobalLoading.Instance.IsLoadingText("Authorizing...");
+                GlobalLoading.Instance.IsLoadingText(Strings.Authorizing);
 
                 App.RtmClient.GetToken(Frob, (string token, User user) =>
                 {
@@ -108,7 +149,7 @@ namespace Milkman
 
         private void webAuthorization_Navigating(object sender, NavigatingEventArgs e)
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
         }
 
         private void mnuAbout_Click(object sender, EventArgs e)

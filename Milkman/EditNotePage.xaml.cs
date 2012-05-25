@@ -31,10 +31,40 @@ namespace Milkman
 
         #region Construction and Navigation
 
+        ApplicationBarIconButton save;
+        ApplicationBarIconButton delete;
+        ApplicationBarIconButton cancel;
+
         public EditNotePage()
         {
             InitializeComponent();
+
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
+
+            this.BuildApplicationBar();
+        }
+
+        private void BuildApplicationBar()
+        {
+            save = new ApplicationBarIconButton();
+            save.IconUri = new Uri("/Resources/save.png", UriKind.RelativeOrAbsolute);
+            save.Text = Strings.SaveMenuLower;
+            save.Click += btnSave_Click;
+
+            delete = new ApplicationBarIconButton();
+            delete.IconUri = new Uri("/Resources/delete.png", UriKind.RelativeOrAbsolute);
+            delete.Text = Strings.DeleteMenuLower;
+            delete.Click += btnDelete_Click;
+
+            cancel = new ApplicationBarIconButton();
+            cancel.IconUri = new Uri("/Resources/cancel.png", UriKind.RelativeOrAbsolute);
+            cancel.Text = Strings.CancelMenuLower;
+            cancel.Click += btnCancel_Click;
+
+            // build application bar
+            ApplicationBar.MenuItems.Add(save);
+            ApplicationBar.MenuItems.Add(delete);
+            ApplicationBar.MenuItems.Add(cancel);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -49,7 +79,7 @@ namespace Milkman
         {
             if (!loadedDetails)
             {
-                GlobalLoading.Instance.IsLoadingText("Loading...");
+                GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
                 ReloadNote();
                 loadedDetails = true;
@@ -95,7 +125,7 @@ namespace Milkman
         {
             if (!GlobalLoading.Instance.IsLoading)
             {
-                GlobalLoading.Instance.IsLoadingText("Saving note...");
+                GlobalLoading.Instance.IsLoadingText(Strings.SavingNote);
 
                 // edit note
                 SmartDispatcher.BeginInvoke(() =>
@@ -126,9 +156,9 @@ namespace Milkman
         {
             if (!GlobalLoading.Instance.IsLoading)
             {
-                if (MessageBox.Show("Are you sure you want to delete this note?", "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show(Strings.DeleteNoteDialog, Strings.DeleteNoteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
-                    GlobalLoading.Instance.IsLoadingText("Deleting note...");
+                    GlobalLoading.Instance.IsLoadingText(Strings.DeletingNote);
 
                     // delete note
                     SmartDispatcher.BeginInvoke(() =>

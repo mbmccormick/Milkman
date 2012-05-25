@@ -100,7 +100,7 @@ namespace Milkman
         public TaskListPage()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(TaskListPage_Loaded);
+            
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             TiltEffect.TiltableItems.Add(typeof(MultiselectItem));
@@ -159,10 +159,6 @@ namespace Milkman
             signOut = new ApplicationBarMenuItem();
             signOut.Text = "sign out";
             signOut.Click += mnuSignOut_Click;
-        }
-
-        private void TaskListPage_Loaded(object sender, RoutedEventArgs e)
-        {
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)

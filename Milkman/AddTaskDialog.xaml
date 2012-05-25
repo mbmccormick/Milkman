@@ -36,7 +36,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Margin="18,0,18,12" Text="Add Task" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="{StaticResource PhoneFontSizeLarge}" Foreground="{StaticResource PhoneForegroundBrush}" FontWeight="Medium" />
+            <TextBlock Margin="18,0,18,12" Text="{Binding Resources.AddTaskDialogTitle, Source={StaticResource Strings}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="{StaticResource PhoneFontSizeLarge}" Foreground="{StaticResource PhoneForegroundBrush}" FontWeight="Medium" />
             
             <Canvas Margin="18,24" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="White" Canvas.ZIndex="1"/>
             <TextBox x:Name="txtDetails" InputScope="Text" Margin="6,12" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" KeyUp="txtDetails_KeyUp" Canvas.ZIndex="2" Background="White" BorderBrush="{StaticResource PhoneForegroundBrush}" />
@@ -50,8 +50,8 @@
                 <TextBlock Text="=" FontSize="{StaticResource PhoneFontSizeLarge}" Foreground="{StaticResource PhoneForegroundBrush}" Width="56" TextAlignment="Center" Tap="Shortcut_Tap" />
             </toolkit:WrapPanel>
 
-            <Button x:Name="btnAdd" Margin="6,6,0,6" Content="add" Grid.Row="3" Grid.Column="0" Foreground="{StaticResource PhoneForegroundBrush}" Click="btnAdd_Click" />
-            <Button x:Name="btnCancel" Margin="0,6,6,6" Content="cancel" Grid.Row="3" Grid.Column="1" Foreground="{StaticResource PhoneForegroundBrush}" Click="btnCancel_Click" />
+            <Button x:Name="btnAdd" Margin="6,6,0,6" Content="{Binding Resources.AddButton, Source={StaticResource Strings}}" Grid.Row="3" Grid.Column="0" Foreground="{StaticResource PhoneForegroundBrush}" Click="btnAdd_Click" />
+            <Button x:Name="btnCancel" Margin="0,6,6,6" Content="{Binding Resources.CancelButton, Source={StaticResource Strings}}" Grid.Row="3" Grid.Column="1" Foreground="{StaticResource PhoneForegroundBrush}" Click="btnCancel_Click" />
         </Grid>
 
         <Canvas Name="Overlay" MouseLeftButtonDown="Overlay_MouseLeftButtonDown">

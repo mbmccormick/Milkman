@@ -18,23 +18,42 @@ namespace Milkman
 {
     public partial class WelcomePage : PhoneApplicationPage
     {
+        #region Construction and Navigation
+
+        ApplicationBarMenuItem about;
+        ApplicationBarMenuItem feedback;
+        ApplicationBarMenuItem donate;
+
         public WelcomePage()
         {
             InitializeComponent();
 
-            // build application bar
-            ApplicationBarMenuItem about = new ApplicationBarMenuItem(Strings.AboutMenuLower);
+            this.BuildApplicationBar();
+        }
+
+        private void BuildApplicationBar()
+        {
+            about = new ApplicationBarMenuItem();
+            about.Text = Strings.AboutMenuLower;
             about.Click += mnuAbout_Click;
-            ApplicationBar.MenuItems.Add(about);
 
-            ApplicationBarMenuItem feedback = new ApplicationBarMenuItem(Strings.FeedbackMenuLower);
+            feedback = new ApplicationBarMenuItem();
+            feedback.Text = Strings.FeedbackMenuLower;
             feedback.Click += mnuFeedback_Click;
-            ApplicationBar.MenuItems.Add(feedback);
 
-            ApplicationBarMenuItem donate = new ApplicationBarMenuItem(Strings.DonateMenuLower);
+            donate = new ApplicationBarMenuItem();
+            donate.Text = Strings.DonateMenuLower;
             donate.Click += mnuDonate_Click;
+
+            // build application bar
+            ApplicationBar.MenuItems.Add(about);
+            ApplicationBar.MenuItems.Add(feedback);
             ApplicationBar.MenuItems.Add(donate);
         }
+
+        #endregion
+
+        #region Event Handlers
 
         private void stkSignIn_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -85,5 +104,7 @@ namespace Milkman
             webBrowserTask.Uri = new Uri("http://mbmccormick.com/donate/", UriKind.Absolute);
             webBrowserTask.Show();
         }
+
+        #endregion
     }
 }

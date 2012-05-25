@@ -39,15 +39,65 @@ namespace Milkman
 
         #region Construction and Navigation
 
+        ApplicationBarIconButton add;
+        ApplicationBarIconButton sync;
+
+        ApplicationBarMenuItem settings;
+        ApplicationBarMenuItem about;
+        ApplicationBarMenuItem feedback;
+        ApplicationBarMenuItem donate;
+        ApplicationBarMenuItem signOut;
+
         public MainPage()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(MainPage_Loaded);
+
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
+            
+            this.BuildApplicationBar();
         }
 
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        private void BuildApplicationBar()
         {
+            add = new ApplicationBarIconButton();
+            add.IconUri = new Uri("/Resources/add.png", UriKind.RelativeOrAbsolute);
+            add.Text = Strings.AddMenuLower;
+            add.Click += btnAdd_Click;
+
+            sync = new ApplicationBarIconButton();
+            sync.IconUri = new Uri("/Resources/retry.png", UriKind.RelativeOrAbsolute);
+            sync.Text = Strings.SyncMenuLower;
+            sync.Click += btnSync_Click;
+
+            settings = new ApplicationBarMenuItem();
+            settings.Text = Strings.SettingsMenuLower;
+            settings.Click += mnuSettings_Click;
+
+            about = new ApplicationBarMenuItem();
+            about.Text = Strings.AboutMenuLower;
+            about.Click += mnuAbout_Click;
+
+            feedback = new ApplicationBarMenuItem();
+            feedback.Text = Strings.FeedbackMenuLower;
+            feedback.Click += mnuFeedback_Click;
+
+            donate = new ApplicationBarMenuItem();
+            donate.Text = Strings.DonateMenuLower;
+            donate.Click += mnuDonate_Click;
+
+            signOut = new ApplicationBarMenuItem();
+            signOut.Text = Strings.SignOutMenuLower;
+            signOut.Click += mnuSignOut_Click;
+
+            // build application bar
+            ApplicationBar.MenuItems.Add(add);
+            ApplicationBar.MenuItems.Add(sync);
+
+            ApplicationBar.MenuItems.Add(settings);
+            ApplicationBar.MenuItems.Add(about);
+            ApplicationBar.MenuItems.Add(feedback);
+            ApplicationBar.MenuItems.Add(donate);
+            ApplicationBar.MenuItems.Add(signOut);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -60,7 +110,7 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
             if (NavigationContext.QueryString.ContainsKey("IsFirstRun") == true)
                 NavigationService.RemoveBackEntry();
@@ -111,7 +161,7 @@ namespace Milkman
                     {
                         SmartDispatcher.BeginInvoke(() =>
                         {
-                            GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
+                            GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
                         });
 
                         App.RtmClient.SyncEverything(() =>
@@ -146,7 +196,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
+                GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
 
                 if (App.RtmClient.TaskLists != null)
                 {
@@ -154,14 +204,14 @@ namespace Milkman
 
                     foreach (TaskList l in App.RtmClient.TaskLists)
                     {
-                        if (l.Name.ToLower() == "all tasks")
+                        if (l.Name.ToLower() == Strings.AllTasksLower)
                             tempTaskLists.Insert(0, l);
                         else
                             tempTaskLists.Add(l);
                     }
 
                     // // insert the nearby list placeholder
-                    // TaskList nearby = new TaskList("Nearby");
+                    // TaskList nearby = new TaskList(Strings.Nearby);
                     // tempTaskLists.Insert(1, nearby);
 
                     TaskLists = tempTaskLists;
@@ -228,9 +278,9 @@ namespace Milkman
             TaskList item = ((FrameworkElement)sender).DataContext as TaskList;
 
             if (item != null)
-                if (item.Name.ToLower() == "all tasks")
+                if (item.Name.ToLower() == Strings.AllTasksLower)
                     this.NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml?id=" + item.Id, UriKind.Relative));
-                else if (item.Name.ToLower() == "nearby")
+                else if (item.Name.ToLower() == Strings.NearbyLower)
                     this.NavigationService.Navigate(new Uri("/TaskListByLocationPage.xaml?id=" + item.Id, UriKind.Relative));
                 else
                     this.NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
@@ -245,7 +295,7 @@ namespace Milkman
             if (App.RtmClient.Locations == null) return;
 
             // set count
-            if (task.Name.ToLower() == "nearby")
+            if (task.Name.ToLower() == Strings.NearbyLower)
             {
                 int count = 0;
                 List<string> alreadyCounted = new List<string>();
@@ -275,11 +325,11 @@ namespace Milkman
                 }
 
                 if (count == 0)
-                    target.Text = "No tasks";
+                    target.Text = Strings.HubTileEmpty;
                 else if (count == 1)
-                    target.Text = "1 task";
+                    target.Text = 1 + " " + Strings.HubTileSingle;
                 else
-                    target.Text = count + " tasks";
+                    target.Text = count + " " + Strings.HubTilePlural;
             }
         }
 
@@ -319,7 +369,7 @@ namespace Milkman
 
         private void mnuSignOut_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to sign out of Milkman and remove all of your data?", "Sign Out", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(Strings.SignOutDialog, Strings.SignOutDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 App.DeleteData();
                 Login();
@@ -350,7 +400,7 @@ namespace Milkman
             MenuItem target = (MenuItem)sender;
             ContextMenu parent = (ContextMenu)target.Parent;
 
-            if (target.Header.ToString() == "pin to start")
+            if (target.Header.ToString() == Strings.PinToStartLower)
             {
                 ShellTile secondaryTile = ShellTile.ActiveTiles.FirstOrDefault(t => t.NavigationUri.ToString().Contains("id=" + MostRecentTaskListClick.Id));
 
@@ -359,29 +409,37 @@ namespace Milkman
                     StandardTileData data = new StandardTileData();
 
                     int tasksDueToday = 0;
+                    int tasksOverdue = 0;
                     if (MostRecentTaskListClick.Tasks != null)
+                    {
                         tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
                                                                                  z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                        tasksOverdue = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                                z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                    }
 
                     data.BackgroundImage = new Uri("BackgroundPinned.png", UriKind.Relative);
                     data.Title = "Milkman";
 
                     data.BackTitle = MostRecentTaskListClick.Name;
                     if (tasksDueToday == 0)
-                        data.BackContent = "No tasks due today";
+                        data.BackContent = Strings.LiveTileEmpty;
                     else if (tasksDueToday == 1)
-                        data.BackContent = tasksDueToday + " task due today";
+                        data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
                     else
-                        data.BackContent = tasksDueToday + " tasks due today";
+                        data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
 
-                    if (MostRecentTaskListClick.Name.ToLower() == "all tasks")
+                    if (tasksOverdue > 0)
+                        data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
+
+                    if (MostRecentTaskListClick.Name.ToLower() == Strings.AllTasksLower)
                         ShellTile.Create(new Uri("/TaskListByDatePage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
                     else
                         ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
                 }
                 else
                 {
-                    MessageBox.Show("This list is already pinned to your start screen. If you need to replace it, remove the tile from your start screen and then reopen Milkman.", "Pin To Start", MessageBoxButton.OK);
+                    MessageBox.Show(Strings.PinToStartDialog, Strings.PinToStartDialogTitle, MessageBoxButton.OK);
                 }
             }
         }
@@ -392,7 +450,7 @@ namespace Milkman
 
         private void AddTask(string smartAddText)
         {
-            GlobalLoading.Instance.IsLoadingText("Adding task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.AddingTask);
 
             string input = smartAddText;
             if (input.Contains('#') == false)
