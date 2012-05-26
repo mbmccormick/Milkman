@@ -47,7 +47,7 @@ namespace IronCow
         #endregion
 
         #region Syncing Methods
-        
+
         public void SyncEverything(SyncCallback callback)
         {
             SyncUserSettings(() =>
@@ -468,7 +468,7 @@ namespace IronCow
                 var lexicalAnalyzer = new Search.LexicalAnalyzer();
                 var tokens = lexicalAnalyzer.Tokenize(filter);
                 var astRoot = lexicalAnalyzer.BuildAst(tokens);
-                
+
                 bool includeArchivedLists = astRoot.NeedsArchivedLists();
 
                 var resultTasks = new List<Task>();
@@ -817,17 +817,24 @@ namespace IronCow
 
         public TaskList GetDefaultTaskList()
         {
-            string listName = UserSettings.DefaultList;
-            if (string.IsNullOrEmpty(listName))
-                listName = "Inbox";
-            
             try
             {
-                return TaskLists[listName];
+                string listName = UserSettings.DefaultList;
+                if (string.IsNullOrEmpty(listName))
+                    listName = "Inbox";
+
+                try
+                {
+                    return TaskLists[listName];
+                }
+                catch (Exception ex)
+                {
+                    return TaskLists.SingleOrDefault<TaskList>(l => l.Id == listName);
+                }
             }
             catch (Exception ex)
             {
-                return TaskLists.SingleOrDefault<TaskList>(l => l.Id == listName);
+                return TaskLists.FirstOrDefault<TaskList>();
             }
         }
 
