@@ -154,7 +154,7 @@ namespace Milkman
             about.Click += mnuAbout_Click;
 
             feedback = new ApplicationBarMenuItem();
-            feedback.Text = Strings.DonateMenuLower;
+            feedback.Text = Strings.FeedbackMenuLower;
             feedback.Click += mnuFeedback_Click;
 
             donate = new ApplicationBarMenuItem();
