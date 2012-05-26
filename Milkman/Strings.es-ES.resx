@@ -726,4 +726,10 @@
   <data name="UnhandledErrorDialogTitle" xml:space="preserve">
     <value>Informe de Errores</value>
   </data>
+  <data name="MarketplaceDialog" xml:space="preserve">
+    <value>Hace ya unos días que ha descargado Milkman. ¿Le gustaría precio en el mercado?</value>
+  </data>
+  <data name="MarketplaceDialogTitle" xml:space="preserve">
+    <value>Tasa Milkman</value>
+  </data>
 </root>

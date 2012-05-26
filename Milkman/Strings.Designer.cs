@@ -988,6 +988,24 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to It&apos;s been a few days since you downloaded Milkman. Would you like to rate it on the Marketplace?.
+        /// </summary>
+        public static string MarketplaceDialog {
+            get {
+                return ResourceManager.GetString("MarketplaceDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate Milkman.
+        /// </summary>
+        public static string MarketplaceDialogTitle {
+            get {
+                return ResourceManager.GetString("MarketplaceDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Milkman.
         /// </summary>
         public static string Milkman {

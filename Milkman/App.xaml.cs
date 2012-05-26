@@ -16,6 +16,8 @@ using Milkman.Common;
 using IronCow;
 using IronCow.Rest;
 using Microsoft.Phone.Scheduler;
+using System.IO.IsolatedStorage;
+using Microsoft.Phone.Tasks;
 
 namespace Milkman
 {
@@ -143,6 +145,40 @@ namespace Milkman
             SmartDispatcher.Initialize(RootFrame.Dispatcher);
 
             LoadData();
+
+            this.PromptForMarketplaceReview();
+        }
+
+        private void PromptForMarketplaceReview()
+        {
+            string currentVersion = App.VersionNumber;
+            if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<string>("CurrentVersion", out currentVersion) == false)
+                currentVersion = App.VersionNumber;
+
+            DateTime installDate = DateTime.UtcNow;
+            if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<DateTime>("InstallDate", out installDate) == false)
+                installDate = DateTime.UtcNow;
+
+            if (currentVersion != App.VersionNumber) // override if this is a new version
+                installDate = DateTime.UtcNow;
+
+            if (DateTime.UtcNow.AddDays(-3) >= installDate) // prompt after 3 days
+            {
+                if (MessageBox.Show(Strings.MarketplaceDialog, Strings.MarketplaceDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
+                    marketplaceReviewTask.Show();
+
+                    installDate = DateTime.MaxValue; // they have rated, don't prompt again
+                }
+                else
+                {
+                    installDate = DateTime.UtcNow; // they did not rate, prompt again in 3 days
+                }
+            }
+
+            IsolatedStorageSettings.ApplicationSettings["CurrentVersion"] = App.VersionNumber; // save current version of application
+            IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
         }
 
         private void Application_Activated(object sender, ActivatedEventArgs e)
