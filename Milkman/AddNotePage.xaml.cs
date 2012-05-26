@@ -55,8 +55,8 @@ namespace Milkman
             cancel.Click += btnCancel_Click;
 
             // build application bar
-            ApplicationBar.MenuItems.Add(save);
-            ApplicationBar.MenuItems.Add(cancel);
+            ApplicationBar.Buttons.Add(save);
+            ApplicationBar.Buttons.Add(cancel);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)

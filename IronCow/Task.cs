@@ -540,13 +540,9 @@ namespace IronCow
                     if (DueDateTime.Value.Date == DateTime.Today && !HasDueTime)
                     {
                         if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
-                        {
                             dueString += "hoy";
-                        }
                         else
-                        {
                             dueString += "today";
-                        }
                     }
                     else if (HasDueTime && DueDateTime.Value.Date == DateTime.Today)
                     {
@@ -555,13 +551,9 @@ namespace IronCow
                     else if (DateTime.Today.AddDays(1) == DueDateTime.Value.Date)
                     {
                         if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
-                        {
                             dueString += "mañana";
-                        }
                         else
-                        {
                             dueString += "tomorrow";
-                        }
                     }
                     else if (DateTime.Today < DueDateTime.Value.Date && DateTime.Today.AddDays(6) >= DueDateTime.Value.Date)
                     {
@@ -583,7 +575,12 @@ namespace IronCow
         {
             get
             {
-                string dueString = "Never";
+                string dueString;
+                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
+                    dueString = "Nunca";
+                else
+                    dueString = "Never";
+
                 if (DueDateTime.HasValue)
                 {
                     if (this.HasDueTime)
@@ -1369,32 +1366,69 @@ namespace IronCow
                     if (this.DueDateTime.Value.Date > DateTime.Now.AddDays(6).Date ||
                         this.DueDateTime.Value.Date < DateTime.Now.Date)
                     {
-                        if (this.HasDueTime)
-                            return "Due " + this.DueDateTime.Value.ToString("dddd, MMMM d") + " at " + this.DueDateTime.Value.ToString("h:mm tt");
+                        if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
+                        {
+                            if (this.HasDueTime)
+                                return "Vencimiento " + this.DueDateTime.Value.ToString("dddd, MMMM d") + " a las " + this.DueDateTime.Value.ToString("h:mm tt");
+                            else
+                                return "Vencimiento " + this.DueDateTime.Value.ToString("dddd, MMMM d");
+                        }
                         else
-                            return "Due " + this.DueDateTime.Value.ToString("dddd, MMMM d");
+                        {
+                            if (this.HasDueTime)
+                                return "Due " + this.DueDateTime.Value.ToString("dddd, MMMM d") + " at " + this.DueDateTime.Value.ToString("h:mm tt");
+                            else
+                                return "Due " + this.DueDateTime.Value.ToString("dddd, MMMM d");
+                        }
                     }
                     else
                     {
                         if (this.DueDateTime.Value.Date == DateTime.Now.Date)
                         {
-                            if (this.HasDueTime)
-                                return "Due today at " + this.DueDateTime.Value.ToString("h:mm tt");
+                            if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
+                            {
+                                if (this.HasDueTime)
+                                    return "Vencimiento hoy a las " + this.DueDateTime.Value.ToString("h:mm tt");
+                                else
+                                    return "Vencimiento hoy";
+                            }
                             else
-                                return "Due today";
+                            {
+                                if (this.HasDueTime)
+                                    return "Due today at " + this.DueDateTime.Value.ToString("h:mm tt");
+                                else
+                                    return "Due today";
+                            }
                         }
                         else
                         {
-                            if (this.HasDueTime)
-                                return "Due " + this.DueString + " at " + this.DueDateTime.Value.ToString("h:mm tt");
+                            if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
+                            {
+                                if (this.HasDueTime)
+                                    return "Vencimiento " + this.DueString + " a las " + this.DueDateTime.Value.ToString("h:mm tt");
+                                else
+                                    return "Vencimiento " + this.DueString;
+                            }
                             else
-                                return "Due " + this.DueString;
+                            {
+                                if (this.HasDueTime)
+                                    return "Due " + this.DueString + " at " + this.DueDateTime.Value.ToString("h:mm tt");
+                                else
+                                    return "Due " + this.DueString;
+                            }
                         }
                     }
                 }
                 else
                 {
-                    return "No due date";
+                    if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
+                    {
+                        return "Sin fecha de vencimiento";
+                    }
+                    else
+                    {
+                        return "No due date";
+                    }
                 }
             }
         }
@@ -1403,12 +1437,18 @@ namespace IronCow
         {
             get
             {
+                string suffix;
+                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
+                    suffix = "vez";
+                else
+                    suffix = "veces";
+
                 if (this.Postponed == 0)
                     return "";
                 else if (this.Postponed == 1)
-                    return this.Postponed + " time";
+                    return this.Postponed + " " + suffix;
                 else
-                    return this.Postponed + " times";
+                    return this.Postponed + " " + suffix;
             }
         }
     }

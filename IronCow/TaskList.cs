@@ -147,12 +147,24 @@ namespace IronCow
         {
             get
             {
-                if (ActiveCount == 0)
-                    return "No tasks";
-                else if (ActiveCount == 1)
-                    return "1 task";
+                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
+                {
+                    if (ActiveCount == 0)
+                        return "No hay tareas";
+                    else if (ActiveCount == 1)
+                        return "1 tarea";
+                    else
+                        return ActiveCount + " tareas"; 
+                }
                 else
-                    return ActiveCount + " tasks";
+                {
+                    if (ActiveCount == 0)
+                        return "No tasks";
+                    else if (ActiveCount == 1)
+                        return "1 task";
+                    else
+                        return ActiveCount + " tasks";
+                }
             }
         }
 

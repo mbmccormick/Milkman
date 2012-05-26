@@ -80,10 +80,10 @@ namespace Milkman
             add.Click += btnAdd_Click;
 
             // build application bar
-            ApplicationBar.MenuItems.Add(complete);
-            ApplicationBar.MenuItems.Add(postpone);
-            ApplicationBar.MenuItems.Add(edit);
-            ApplicationBar.MenuItems.Add(delete);
+            ApplicationBar.Buttons.Add(complete);
+            ApplicationBar.Buttons.Add(postpone);
+            ApplicationBar.Buttons.Add(edit);
+            ApplicationBar.Buttons.Add(delete);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)

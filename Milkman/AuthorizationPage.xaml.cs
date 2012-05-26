@@ -65,8 +65,8 @@ namespace Milkman
             donate.Click += mnuDonate_Click;
 
             // build application bar
-            ApplicationBar.MenuItems.Add(complete);
-            ApplicationBar.MenuItems.Add(retry);
+            ApplicationBar.Buttons.Add(complete);
+            ApplicationBar.Buttons.Add(retry);
 
             ApplicationBar.MenuItems.Add(about);
             ApplicationBar.MenuItems.Add(feedback);

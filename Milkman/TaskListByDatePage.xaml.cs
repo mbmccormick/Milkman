@@ -166,10 +166,10 @@ namespace Milkman
             signOut.Click += mnuSignOut_Click;
 
             // build application bar
-            ApplicationBar.MenuItems.Add(dashboard);
-            ApplicationBar.MenuItems.Add(add);
-            ApplicationBar.MenuItems.Add(select);
-            ApplicationBar.MenuItems.Add(sync);
+            ApplicationBar.Buttons.Add(dashboard);
+            ApplicationBar.Buttons.Add(add);
+            ApplicationBar.Buttons.Add(select);
+            ApplicationBar.Buttons.Add(sync);
 
             ApplicationBar.MenuItems.Add(settings);
             ApplicationBar.MenuItems.Add(about);

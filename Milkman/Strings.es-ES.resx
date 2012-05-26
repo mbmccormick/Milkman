@@ -496,7 +496,7 @@
     <value>Lista</value>
   </data>
   <data name="Location" xml:space="preserve">
-    <value>ubicación</value>
+    <value>Ubicación</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Nombre</value>
@@ -694,7 +694,7 @@
     <value>Apagado</value>
   </data>
   <data name="On" xml:space="preserve">
-    <value>encender</value>
+    <value>Encender</value>
   </data>
   <data name="SettingsErrorDialog" xml:space="preserve">
     <value>Algo salió mal al cargar la configuración. Puede que desee volver a cargar esta página para asegurarse de que la configuración se carga correctamente.</value>
