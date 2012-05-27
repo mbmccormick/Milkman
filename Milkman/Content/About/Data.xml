@@ -1,8 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <About>
-  <!-- The App element allows you to override the values that are extracted from the WMAppManifest.xml file automatically -->
-  <!-- The AdditionalNotes attribute has no equivalent in the WMAppManifest.xml; you can only define its content here -->
-  <!-- New in 1.1: Explicitly set any of the attributes to an empty string to remove it (including its label) from the dialog -->
   <App Title="Milkman"
        Author="Matt McCormick"
        Description=""
