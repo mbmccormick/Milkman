@@ -18,7 +18,10 @@
       <Links>
         <Link NavigateUri="http://mbmccormick.com"
               Content="http://mbmccormick.com"
-              Label="Sitio Web:" />
+              Label="Sitio Web:" />        
+        <Link NavigateUri="mailto:milkmanwp@gmail.com"
+              Content="milkmanwp@gmail.com"
+              Label="Apoyo:" />
       </Links>
     </MainItem>
     <Item Title="legal" Type="text">
