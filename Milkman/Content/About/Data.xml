@@ -19,6 +19,9 @@
         <Link NavigateUri="http://mbmccormick.com"
               Content="http://mbmccormick.com"
               Label="Website:" />
+        <Link NavigateUri="mailto:milkmanwp@gmail.com"
+              Content="milkmanwp@gmail.com"
+              Label="Support:" />
       </Links>
     </MainItem>
     <Item Title="legal" Type="text">
