@@ -16,7 +16,7 @@
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <SilverlightApplication>false</SilverlightApplication>
-    <SupportedCultures>es-ES</SupportedCultures>
+    <SupportedCultures>es-ES;it-IT</SupportedCultures>
     <ValidateXaml>true</ValidateXaml>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
     <BackgroundAgentType>ScheduledTaskAgent</BackgroundAgentType>
