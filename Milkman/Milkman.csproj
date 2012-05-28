@@ -103,6 +103,11 @@
     <Compile Include="Common\SmartDispatcher.cs" />
     <Compile Include="Common\SortableObservableCollection.cs" />
     <Compile Include="Common\ThemeManager.cs" />
+    <Compile Include="Strings.it-IT.Designer.cs">
+      <DependentUpon>Strings.it-IT.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Strings.es-ES.Designer.cs">
       <DependentUpon>Strings.es-ES.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -222,6 +227,7 @@
     <Content Include="Content\About\Data.es-ES.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\About\Data.it-IT.xml" />
     <Content Include="Content\About\Data.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -286,6 +292,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Strings.it-IT.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.it-IT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.es-ES.Designer.cs</LastGenOutput>
@@ -306,7 +316,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
+      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
