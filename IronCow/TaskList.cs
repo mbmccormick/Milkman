@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using IronCow.Rest;
+using IronCow.Resources;
 
 namespace IronCow
 {
@@ -89,20 +90,6 @@ namespace IronCow
             }
         }
 
-        public string LocName
-        {
-            get
-            {
-                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
-                {
-                    if (Name == "Inbox") return "Buzón";
-                    if (Name == "Sent") return "Enviadas";
-                }
-
-                return Name;
-            }
-        }
-
         private TaskListTaskCollection mTasks;
         public TaskListTaskCollection Tasks
         {
@@ -147,24 +134,12 @@ namespace IronCow
         {
             get
             {
-                if (System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "es")
-                {
-                    if (ActiveCount == 0)
-                        return "No hay tareas";
-                    else if (ActiveCount == 1)
-                        return "1 tarea";
-                    else
-                        return ActiveCount + " tareas"; 
-                }
+                if (ActiveCount == 0)
+                    return Strings.NoTasks;
+                else if (ActiveCount == 1)
+                    return ActiveCount + " " + Strings.TaskSingle;
                 else
-                {
-                    if (ActiveCount == 0)
-                        return "No tasks";
-                    else if (ActiveCount == 1)
-                        return "1 task";
-                    else
-                        return ActiveCount + " tasks";
-                }
+                    return ActiveCount + " " + Strings.TaskPlural;
             }
         }
 
