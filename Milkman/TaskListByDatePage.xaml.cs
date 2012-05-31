@@ -762,7 +762,12 @@ namespace Milkman
             GlobalLoading.Instance.IsLoadingText(Strings.AddingTask);
 
             string input = smartAddText;
-            if (input.Contains('#') == false)
+            if (input.Contains('#') == false &&
+                CurrentList.IsSmart == false)
+            {
+                input = input + " #" + CurrentList.Name;
+            }
+            else
             {
                 TaskList defaultList = App.RtmClient.GetDefaultTaskList();
                 if (defaultList.IsSmart == false)

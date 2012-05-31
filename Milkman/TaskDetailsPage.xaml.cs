@@ -180,7 +180,7 @@ namespace Milkman
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Strings.CompleteDialog, Strings.CompleteDialog , MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(Strings.CompleteDialog, Strings.CompleteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                 {

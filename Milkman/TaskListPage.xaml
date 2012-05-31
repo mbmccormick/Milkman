@@ -47,9 +47,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
@@ -89,9 +89,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
@@ -131,9 +131,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
@@ -173,9 +173,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
@@ -216,9 +216,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                                            <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </Grid>
