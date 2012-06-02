@@ -228,7 +228,8 @@ namespace IronCow
                     {
                         mParent.Tasks.RemoveNoSync(this);
                         mParent = list;
-                        Parent.Tasks.AddNoSync(this);
+                        if (Parent.Tasks != null)
+                            Parent.Tasks.AddNoSync(this);
                         OnPropertyChanged("Parent");
                         OnPropertyChanged("List");
                     });

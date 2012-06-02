@@ -162,7 +162,7 @@ namespace Milkman
             if (currentVersion != App.VersionNumber) // override if this is a new version
                 installDate = DateTime.UtcNow;
 
-            if (DateTime.UtcNow.AddDays(-3) >= installDate) // prompt after 3 days
+            if (DateTime.UtcNow.AddDays(-2) >= installDate) // prompt after 2 days
             {
                 if (MessageBox.Show(Strings.MarketplaceDialog, Strings.MarketplaceDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
@@ -173,7 +173,7 @@ namespace Milkman
                 }
                 else
                 {
-                    installDate = DateTime.UtcNow; // they did not rate, prompt again in 3 days
+                    installDate = DateTime.UtcNow; // they did not rate, prompt again in 2 days
                 }
             }
 
