@@ -20,17 +20,11 @@ Application Development by Matt McCormick
 
 User Interface by Libby Puccinelli 
 
-What's new in Version 2.1:
-- Critical bug fix for task reminders
-- Minor UI adjustments
-
-What's new in Version 2.0:
-- You can now view tasks by date, list, or smart list
-- Customize your task reminders and location notifications
-- Pin any list or smart list as a live tile on your start screen
-- Choose between light or dark theme
-- Faster, more streamlined Add Task dialog
-- Several bug fixes
+What's new in Version 2.2:
+- Several bug fixes and stability improvements
+- All lists now use the date view pivot
+- Live tile now includes overdue tasks in task count
+- Several user interface enhancements
 
 
 ### Update description
