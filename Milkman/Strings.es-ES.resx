@@ -418,13 +418,13 @@
     <value>fecha</value>
   </data>
   <data name="DateTime" xml:space="preserve">
-    <value>Fecha &amp;amp; Hora</value>
+    <value>Fecha y Hora</value>
   </data>
   <data name="DateTimeLower" xml:space="preserve">
-    <value>fecha &amp;amp; hora</value>
+    <value>fecha y hora</value>
   </data>
   <data name="DateTimeUpper" xml:space="preserve">
-    <value>FECHA &amp;amp; HORA</value>
+    <value>FECHA Y HORA</value>
   </data>
   <data name="DateUpper" xml:space="preserve">
     <value>FECHA</value>

@@ -418,13 +418,13 @@
     <value>date</value>
   </data>
   <data name="DateTime" xml:space="preserve">
-    <value>Date &amp;amp; Time</value>
+    <value>Date &amp; Time</value>
   </data>
   <data name="DateTimeLower" xml:space="preserve">
-    <value>date &amp;amp; time</value>
+    <value>date &amp; time</value>
   </data>
   <data name="DateTimeUpper" xml:space="preserve">
-    <value>DATE &amp;amp; TIME</value>
+    <value>DATE &amp; TIME</value>
   </data>
   <data name="DateUpper" xml:space="preserve">
     <value>DATE</value>

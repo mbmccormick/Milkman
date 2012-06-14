@@ -529,7 +529,7 @@ namespace Milkman {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date &amp;amp; Time.
+        ///   Looks up a localized string similar to Date &amp; Time.
         /// </summary>
         public static string DateTime {
             get {
@@ -538,7 +538,7 @@ namespace Milkman {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to date &amp;amp; time.
+        ///   Looks up a localized string similar to date &amp; time.
         /// </summary>
         public static string DateTimeLower {
             get {
@@ -547,7 +547,7 @@ namespace Milkman {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DATE &amp;amp; TIME.
+        ///   Looks up a localized string similar to DATE &amp; TIME.
         /// </summary>
         public static string DateTimeUpper {
             get {
