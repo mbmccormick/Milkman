@@ -69,7 +69,7 @@ namespace Milkman.Common
                         EmailComposeTask email = new EmailComposeTask();
                         email.To = "milkmanwp@gmail.com";
                         email.Subject = "Milkman Error Report";
-                        email.Body = "Version " + App.VersionNumber + "\n\n" + contents;
+                        email.Body = "Version " + App.VersionNumber + "(" + App.PlatformVersionNumber + ")\n\n" + contents;
 
                         SafeDeleteFile(IsolatedStorageFile.GetUserStoreForApplication());
 

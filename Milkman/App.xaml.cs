@@ -37,7 +37,17 @@ namespace Milkman
             get
             {
                 string assembly = System.Reflection.Assembly.GetExecutingAssembly().FullName;
-                return assembly.Split('=')[1].Split(',')[0];
+                string version = assembly.Split('=')[1].Split(',')[0];
+
+                return version.Substring(0, version.Length - 2);
+            }
+        }
+
+        public static string PlatformVersionNumber
+        {
+            get
+            {
+                return System.Environment.OSVersion.Version.ToString(3);
             }
         }
 
