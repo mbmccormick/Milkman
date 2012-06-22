@@ -96,12 +96,6 @@
     <Compile Include="StringsProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IronCow\IronCow.csproj">
-      <Project>{22D8C142-6D0F-4D5E-8B46-9FCA34CE3A8E}</Project>
-      <Name>IronCow</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -126,6 +120,12 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IronCow\IronCow.csproj">
+      <Project>{22D8C142-6D0F-4D5E-8B46-9FCA34CE3A8E}</Project>
+      <Name>IronCow</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />

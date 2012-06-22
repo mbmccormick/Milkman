@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
      Copyright 2002-2005 GL Conseil/Flow Group SAS.  All rights reserved.
 
     Permission is granted to anyone to use this software for any purpose on
@@ -46,24 +46,30 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace IronCow {
-    public class MD5CryptoServiceProvider : MD5 {
+namespace JeffWilcox.Utilities.Silverlight
+{
+    public class MD5CryptoServiceProvider : MD5
+    {
         public MD5CryptoServiceProvider()
-            : base() {
+            : base()
+        {
         }
     }
     /// <summary>
     /// Summary description for MD5.
     /// </summary>
-    public class MD5 : IDisposable {
-        static public MD5 Create(string hashName) {
+    public class MD5 : IDisposable
+    {
+        static public MD5 Create(string hashName)
+        {
             if (hashName == "MD5")
                 return new MD5();
             else
                 throw new NotSupportedException();
         }
 
-        static public string GetMd5String(String source) {
+        static public string GetMd5String(String source)
+        {
             MD5 md = MD5CryptoServiceProvider.Create();
             byte[] hash;
 
@@ -84,7 +90,8 @@ namespace IronCow {
             return sb.ToString();
         }
 
-        static public MD5 Create() {
+        static public MD5 Create()
+        {
             return new MD5();
         }
 
@@ -114,16 +121,20 @@ namespace IronCow {
         #endregion
 
         #region F, G, H and I are basic MD5 functions.
-        static private uint F(uint x, uint y, uint z) {
+        static private uint F(uint x, uint y, uint z)
+        {
             return (((x) & (y)) | ((~x) & (z)));
         }
-        static private uint G(uint x, uint y, uint z) {
+        static private uint G(uint x, uint y, uint z)
+        {
             return (((x) & (z)) | ((y) & (~z)));
         }
-        static private uint H(uint x, uint y, uint z) {
+        static private uint H(uint x, uint y, uint z)
+        {
             return ((x) ^ (y) ^ (z));
         }
-        static private uint I(uint x, uint y, uint z) {
+        static private uint I(uint x, uint y, uint z)
+        {
             return ((y) ^ ((x) | (~z)));
         }
         #endregion
@@ -135,7 +146,8 @@ namespace IronCow {
         /// <param name="x"></param>
         /// <param name="n"></param>
         /// <returns></returns>
-        static private uint ROTATE_LEFT(uint x, byte n) {
+        static private uint ROTATE_LEFT(uint x, byte n)
+        {
             return (((x) << (n)) | ((x) >> (32 - (n))));
         }
         #endregion
@@ -144,22 +156,26 @@ namespace IronCow {
         /// FF, GG, HH, and II transformations 
         /// for rounds 1, 2, 3, and 4.
         /// Rotation is separate from addition to prevent recomputation.
-        static private void FF(ref uint a, uint b, uint c, uint d, uint x, byte s, uint ac) {
+        static private void FF(ref uint a, uint b, uint c, uint d, uint x, byte s, uint ac)
+        {
             (a) += F((b), (c), (d)) + (x) + (uint)(ac);
             (a) = ROTATE_LEFT((a), (s));
             (a) += (b);
         }
-        static private void GG(ref uint a, uint b, uint c, uint d, uint x, byte s, uint ac) {
+        static private void GG(ref uint a, uint b, uint c, uint d, uint x, byte s, uint ac)
+        {
             (a) += G((b), (c), (d)) + (x) + (uint)(ac);
             (a) = ROTATE_LEFT((a), (s));
             (a) += (b);
         }
-        static private void HH(ref uint a, uint b, uint c, uint d, uint x, byte s, uint ac) {
+        static private void HH(ref uint a, uint b, uint c, uint d, uint x, byte s, uint ac)
+        {
             (a) += H((b), (c), (d)) + (x) + (uint)(ac);
             (a) = ROTATE_LEFT((a), (s));
             (a) += (b);
         }
-        static private void II(ref uint a, uint b, uint c, uint d, uint x, byte s, uint ac) {
+        static private void II(ref uint a, uint b, uint c, uint d, uint x, byte s, uint ac)
+        {
             (a) += I((b), (c), (d)) + (x) + (uint)(ac);
             (a) = ROTATE_LEFT((a), (s));
             (a) += (b);
@@ -183,7 +199,8 @@ namespace IronCow {
         byte[] buffer = new byte[64];
         #endregion
 
-        internal MD5() {
+        internal MD5()
+        {
             Initialize();
         }
 
@@ -193,7 +210,8 @@ namespace IronCow {
         /// <remarks>
         /// The RFC named it "MD5Init"
         /// </remarks>
-        public virtual void Initialize() {
+        public virtual void Initialize()
+        {
             count[0] = count[1] = 0;
 
             // Load magic initialization constants.
@@ -212,7 +230,8 @@ namespace IronCow {
         /// <param name="offset"></param>
         /// <param name="count"></param>
         /// <remarks>The RFC Named it MD5Update</remarks>
-        protected virtual void HashCore(byte[] input, int offset, int count) {
+        protected virtual void HashCore(byte[] input, int offset, int count)
+        {
             int i;
             int index;
             int partLen;
@@ -228,7 +247,8 @@ namespace IronCow {
             partLen = 64 - index;
 
             // Transform as many times as possible.
-            if (count >= partLen) {
+            if (count >= partLen)
+            {
                 Buffer.BlockCopy(input, offset, this.buffer, index, partLen);
                 Transform(this.buffer, 0);
 
@@ -250,7 +270,8 @@ namespace IronCow {
         /// </summary>
         /// <returns>message digest</returns>
         /// <remarks>The RFC named it MD5Final</remarks>
-        protected virtual byte[] HashFinal() {
+        protected virtual byte[] HashFinal()
+        {
             byte[] digest = new byte[16];
             byte[] bits = new byte[8];
             int index, padLen;
@@ -287,7 +308,8 @@ namespace IronCow {
         /// </summary>
         /// <param name="block"></param>
         /// <param name="offset"></param>
-        private void Transform(byte[] block, int offset) {
+        private void Transform(byte[] block, int offset)
+        {
             uint a = state[0], b = state[1], c = state[2], d = state[3];
             uint[] x = new uint[16];
             Decode(x, 0, block, offset, 64);
@@ -383,10 +405,12 @@ namespace IronCow {
         /// <param name="input"></param>
         /// <param name="inputOffset"></param>
         /// <param name="count"></param>
-        private static void Encode(byte[] output, int outputOffset, uint[] input, int inputOffset, int count) {
+        private static void Encode(byte[] output, int outputOffset, uint[] input, int inputOffset, int count)
+        {
             int i, j;
             int end = outputOffset + count;
-            for (i = inputOffset, j = outputOffset; j < end; i++, j += 4) {
+            for (i = inputOffset, j = outputOffset; j < end; i++, j += 4)
+            {
                 output[j] = (byte)(input[i] & 0xff);
                 output[j + 1] = (byte)((input[i] >> 8) & 0xff);
                 output[j + 2] = (byte)((input[i] >> 16) & 0xff);
@@ -403,7 +427,8 @@ namespace IronCow {
         /// <param name="input"></param>
         /// <param name="inputOffset"></param>
         /// <param name="count"></param>
-        static private void Decode(uint[] output, int outputOffset, byte[] input, int inputOffset, int count) {
+        static private void Decode(uint[] output, int outputOffset, byte[] input, int inputOffset, int count)
+        {
             int i, j;
             int end = inputOffset + count;
             for (i = outputOffset, j = inputOffset; j < end; i++, j += 4)
@@ -415,61 +440,78 @@ namespace IronCow {
 
         protected byte[] HashValue;
         protected int State;
-        public virtual bool CanReuseTransform {
-            get {
+        public virtual bool CanReuseTransform
+        {
+            get
+            {
                 return true;
             }
         }
 
-        public virtual bool CanTransformMultipleBlocks {
-            get {
+        public virtual bool CanTransformMultipleBlocks
+        {
+            get
+            {
                 return true;
             }
         }
-        public virtual byte[] Hash {
-            get {
+        public virtual byte[] Hash
+        {
+            get
+            {
                 if (this.State != 0)
                     throw new InvalidOperationException();
                 return (byte[])HashValue.Clone();
             }
         }
-        public virtual int HashSize {
-            get {
+        public virtual int HashSize
+        {
+            get
+            {
                 return HashSizeValue;
             }
         }
         protected int HashSizeValue = 128;
 
-        public virtual int InputBlockSize {
-            get {
+        public virtual int InputBlockSize
+        {
+            get
+            {
                 return 1;
             }
         }
-        public virtual int OutputBlockSize {
-            get {
+        public virtual int OutputBlockSize
+        {
+            get
+            {
                 return 1;
             }
         }
 
-        public void Clear() {
+        public void Clear()
+        {
             Dispose(true);
         }
 
-        public byte[] ComputeHash(byte[] buffer) {
+        public byte[] ComputeHash(byte[] buffer)
+        {
             return ComputeHash(buffer, 0, buffer.Length);
         }
-        public byte[] ComputeHash(byte[] buffer, int offset, int count) {
+        public byte[] ComputeHash(byte[] buffer, int offset, int count)
+        {
             Initialize();
             HashCore(buffer, offset, count);
             HashValue = HashFinal();
             return (byte[])HashValue.Clone();
         }
 
-        public byte[] ComputeHash(Stream inputStream) {
+        public byte[] ComputeHash(Stream inputStream)
+        {
             Initialize();
             int count;
             byte[] buffer = new byte[4096];
-            while (0 < (count = inputStream.Read(buffer, 0, 4096))) {
+            while (0 < (count = inputStream.Read(buffer, 0, 4096)))
+            {
                 HashCore(buffer, 0, count);
             }
             HashValue = HashFinal();
@@ -482,26 +524,33 @@ namespace IronCow {
             int inputCount,
             byte[] outputBuffer,
             int outputOffset
-            ) {
-            if (inputBuffer == null) {
+            )
+        {
+            if (inputBuffer == null)
+            {
                 throw new ArgumentNullException("inputBuffer");
             }
-            if (inputOffset < 0) {
+            if (inputOffset < 0)
+            {
                 throw new ArgumentOutOfRangeException("inputOffset");
             }
-            if ((inputCount < 0) || (inputCount > inputBuffer.Length)) {
+            if ((inputCount < 0) || (inputCount > inputBuffer.Length))
+            {
                 throw new ArgumentException("inputCount");
             }
-            if ((inputBuffer.Length - inputCount) < inputOffset) {
+            if ((inputBuffer.Length - inputCount) < inputOffset)
+            {
                 throw new ArgumentOutOfRangeException("inputOffset");
             }
-            if (this.State == 0) {
+            if (this.State == 0)
+            {
                 Initialize();
                 this.State = 1;
             }
 
             HashCore(inputBuffer, inputOffset, inputCount);
-            if ((inputBuffer != outputBuffer) || (inputOffset != outputOffset)) {
+            if ((inputBuffer != outputBuffer) || (inputOffset != outputOffset))
+            {
                 Buffer.BlockCopy(inputBuffer, inputOffset, outputBuffer, outputOffset, inputCount);
             }
             return inputCount;
@@ -510,20 +559,26 @@ namespace IronCow {
             byte[] inputBuffer,
             int inputOffset,
             int inputCount
-            ) {
-            if (inputBuffer == null) {
+            )
+        {
+            if (inputBuffer == null)
+            {
                 throw new ArgumentNullException("inputBuffer");
             }
-            if (inputOffset < 0) {
+            if (inputOffset < 0)
+            {
                 throw new ArgumentOutOfRangeException("inputOffset");
             }
-            if ((inputCount < 0) || (inputCount > inputBuffer.Length)) {
+            if ((inputCount < 0) || (inputCount > inputBuffer.Length))
+            {
                 throw new ArgumentException("inputCount");
             }
-            if ((inputBuffer.Length - inputCount) < inputOffset) {
+            if ((inputBuffer.Length - inputCount) < inputOffset)
+            {
                 throw new ArgumentOutOfRangeException("inputOffset");
             }
-            if (this.State == 0) {
+            if (this.State == 0)
+            {
                 Initialize();
             }
             HashCore(inputBuffer, inputOffset, inputCount);
@@ -535,11 +590,13 @@ namespace IronCow {
         }
         #endregion
 
-        protected virtual void Dispose(bool disposing) {
+        protected virtual void Dispose(bool disposing)
+        {
             if (!disposing)
                 Initialize();
         }
-        public void Dispose() {
+        public void Dispose()
+        {
             Dispose(true);
         }
     }
