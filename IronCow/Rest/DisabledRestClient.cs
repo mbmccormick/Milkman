@@ -14,6 +14,7 @@ namespace IronCow.Rest
         private bool mAuthTokenDisabled;
         private string mAuthToken;
 
+        private bool mUseHttps = false;
         private int mTimeout = 1000;
         private TimeSpan mThrottling = TimeSpan.Zero;
 
@@ -73,6 +74,18 @@ namespace IronCow.Rest
             }
         }
 
+        public bool UseHttps
+        {
+            get
+            {
+                return mUseHttps;
+            }
+            set
+            {
+                mUseHttps = value;
+            }
+        }
+        
         public int Timeout
         {
             get

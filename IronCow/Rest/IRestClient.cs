@@ -13,6 +13,7 @@ namespace IronCow.Rest
         string SharedSecret { get; }
         string AuthToken { get; set; }
 
+        bool UseHttps { get; set; }
         int Timeout { get; set; }
         TimeSpan Throttling { get; set; }
 

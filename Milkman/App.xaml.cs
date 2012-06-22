@@ -88,6 +88,8 @@ namespace Milkman
                 RtmClient = new Rtm(RtmApiKey, RtmSharedKey);
             }
 
+            RtmClient.Client.UseHttps = true;
+
             if (Timeline.HasValue)
             {
                 RtmClient.CurrentTimeline = Timeline.Value;

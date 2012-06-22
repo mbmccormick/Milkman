@@ -62,8 +62,9 @@ namespace IronCow.Rest
         #endregion
 
         #region Constants
-        private const string UserAgent = "Mozilla/4.0 FlickrNet API (compatible; MSIE 6.0; Windows NT 5.1)";
+        private const string UserAgent = "Mozilla/4.0 IronCow API (compatible; MSIE 6.0; Windows NT 5.1)";
         private const string ApiUrl = "http://api.rememberthemilk.com/services/rest/";
+        private const string SecureApiUrl = "https://api.rememberthemilk.com/services/rest/";
         #endregion
 
         #region Static Members
@@ -80,6 +81,7 @@ namespace IronCow.Rest
         public string SharedSecret { get; set; }
         public string AuthToken { get; set; }
 
+        public bool UseHttps { get; set; }
         public int Timeout { get; set; }
         public TimeSpan Throttling { get; set; }
 
@@ -101,6 +103,7 @@ namespace IronCow.Rest
             SharedSecret = sharedSecret;
             AuthToken = token;
 
+            UseHttps = false;
             Timeout = 5000;
             Throttling = TimeSpan.FromSeconds(1);
         }
@@ -774,7 +777,7 @@ namespace IronCow.Rest
                 variablesBuilder.Append(apiSig);
             }
 
-            string url = ApiUrl;
+            string url = UseHttps ? SecureApiUrl : ApiUrl;
             string variables = variablesBuilder.ToString();
             string rawUrl = url + "?" + variables;
             string responseString = null;
