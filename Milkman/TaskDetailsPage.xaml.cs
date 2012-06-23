@@ -275,7 +275,7 @@ namespace Milkman
                         if (this.NavigationService.CanGoBack)
                             this.NavigationService.GoBack();
                         else
-                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                            NavigationService.Navigate(new Uri("/MainPage.xaml?IsFirstRun=true", UriKind.Relative));
                     });
                 });
             });
@@ -311,7 +311,7 @@ namespace Milkman
                         if (this.NavigationService.CanGoBack)
                             this.NavigationService.GoBack();
                         else
-                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                            NavigationService.Navigate(new Uri("/MainPage.xaml?IsFirstRun=true", UriKind.Relative));
                     });
                 });
             });

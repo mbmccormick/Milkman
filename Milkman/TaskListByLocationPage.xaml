@@ -25,8 +25,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="MILKMAN" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
-            <TextBlock x:Name="PageTitle" Text="nearby" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Resources.NearbyLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,0,0">
@@ -38,35 +38,37 @@
                 </toolkit:MultiselectList.ItemContainerStyle>
                 <toolkit:MultiselectList.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="-12,-12,24,0" Tap="ItemContent_Tap">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="212"/>
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Margin="-12,-12,12,0" Tap="ItemContent_Tap">
+                            <Grid Margin="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                            <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="NoWrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="{StaticResource PhoneForegroundBrush}" Loaded="TaskName_Loaded" />
-                            <TextBlock Text="{Binding LocationName}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskLocationName_Loaded" />
-                            <TextBlock Grid.Row="1" Grid.Column="1" TextWrapping="NoWrap" Margin="0,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" Loaded="TaskDistance_Loaded" />
+                                <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                <TextBlock Text="{Binding LocationName}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
+                            </Grid>
+
+                            <TextBlock TextWrapping="NoWrap" Margin="0,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" Loaded="TaskDistance_Loaded" />
 
                             <toolkit:ContextMenuService.ContextMenu>
                                 <toolkit:ContextMenu>
-                                    <toolkit:MenuItem Header="complete" Click="MenuItem_Click" Foreground="Black" />
-                                    <toolkit:MenuItem Header="postpone" Click="MenuItem_Click" Foreground="Black" />
-                                    <toolkit:MenuItem Header="delete" Click="MenuItem_Click" Foreground="Black" />
+                                    <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                    <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                    <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
                                 </toolkit:ContextMenu>
                             </toolkit:ContextMenuService.ContextMenu>
-                        </Grid>
+                        </StackPanel>                        
                     </DataTemplate>
                 </toolkit:MultiselectList.ItemTemplate>
             </toolkit:MultiselectList>
 
-            <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-            <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list. Hooray!" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+            <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+            <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
         </Grid>
 
         <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" />
@@ -74,29 +76,6 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="appbar_button1" 
-                                            IconUri="/Resources/dashboard.png" 
-                                            Text="dashboard"
-                                            Click="btnDashboard_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" 
-                                            IconUri="/Resources/add.png" 
-                                            Text="add"
-                                            Click="btnAdd_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button3" 
-                                            IconUri="/Resources/select.png" 
-                                            Text="select"
-                                            Click="btnSelect_Click"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button4" 
-                                            IconUri="/Resources/retry.png" 
-                                            Text="sync"
-                                            Click="btnSync_Click"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="settings" Click="mnuSettings_Click" />
-                <shell:ApplicationBarMenuItem Text="about milkman" Click="mnuAbout_Click" />
-                <shell:ApplicationBarMenuItem Text="feedback" Click="mnuFeedback_Click" />
-                <shell:ApplicationBarMenuItem Text="donate" Click="mnuDonate_Click" />
-                <shell:ApplicationBarMenuItem Text="sign out" Click="mnuSignOut_Click" />
-            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
