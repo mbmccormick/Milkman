@@ -28,7 +28,7 @@
             <TextBlock x:Name="PageTitle" Text="{Binding Resources.AddNoteLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

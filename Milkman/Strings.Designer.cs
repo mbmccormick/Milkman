@@ -1942,6 +1942,15 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to URL.
+        /// </summary>
+        public static string URL {
+            get {
+                return ResourceManager.GetString("URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Week.
         /// </summary>
         public static string Week {

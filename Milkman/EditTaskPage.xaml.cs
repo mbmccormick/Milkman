@@ -25,11 +25,11 @@ namespace Milkman
         #region Task Property
 
         private Task CurrentTask = null;
-        
+
         #endregion
-        
+
         #region TaskLists Property
-        
+
         public static readonly DependencyProperty TaskListsProperty =
             DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(EditTaskPage), new PropertyMetadata(new ObservableCollection<TaskList>()));
 
@@ -38,11 +38,11 @@ namespace Milkman
             get { return (ObservableCollection<TaskList>)GetValue(TaskListsProperty); }
             set { SetValue(TaskListsProperty, value); }
         }
-        
+
         #endregion
-        
+
         #region TaskLocations Property
-        
+
         public static readonly DependencyProperty TaskLocationsProperty =
             DependencyProperty.Register("TaskLocations", typeof(ObservableCollection<Location>), typeof(EditTaskPage), new PropertyMetadata(new ObservableCollection<Location>()));
 
@@ -51,7 +51,7 @@ namespace Milkman
             get { return (ObservableCollection<Location>)GetValue(TaskLocationsProperty); }
             set { SetValue(TaskLocationsProperty, value); }
         }
-        
+
         #endregion
 
         #region Construction and Navigation
@@ -92,7 +92,7 @@ namespace Milkman
                 GlobalLoading.Instance.IsLoading = false;
             });
         }
-                
+
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             if (!loadedDetails)
@@ -187,10 +187,6 @@ namespace Milkman
                         this.lstList.Items.Contains(CurrentTask.Parent))
                         this.lstList.SelectedItem = CurrentTask.Parent;
 
-                    // tags
-                    if (CurrentTask.TagsString != null)
-                        this.txtTags.Text = CurrentTask.TagsString;
-
                     // repeat
                     if (CurrentTask.Recurrence != null)
                         this.txtRepeat.Text = CurrentTask.Recurrence;
@@ -198,6 +194,10 @@ namespace Milkman
                     // estimate
                     if (CurrentTask.Estimate != null)
                         this.txtEstimate.Text = CurrentTask.Estimate;
+
+                    // tags
+                    if (CurrentTask.TagsString != null)
+                        this.txtTags.Text = CurrentTask.TagsString;
 
                     // location
                     if (CurrentTask.Location != null &&
@@ -295,21 +295,21 @@ namespace Milkman
                                         {
                                             CurrentTask.ChangeList((TaskList)this.lstList.SelectedItem, () =>
                                             {
-                                                // change tags
+                                                // change repeat
                                                 SmartDispatcher.BeginInvoke(() =>
                                                 {
-                                                    string[] tags = this.txtTags.Text.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
-                                                    CurrentTask.ChangeTags(tags, () =>
+                                                    CurrentTask.ChangeRecurrence(this.txtRepeat.Text, () =>
                                                     {
-                                                        // change repeat
+                                                        // change estimate
                                                         SmartDispatcher.BeginInvoke(() =>
                                                         {
-                                                            CurrentTask.ChangeRecurrence(this.txtRepeat.Text, () =>
+                                                            CurrentTask.ChangeEstimate(this.txtEstimate.Text, () =>
                                                             {
-                                                                // change estimate
+                                                                // change tags
                                                                 SmartDispatcher.BeginInvoke(() =>
                                                                 {
-                                                                    CurrentTask.ChangeEstimate(this.txtEstimate.Text, () =>
+                                                                    string[] tags = this.txtTags.Text.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                                                    CurrentTask.ChangeTags(tags, () =>
                                                                     {
                                                                         // change location
                                                                         SmartDispatcher.BeginInvoke(() =>

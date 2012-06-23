@@ -47,14 +47,14 @@
                             <TextBlock Text="{Binding Resources.List, Source={StaticResource Strings}}" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
-                            <TextBlock Text="{Binding Resources.Tags, Source={StaticResource Strings}}" Grid.Row="3" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            <TextBlock Text="{Binding TagsString}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Repeat, Source={StaticResource Strings}}" Grid.Row="3" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Recurrence}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
-                            <TextBlock Text="{Binding Resources.Repeat, Source={StaticResource Strings}}" Grid.Row="4" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            <TextBlock Text="{Binding Recurrence}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Estimate, Source={StaticResource Strings}}" Grid.Row="4" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Estimate}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
-                            <TextBlock Text="{Binding Resources.Estimate, Source={StaticResource Strings}}" Grid.Row="5" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            <TextBlock Text="{Binding Estimate}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Tags, Source={StaticResource Strings}}" Grid.Row="5" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding TagsString}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
 
                             <TextBlock Text="{Binding Resources.Location, Source={StaticResource Strings}}" Grid.Row="6" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
                             <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>

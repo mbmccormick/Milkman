@@ -21,8 +21,7 @@ namespace Milkman
         public SettingsPage()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(SettingsPage_Loaded);
-
+            
             AppSettings settings = new AppSettings();
 
             Binding binding;
@@ -76,10 +75,7 @@ namespace Milkman
                 MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
 
             }
-        }
 
-        private void SettingsPage_Loaded(object sender, RoutedEventArgs e)
-        {
             GlobalLoading.Instance.IsLoading = false;
         }
 

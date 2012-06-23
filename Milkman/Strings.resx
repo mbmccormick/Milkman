@@ -762,4 +762,7 @@
   <data name="TimeSingle" xml:space="preserve">
     <value>time</value>
   </data>
+  <data name="URL" xml:space="preserve">
+    <value>URL</value>
+  </data>
 </root>

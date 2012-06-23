@@ -28,7 +28,7 @@
             <TextBlock x:Name="PageTitle" Text="{Binding Resources.EditNoteLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -38,6 +38,7 @@
 
             <TextBlock Text="{Binding Resources.Title, Source={StaticResource Strings}}" Grid.Row="0" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
             <TextBox x:Name="txtTitle" Grid.Row="1" Margin="0,0,0,0" InputScope="Text" />
+            
             <TextBlock Text="{Binding Resources.Body, Source={StaticResource Strings}}" Grid.Row="2" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
             <TextBox x:Name="txtBody" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,12" InputScope="Text" />
         </Grid>

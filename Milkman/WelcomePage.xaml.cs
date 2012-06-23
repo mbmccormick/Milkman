@@ -93,7 +93,7 @@ namespace Milkman
 
             emailComposeTask.To = "milkmanwp@gmail.com";
             emailComposeTask.Subject = "Milkman Feedback";
-            emailComposeTask.Body = "Version " + App.VersionNumber + "\n\n";
+            emailComposeTask.Body = "Version " + App.VersionNumber + "(" + App.PlatformVersionNumber + ")\n\n";
             emailComposeTask.Show();
         }
 
