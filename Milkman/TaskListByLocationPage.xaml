@@ -67,8 +67,8 @@
                 </toolkit:MultiselectList.ItemTemplate>
             </toolkit:MultiselectList>
 
-            <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-            <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+            <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
+            <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
         </Grid>
 
         <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" />
