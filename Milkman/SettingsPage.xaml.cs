@@ -21,8 +21,13 @@ namespace Milkman
         public SettingsPage()
         {
             InitializeComponent();
-            GlobalLoading.Instance.IsLoading = true;
-            
+            this.Loaded += new RoutedEventHandler(SettingsPage_Loaded);            
+        }
+
+        private void SettingsPage_Loaded(object sender, EventArgs e)
+        {
+            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
+
             AppSettings settings = new AppSettings();
 
             Binding binding;
@@ -76,6 +81,12 @@ namespace Milkman
                 MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
 
             }
+
+            this.togAutomaticSync.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
+            this.togAutomaticSync.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
+
+            this.togLightTheme.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
+            this.togLightTheme.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
 
             GlobalLoading.Instance.IsLoading = false;
         }
