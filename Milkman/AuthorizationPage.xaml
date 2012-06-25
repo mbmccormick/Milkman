@@ -27,7 +27,7 @@
             <TextBlock x:Name="PageTitle" Text="{Binding Resources.AuthorizationLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="0">
             <phone:WebBrowser Name="webAuthorization" Grid.Row="1" Navigating="webAuthorization_Navigating" Navigated="webAuthorization_Navigated"/>
         </Grid>
     </Grid>

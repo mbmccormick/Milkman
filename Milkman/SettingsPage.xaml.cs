@@ -21,6 +21,7 @@ namespace Milkman
         public SettingsPage()
         {
             InitializeComponent();
+            GlobalLoading.Instance.IsLoading = true;
             
             AppSettings settings = new AppSettings();
 
