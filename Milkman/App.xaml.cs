@@ -39,7 +39,7 @@ namespace Milkman
                 string assembly = System.Reflection.Assembly.GetExecutingAssembly().FullName;
                 string version = assembly.Split('=')[1].Split(',')[0];
 
-                return version.Substring(0, version.Length - 2);
+                return version.Substring(0, version.Length - 4);
             }
         }
 
