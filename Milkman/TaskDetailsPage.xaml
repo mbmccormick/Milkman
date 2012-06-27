@@ -40,30 +40,30 @@
                             </Grid.RowDefinitions>
 
                             <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                                <TextBlock x:Name="txtName" Text="{Binding Name}" TextWrapping="NoWrap" Margin="0" Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                                <TextBlock x:Name="txtName" Text="{Binding Name}" TextWrapping="NoWrap" Margin="0" Style="{StaticResource PhoneTextLargeStyle}" />
                             </ScrollViewer>
                             <TextBlock x:Name="txtDueDate" Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource PhoneSubtleBrush}"/>
 
-                            <TextBlock Text="{Binding Resources.List, Source={StaticResource Strings}}" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.List, Source={StaticResource Strings}}" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
+                            <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
 
-                            <TextBlock Text="{Binding Resources.Repeat, Source={StaticResource Strings}}" Grid.Row="3" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            <TextBlock Text="{Binding Recurrence}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Repeat, Source={StaticResource Strings}}" Grid.Row="3" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
+                            <TextBlock Text="{Binding Recurrence}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
 
-                            <TextBlock Text="{Binding Resources.Estimate, Source={StaticResource Strings}}" Grid.Row="4" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            <TextBlock Text="{Binding Estimate}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Estimate, Source={StaticResource Strings}}" Grid.Row="4" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
+                            <TextBlock Text="{Binding Estimate}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
 
-                            <TextBlock Text="{Binding Resources.Tags, Source={StaticResource Strings}}" Grid.Row="5" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            <TextBlock Text="{Binding TagsString}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Tags, Source={StaticResource Strings}}" Grid.Row="5" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
+                            <TextBlock Text="{Binding TagsString}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
 
-                            <TextBlock Text="{Binding Resources.Location, Source={StaticResource Strings}}" Grid.Row="6" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Location, Source={StaticResource Strings}}" Grid.Row="6" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
+                            <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
 
-                            <TextBlock Text="{Binding Resources.Postponed, Source={StaticResource Strings}}" Grid.Row="7" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
-                            <TextBlock Text="{Binding PostponedString}" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeLarge}"/>
+                            <TextBlock Text="{Binding Resources.Postponed, Source={StaticResource Strings}}" Grid.Row="7" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
+                            <TextBlock Text="{Binding PostponedString}" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
                         </Grid>
 
-                        <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0" />
+                        <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" Margin="12,-9,0,0" />
                     </Grid>
                 </ScrollViewer>
             </controls:PivotItem>
@@ -81,7 +81,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0" />
+                    <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" Margin="12,-9,0,0" />
                 </Grid>
             </controls:PivotItem>
         </toolkit:LockablePivot>

@@ -41,7 +41,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
                                         <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
                                     </Grid>
                                     
@@ -71,8 +71,8 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtAllLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
-                    <TextBlock x:Name="txtAllEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtAllLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtAllEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                 </Grid>
             </controls:PivotItem>
 
@@ -97,7 +97,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
                                         <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
                                     </Grid>
 
@@ -127,8 +127,8 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtTodayLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
-                    <TextBlock x:Name="txtTodayEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtTodayLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtTodayEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                 </Grid>
             </controls:PivotItem>
 
@@ -153,7 +153,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
                                         <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
                                     </Grid>
 
@@ -183,8 +183,8 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtTomorrowLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
-                    <TextBlock x:Name="txtTomorrowEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtTomorrowLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtTomorrowEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                 </Grid>
             </controls:PivotItem>
 
@@ -209,7 +209,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
                                         <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
                                     </Grid>
 
@@ -239,8 +239,8 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtOverdueLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
-                    <TextBlock x:Name="txtOverdueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtOverdueLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtOverdueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
 
                 </Grid>
             </controls:PivotItem>
@@ -266,7 +266,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Loaded="TaskName_Loaded" />
+                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
                                         <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
                                     </Grid>
 
@@ -296,8 +296,8 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtWeekLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
-                    <TextBlock x:Name="txtWeekEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtWeekLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtWeekEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
 
                 </Grid>
             </controls:PivotItem>

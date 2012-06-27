@@ -433,6 +433,8 @@ namespace Milkman
 
         private void MultiselectList_IsSelectionEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
+            MultiselectList target = (MultiselectList)sender;
+
             while (ApplicationBar.Buttons.Count > 0)
             {
                 ApplicationBar.Buttons.RemoveAt(0);
@@ -470,6 +472,15 @@ namespace Milkman
                 ApplicationBar.MenuItems.Add(donate);
                 ApplicationBar.MenuItems.Add(signOut);
             }
+
+            Thickness margin = target.Margin;
+
+            if (target.IsSelectionEnabled)
+                margin.Left = margin.Left - 12;
+            else
+                margin.Left = margin.Left + 12;
+
+            target.Margin = margin;
         }
 
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
