@@ -81,7 +81,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" Margin="12,-9,0,0" />
+                    <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0" />
                 </Grid>
             </controls:PivotItem>
         </toolkit:LockablePivot>
