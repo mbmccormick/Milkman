@@ -671,24 +671,6 @@ namespace IronCow
             }
         }
 
-        public string PriorityColor
-        {
-            get
-            {
-                switch (Priority)
-                {
-                    case TaskPriority.One:
-                        return "#EA5200";
-                    case TaskPriority.Two:
-                        return "#0060BF";
-                    case TaskPriority.Three:
-                        return "#359AFF";
-                    default:
-                        return Colors.Transparent.ToString();
-                }
-            }
-        }
-
         public int Importance
         {
             get
