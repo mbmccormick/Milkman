@@ -20,10 +20,10 @@ Application Development by Matt McCormick
 
 User Interface by Libby Puccinelli
 
-What's new in Version 2.3:
-- Completely localized and translated to Spanish and Italian
-- Several bug fixes and stability improvements
-- Update about dialog with review reminders
+What's new in Version 2.4:
+- Milkman now uses HTTPS when communicating with Remember The Milk
+- Redesigned some of the layouts and font sizes throughout the application
+- Several bug fixes
 
 
 ### Update description

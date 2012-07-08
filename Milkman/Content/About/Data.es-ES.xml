@@ -40,6 +40,9 @@
 
     </Item>
     <Item Title="¿qué novedades?" Type="text">
+      Versión 2.4
+      Esta versión utiliza HTTPS ahora comunicarse con Remember The Milk. Rediseñado algunos de los diseños y tamaños de fuente en toda la aplicación. Esta versión también incluye varias correcciones de errores.
+
       Versión 2.3
       Esta versión es completamente localizada y traducida al español y del italiano. Esto también incluye varias correcciones de errores y actualizado sobre el diálogo.
 
