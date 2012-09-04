@@ -19,7 +19,7 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontWeight="Bold" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged">
-            <controls:PivotItem Header="{Binding Resources.TaskDetailsLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
+            <controls:PivotItem Header="{Binding Resources.DetailsLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <Grid Margin="0,0,0,0">
                         <Grid x:Name="grdTaskDetails" Margin="12,0,12,0" Visibility="Collapsed">

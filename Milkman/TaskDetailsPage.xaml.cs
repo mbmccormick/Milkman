@@ -50,6 +50,8 @@ namespace Milkman
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             this.BuildApplicationBar();
+
+            this.pivLayout.Title = Strings.MilkmanUpper + " - " + Strings.TaskUpper;
         }
 
         private void BuildApplicationBar()

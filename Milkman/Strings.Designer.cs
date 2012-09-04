@@ -664,6 +664,33 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to details.
+        /// </summary>
+        public static string DetailsLower {
+            get {
+                return ResourceManager.GetString("DetailsLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DETAILS.
+        /// </summary>
+        public static string DetailsUpper {
+            get {
+                return ResourceManager.GetString("DetailsUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to disabled.
         /// </summary>
         public static string DisabledOptionSetting {
@@ -1726,6 +1753,15 @@ namespace Milkman {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Task.
+        /// </summary>
+        public static string Task {
+            get {
+                return ResourceManager.GetString("Task", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Task Details.
         /// </summary>
         public static string TaskDetails {
@@ -1749,6 +1785,15 @@ namespace Milkman {
         public static string TaskDetailsUpper {
             get {
                 return ResourceManager.GetString("TaskDetailsUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task.
+        /// </summary>
+        public static string TaskLower {
+            get {
+                return ResourceManager.GetString("TaskLower", resourceCulture);
             }
         }
         
@@ -1785,6 +1830,15 @@ namespace Milkman {
         public static string TaskSingle {
             get {
                 return ResourceManager.GetString("TaskSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TASK.
+        /// </summary>
+        public static string TaskUpper {
+            get {
+                return ResourceManager.GetString("TaskUpper", resourceCulture);
             }
         }
         

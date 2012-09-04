@@ -765,4 +765,22 @@
   <data name="URL" xml:space="preserve">
     <value>URL</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DetailsLower" xml:space="preserve">
+    <value>details</value>
+  </data>
+  <data name="DetailsUpper" xml:space="preserve">
+    <value>DETAILS</value>
+  </data>
+  <data name="Task" xml:space="preserve">
+    <value>Task</value>
+  </data>
+  <data name="TaskLower" xml:space="preserve">
+    <value>task</value>
+  </data>
+  <data name="TaskUpper" xml:space="preserve">
+    <value>TASK</value>
+  </data>
 </root>
