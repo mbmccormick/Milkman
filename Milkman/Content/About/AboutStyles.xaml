@@ -67,6 +67,7 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>-->
+        <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
     <Style x:Key="AboutPivotItemStyle"
