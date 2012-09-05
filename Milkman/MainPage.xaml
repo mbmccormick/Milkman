@@ -44,7 +44,7 @@
 
                             <toolkit:ContextMenuService.ContextMenu>
                                 <toolkit:ContextMenu>
-                                    <toolkit:MenuItem Header="{Binding Resources.PinToStartLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="Black" />
+                                    <toolkit:MenuItem Header="{Binding Resources.PinToStartLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
                                 </toolkit:ContextMenu>
                             </toolkit:ContextMenuService.ContextMenu>
                         </StackPanel>

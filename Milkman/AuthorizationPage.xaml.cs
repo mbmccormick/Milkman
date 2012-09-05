@@ -46,6 +46,7 @@ namespace Milkman
             complete.IconUri = new Uri("/Resources/complete.png", UriKind.RelativeOrAbsolute);
             complete.Text = Strings.CompleteMenuLower;
             complete.Click += btnComplete_Click;
+            complete.IsEnabled = false;
 
             retry = new ApplicationBarIconButton();
             retry.IconUri = new Uri("/Resources/retry.png", UriKind.RelativeOrAbsolute);
@@ -145,6 +146,11 @@ namespace Milkman
         private void webAuthorization_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             GlobalLoading.Instance.IsLoading = false;
+
+            if (this.webAuthorization.SaveToString().Contains("<title>Remember The Milk - Application successfully authorized</title>"))
+            {
+                complete.IsEnabled = true;
+            }
         }
 
         private void webAuthorization_Navigating(object sender, NavigatingEventArgs e)
