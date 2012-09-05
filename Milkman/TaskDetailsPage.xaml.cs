@@ -131,26 +131,6 @@ namespace Milkman
                 {
                     CurrentTask = App.RtmClient.GetTask(id);
 
-                    if (CurrentTask != null)
-                    {
-                        // set priority
-                        if (CurrentTask.Priority == TaskPriority.One)
-                            this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
-                        else if (CurrentTask.Priority == TaskPriority.Two)
-                            this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
-                        else if (CurrentTask.Priority == TaskPriority.Three)
-                            this.txtName.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
-                        else
-                            this.txtName.Foreground = (SolidColorBrush)Resources["PhoneForegroundBrush"];
-
-                        // set due date
-                        if (CurrentTask.DueDateTime.HasValue &&
-                            CurrentTask.DueDateTime.Value.Date <= DateTime.Now.Date)
-                            this.txtDueDate.Foreground = (SolidColorBrush)Resources["PhoneAccentBrush"];
-                        else
-                            this.txtDueDate.Foreground = (SolidColorBrush)Resources["PhoneSubtleBrush"];
-                    }
-
                     ToggleLoadingText();
                     ToggleEmptyText();
                 }

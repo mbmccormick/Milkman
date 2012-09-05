@@ -4,11 +4,14 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Threading;
 using IronCow.Rest;
+using System.Windows;
 
 namespace IronCow
 {
     public class Rtm
     {
+        public ResourceDictionary Resources;
+
         #region Callback Delegates
 
         public delegate void VoidCallback();

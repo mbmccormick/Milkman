@@ -649,37 +649,6 @@ namespace Milkman
                 this.NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
         }
 
-        private void TaskName_Loaded(object sender, EventArgs e)
-        {
-            TextBlock target = (TextBlock)sender;
-
-            Task task = (Task)target.DataContext;
-
-            // set priority
-            if (task.Priority == TaskPriority.One)
-                target.Foreground = new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
-            else if (task.Priority == TaskPriority.Two)
-                target.Foreground = new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
-            else if (task.Priority == TaskPriority.Three)
-                target.Foreground = new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
-            else
-                target.Foreground = (SolidColorBrush)Resources["PhoneForegroundBrush"];
-        }
-
-        private void TaskFriendlyDueDate_Loaded(object sender, EventArgs e)
-        {
-            TextBlock target = (TextBlock)sender;
-
-            Task task = (Task)target.DataContext;
-
-            // set due today
-            if (task.DueDateTime.HasValue &&
-                task.DueDateTime.Value.Date <= DateTime.Now.Date)
-                target.Foreground = (SolidColorBrush)Resources["PhoneAccentBrush"];
-            else
-                target.Foreground = (SolidColorBrush)Resources["PhoneSubtleBrush"];
-        }
-
         private void mnuSettings_Click(object sender, EventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>

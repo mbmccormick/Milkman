@@ -106,6 +106,8 @@ namespace Milkman
             {
                 RtmClient.LoadTasksFromResponse(TasksResponse);
             }
+
+            RtmClient.Resources = App.Current.Resources;
         }
 
         public static void SaveData()

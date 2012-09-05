@@ -31,7 +31,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,-12,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
                                     
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
@@ -43,7 +43,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
+                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
                                         <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                     </Grid>
 
@@ -75,7 +75,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,-12,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
 
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
@@ -87,7 +87,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
+                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
                                         <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                     </Grid>
 
@@ -119,7 +119,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,-12,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
 
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
@@ -131,7 +131,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
+                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
                                         <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                     </Grid>
 
@@ -163,7 +163,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,-12,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
 
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
@@ -175,7 +175,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
+                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
                                         <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                     </Grid>
 
@@ -208,7 +208,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,-12,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Loaded="TaskName_Loaded" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
 
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
@@ -220,7 +220,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
-                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{StaticResource PhoneSubtleBrush}" FontWeight="Normal" Loaded="TaskFriendlyDueDate_Loaded" />
+                                        <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
                                         <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                                     </Grid>
 

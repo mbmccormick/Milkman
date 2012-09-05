@@ -39,10 +39,9 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <ScrollViewer Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Disabled">
-                                <TextBlock x:Name="txtName" Text="{Binding Name}" TextWrapping="NoWrap" Margin="0" Style="{StaticResource PhoneTextLargeStyle}" />
-                            </ScrollViewer>
-                            <TextBlock x:Name="txtDueDate" Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource PhoneSubtleBrush}"/>
+                            <TextBlock x:Name="txtName" Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+                            
+                            <TextBlock x:Name="txtDueDate" Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{Binding DueDateForegroundBrush}"/>
 
                             <TextBlock Text="{Binding Resources.List, Source={StaticResource Strings}}" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
                             <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>

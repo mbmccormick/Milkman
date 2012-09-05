@@ -1370,6 +1370,33 @@ namespace IronCow
             }
         }
 
+        public SolidColorBrush PriorityForegroundBrush
+        {
+            get
+            {
+                if (this.Priority == TaskPriority.One)
+                    return new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
+                else if (this.Priority == TaskPriority.Two)
+                    return new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
+                else if (this.Priority == TaskPriority.Three)
+                    return new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
+                else
+                    return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
+            }
+        }
+
+        public SolidColorBrush DueDateForegroundBrush
+        {
+            get
+            {
+                if (this.DueDateTime.HasValue &&
+                    this.DueDateTime.Value.Date <= DateTime.Now.Date)
+                    return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
+                else
+                    return (SolidColorBrush)Owner.Resources["PhoneSubtleBrush"];
+            }
+        }
+
         public string PostponedString
         {
             get
