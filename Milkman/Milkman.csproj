@@ -215,6 +215,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\About\Data.it-IT.xml" />
+    <Content Include="Content\About\Data.ru-RU.xml" />
     <Content Include="Content\About\Data.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>

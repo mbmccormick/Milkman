@@ -61,9 +61,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
@@ -117,9 +117,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
@@ -173,9 +173,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
@@ -229,9 +229,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
@@ -286,9 +286,9 @@
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" Foreground="{StaticResource PhoneBackgroundBrush}" />
+                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
+                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" Click="MenuItem_Click" />
                                         </toolkit:ContextMenu>
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>

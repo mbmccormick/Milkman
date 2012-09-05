@@ -46,18 +46,6 @@ namespace Milkman
 
             try
             {
-                binding = new Binding("LightThemeEnabled");
-                binding.Mode = BindingMode.TwoWay;
-                binding.Source = settings;
-                this.togLightTheme.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
-            }
-
-            try
-            {
                 binding = new Binding("TaskRemindersEnabled");
                 binding.Mode = BindingMode.TwoWay;
                 binding.Source = settings;
@@ -85,9 +73,6 @@ namespace Milkman
             this.togAutomaticSync.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
             this.togAutomaticSync.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
 
-            this.togLightTheme.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
-            this.togLightTheme.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
-
             GlobalLoading.Instance.IsLoading = false;
         }
 
@@ -95,24 +80,12 @@ namespace Milkman
         {
             ToggleSwitch target = (ToggleSwitch)sender;
             target.Content = Strings.On;
-
-            if (target == this.togLightTheme &&
-                GlobalLoading.Instance.IsLoading == false)
-            {
-                MessageBox.Show(Strings.SettingsThemeDialog, Strings.SettingsThemeDialogTitle, MessageBoxButton.OK);
-            }
         }
 
         private void ToggleSwitch_Unchecked(object sender, RoutedEventArgs e)
         {
             ToggleSwitch target = (ToggleSwitch)sender;
             target.Content = Strings.Off;
-
-            if (target == this.togLightTheme &&
-                GlobalLoading.Instance.IsLoading == false)
-            {
-                MessageBox.Show(Strings.SettingsThemeDialog, Strings.SettingsThemeDialogTitle, MessageBoxButton.OK);
-            }
         }
     }
 }

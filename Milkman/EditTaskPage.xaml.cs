@@ -122,26 +122,20 @@ namespace Milkman
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
                 {
                     // bind lists list picker
-                    if (TaskLists.Count == 0)
+                    TaskLists.Clear();
+                    foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
                     {
-                        TaskLists.Clear();
-                        foreach (TaskList l in App.RtmClient.GetParentableTaskLists(false))
-                        {
-                            TaskLists.Add(l);
-                        }
+                        TaskLists.Add(l);
                     }
 
                     this.lstList.ItemsSource = TaskLists;
 
                     // bind locations list picker
-                    if (TaskLocations.Count == 0)
+                    TaskLocations.Clear();
+                    TaskLocations.Add(new Location(Strings.NoneLower));
+                    foreach (Location l in App.RtmClient.Locations)
                     {
-                        TaskLocations.Clear();
-                        TaskLocations.Add(new Location(Strings.NoneLower));
-                        foreach (Location l in App.RtmClient.Locations)
-                        {
-                            TaskLocations.Add(l);
-                        }
+                        TaskLocations.Add(l);
                     }
 
                     this.lstLocation.ItemsSource = TaskLocations;

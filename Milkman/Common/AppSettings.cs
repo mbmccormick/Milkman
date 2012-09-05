@@ -19,7 +19,6 @@ namespace Milkman.Common
         IsolatedStorageSettings isolatedStore;
 
         const string AutomaticSyncEnabledSettingKeyName = "AutomaticSyncEnabled";
-        const string LightThemeEnabledSettingKeyName = "LightThemeEnabled";
         const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
         const string LocationServiceEnabledSettingKeyName = "LocationServiceEnabled";
 
@@ -102,19 +101,6 @@ namespace Milkman.Common
             set
             {
                 AddOrUpdateValue(AutomaticSyncEnabledSettingKeyName, value);
-                Save();
-            }
-        }
-
-        public bool LightThemeEnabled
-        {
-            get
-            {
-                return GetValueOrDefault<bool>(LightThemeEnabledSettingKeyName, true);
-            }
-            set
-            {
-                AddOrUpdateValue(LightThemeEnabledSettingKeyName, value);
                 Save();
             }
         }

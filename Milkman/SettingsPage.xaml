@@ -30,7 +30,6 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <toolkit:ToggleSwitch x:Name="togAutomaticSync" IsChecked="true" Header="{Binding Resources.AutomaticSyncSetting, Source={StaticResource Strings}}" />
-                <toolkit:ToggleSwitch x:Name="togLightTheme" IsChecked="false" Header="{Binding Resources.LightThemeSetting, Source={StaticResource Strings}}" />
                 <StackPanel Margin="12,12,12,12">
                     <TextBlock Text="Notify me before tasks are due" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
                     <toolkit:ListPicker x:Name="lstTaskReminders" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1">

@@ -63,11 +63,6 @@ namespace Milkman
 
             RootFrame.Navigating += new NavigatingCancelEventHandler(RootFrame_Navigating);
 
-            AppSettings settings = new AppSettings();
-
-            if (settings.LightThemeEnabled == true)
-                ThemeManager.ToLightTheme();
-
             if (System.Diagnostics.Debugger.IsAttached)
                 MetroGridHelper.IsVisible = true;
         }
