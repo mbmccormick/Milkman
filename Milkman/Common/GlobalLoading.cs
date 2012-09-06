@@ -93,6 +93,8 @@ namespace Milkman.Common
 
         public void StatusText(string loadingText)
         {
+            IsLoading = false;
+
             _mangoIndicator.Text = loadingText;
             _mangoIndicator.IsVisible = true;
 
