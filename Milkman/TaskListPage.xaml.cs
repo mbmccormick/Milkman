@@ -13,9 +13,11 @@ using Microsoft.Phone.Controls;
 using System.Collections.ObjectModel;
 using Milkman.Common;
 using IronCow;
+using IronCow.Resources;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using System.Device.Location;
 
 namespace Milkman
 {
@@ -97,6 +99,8 @@ namespace Milkman
         ApplicationBarMenuItem donate;
         ApplicationBarMenuItem signOut;
 
+        GeoCoordinateWatcher _watcher;
+
         public TaskListPage()
         {
             InitializeComponent();
@@ -106,6 +110,9 @@ namespace Milkman
             TiltEffect.TiltableItems.Add(typeof(MultiselectItem));
 
             this.BuildApplicationBar();
+
+            _watcher = new GeoCoordinateWatcher();
+            _watcher.Start();
         }
 
         private void BuildApplicationBar()
@@ -280,7 +287,7 @@ namespace Milkman
             b.DoWork += (s, e) =>
             {
                 LoadDataInBackground();
-                NotificationsManager.SetupNotifications();
+                NotificationsManager.SetupNotifications(_watcher.Position.Location);
             };
             b.RunWorkerAsync();
         }

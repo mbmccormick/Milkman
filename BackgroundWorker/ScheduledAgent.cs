@@ -47,7 +47,7 @@ namespace BackgroundWorker
             AppSettings settings = new AppSettings();
 
             // update current location
-            if (settings.LocationServiceEnabled > 0)
+            if (settings.LocationRemindersEnabled == true)
             {
                 _watcher = new GeoCoordinateWatcher();
                 _watcher.Start();

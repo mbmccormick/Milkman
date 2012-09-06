@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using Milkman.Common;
 using Microsoft.Phone.Tasks;
 using Microsoft.Phone.Shell;
+using IronCow.Resources;
 
 namespace Milkman
 {

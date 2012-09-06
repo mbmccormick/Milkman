@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using System.Collections.ObjectModel;
 using Milkman.Common;
 using IronCow;
+using IronCow.Resources;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
@@ -193,7 +194,7 @@ namespace Milkman
             b.DoWork += (s, e) =>
             {
                 LoadDataInBackground();
-                NotificationsManager.SetupNotifications();
+                NotificationsManager.SetupNotifications(_watcher.Position.Location);
             };
             b.RunWorkerAsync();
         }
@@ -407,30 +408,64 @@ namespace Milkman
 
                     int tasksDueToday = 0;
                     int tasksOverdue = 0;
-                    if (MostRecentTaskListClick.Tasks != null)
-                    {
-                        tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                                 z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-                        tasksOverdue = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                                z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
-                    }
+                    int tasksNearby = 0;
 
                     data.BackgroundImage = new Uri("BackgroundPinned.png", UriKind.Relative);
                     data.Title = "Milkman";
-
                     data.BackTitle = MostRecentTaskListClick.Name;
-                    if (tasksDueToday == 0)
-                        data.BackContent = Strings.LiveTileEmpty;
-                    else if (tasksDueToday == 1)
-                        data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
-                    else
-                        data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
 
-                    if (tasksOverdue > 0)
-                        data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
+                    if (MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
+                    {
+                        AppSettings settings = new AppSettings();
+
+                        double radius;
+                        if (settings.NearbyRadius == 0)
+                            radius = 1.0;
+                        else if (settings.NearbyRadius == 1)
+                            radius = 2.0;
+                        else if (settings.NearbyRadius == 2)
+                            radius = 5.0;
+                        else if (settings.NearbyRadius == 3)
+                            radius = 10.0;
+                        else if (settings.NearbyRadius == 3)
+                            radius = 20.0;
+                        else
+                            radius = 0.0;
+
+                        tasksNearby = App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).Count;
+                        
+                        if (tasksNearby == 0)
+                            data.BackContent = Strings.LiveTileNearbyEmpty;
+                        else if (tasksNearby == 1)
+                            data.BackContent = tasksNearby + " " + Strings.LiveTileNearbySingle;
+                        else
+                            data.BackContent = tasksNearby + " " + Strings.LiveTileNearbyPlural;
+                    }
+                    else
+                    {
+                        if (MostRecentTaskListClick.Tasks != null)
+                        {
+                            tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                                     z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                            tasksOverdue = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                                    z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                        }
+
+                        if (tasksDueToday == 0)
+                            data.BackContent = Strings.LiveTileEmpty;
+                        else if (tasksDueToday == 1)
+                            data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
+                        else
+                            data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
+
+                        if (tasksOverdue > 0)
+                            data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
+                    }
 
                     if (MostRecentTaskListClick.Name.ToLower() == Strings.AllTasksLower)
                         ShellTile.Create(new Uri("/TaskListByDatePage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
+                    else if (MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
+                        ShellTile.Create(new Uri("/TaskListByLocationPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
                     else
                         ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
                 }
@@ -467,7 +502,7 @@ namespace Milkman
                 sReload = true;
                 LoadData();
 
-                NotificationsManager.SetupNotifications();
+                NotificationsManager.SetupNotifications(_watcher.Position.Location);
             });
         }
 

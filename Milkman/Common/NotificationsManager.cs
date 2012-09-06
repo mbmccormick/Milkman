@@ -13,17 +13,33 @@ using Microsoft.Phone.Controls;
 using System.Collections.ObjectModel;
 using Milkman.Common;
 using IronCow;
+using IronCow.Resources;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Scheduler;
+using System.Device.Location;
 
 namespace Milkman.Common
 {
     public class NotificationsManager
     {
-        public static void SetupNotifications()
+        public static void SetupNotifications(GeoCoordinate location)
         {
             AppSettings settings = new AppSettings();
+
+            double radius;
+            if (settings.NearbyRadius == 0)
+                radius = 1.0;
+            else if (settings.NearbyRadius == 1)
+                radius = 2.0;
+            else if (settings.NearbyRadius == 2)
+                radius = 5.0;
+            else if (settings.NearbyRadius == 3)
+                radius = 10.0;
+            else if (settings.NearbyRadius == 3)
+                radius = 20.0;
+            else
+                radius = 0.0;
 
             // stop and restart background worker
             if (ScheduledActionService.Find("BackgroundWorker") != null)
@@ -127,6 +143,7 @@ namespace Milkman.Common
                 string tasksListName = null;
                 int tasksDueToday = 0;
                 int tasksOverdue = 0;
+                int tasksNearby = 0;
 
                 if (tile.NavigationUri.ToString() == "/")
                 {
@@ -154,6 +171,39 @@ namespace Milkman.Common
                         tasksOverdue = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                     }
+
+                    data.BackTitle = tasksListName;
+
+                    if (tasksDueToday == 0)
+                        data.BackContent = Strings.LiveTileEmpty;
+                    else if (tasksDueToday == 1)
+                        data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
+                    else
+                        data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
+
+                    if (tasksOverdue > 0)
+                        data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
+
+                    tile.Update(data);
+                }
+                else if (tile.NavigationUri.ToString().StartsWith("/TaskListByLocationPage.xaml") == true)
+                {
+                    if (App.RtmClient.TaskLists != null)
+                    {
+                        tasksListName = "";
+                        tasksNearby = App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius).Count;
+                    }
+
+                    data.BackTitle = tasksListName;
+
+                    if (tasksNearby == 0)
+                        data.BackContent = Strings.LiveTileNearbyEmpty;
+                    else if (tasksNearby == 1)
+                        data.BackContent = tasksNearby + " " + Strings.LiveTileNearbySingle;
+                    else
+                        data.BackContent = tasksNearby + " " + Strings.LiveTileNearbyPlural;
+
+                    tile.Update(data);
                 }
                 else
                 {
@@ -171,21 +221,21 @@ namespace Milkman.Common
                                                                  z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                         }
                     }
+
+                    data.BackTitle = tasksListName;
+
+                    if (tasksDueToday == 0)
+                        data.BackContent = Strings.LiveTileEmpty;
+                    else if (tasksDueToday == 1)
+                        data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
+                    else
+                        data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
+
+                    if (tasksOverdue > 0)
+                        data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
+
+                    tile.Update(data);
                 }
-
-                data.BackTitle = tasksListName;
-
-                if (tasksDueToday == 0)
-                    data.BackContent = Strings.LiveTileEmpty;
-                else if (tasksDueToday == 1)
-                    data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
-                else
-                    data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
-
-                if (tasksOverdue > 0)
-                    data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
-
-                tile.Update(data);
             }
         }
 

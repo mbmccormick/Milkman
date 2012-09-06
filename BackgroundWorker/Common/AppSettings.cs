@@ -19,9 +19,9 @@ namespace BackgroundWorker.Common
         IsolatedStorageSettings isolatedStore;
 
         const string AutomaticSyncEnabledSettingKeyName = "AutomaticSyncEnabled";
-        const string LightThemeEnabledSettingKeyName = "LightThemeEnabled";
+        const string LocationRemindersEnabledSettingKeyName = "LocationRemindersEnabled";
+        const string NearbyRadiusSettingKeyName = "NearbyRadius";
         const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
-        const string LocationServiceEnabledSettingKeyName = "LocationServiceEnabled";
 
         public AppSettings()
         {
@@ -106,15 +106,28 @@ namespace BackgroundWorker.Common
             }
         }
 
-        public bool LightThemeEnabled
+        public bool LocationRemindersEnabled
         {
             get
             {
-                return GetValueOrDefault<bool>(LightThemeEnabledSettingKeyName, true);
+                return GetValueOrDefault<bool>(LocationRemindersEnabledSettingKeyName, true);
             }
             set
             {
-                AddOrUpdateValue(LightThemeEnabledSettingKeyName, value);
+                AddOrUpdateValue(LocationRemindersEnabledSettingKeyName, value);
+                Save();
+            }
+        }
+
+        public int NearbyRadius
+        {
+            get
+            {
+                return GetValueOrDefault<int>(NearbyRadiusSettingKeyName, 1);
+            }
+            set
+            {
+                AddOrUpdateValue(NearbyRadiusSettingKeyName, value);
                 Save();
             }
         }
@@ -128,19 +141,6 @@ namespace BackgroundWorker.Common
             set
             {
                 AddOrUpdateValue(TaskRemindersEnabledSettingKeyName, value);
-                Save();
-            }
-        }
-
-        public int LocationServiceEnabled
-        {
-            get
-            {
-                return GetValueOrDefault<int>(LocationServiceEnabledSettingKeyName, 2);
-            }
-            set
-            {
-                AddOrUpdateValue(LocationServiceEnabledSettingKeyName, value);
                 Save();
             }
         }

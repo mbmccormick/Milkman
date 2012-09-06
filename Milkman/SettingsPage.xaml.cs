@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using Milkman.Common;
 using System.Windows.Data;
 using Microsoft.Phone.Shell;
+using IronCow.Resources;
 
 namespace Milkman
 {
@@ -46,6 +47,30 @@ namespace Milkman
 
             try
             {
+                binding = new Binding("LocationRemindersEnabled");
+                binding.Mode = BindingMode.TwoWay;
+                binding.Source = settings;
+                this.togLocationReminders.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
+            }
+
+            try
+            {
+                binding = new Binding("NearbyRadius");
+                binding.Mode = BindingMode.TwoWay;
+                binding.Source = settings;
+                this.lstNearbyRadius.SetBinding(ListPicker.SelectedIndexProperty, binding);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
+            }
+
+            try
+            {
                 binding = new Binding("TaskRemindersEnabled");
                 binding.Mode = BindingMode.TwoWay;
                 binding.Source = settings;
@@ -54,37 +79,13 @@ namespace Milkman
             catch (Exception ex)
             {
                 MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
-
-            }
-
-            try
-            {
-                binding = new Binding("NearbyRadius");
-                binding.Mode = BindingMode.TwoWay;
-                binding.Source = settings;
-                this.lstLocationService.SetBinding(ListPicker.SelectedIndexProperty, binding);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
-
-            }
-
-            try
-            {
-                binding = new Binding("LocationServiceEnabled");
-                binding.Mode = BindingMode.TwoWay;
-                binding.Source = settings;
-                this.lstLocationService.SetBinding(ListPicker.SelectedIndexProperty, binding);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
-
             }
 
             this.togAutomaticSync.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
             this.togAutomaticSync.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
+
+            this.togLocationReminders.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
+            this.togLocationReminders.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
 
             GlobalLoading.Instance.IsLoading = false;
         }

@@ -103,6 +103,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Resources\StringsProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ResponseError.cs" />
     <Compile Include="ResponseStatus.cs" />
     <Compile Include="RestRequest.cs" />

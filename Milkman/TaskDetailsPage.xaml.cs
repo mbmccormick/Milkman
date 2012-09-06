@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using System.Collections.ObjectModel;
 using Milkman.Common;
 using IronCow;
+using IronCow.Resources;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
 

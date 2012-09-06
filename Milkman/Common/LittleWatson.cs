@@ -11,6 +11,7 @@ using System.Windows.Shapes;
 using System.IO.IsolatedStorage;
 using System.IO;
 using Microsoft.Phone.Tasks;
+using IronCow.Resources;
 
 namespace Milkman.Common
 {

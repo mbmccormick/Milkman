@@ -783,4 +783,13 @@
   <data name="TaskUpper" xml:space="preserve">
     <value>TASK</value>
   </data>
+  <data name="LiveTileNearbyEmpty" xml:space="preserve">
+    <value>No tasks nearby</value>
+  </data>
+  <data name="LiveTileNearbyPlural" xml:space="preserve">
+    <value>tasks nearby</value>
+  </data>
+  <data name="LiveTileNearbySingle" xml:space="preserve">
+    <value>task nearby</value>
+  </data>
 </root>
