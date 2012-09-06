@@ -38,7 +38,7 @@
                 </toolkit:MultiselectList.ItemContainerStyle>
                 <toolkit:MultiselectList.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="-12,-12,12,0" Tap="ItemContent_Tap">
+                        <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
                             <Grid Margin="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -80,7 +80,7 @@
             </toolkit:MultiselectList>
 
             <TextBlock x:Name="txtAllLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
-            <TextBlock x:Name="txtAllEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+            <TextBlock x:Name="txtAllEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyNearbyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
         </Grid>
 
         <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" />

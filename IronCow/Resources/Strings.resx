@@ -595,7 +595,7 @@
     <value>Are you sure you want to delete the selected task?</value>
   </data>
   <data name="EmptyTaskList" xml:space="preserve">
-    <value>You have no incomplete tasks in this list. Hooray!</value>
+    <value>You have no incomplete tasks in this list. Woohoo!</value>
   </data>
   <data name="Overdue" xml:space="preserve">
     <value>Overdue</value>
@@ -791,5 +791,8 @@
   </data>
   <data name="LiveTileNearbySingle" xml:space="preserve">
     <value>task nearby</value>
+  </data>
+  <data name="EmptyNearbyTaskList" xml:space="preserve">
+    <value>There are no tasks nearby. Woohoo!</value>
   </data>
 </root>

@@ -844,6 +844,15 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no tasks nearby. Woohoo!.
+        /// </summary>
+        public static string EmptyNearbyTaskList {
+            get {
+                return ResourceManager.GetString("EmptyNearbyTaskList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no notes for this task..
         /// </summary>
         public static string EmptyNotes {
@@ -853,7 +862,7 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You have no incomplete tasks in this list. Hooray!.
+        ///   Looks up a localized string similar to You have no incomplete tasks in this list. Woohoo!.
         /// </summary>
         public static string EmptyTaskList {
             get {
