@@ -1370,18 +1370,39 @@ namespace IronCow
             }
         }
 
-        public SolidColorBrush PriorityForegroundBrush
+        public string PostponedString
         {
             get
             {
-                if (this.Priority == TaskPriority.One)
-                    return new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
-                else if (this.Priority == TaskPriority.Two)
-                    return new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
-                else if (this.Priority == TaskPriority.Three)
-                    return new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
+                if (this.Postponed == 0)
+                    return "";
+                else if (this.Postponed == 1)
+                    return this.Postponed + " " + Strings.TimeSingle;
                 else
-                    return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
+                    return this.Postponed + " " + Strings.TimePlural;
+            }
+        }
+
+        private double _Distance = 0;
+
+        public double Distance
+        {
+            get
+            {
+                return _Distance;
+            }
+
+            set
+            {
+                _Distance = value;
+            }
+        }
+
+        public string FriendlyDistance
+        {
+            get
+            {
+                return _Distance.ToString("0.0") + " miles";
             }
         }
 
@@ -1397,16 +1418,29 @@ namespace IronCow
             }
         }
 
-        public string PostponedString
+        public SolidColorBrush PriorityForegroundBrush
         {
             get
             {
-                if (this.Postponed == 0)
-                    return "";
-                else if (this.Postponed == 1)
-                    return this.Postponed + " " + Strings.TimeSingle;
+                if (this.Priority == TaskPriority.One)
+                    return new SolidColorBrush(Color.FromArgb(255, 234, 82, 0));
+                else if (this.Priority == TaskPriority.Two)
+                    return new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
+                else if (this.Priority == TaskPriority.Three)
+                    return new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
                 else
-                    return this.Postponed + " " + Strings.TimePlural;
+                    return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
+            }
+        }
+
+        public SolidColorBrush DistanceForegroundBrush
+        {
+            get
+            {
+                if (this.Distance <= Owner.NearbyThreshold)
+                    return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
+                else
+                    return (SolidColorBrush)Owner.Resources["PhoneSubtleBrush"];
             }
         }
     }

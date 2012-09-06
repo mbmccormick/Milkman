@@ -210,9 +210,9 @@ namespace Milkman
                             tempTaskLists.Add(l);
                     }
 
-                    // // insert the nearby list placeholder
-                    // TaskList nearby = new TaskList(Strings.Nearby);
-                    // tempTaskLists.Insert(1, nearby);
+                    // insert the nearby list placeholder
+                    TaskList nearby = new TaskList(Strings.Nearby);
+                    tempTaskLists.Insert(1, nearby);
 
                     TaskLists = tempTaskLists;
 

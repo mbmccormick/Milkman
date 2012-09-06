@@ -101,8 +101,18 @@ namespace Milkman
             {
                 RtmClient.LoadTasksFromResponse(TasksResponse);
             }
-
+                        
             RtmClient.Resources = App.Current.Resources;
+
+            AppSettings settings = new AppSettings();
+            if (settings.LocationServiceEnabled == 1)
+                RtmClient.NearbyThreshold = 1.0;
+            else if (settings.LocationServiceEnabled == 2)
+                RtmClient.NearbyThreshold = 2.0;
+            else if (settings.LocationServiceEnabled == 3)
+                RtmClient.NearbyThreshold = 5.0;
+            else
+                RtmClient.NearbyThreshold = 1.0;
         }
 
         public static void SaveData()

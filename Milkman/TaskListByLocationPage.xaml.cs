@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -39,9 +39,6 @@ namespace Milkman
 
         #region Construction and Navigation
 
-        GeoCoordinateWatcher watcher;
-        GeoCoordinate currentLocation;
-
         ApplicationBarIconButton dashboard;
         ApplicationBarIconButton add;
         ApplicationBarIconButton select;
@@ -56,75 +53,90 @@ namespace Milkman
         ApplicationBarMenuItem donate;
         ApplicationBarMenuItem signOut;
 
+        GeoCoordinateWatcher _watcher;
+
         public TaskListByLocationPage()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(TaskDetailsPage_Loaded);
+
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             TiltEffect.TiltableItems.Add(typeof(MultiselectItem));
 
+            this.BuildApplicationBar();
+
+            _watcher = new GeoCoordinateWatcher();
+            _watcher.Start();
+        }
+
+        private void BuildApplicationBar()
+        {
             dashboard = new ApplicationBarIconButton();
             dashboard.IconUri = new Uri("/Resources/dashboard.png", UriKind.RelativeOrAbsolute);
-            dashboard.Text = "dashboard";
+            dashboard.Text = Strings.DashboardMenuLower;
             dashboard.Click += btnDashboard_Click;
 
             add = new ApplicationBarIconButton();
             add.IconUri = new Uri("/Resources/add.png", UriKind.RelativeOrAbsolute);
-            add.Text = "add";
+            add.Text = Strings.AddMenuLower;
             add.Click += btnAdd_Click;
 
             select = new ApplicationBarIconButton();
             select.IconUri = new Uri("/Resources/select.png", UriKind.RelativeOrAbsolute);
-            select.Text = "select";
+            select.Text = Strings.SelectMenuLower;
             select.Click += btnSelect_Click;
 
             sync = new ApplicationBarIconButton();
             sync.IconUri = new Uri("/Resources/retry.png", UriKind.RelativeOrAbsolute);
-            sync.Text = "sync";
+            sync.Text = Strings.SyncMenuLower;
             sync.Click += btnSync_Click;
 
             complete = new ApplicationBarIconButton();
             complete.IconUri = new Uri("/Resources/complete.png", UriKind.RelativeOrAbsolute);
-            complete.Text = "complete";
+            complete.Text = Strings.CompleteMenuLower;
             complete.Click += btnComplete_Click;
 
             postpone = new ApplicationBarIconButton();
             postpone.IconUri = new Uri("/Resources/postpone.png", UriKind.RelativeOrAbsolute);
-            postpone.Text = "postpone";
+            postpone.Text = Strings.PostponeMenuLower;
             postpone.Click += btnPostpone_Click;
 
             delete = new ApplicationBarIconButton();
             delete.IconUri = new Uri("/Resources/delete.png", UriKind.RelativeOrAbsolute);
-            delete.Text = "delete";
+            delete.Text = Strings.DeleteMenuLower;
             delete.Click += btnDelete_Click;
 
             settings = new ApplicationBarMenuItem();
-            settings.Text = "settings";
+            settings.Text = Strings.SettingsMenuLower;
             settings.Click += mnuSettings_Click;
 
             about = new ApplicationBarMenuItem();
-            about.Text = "about milkman";
+            about.Text = Strings.AboutMenuLower;
             about.Click += mnuAbout_Click;
 
             feedback = new ApplicationBarMenuItem();
-            feedback.Text = "feedback";
+            feedback.Text = Strings.FeedbackMenuLower;
             feedback.Click += mnuFeedback_Click;
 
             donate = new ApplicationBarMenuItem();
-            donate.Text = "donate";
+            donate.Text = Strings.DonateMenuLower;
             donate.Click += mnuDonate_Click;
 
             signOut = new ApplicationBarMenuItem();
-            signOut.Text = "sign out";
+            signOut.Text = Strings.SignOutMenuLower;
             signOut.Click += mnuSignOut_Click;
 
-            watcher = new GeoCoordinateWatcher();
-            watcher.Start();
-        }
+            // build application bar
+            ApplicationBar.Buttons.Add(dashboard);
+            ApplicationBar.Buttons.Add(add);
+            ApplicationBar.Buttons.Add(select);
+            ApplicationBar.Buttons.Add(sync);
 
-        private void TaskDetailsPage_Loaded(object sender, RoutedEventArgs e)
-        {
+            ApplicationBar.MenuItems.Add(settings);
+            ApplicationBar.MenuItems.Add(about);
+            ApplicationBar.MenuItems.Add(feedback);
+            ApplicationBar.MenuItems.Add(donate);
+            ApplicationBar.MenuItems.Add(signOut);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -137,7 +149,7 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GlobalLoading.Instance.IsLoadingText("Loading...");
+            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
             AppSettings settings = new AppSettings();
 
@@ -167,9 +179,9 @@ namespace Milkman
                 e.Cancel = true;
             }
 
-            if (this.lstTasks.IsSelectionEnabled)
+            if (this.lstAll.IsSelectionEnabled)
             {
-                this.lstTasks.IsSelectionEnabled = false;
+                this.lstAll.IsSelectionEnabled = false;
                 e.Cancel = true;
             }
 
@@ -191,7 +203,7 @@ namespace Milkman
                     {
                         SmartDispatcher.BeginInvoke(() =>
                         {
-                            GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
+                            GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
                         });
 
                         App.RtmClient.SyncEverything(() =>
@@ -226,42 +238,37 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                GlobalLoading.Instance.IsLoadingText("Syncing tasks...");
+                GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
 
                 string id;
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
                 {
                     var tempAllTasks = new SortableObservableCollection<Task>();
 
-                    if (App.RtmClient.TaskLists != null)
+                    foreach (TaskList l in App.RtmClient.TaskLists)
                     {
-                        foreach (TaskList l in App.RtmClient.TaskLists)
+                        if (l.IsSmart == false &&
+                            l.Tasks != null)
                         {
-                            if (l.Tasks != null)
+                            foreach (Task t in l.Tasks)
                             {
-                                foreach (Task t in l.Tasks)
-                                {
-                                    if (t.IsCompleted == true ||
-                                        t.IsDeleted == true) continue;
+                                if (t.IsCompleted == true ||
+                                    t.IsDeleted == true) continue;
 
-                                    if (t.Location != null)
-                                    {
-                                        if (tempAllTasks.Contains(t) == false)
-                                            tempAllTasks.Add(t);
-                                    }
+                                if (t.Location != null)
+                                {
+                                    t.Distance = LocationHelper.Distance(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, t.Location.Latitude, t.Location.Longitude);
+                                    
+                                    tempAllTasks.Add(t);
                                 }
                             }
                         }
                     }
 
-                    AllTasks = tempAllTasks;
-
-                    if (watcher.Position != null)
+                    AllTasks.Clear();
+                    foreach (Task t in tempAllTasks)
                     {
-                        AllTasks.OrderByDescending(t => LocationHelper.Distance(watcher.Position.Location.Latitude,
-                                                                      watcher.Position.Location.Longitude,
-                                                                      t.Location.Latitude,
-                                                                      t.Location.Longitude));
+                        AllTasks.Add(t);
                     }
 
                     ToggleLoadingText();
@@ -276,7 +283,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtAllLoading.Visibility = System.Windows.Visibility.Collapsed;
             });
         }
 
@@ -285,9 +292,9 @@ namespace Milkman
             SmartDispatcher.BeginInvoke(() =>
             {
                 if (AllTasks.Count == 0)
-                    this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+                    this.txtAllEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
-                    this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                    this.txtAllEmpty.Visibility = System.Windows.Visibility.Collapsed;
             });
         }
 
@@ -310,7 +317,7 @@ namespace Milkman
                 if (this.NavigationService.CanGoBack)
                     this.NavigationService.GoBack();
                 else
-                    this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    this.NavigationService.Navigate(new Uri("/TaskListByLocationPage.xaml", UriKind.Relative));
             });
         }
 
@@ -326,28 +333,28 @@ namespace Milkman
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            this.lstTasks.IsSelectionEnabled = true;
+            this.lstAll.IsSelectionEnabled = true;
         }
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            string messageBoxText = null;
-            if (this.lstTasks.SelectedItems.Count == 1)
-                messageBoxText = "Are you sure you want to mark the selected task as complete?";
+            string messageBoxText;
+            if (this.lstAll.SelectedItems.Count == 1)
+                messageBoxText = Strings.CompleteTaskSingleDialog;
             else
-                messageBoxText = "Are you sure you want to mark the selected tasks as complete?";
+                messageBoxText = Strings.CompleteTaskPluralDialog;
 
-            if (MessageBox.Show(messageBoxText, "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(messageBoxText, Strings.CompleteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                while (this.lstTasks.SelectedItems.Count > 0)
+                while (this.lstAll.SelectedItems.Count > 0)
                 {
-                    CompleteTask((Task)this.lstTasks.SelectedItems[0]);
-                    this.lstTasks.SelectedItems.RemoveAt(0);
+                    CompleteTask((Task)this.lstAll.SelectedItems[0]);
+                    this.lstAll.SelectedItems.RemoveAt(0);
                 }
 
-                this.lstTasks.IsSelectionEnabled = false;
+                this.lstAll.IsSelectionEnabled = false;
             }
         }
 
@@ -355,21 +362,21 @@ namespace Milkman
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            string messageBoxText = null;
-            if (this.lstTasks.SelectedItems.Count == 1)
-                messageBoxText = "Are you sure you want to postpone the selected task?";
+            string messageBoxText;
+            if (this.lstAll.SelectedItems.Count == 1)
+                messageBoxText = Strings.PostponeTaskSingleDialog;
             else
-                messageBoxText = "Are you sure you want to postpone the selected tasks?";
+                messageBoxText = Strings.PostponeTaskPluralDialog;
 
-            if (MessageBox.Show(messageBoxText, "Postpone", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(messageBoxText, Strings.PostponeDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                while (this.lstTasks.SelectedItems.Count > 0)
+                while (this.lstAll.SelectedItems.Count > 0)
                 {
-                    PostponeTask((Task)this.lstTasks.SelectedItems[0]);
-                    this.lstTasks.SelectedItems.RemoveAt(0);
+                    PostponeTask((Task)this.lstAll.SelectedItems[0]);
+                    this.lstAll.SelectedItems.RemoveAt(0);
                 }
 
-                this.lstTasks.IsSelectionEnabled = false;
+                this.lstAll.IsSelectionEnabled = false;
             }
         }
 
@@ -377,21 +384,21 @@ namespace Milkman
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            string messageBoxText = null;
-            if (this.lstTasks.SelectedItems.Count == 1)
-                messageBoxText = "Are you sure you want to delete the selected task?";
+            string messageBoxText;
+            if (this.lstAll.SelectedItems.Count == 1)
+                messageBoxText = Strings.DeleteTaskSingleDialog;
             else
-                messageBoxText = "Are you sure you want to delete the selected tasks?";
+                messageBoxText = Strings.DeleteTaskPluralDialog;
 
-            if (MessageBox.Show(messageBoxText, "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(messageBoxText, Strings.DeleteTaskDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                while (this.lstTasks.SelectedItems.Count > 0)
+                while (this.lstAll.SelectedItems.Count > 0)
                 {
-                    DeleteTask((Task)this.lstTasks.SelectedItems[0]);
-                    this.lstTasks.SelectedItems.RemoveAt(0);
+                    DeleteTask((Task)this.lstAll.SelectedItems[0]);
+                    this.lstAll.SelectedItems.RemoveAt(0);
                 }
 
-                this.lstTasks.IsSelectionEnabled = false;
+                this.lstAll.IsSelectionEnabled = false;
             }
         }
 
@@ -493,50 +500,6 @@ namespace Milkman
                 this.NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
         }
 
-        private void TaskLocationName_Loaded(object sender, EventArgs e)
-        {
-            TextBlock target = (TextBlock)sender;
-
-            Task task = (Task)target.DataContext;
-
-            double distance = LocationHelper.Distance(watcher.Position.Location.Latitude, 
-                                                      watcher.Position.Location.Longitude, 
-                                                      task.Location.Latitude, 
-                                                      task.Location.Longitude);
-            double radius;
-
-            AppSettings settings = new AppSettings();
-            if (settings.LocationServiceEnabled == 1)
-                radius = 1.0;
-            else if (settings.LocationServiceEnabled == 2)
-                radius = 2.0;
-            else if (settings.LocationServiceEnabled == 3)
-                radius = 5.0;
-            else
-                radius = 1.0;
-
-            // set distance
-            if (distance <= radius)
-                target.Foreground = (SolidColorBrush)Resources["PhoneAccentBrush"];
-            else
-                target.Foreground = (SolidColorBrush)Resources["PhoneSubtleBrush"];
-        }
-
-        private void TaskDistance_Loaded(object sender, EventArgs e)
-        {
-            TextBlock target = (TextBlock)sender;
-
-            Task task = (Task)target.DataContext;
-
-            double distance = LocationHelper.Distance(watcher.Position.Location.Latitude,
-                                                      watcher.Position.Location.Longitude, 
-                                                      task.Location.Latitude, 
-                                                      task.Location.Longitude);
-
-            // set distance
-            target.Text = String.Format("{0:0.00} miles", distance);
-        }
-
         private void mnuSettings_Click(object sender, EventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>
@@ -573,7 +536,7 @@ namespace Milkman
 
         private void mnuSignOut_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to sign out of Milkman and remove all of your data?", "Sign Out", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show(Strings.SignOutDialog, Strings.SignOutDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 App.DeleteData();
                 Login();
@@ -604,19 +567,19 @@ namespace Milkman
             MenuItem target = (MenuItem)sender;
             ContextMenu parent = (ContextMenu)target.Parent;
 
-            if (target.Header.ToString() == "complete")
+            if (target.Header.ToString() == Strings.CompleteMenuLower)
             {
-                if (MessageBox.Show("Are you sure you want to mark this task as complete?", "Complete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show(Strings.CompleteDialog, Strings.CompleteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     CompleteTask(MostRecentTaskClick);
             }
-            else if (target.Header.ToString() == "postpone")
+            else if (target.Header.ToString() == Strings.PostponeMenuLower)
             {
-                if (MessageBox.Show("Are you sure you want to postpone this task?", "Postpone", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show(Strings.PostponeDialog, Strings.PostponeDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     PostponeTask(MostRecentTaskClick);
             }
-            else if (target.Header.ToString() == "delete")
+            else if (target.Header.ToString() == Strings.DeleteMenuLower)
             {
-                if (MessageBox.Show("Are you sure you want to delete this task?", "Delete", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                if (MessageBox.Show(Strings.DeleteTaskDialog, Strings.DeleteTaskDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     DeleteTask(MostRecentTaskClick);
             }
         }
@@ -627,7 +590,7 @@ namespace Milkman
 
         private void AddTask(string smartAddText)
         {
-            GlobalLoading.Instance.IsLoadingText("Adding task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.AddingTask);
 
             string input = smartAddText;
             if (input.Contains('#') == false)
@@ -651,7 +614,7 @@ namespace Milkman
 
         private void CompleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Completing task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.CompletingTask);
             data.Complete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -669,7 +632,7 @@ namespace Milkman
 
         private void PostponeTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Postponing task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.PostponingTask);
             data.Postpone(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -687,7 +650,7 @@ namespace Milkman
 
         private void DeleteTask(Task data)
         {
-            GlobalLoading.Instance.IsLoadingText("Deleting task...");
+            GlobalLoading.Instance.IsLoadingText(Strings.DeletingTask);
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>

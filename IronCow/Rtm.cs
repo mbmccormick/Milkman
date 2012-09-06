@@ -11,6 +11,7 @@ namespace IronCow
     public class Rtm
     {
         public ResourceDictionary Resources;
+        public double NearbyThreshold;
 
         #region Callback Delegates
 
