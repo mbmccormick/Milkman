@@ -71,7 +71,8 @@
     </Style>
 
     <Style x:Key="AboutPivotItemStyle"
-           TargetType="controls2:PivotItem">        
+           TargetType="controls2:PivotItem">
+        <Setter Property="FontWeight" Value="Normal" />
     </Style>
 
     <!-- Text based controls -->
