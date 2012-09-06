@@ -783,4 +783,16 @@
   <data name="TaskUpper" xml:space="preserve">
     <value>ATTIVITÀ</value>
   </data>
+  <data name="LiveTileNearbyEmpty">
+    <value>Nessuna attività nelle vicinanze</value>
+  </data>
+  <data name="LiveTileNearbyPlural">
+    <value>attività che nelle vicinanze</value>
+  </data>
+  <data name="LiveTileNearbySingle">
+    <value>attività che nelle vicinanze</value>
+  </data>
+  <data name="EmptyNearbyTaskList">
+    <value>Non ci sono attività nelle vicinanze in questa lista. Urrà!</value>
+  </data>
 </root>
