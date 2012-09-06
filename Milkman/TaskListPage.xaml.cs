@@ -183,6 +183,16 @@ namespace Milkman
             ApplicationBar.MenuItems.Add(feedback);
             ApplicationBar.MenuItems.Add(donate);
             ApplicationBar.MenuItems.Add(signOut);
+
+            // disable buttons when working offline
+            if (App.RtmClient.Syncing == false)
+            {
+                add.IsEnabled = false;
+                sync.IsEnabled = false;
+                complete.IsEnabled = false;
+                postpone.IsEnabled = false;
+                delete.IsEnabled = false;
+            }
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -588,6 +598,16 @@ namespace Milkman
                 j.IsEnabled = true;
                 k.IsEnabled = true;
             }
+
+            // disable buttons when working offline
+            if (App.RtmClient.Syncing == false)
+            {
+                add.IsEnabled = false;
+                sync.IsEnabled = false;
+                complete.IsEnabled = false;
+                postpone.IsEnabled = false;
+                delete.IsEnabled = false;
+            }
         }
 
         private void MultiselectList_IsSelectionEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -644,6 +664,16 @@ namespace Milkman
                 margin.Left = margin.Left + 12;
 
             target.Margin = margin;
+
+            // disable buttons when working offline
+            if (App.RtmClient.Syncing == false)
+            {
+                add.IsEnabled = false;
+                sync.IsEnabled = false;
+                complete.IsEnabled = false;
+                postpone.IsEnabled = false;
+                delete.IsEnabled = false;
+            }
         }
 
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)

@@ -804,4 +804,22 @@
   <data name="NearbyRadiusSetting5">
     <value>20 millas</value>
   </data>
+  <data name="Error">
+    <value>Error</value>
+  </data>
+  <data name="WorkingOffline">
+    <value>Milkman está trabajando sin conexión</value>
+  </data>
+  <data name="NetworkConnectionDialogTitle">
+    <value>Error al ponerse en contacto con el servidor</value>
+  </data>
+  <data name="NetworkConnectionDialog">
+    <value>Hubo un error al intentar contactar con los servidores de Remember The Milk. ¿Estás conectado a la red?</value>
+  </data>
+  <data name="OfflineConnectionDialogTitle">
+    <value>Conexión de red no disponible</value>
+  </data>
+  <data name="OfflineConnectionDialog">
+    <value>Actualmente no tiene una conexión de red activa disponible. ¿Le gustaría cambiar al modo offline para esta sesión?</value>
+  </data>
 </root>

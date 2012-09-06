@@ -862,6 +862,15 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estimate.
         /// </summary>
         public static string Estimate {
@@ -1042,15 +1051,6 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Notify me when tasks are nearby.
-        /// </summary>
-        public static string LocationServiceSetting {
-            get {
-                return ResourceManager.GetString("LocationServiceSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to It&apos;s been a few days since you downloaded Milkman. Would you like to rate it on the Marketplace?.
         /// </summary>
         public static string MarketplaceDialog {
@@ -1186,6 +1186,24 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an error when trying to contact the Remember The Milk servers. Are you connected to the network?.
+        /// </summary>
+        public static string NetworkConnectionDialog {
+            get {
+                return ResourceManager.GetString("NetworkConnectionDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error Contacting Server.
+        /// </summary>
+        public static string NetworkConnectionDialogTitle {
+            get {
+                return ResourceManager.GetString("NetworkConnectionDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Never.
         /// </summary>
         public static string Never {
@@ -1290,6 +1308,24 @@ namespace IronCow.Resources {
         public static string Off {
             get {
                 return ResourceManager.GetString("Off", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You currently do not have an active network connection available. Would you like to switch to offline mode for this session?.
+        /// </summary>
+        public static string OfflineConnectionDialog {
+            get {
+                return ResourceManager.GetString("OfflineConnectionDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Network Connection Unavailable.
+        /// </summary>
+        public static string OfflineConnectionDialogTitle {
+            get {
+                return ResourceManager.GetString("OfflineConnectionDialogTitle", resourceCulture);
             }
         }
         
@@ -2127,6 +2163,15 @@ namespace IronCow.Resources {
         public static string WelcomeUpper {
             get {
                 return ResourceManager.GetString("WelcomeUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Milkman is working offline.
+        /// </summary>
+        public static string WorkingOffline {
+            get {
+                return ResourceManager.GetString("WorkingOffline", resourceCulture);
             }
         }
     }

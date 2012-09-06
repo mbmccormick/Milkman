@@ -87,6 +87,16 @@ namespace Milkman
             ApplicationBar.Buttons.Add(postpone);
             ApplicationBar.Buttons.Add(edit);
             ApplicationBar.Buttons.Add(delete);
+
+            // disable buttons when working offline
+            if (App.RtmClient.Syncing == false)
+            {
+                complete.IsEnabled = false;
+                postpone.IsEnabled = false;
+                edit.IsEnabled = false;
+                delete.IsEnabled = false;
+                add.IsEnabled = false;
+            }
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -216,8 +226,10 @@ namespace Milkman
 
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            if (App.RtmClient.Syncing == false) return;
+            
             if (GlobalLoading.Instance.IsLoading) return;
-
+            
             TaskNote item = ((FrameworkElement)sender).DataContext as TaskNote;
 
             if (item != null)

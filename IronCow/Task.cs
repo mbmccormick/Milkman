@@ -1333,6 +1333,14 @@ namespace IronCow
 
         #endregion
 
+        public bool ClientSyncing
+        {
+            get
+            {
+                return Owner.Syncing;
+            }
+        }
+
         public string FriendlyDueDate
         {
             get

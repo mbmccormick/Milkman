@@ -105,6 +105,13 @@ namespace Milkman
             ApplicationBar.MenuItems.Add(feedback);
             ApplicationBar.MenuItems.Add(donate);
             ApplicationBar.MenuItems.Add(signOut);
+
+            // disable buttons when working offline
+            if (App.RtmClient.Syncing == false)
+            {
+                add.IsEnabled = false;
+                sync.IsEnabled = false;
+            }
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)

@@ -10,6 +10,7 @@ namespace Milkman.Common
     public class GlobalLoading : INotifyPropertyChanged
     {
         private ProgressIndicator _mangoIndicator;
+        private bool _statusText = false;
 
         private GlobalLoading()
         {
@@ -83,13 +84,32 @@ namespace Milkman.Common
 
         public void IsLoadingText(string loadingText)
         {
+            if (_statusText == true) return;
+
             _mangoIndicator.Text = loadingText;
 
             IsLoading = true;
         }
 
+        public void StatusText(string loadingText)
+        {
+            _mangoIndicator.Text = loadingText;
+            _mangoIndicator.IsVisible = true;
+
+            _statusText = true;
+        }
+
+        public void ClearStatusText(string loadingText)
+        {
+            _mangoIndicator.Text = null;
+
+            _statusText = false;
+        }
+
         private void NotifyValueChanged()
         {
+            if (_statusText == true) return;
+            
             if (_mangoIndicator != null)
             {
                 _mangoIndicator.IsIndeterminate = _loading || IsDataManagerLoading;

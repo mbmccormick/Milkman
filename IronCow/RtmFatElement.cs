@@ -7,7 +7,7 @@ namespace IronCow
     public class RtmFatElement : RtmElement
     {
         [DataMember]
-        public Rtm mOwner;
+        private Rtm mOwner;
         internal override Rtm Owner
         {
             get { return mOwner; }
@@ -31,7 +31,7 @@ namespace IronCow
         }
 
         [DataMember]
-        public bool mSyncing = true;
+        private bool mSyncing = true;
         internal override bool Syncing
         {
             get { return mSyncing; }

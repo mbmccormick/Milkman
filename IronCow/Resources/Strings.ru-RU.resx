@@ -804,4 +804,22 @@
   <data name="NearbyRadiusSetting5">
     <value>20 миля </value>
   </data>
+  <data name="Error">
+    <value>Ошибка</value>
+  </data>
+  <data name="WorkingOffline">
+    <value>Milkman работает в автономном режиме</value>
+  </data>
+  <data name="NetworkConnectionDialogTitle">
+    <value>Связаться со службой сервера Ошибка</value>
+  </data>
+  <data name="NetworkConnectionDialog">
+    <value>Произошла ошибка при попытке связаться с серверами Remember The Milk. Подключены ли вы к сети?</value>
+  </data>
+  <data name="OfflineConnectionDialogTitle">
+    <value>Сетевое подключение недоступно</value>
+  </data>
+  <data name="OfflineConnectionDialog">
+    <value>В настоящее время не имеется активное подключение к сети доступны. Вы хотели бы перейти в автономный режим для этой сессии?</value>
+  </data>
 </root>

@@ -19,6 +19,7 @@ using IronCow.Rest;
 using Microsoft.Phone.Scheduler;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.Tasks;
+using System.Net.NetworkInformation;
 
 namespace Milkman
 {
@@ -244,7 +245,7 @@ namespace Milkman
                 var ex = (e.ExceptionObject as RtmException).ResponseError;
                 RootFrame.Dispatcher.BeginInvoke(() =>
                 {
-                    MessageBox.Show(ex.Message, "Error " + ex.Code, MessageBoxButton.OK);
+                    MessageBox.Show(ex.Message, Strings.Error + " " + ex.Code, MessageBoxButton.OK);
                 });
             }
             else if (e.ExceptionObject is WebException)
@@ -253,7 +254,18 @@ namespace Milkman
 
                 RootFrame.Dispatcher.BeginInvoke(() =>
                 {
-                    MessageBox.Show(ex.Message + "\n\nAre you connected to the network?", "Error Contacting Server", MessageBoxButton.OK);
+                    if (NetworkInterface.GetIsNetworkAvailable() == true)
+                    {
+                        MessageBox.Show(Strings.NetworkConnectionDialog, Strings.NetworkConnectionDialogTitle, MessageBoxButton.OK);
+                    }
+                    else
+                    {
+                        if (MessageBox.Show(Strings.OfflineConnectionDialog, Strings.OfflineConnectionDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                        {
+                            RtmClient.DisableSyncing();
+                            GlobalLoading.Instance.StatusText(Strings.WorkingOffline);
+                        }
+                    }
                 });
             }
             else
