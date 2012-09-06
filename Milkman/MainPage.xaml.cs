@@ -57,6 +57,7 @@ namespace Milkman
             InitializeComponent();
 
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
+            App.SyncingDisabled += new EventHandler<EventArgs>(App_SyncingDisabled);
 
             this.BuildApplicationBar();
 
@@ -105,13 +106,6 @@ namespace Milkman
             ApplicationBar.MenuItems.Add(feedback);
             ApplicationBar.MenuItems.Add(donate);
             ApplicationBar.MenuItems.Add(signOut);
-
-            // disable buttons when working offline
-            if (App.RtmClient.Syncing == false)
-            {
-                add.IsEnabled = false;
-                sync.IsEnabled = false;
-            }
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -119,6 +113,19 @@ namespace Milkman
             Dispatcher.BeginInvoke(() =>
             {
                 GlobalLoading.Instance.IsLoading = false;
+            });
+        }
+
+        private void App_SyncingDisabled(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(() =>
+            {
+                // disable buttons when working offline
+                if (App.RtmClient.Syncing == false)
+                {
+                    add.IsEnabled = false;
+                    sync.IsEnabled = false;
+                }
             });
         }
 
@@ -440,7 +447,7 @@ namespace Milkman
                             radius = 0.0;
 
                         tasksNearby = App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).Count;
-                        
+
                         if (tasksNearby == 0)
                             data.BackContent = Strings.LiveTileNearbyEmpty;
                         else if (tasksNearby == 1)

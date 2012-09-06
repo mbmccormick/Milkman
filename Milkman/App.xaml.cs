@@ -33,6 +33,7 @@ namespace Milkman
         public static Response TasksResponse;
 
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
+        public static event EventHandler<EventArgs> SyncingDisabled;
 
         public static string VersionNumber
         {
@@ -103,7 +104,7 @@ namespace Milkman
             {
                 RtmClient.LoadTasksFromResponse(TasksResponse);
             }
-                        
+
             RtmClient.Resources = App.Current.Resources;
         }
 
@@ -252,21 +253,30 @@ namespace Milkman
             {
                 WebException ex = e.ExceptionObject as WebException;
 
-                RootFrame.Dispatcher.BeginInvoke(() =>
+                if (RtmClient.Syncing == true)
                 {
                     if (NetworkInterface.GetIsNetworkAvailable() == true)
                     {
-                        MessageBox.Show(Strings.NetworkConnectionDialog, Strings.NetworkConnectionDialogTitle, MessageBoxButton.OK);
+                        RootFrame.Dispatcher.BeginInvoke(() =>
+                        {
+                            MessageBox.Show(Strings.NetworkConnectionDialog, Strings.NetworkConnectionDialogTitle, MessageBoxButton.OK);
+                        });
                     }
                     else
                     {
-                        if (MessageBox.Show(Strings.OfflineConnectionDialog, Strings.OfflineConnectionDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                        RootFrame.Dispatcher.BeginInvoke(() =>
                         {
-                            RtmClient.DisableSyncing();
-                            GlobalLoading.Instance.StatusText(Strings.WorkingOffline);
-                        }
+                            if (MessageBox.Show(Strings.OfflineConnectionDialog, Strings.OfflineConnectionDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                            {
+                                RtmClient.DisableSyncing();
+                                GlobalLoading.Instance.StatusText(Strings.WorkingOffline);
+
+                                if (SyncingDisabled != null)
+                                    SyncingDisabled(sender, null);
+                            }
+                        });
                     }
-                });
+                }
             }
             else
             {
