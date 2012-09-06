@@ -68,7 +68,7 @@ namespace Milkman.Common
                     if (MessageBox.Show(messageText, Strings.UnhandledErrorDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     {
                         EmailComposeTask email = new EmailComposeTask();
-                        email.To = "milkmanwp@gmail.com";
+                        email.To = "milkman@mbmccormick.com";
                         email.Subject = "Milkman Error Report";
                         email.Body = "Version " + App.VersionNumber + " (" + App.PlatformVersionNumber + ")\n" + contents;
 
