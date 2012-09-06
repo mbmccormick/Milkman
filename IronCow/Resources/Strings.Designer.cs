@@ -691,15 +691,6 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to disabled.
-        /// </summary>
-        public static string DisabledOptionSetting {
-            get {
-                return ResourceManager.GetString("DisabledOptionSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Donate.
         /// </summary>
         public static string DonateMenu {
@@ -907,15 +898,6 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 5 miles.
-        /// </summary>
-        public static string FiveMilesOptionSetting {
-            get {
-                return ResourceManager.GetString("FiveMilesOptionSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No tasks.
         /// </summary>
         public static string HubTileEmpty {
@@ -1053,6 +1035,15 @@ namespace IronCow.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Notify me when tasks are nearby.
         /// </summary>
+        public static string LocationRemindersSetting {
+            get {
+                return ResourceManager.GetString("LocationRemindersSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notify me when tasks are nearby.
+        /// </summary>
         public static string LocationServiceSetting {
             get {
                 return ResourceManager.GetString("LocationServiceSetting", resourceCulture);
@@ -1128,6 +1119,60 @@ namespace IronCow.Resources {
         public static string NearbyLower {
             get {
                 return ResourceManager.GetString("NearbyLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nearby location radius.
+        /// </summary>
+        public static string NearbyRadiusSetting {
+            get {
+                return ResourceManager.GetString("NearbyRadiusSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 mile.
+        /// </summary>
+        public static string NearbyRadiusSetting1 {
+            get {
+                return ResourceManager.GetString("NearbyRadiusSetting1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 miles.
+        /// </summary>
+        public static string NearbyRadiusSetting2 {
+            get {
+                return ResourceManager.GetString("NearbyRadiusSetting2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5 miles.
+        /// </summary>
+        public static string NearbyRadiusSetting3 {
+            get {
+                return ResourceManager.GetString("NearbyRadiusSetting3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 10 miles.
+        /// </summary>
+        public static string NearbyRadiusSetting4 {
+            get {
+                return ResourceManager.GetString("NearbyRadiusSetting4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20 miles.
+        /// </summary>
+        public static string NearbyRadiusSetting5 {
+            get {
+                return ResourceManager.GetString("NearbyRadiusSetting5", resourceCulture);
             }
         }
         
@@ -1254,24 +1299,6 @@ namespace IronCow.Resources {
         public static string On {
             get {
                 return ResourceManager.GetString("On", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1 hour.
-        /// </summary>
-        public static string OneHourOptionSetting {
-            get {
-                return ResourceManager.GetString("OneHourOptionSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 1 mile.
-        /// </summary>
-        public static string OneMileOptionSetting {
-            get {
-                return ResourceManager.GetString("OneMileOptionSetting", resourceCulture);
             }
         }
         
@@ -1861,6 +1888,42 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to disabled.
+        /// </summary>
+        public static string TaskRemindersSetting1 {
+            get {
+                return ResourceManager.GetString("TaskRemindersSetting1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 30 minutes.
+        /// </summary>
+        public static string TaskRemindersSetting2 {
+            get {
+                return ResourceManager.GetString("TaskRemindersSetting2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 hour.
+        /// </summary>
+        public static string TaskRemindersSetting3 {
+            get {
+                return ResourceManager.GetString("TaskRemindersSetting3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 hours.
+        /// </summary>
+        public static string TaskRemindersSetting4 {
+            get {
+                return ResourceManager.GetString("TaskRemindersSetting4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to task.
         /// </summary>
         public static string TaskSingle {
@@ -1875,15 +1938,6 @@ namespace IronCow.Resources {
         public static string TaskUpper {
             get {
                 return ResourceManager.GetString("TaskUpper", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 30 minutes.
-        /// </summary>
-        public static string ThirtyMinutesOptionSetting {
-            get {
-                return ResourceManager.GetString("ThirtyMinutesOptionSetting", resourceCulture);
             }
         }
         
@@ -1983,24 +2037,6 @@ namespace IronCow.Resources {
         public static string TomorrowUpper {
             get {
                 return ResourceManager.GetString("TomorrowUpper", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2 hours.
-        /// </summary>
-        public static string TwoHoursOptionSetting {
-            get {
-                return ResourceManager.GetString("TwoHoursOptionSetting", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2 miles.
-        /// </summary>
-        public static string TwoMilesOptionSetting {
-            get {
-                return ResourceManager.GetString("TwoMilesOptionSetting", resourceCulture);
             }
         }
         

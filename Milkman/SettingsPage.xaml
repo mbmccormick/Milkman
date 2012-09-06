@@ -30,24 +30,24 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
                 <toolkit:ToggleSwitch x:Name="togAutomaticSync" IsChecked="true" Header="{Binding Resources.AutomaticSyncSetting, Source={StaticResource Strings}}" />
-                <toolkit:ToggleSwitch x:Name="togLocationReminders" IsChecked="true" Header="Notify me when tasks are nearby" />
+                <toolkit:ToggleSwitch x:Name="togLocationReminders" IsChecked="true" Header="{Binding Resources.LocationRemindersSetting, Source={StaticResource Strings}}" />
                 <StackPanel Margin="12,12,12,12">
-                    <TextBlock Text="Nearby location radius" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
+                    <TextBlock Text="{Binding Resources.NearbyRadiusSetting, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
                     <toolkit:ListPicker x:Name="lstNearbyRadius" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1">
-                        <toolkit:ListPickerItem Content="1 mile" />
-                        <toolkit:ListPickerItem Content="2 miles" />
-                        <toolkit:ListPickerItem Content="5 miles" />
-                        <toolkit:ListPickerItem Content="10 miles" />
-                        <toolkit:ListPickerItem Content="20 miles" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.NearbyRadiusSetting1, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.NearbyRadiusSetting2, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.NearbyRadiusSetting3, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.NearbyRadiusSetting4, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.NearbyRadiusSetting5, Source={StaticResource Strings}}" />
                     </toolkit:ListPicker>
                 </StackPanel>
                 <StackPanel Margin="12,12,12,12">
-                    <TextBlock Text="Notify me before tasks are due" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
+                    <TextBlock Text="{Binding Resources.TaskRemindersSetting, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
                     <toolkit:ListPicker x:Name="lstTaskReminders" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1">
-                        <toolkit:ListPickerItem Content="{Binding Resources.DisabledOptionSetting, Source={StaticResource Strings}}" />
-                        <toolkit:ListPickerItem Content="{Binding Resources.ThirtyMinutesOptionSetting, Source={StaticResource Strings}}" />
-                        <toolkit:ListPickerItem Content="{Binding Resources.OneHourOptionSetting, Source={StaticResource Strings}}" />
-                        <toolkit:ListPickerItem Content="{Binding Resources.TwoHoursOptionSetting, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.TaskRemindersSetting1, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.TaskRemindersSetting2, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.TaskRemindersSetting3, Source={StaticResource Strings}}" />
+                        <toolkit:ListPickerItem Content="{Binding Resources.TaskRemindersSetting4, Source={StaticResource Strings}}" />
                     </toolkit:ListPicker>
                 </StackPanel>
             </StackPanel>
