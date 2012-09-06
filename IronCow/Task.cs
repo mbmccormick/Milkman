@@ -366,6 +366,8 @@ namespace IronCow
         {
             get
             {
+                if (Owner.Locations == null) return null;
+
                 if (mLocation == null && mLocationId != RtmElement.UnsyncedId)
                 {
                     if (!IsSynced)

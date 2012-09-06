@@ -60,7 +60,7 @@ namespace BackgroundWorker.Common
             {
                 StandardTileData data = new StandardTileData();
 
-                string tasksListName = null;
+                string taskListName = null;
                 int tasksDueToday = 0;
                 int tasksOverdue = 0;
                 int tasksNearby = 0;
@@ -85,14 +85,14 @@ namespace BackgroundWorker.Common
                             }
                         }
 
-                        tasksListName = Strings.AllTasks;
+                        taskListName = Strings.AllTasks;
                         tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                 z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
                         tasksOverdue = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                     }
 
-                    data.BackTitle = tasksListName;
+                    data.BackTitle = taskListName;
 
                     if (tasksDueToday == 0)
                         data.BackContent = Strings.LiveTileEmpty;
@@ -110,11 +110,11 @@ namespace BackgroundWorker.Common
                 {
                     if (App.RtmClient.TaskLists != null)
                     {
-                        tasksListName = "";
+                        taskListName = Strings.Nearby;
                         tasksNearby = App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius).Count;
                     }
 
-                    data.BackTitle = tasksListName;
+                    data.BackTitle = taskListName;
 
                     if (tasksNearby == 0)
                         data.BackContent = Strings.LiveTileNearbyEmpty;
@@ -132,7 +132,7 @@ namespace BackgroundWorker.Common
                         string id = tile.NavigationUri.ToString().Split('=')[1];
                         TaskList list = App.RtmClient.TaskLists.SingleOrDefault(l => l.Id == id);
 
-                        tasksListName = list.Name;
+                        taskListName = list.Name;
                         if (list.Tasks != null)
                         {
                             tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
@@ -142,7 +142,7 @@ namespace BackgroundWorker.Common
                         }
                     }
 
-                    data.BackTitle = tasksListName;
+                    data.BackTitle = taskListName;
 
                     if (tasksDueToday == 0)
                         data.BackContent = Strings.LiveTileEmpty;

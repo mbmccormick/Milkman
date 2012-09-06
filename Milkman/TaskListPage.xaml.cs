@@ -421,7 +421,7 @@ namespace Milkman
                 if (this.NavigationService.CanGoBack)
                     this.NavigationService.GoBack();
                 else
-                    this.NavigationService.Navigate(new Uri("/TaskListPage.xaml", UriKind.Relative));
+                    this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             });
         }
 
