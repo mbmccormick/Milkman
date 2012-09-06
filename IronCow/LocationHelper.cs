@@ -1,24 +1,15 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
-namespace Milkman.Common
+namespace IronCow.Common
 {
     public static class LocationHelper
     {
-        public static double ConvertToRadians(double val)
+        private static double ConvertToRadians(double val)
         {
             return val * (Math.PI / 180);
         }
 
-        public static double DifferenceInRadians(double val1, double val2)
+        private static double DifferenceInRadians(double val1, double val2)
         {
             return ConvertToRadians(val2) - ConvertToRadians(val1);
         }

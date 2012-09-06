@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Threading;
 using IronCow.Rest;
 using System.Windows;
+using IronCow.Common;
 
 namespace IronCow
 {
@@ -694,6 +695,32 @@ namespace IronCow
             tasks.Sort(Task.CompareByDate);
 
             return tasks;
+        }
+
+        public List<Task> GetNearbyTasks(double latitude, double longitude, double radius)
+        {
+            List<Task> tasks = new List<Task>();
+
+            foreach (TaskList list in TaskLists)
+            {
+                if (list.IsNormal && list.Tasks != null)
+                {
+                    foreach (Task task in list.Tasks)
+                    {
+                        if (task.IsIncomplete && task.Location != null)
+                        {
+                            task.Distance = LocationHelper.Distance(latitude, longitude, task.Location.Latitude, task.Location.Longitude);
+
+                            if (task.Distance <= radius)
+                            {
+                                tasks.Add(task);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return tasks.OrderBy(z => z.Distance).ToList();
         }
 
         public Task GetTask(string id)

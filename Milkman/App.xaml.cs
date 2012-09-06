@@ -112,7 +112,7 @@ namespace Milkman
             else if (settings.LocationServiceEnabled == 3)
                 RtmClient.NearbyThreshold = 5.0;
             else
-                RtmClient.NearbyThreshold = 1.0;
+                RtmClient.NearbyThreshold = 0.0;
         }
 
         public static void SaveData()

@@ -245,31 +245,28 @@ namespace Milkman
                 {
                     var tempAllTasks = new SortableObservableCollection<Task>();
 
-                    foreach (TaskList l in App.RtmClient.TaskLists)
-                    {
-                        if (l.IsSmart == false &&
-                            l.Tasks != null)
-                        {
-                            foreach (Task t in l.Tasks)
-                            {
-                                if (t.IsCompleted == true ||
-                                    t.IsDeleted == true) continue;
+                    AppSettings settings = new AppSettings();
 
-                                if (t.Location != null)
-                                {
-                                    t.Distance = LocationHelper.Distance(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, t.Location.Latitude, t.Location.Longitude);
-                                    
-                                    tempAllTasks.Add(t);
-                                }
-                            }
-                        }
+                    double radius;
+                    if (settings.NearbyRadius == 0)
+                        radius = 1.0;
+                    else if (settings.NearbyRadius == 1)
+                        radius = 2.0;
+                    else if (settings.NearbyRadius == 2)
+                        radius = 5.0;
+                    else if (settings.NearbyRadius == 3)
+                        radius = 10.0;
+                    else if (settings.NearbyRadius == 3)
+                        radius = 20.0;
+                    else
+                        radius = 0.0;
+
+                    foreach (Task t in App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius))
+                    {
+                        tempAllTasks.Add(t);
                     }
 
-                    AllTasks.Clear();
-                    foreach (Task t in tempAllTasks)
-                    {
-                        AllTasks.Add(t);
-                    }
+                    AllTasks = tempAllTasks;
 
                     ToggleLoadingText();
                     ToggleEmptyText();

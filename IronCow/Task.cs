@@ -1432,16 +1432,5 @@ namespace IronCow
                     return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
             }
         }
-
-        public SolidColorBrush DistanceForegroundBrush
-        {
-            get
-            {
-                if (this.Distance <= Owner.NearbyThreshold)
-                    return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
-                else
-                    return (SolidColorBrush)Owner.Resources["PhoneSubtleBrush"];
-            }
-        }
     }
 }

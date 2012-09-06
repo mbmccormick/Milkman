@@ -63,8 +63,8 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Text="{Binding LocationName}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DistanceForegroundBrush}" FontWeight="Normal" />
-                                <TextBlock Text="{Binding FriendlyDistance}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
+                                <TextBlock Text="{Binding LocationName}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
                             </Grid>
 
                             <toolkit:ContextMenuService.ContextMenu>

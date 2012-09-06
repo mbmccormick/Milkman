@@ -20,6 +20,7 @@ namespace Milkman.Common
 
         const string AutomaticSyncEnabledSettingKeyName = "AutomaticSyncEnabled";
         const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
+        const string NearbyRadiusSettingKeyName = "NearbyRadius";
         const string LocationServiceEnabledSettingKeyName = "LocationServiceEnabled";
 
         public AppSettings()
@@ -114,6 +115,19 @@ namespace Milkman.Common
             set
             {
                 AddOrUpdateValue(TaskRemindersEnabledSettingKeyName, value);
+                Save();
+            }
+        }
+
+        public int NearbyRadius
+        {
+            get
+            {
+                return GetValueOrDefault<int>(NearbyRadiusSettingKeyName, 1);
+            }
+            set
+            {
+                AddOrUpdateValue(NearbyRadiusSettingKeyName, value);
                 Save();
             }
         }

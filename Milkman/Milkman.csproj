@@ -94,7 +94,6 @@
     <Compile Include="Common\GlobalLoading.cs" />
     <Compile Include="Common\IsolatedStorageHelper.cs" />
     <Compile Include="Common\LittleWatson.cs" />
-    <Compile Include="Common\LocationHelper.cs" />
     <Compile Include="Common\MetroGridHelper.cs" />
     <Compile Include="Common\NotificationsManager.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />

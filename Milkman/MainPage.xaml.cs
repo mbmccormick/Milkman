@@ -16,6 +16,7 @@ using IronCow;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using System.Device.Location;
 
 namespace Milkman
 {
@@ -48,13 +49,18 @@ namespace Milkman
         ApplicationBarMenuItem donate;
         ApplicationBarMenuItem signOut;
 
+        GeoCoordinateWatcher _watcher;
+
         public MainPage()
         {
             InitializeComponent();
 
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
-            
+
             this.BuildApplicationBar();
+
+            _watcher = new GeoCoordinateWatcher();
+            _watcher.Start();
         }
 
         private void BuildApplicationBar()
@@ -290,39 +296,30 @@ namespace Milkman
         {
             TextBlock target = (TextBlock)sender;
 
-            TaskList task = (TaskList)target.DataContext;
+            TaskList taskList = (TaskList)target.DataContext;
 
             if (App.RtmClient.Locations == null) return;
 
             // set count
-            if (task.Name.ToLower() == Strings.NearbyLower)
+            if (taskList.Name.ToLower() == Strings.NearbyLower)
             {
-                int count = 0;
-                List<string> alreadyCounted = new List<string>();
+                AppSettings settings = new AppSettings();
 
-                if (App.RtmClient.TaskLists != null)
-                {
-                    foreach (TaskList l in App.RtmClient.TaskLists)
-                    {
-                        if (l.Tasks != null)
-                        {
-                            foreach (Task t in l.Tasks)
-                            {
-                                if (t.IsCompleted == true ||
-                                    t.IsDeleted == true) continue;
+                double radius;
+                if (settings.NearbyRadius == 0)
+                    radius = 1.0;
+                else if (settings.NearbyRadius == 1)
+                    radius = 2.0;
+                else if (settings.NearbyRadius == 2)
+                    radius = 5.0;
+                else if (settings.NearbyRadius == 3)
+                    radius = 10.0;
+                else if (settings.NearbyRadius == 3)
+                    radius = 20.0;
+                else
+                    radius = 0.0;
 
-                                if (t.Location != null)
-                                {
-                                    if (alreadyCounted.Contains(t.Id) == false)
-                                    {
-                                        count++;
-                                        alreadyCounted.Add(t.Id);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                int count = App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).Count;
 
                 if (count == 0)
                     target.Text = Strings.HubTileEmpty;

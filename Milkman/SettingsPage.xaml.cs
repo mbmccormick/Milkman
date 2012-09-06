@@ -59,6 +59,19 @@ namespace Milkman
 
             try
             {
+                binding = new Binding("NearbyRadius");
+                binding.Mode = BindingMode.TwoWay;
+                binding.Source = settings;
+                this.lstLocationService.SetBinding(ListPicker.SelectedIndexProperty, binding);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
+
+            }
+
+            try
+            {
                 binding = new Binding("LocationServiceEnabled");
                 binding.Mode = BindingMode.TwoWay;
                 binding.Source = settings;
