@@ -60,7 +60,7 @@
                             <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
 
                             <TextBlock Text="{Binding Resources.URL, Source={StaticResource Strings}}" Grid.Row="7" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
-                            <HyperlinkButton Content="{Binding URL}" NavigateUri="{Binding URL}" TargetName="_blank" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <HyperlinkButton Content="{Binding Url}" Grid.Row="7" Grid.Column="1" Margin="-12,-12,0,0" HorizontalContentAlignment="Left" NavigateUri="{Binding Url}" TargetName="_blank" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
 
                             <TextBlock Text="{Binding Resources.Postponed, Source={StaticResource Strings}}" Grid.Row="8" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
                             <TextBlock Text="{Binding PostponedString}" Grid.Row="8" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"/>
