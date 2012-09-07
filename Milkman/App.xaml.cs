@@ -122,9 +122,12 @@ namespace Milkman
             IsolatedStorageHelper.DeleteObject("ListsResponse");
             IsolatedStorageHelper.DeleteObject("TasksResponse");
             IsolatedStorageHelper.DeleteObject("RtmTimeline");
+
             RtmClient = new Rtm(RtmApiKey, RtmSharedKey);
             ListsResponse = null;
             TasksResponse = null;
+
+            RtmClient.Resources = App.Current.Resources;
 
             NotificationsManager.ClearNotifications();
 
