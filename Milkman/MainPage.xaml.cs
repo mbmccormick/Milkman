@@ -138,8 +138,7 @@ namespace Milkman
 
             AppSettings settings = new AppSettings();
 
-            if (e.IsNavigationInitiator &&
-                sReload == false)
+            if (e.IsNavigationInitiator)
             {
                 LoadData();
             }
@@ -147,9 +146,7 @@ namespace Milkman
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                if (settings.AutomaticSyncEnabled == true)
-                    SyncData();
-
+                SyncData();
                 LoadData();
             }
 
@@ -299,12 +296,14 @@ namespace Milkman
             TaskList item = ((FrameworkElement)sender).DataContext as TaskList;
 
             if (item != null)
+            {
                 if (item.Name.ToLower() == Strings.AllTasksLower)
                     this.NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml?id=" + item.Id, UriKind.Relative));
                 else if (item.Name.ToLower() == Strings.NearbyLower)
                     this.NavigationService.Navigate(new Uri("/TaskListByLocationPage.xaml?id=" + item.Id, UriKind.Relative));
                 else
                     this.NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
+            }
         }
 
         private void TaskListCount_Loaded(object sender, EventArgs e)

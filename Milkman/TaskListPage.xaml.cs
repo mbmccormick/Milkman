@@ -226,8 +226,7 @@ namespace Milkman
 
             AppSettings settings = new AppSettings();
 
-            if (e.IsNavigationInitiator &&
-                sReload == false)
+            if (e.IsNavigationInitiator)
             {
                 LoadData();
             }
@@ -235,9 +234,7 @@ namespace Milkman
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                if (settings.AutomaticSyncEnabled == true)
-                    SyncData();
-
+                SyncData();
                 LoadData();
             }
 
