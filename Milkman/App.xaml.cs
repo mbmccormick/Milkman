@@ -262,7 +262,7 @@ namespace Milkman
                     {
                         RootFrame.Dispatcher.BeginInvoke(() =>
                         {
-                            MessageBox.Show(Strings.NetworkConnectionDialog, Strings.NetworkConnectionDialogTitle, MessageBoxButton.OK);
+                            MessageBox.Show(Strings.NetworkConnectionDialog, ex.Message + "\n\n" + Strings.NetworkConnectionDialogTitle, MessageBoxButton.OK);
                         });
                     }
                     else
