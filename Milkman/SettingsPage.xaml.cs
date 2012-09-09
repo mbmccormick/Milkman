@@ -35,18 +35,6 @@ namespace Milkman
 
             try
             {
-                binding = new Binding("AutomaticSyncEnabled");
-                binding.Mode = BindingMode.TwoWay;
-                binding.Source = settings;
-                this.togAutomaticSync.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
-            }
-
-            try
-            {
                 binding = new Binding("LocationRemindersEnabled");
                 binding.Mode = BindingMode.TwoWay;
                 binding.Source = settings;
@@ -80,9 +68,6 @@ namespace Milkman
             {
                 MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
             }
-
-            this.togAutomaticSync.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
-            this.togAutomaticSync.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
 
             this.togLocationReminders.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
             this.togLocationReminders.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);

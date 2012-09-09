@@ -18,7 +18,6 @@ namespace Milkman.Common
     {
         IsolatedStorageSettings isolatedStore;
 
-        const string AutomaticSyncEnabledSettingKeyName = "AutomaticSyncEnabled";
         const string LocationRemindersEnabledSettingKeyName = "LocationRemindersEnabled";
         const string NearbyRadiusSettingKeyName = "NearbyRadius";
         const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
@@ -91,19 +90,6 @@ namespace Milkman.Common
         public void Save()
         {
             isolatedStore.Save();
-        }
-
-        public bool AutomaticSyncEnabled
-        {
-            get
-            {
-                return GetValueOrDefault<bool>(AutomaticSyncEnabledSettingKeyName, true);
-            }
-            set
-            {
-                AddOrUpdateValue(AutomaticSyncEnabledSettingKeyName, value);
-                Save();
-            }
         }
 
         public bool LocationRemindersEnabled
