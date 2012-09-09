@@ -1,0 +1,31 @@
+### Application Title
+
+Milkman
+
+
+### Featured Application Description
+
+Remember The Milk for WP7
+
+
+### Detailed Description
+
+Milkman è il modo più veloce e più pulito per gestire le attività sul vostro Windows Phone. Milkman sincronizza con Remember The Milk, una linea di to-do list e task manager. Si facilmente può visualizzare le attività, creare nuovi promemoria e aggiornino le proprie liste di cose da fare direttamente dal tuo cellulare. Ogni cambiamento che fai in Milkman è sincronizzato al tuo account Remember The Milk, così non non dimenticherò mai il latte (o qualsiasi altra cosa) ancora una volta.
+
+Milkman si integra perfettamente con il telefono per visualizzare i contatori del compito su piastrella dal vivo dell'applicazione, mostra i ricordi prima che un'attività è dovuta e permette anche di impostare promemoria basati sulla posizione usando Remember The Milk.
+
+Questa applicazione utilizza l'interfaccia Remember The Milk, ma non è approvata o certificata da Remember The Milk.
+
+Sviluppo di applicazioni da Matt McCormick
+
+Interfaccia utente di Libby Puccinelli
+
+
+### Update Description
+
+Not provided or no data available.
+
+
+### Keywords
+
+remember the milk, task manager, todo list, reminder, winmilk
