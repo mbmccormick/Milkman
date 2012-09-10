@@ -111,12 +111,8 @@ namespace Milkman
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
-            if (e.IsNavigationInitiator &&
-                sReload == false)
-            {
-                LoadData();
-            }
-            else
+            if (e.IsNavigationInitiator == false &&
+                e.NavigationMode == System.Windows.Navigation.NavigationMode.New)
             {
                 LittleWatson.CheckForPreviousException(true);
 
@@ -124,6 +120,10 @@ namespace Milkman
                 {
                     LoadData();
                 });
+            }
+            else
+            {
+                LoadData();
             }
 
             base.OnNavigatedTo(e);
@@ -227,9 +227,9 @@ namespace Milkman
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (App.RtmClient.Syncing == false) return;
-            
+
             if (GlobalLoading.Instance.IsLoading) return;
-            
+
             TaskNote item = ((FrameworkElement)sender).DataContext as TaskNote;
 
             if (item != null)

@@ -179,19 +179,15 @@ namespace Milkman
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
-            AppSettings settings = new AppSettings();
-
-            if (e.IsNavigationInitiator)
-            {
-                LoadData();
-            }
-            else
+            if (e.IsNavigationInitiator == false &&
+                e.NavigationMode == System.Windows.Navigation.NavigationMode.New)
             {
                 LittleWatson.CheckForPreviousException(true);
 
                 SyncData();
-                LoadData();
             }
+
+            LoadData();
 
             base.OnNavigatedTo(e);
         }

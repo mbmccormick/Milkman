@@ -134,21 +134,21 @@ namespace Milkman
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
             if (NavigationContext.QueryString.ContainsKey("IsFirstRun") == true)
+            {
                 NavigationService.RemoveBackEntry();
 
-            AppSettings settings = new AppSettings();
-
-            if (e.IsNavigationInitiator)
-            {
-                LoadData();
+                SyncData();
             }
-            else
+
+            if (e.IsNavigationInitiator == false &&
+                e.NavigationMode == System.Windows.Navigation.NavigationMode.New)
             {
                 LittleWatson.CheckForPreviousException(true);
 
                 SyncData();
-                LoadData();
             }
+
+            LoadData();
 
             base.OnNavigatedTo(e);
         }
