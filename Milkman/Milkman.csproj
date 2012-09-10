@@ -84,6 +84,9 @@
     <Compile Include="AddTaskDialog.xaml.cs">
       <DependentUpon>AddTaskDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddTaskPage.xaml.cs">
+      <DependentUpon>AddTaskPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -139,6 +142,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddTaskDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTaskPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

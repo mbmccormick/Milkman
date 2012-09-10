@@ -198,9 +198,36 @@ namespace IronCow.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Add Task.
         /// </summary>
+        public static string AddTask {
+            get {
+                return ResourceManager.GetString("AddTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Task.
+        /// </summary>
         public static string AddTaskDialogTitle {
             get {
                 return ResourceManager.GetString("AddTaskDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to add task.
+        /// </summary>
+        public static string AddTaskLower {
+            get {
+                return ResourceManager.GetString("AddTaskLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD TASK.
+        /// </summary>
+        public static string AddTaskUpper {
+            get {
+                return ResourceManager.GetString("AddTaskUpper", resourceCulture);
             }
         }
         
