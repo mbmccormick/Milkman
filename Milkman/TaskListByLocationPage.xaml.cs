@@ -564,7 +564,7 @@ namespace Milkman
 
             emailComposeTask.To = "milkman@mbmccormick.com";
             emailComposeTask.Subject = "Milkman Feedback";
-            emailComposeTask.Body = "Version " + App.VersionNumber + " (" + App.PlatformVersionNumber + ")\n\n";
+            emailComposeTask.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n\n";
             emailComposeTask.Show();
         }
 

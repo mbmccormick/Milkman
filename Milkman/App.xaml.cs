@@ -40,9 +40,20 @@ namespace Milkman
             get
             {
                 string assembly = System.Reflection.Assembly.GetExecutingAssembly().FullName;
-                string version = assembly.Split('=')[1].Split(',')[0];
+                string[] version = assembly.Split('=')[1].Split(',')[0].Split('.');
 
-                return version.Substring(0, version.Length - 4);
+                return version[0] + "." + version[1];
+            }
+        }
+
+        public static string ExtendedVersionNumber
+        {
+            get
+            {
+                string assembly = System.Reflection.Assembly.GetExecutingAssembly().FullName;
+                string[] version = assembly.Split('=')[1].Split(',')[0].Split('.');
+
+                return version[0] + "." + version[1] + "." + version[2];
             }
         }
 
