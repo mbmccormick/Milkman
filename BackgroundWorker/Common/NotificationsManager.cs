@@ -73,14 +73,12 @@ namespace BackgroundWorker.Common
 
                         foreach (TaskList l in App.RtmClient.TaskLists)
                         {
-                            if (l.Tasks != null)
+                            if (l.IsSmart == false &&
+                                l.Tasks != null)
                             {
                                 foreach (Task t in l.Tasks)
                                 {
-                                    if (tempAllTasks.Contains(t))
-                                        continue;
-                                    else
-                                        tempAllTasks.Add(t);
+                                    tempAllTasks.Add(t);
                                 }
                             }
                         }

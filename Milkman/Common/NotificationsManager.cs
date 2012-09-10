@@ -41,6 +41,16 @@ namespace Milkman.Common
             else
                 radius = 0.0;
 
+            double interval;
+            if (settings.TaskRemindersEnabled == 1)
+                interval = -0.5;
+            else if (settings.TaskRemindersEnabled == 2)
+                interval = -1.0;
+            else if (settings.TaskRemindersEnabled == 3)
+                interval = -2.0;
+            else
+                interval = -1.0;
+
             // stop and restart background worker
             if (ScheduledActionService.Find("BackgroundWorker") != null)
                 ScheduledActionService.Remove("BackgroundWorker");
@@ -70,29 +80,13 @@ namespace Milkman.Common
                 // create new reminders
                 if (App.RtmClient.TaskLists != null)
                 {
-                    List<string> alreadyCounted = new List<string>();
-
                     foreach (TaskList l in App.RtmClient.TaskLists)
                     {
-                        if (l.Tasks != null)
+                        if (l.IsSmart == false &&
+                            l.Tasks != null)
                         {
                             foreach (Task t in l.Tasks)
                             {
-                                if (alreadyCounted.Contains(t.Id))
-                                    continue;
-                                else
-                                    alreadyCounted.Add(t.Id);
-
-                                double interval;
-                                if (settings.TaskRemindersEnabled == 1)
-                                    interval = -0.5;
-                                else if (settings.TaskRemindersEnabled == 2)
-                                    interval = -1.0;
-                                else if (settings.TaskRemindersEnabled == 3)
-                                    interval = -2.0;
-                                else
-                                    interval = -1.0;
-
                                 if (t.HasDueTime &&
                                     t.DueDateTime.Value.AddHours(interval) >= DateTime.Now)
                                 {
@@ -153,14 +147,12 @@ namespace Milkman.Common
 
                         foreach (TaskList l in App.RtmClient.TaskLists)
                         {
-                            if (l.Tasks != null)
+                            if (l.IsSmart == false &&
+                                l.Tasks != null)
                             {
                                 foreach (Task t in l.Tasks)
                                 {
-                                    if (tempAllTasks.Contains(t))
-                                        continue;
-                                    else
-                                        tempAllTasks.Add(t);
+                                    tempAllTasks.Add(t);
                                 }
                             }
                         }
