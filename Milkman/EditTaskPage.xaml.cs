@@ -21,6 +21,8 @@ namespace Milkman
 {
     public partial class EditTaskPage : PhoneApplicationPage
     {
+        private bool loadedDetails = false;
+
         #region Task Property
 
         private Task CurrentTask = null;
@@ -94,9 +96,13 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
+            if (loadedDetails == false)
+            {
+                GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
-            LoadData();
+                LoadData();
+                loadedDetails = true;
+            }
 
             base.OnNavigatedTo(e);
         }
