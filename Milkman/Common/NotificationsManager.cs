@@ -51,32 +51,25 @@ namespace Milkman.Common
             else
                 interval = -1.0;
 
-            // stop and restart background worker
-            if (ScheduledActionService.Find("BackgroundWorker") != null)
-                ScheduledActionService.Remove("BackgroundWorker");
+            // create background worker, if necessary
+            if (ScheduledActionService.Find("BackgroundWorker") == null)
+            {
+                PeriodicTask task = new PeriodicTask("BackgroundWorker");
+                task.Description = Strings.PeriodicTaskDescription;
 
-            PeriodicTask task = new PeriodicTask("BackgroundWorker");
-            task.Description = Strings.PeriodicTaskDescription;
+                ScheduledActionService.Add(task);
+            }
 
-            ScheduledActionService.Add(task);
-
+            // increase background worder interval for debug mode
             if (System.Diagnostics.Debugger.IsAttached)
                 ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+
+            // remove existing reminders
+            ResetReminders();
 
             // setup task reminders
             if (settings.TaskRemindersEnabled > 0)
             {
-                // delete all existing reminders
-                try
-                {
-                    foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                        ScheduledActionService.Remove(item.Name);
-                }
-                catch (Exception ex)
-                {
-                    // do nothing
-                }
-
                 // create new reminders
                 if (App.RtmClient.TaskLists != null)
                 {
@@ -113,19 +106,6 @@ namespace Milkman.Common
                             }
                         }
                     }
-                }
-            }
-            else
-            {
-                try
-                {
-                    // delete all existing reminders
-                    foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                        ScheduledActionService.Remove(item.Name);
-                }
-                catch (Exception ex)
-                {
-                    // do nothing
                 }
             }
 
@@ -233,6 +213,12 @@ namespace Milkman.Common
 
         public static void ClearNotifications()
         {
+            ResetReminders();
+            ResetLiveTiles();
+        }
+
+        public static void ResetReminders()
+        {
             try
             {
                 // delete all existing reminders
@@ -243,7 +229,10 @@ namespace Milkman.Common
             {
                 // do nothing
             }
+        }
 
+        public static void ResetLiveTiles()
+        {
             // remove live tiles
             foreach (ShellTile tile in ShellTile.ActiveTiles)
             {

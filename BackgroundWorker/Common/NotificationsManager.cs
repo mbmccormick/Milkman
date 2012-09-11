@@ -159,6 +159,11 @@ namespace BackgroundWorker.Common
 
         public static void ClearNotifications()
         {
+            ResetLiveTiles();
+        }
+
+        public static void ResetLiveTiles()
+        {
             // remove live tiles
             foreach (ShellTile tile in ShellTile.ActiveTiles)
             {
