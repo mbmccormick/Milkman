@@ -281,9 +281,19 @@ namespace Milkman
                     else
                         radius = 0.0;
 
-                    foreach (Task t in App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius))
+                    if (settings.IgnorePriorityEnabled == true)
                     {
-                        tempAllTasks.Add(t);
+                        foreach (Task t in App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).OrderBy(z => z.DueDateTime))
+                        {
+                            tempAllTasks.Add(t);
+                        }
+                    }
+                    else
+                    {
+                        foreach (Task t in App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius))
+                        {
+                            tempAllTasks.Add(t);
+                        }
                     }
 
                     AllTasks = tempAllTasks;

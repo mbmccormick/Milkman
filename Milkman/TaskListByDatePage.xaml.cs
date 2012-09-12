@@ -317,6 +317,8 @@ namespace Milkman
             {
                 GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
 
+                AppSettings settings = new AppSettings();
+
                 string id;
                 if (NavigationContext.QueryString.TryGetValue("id", out id))
                 {
@@ -332,6 +334,9 @@ namespace Milkman
 
                     if (CurrentList.Tasks != null)
                     {
+                        if (settings.IgnorePriorityEnabled == true)
+                            CurrentList.Tasks.Sort(TaskListSortOrder.Date);
+
                         foreach (Task t in CurrentList.Tasks)
                         {
                             if (t.IsCompleted == true ||

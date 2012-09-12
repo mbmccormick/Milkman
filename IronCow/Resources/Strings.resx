@@ -831,4 +831,7 @@
   <data name="AddTaskUpper" xml:space="preserve">
     <value>ADD TASK</value>
   </data>
+  <data name="IgnorePrioritySetting" xml:space="preserve">
+    <value>Ignore priority when sorting tasks</value>
+  </data>
 </root>

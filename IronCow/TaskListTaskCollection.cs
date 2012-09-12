@@ -472,5 +472,23 @@ namespace IronCow
             
             // mImpl.Sort(Task.CompareByDate);
         }
+
+        public void Sort(TaskListSortOrder sortOrder)
+        {
+            switch (sortOrder)
+            {
+                case TaskListSortOrder.Date:
+                    mImpl.Sort(Task.CompareByDate);
+                    break;
+                case TaskListSortOrder.Priority:
+                    mImpl.Sort(Task.CompareByPriority);
+                    break;
+                default:
+                    mImpl.Sort(Task.CompareByName);
+                    break;
+            }
+
+            // mImpl.Sort(Task.CompareByDate);
+        }
     }
 }

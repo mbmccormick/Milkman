@@ -18,6 +18,7 @@ namespace BackgroundWorker.Common
     {
         IsolatedStorageSettings isolatedStore;
 
+        const string IgnorePriorityEnabledSettingKeyName = "IgnorePriorityEnabled";
         const string LocationRemindersEnabledSettingKeyName = "LocationRemindersEnabled";
         const string NearbyRadiusSettingKeyName = "NearbyRadius";
         const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
@@ -90,6 +91,19 @@ namespace BackgroundWorker.Common
         public void Save()
         {
             isolatedStore.Save();
+        }
+
+        public bool IgnorePriorityEnabled
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(IgnorePriorityEnabledSettingKeyName, false);
+            }
+            set
+            {
+                AddOrUpdateValue(IgnorePriorityEnabledSettingKeyName, value);
+                Save();
+            }
         }
 
         public bool LocationRemindersEnabled

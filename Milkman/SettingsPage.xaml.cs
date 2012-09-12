@@ -35,6 +35,18 @@ namespace Milkman
 
             try
             {
+                binding = new Binding("IgnorePriorityEnabled");
+                binding.Mode = BindingMode.TwoWay;
+                binding.Source = settings;
+                this.togIgnorePriority.SetBinding(ToggleSwitch.IsCheckedProperty, binding);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
+            }
+
+            try
+            {
                 binding = new Binding("LocationRemindersEnabled");
                 binding.Mode = BindingMode.TwoWay;
                 binding.Source = settings;
@@ -68,6 +80,9 @@ namespace Milkman
             {
                 MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
             }
+
+            this.togIgnorePriority.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
+            this.togIgnorePriority.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
 
             this.togLocationReminders.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
             this.togLocationReminders.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);

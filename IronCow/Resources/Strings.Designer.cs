@@ -961,6 +961,15 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ignore priority when sorting tasks.
+        /// </summary>
+        public static string IgnorePrioritySetting {
+            get {
+                return ResourceManager.GetString("IgnorePrioritySetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Just a moment....
         /// </summary>
         public static string JustAMoment {
