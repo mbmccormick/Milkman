@@ -140,8 +140,7 @@ namespace Milkman
                 SyncData();
             }
 
-            if (e.IsNavigationInitiator == false &&
-                e.NavigationMode == System.Windows.Navigation.NavigationMode.New)
+            if (e.IsNavigationInitiator == false)
             {
                 LittleWatson.CheckForPreviousException(true);
 
