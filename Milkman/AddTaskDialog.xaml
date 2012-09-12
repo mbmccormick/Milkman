@@ -15,7 +15,7 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <Grid x:Name="grdMain" Width="480" Height="Auto" VerticalAlignment="Top" Canvas.ZIndex="100">
+        <Grid x:Name="grdMain" Width="480" Height="Auto" VerticalAlignment="Top" Canvas.ZIndex="100" Background="{StaticResource PhoneChromeBrush}">
             <Grid.Projection>
                 <PlaneProjection/>
             </Grid.Projection>

@@ -98,7 +98,6 @@
     <Compile Include="Common\NotificationsManager.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
     <Compile Include="Common\SortableObservableCollection.cs" />
-    <Compile Include="Common\ThemeManager.cs" />
     <Compile Include="EditNotePage.xaml.cs">
       <DependentUpon>EditNotePage.xaml</DependentUpon>
     </Compile>
@@ -288,7 +287,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
+      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

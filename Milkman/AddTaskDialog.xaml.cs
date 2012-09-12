@@ -90,35 +90,23 @@ namespace Milkman
         public void Open()
         {
             stbSwivelIn.Begin();
-            
-            if (Microsoft.Phone.Controls.ThemeManager.IsLightTheme())
-                SystemTray.BackgroundColor = Color.FromArgb(255, 222, 222, 222);
-            else
-                SystemTray.BackgroundColor = Color.FromArgb(255, 33, 33, 33);
+            SystemTray.BackgroundColor = (Color)Resources["PhoneChromeColor"];
 
-            if (Microsoft.Phone.Controls.ThemeManager.IsLightTheme())
-                this.grdMain.Background = new SolidColorBrush(Color.FromArgb(255, 222, 222, 222));
-            else
-                this.grdMain.Background = new SolidColorBrush(Color.FromArgb(255, 33, 33, 33));
-
-            Visibility = Visibility.Visible;
+            this.Visibility = Visibility.Visible;
 
             _isOpen = true;
-            OnPropertyChanged("IsOpen");
+            this.OnPropertyChanged("IsOpen");
         }
 
         public void Close()
         {
             stbSwivelOut.Begin();
-            if (Microsoft.Phone.Controls.ThemeManager.IsLightTheme())
-                SystemTray.BackgroundColor = Color.FromArgb(255, 255, 255, 255);
-            else
-                SystemTray.BackgroundColor = Color.FromArgb(255, 0, 0, 0);
+            SystemTray.BackgroundColor = (Color)Resources["PhoneBackgroundColor"];
         }
 
         private void Overlay_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Close();
+            this.Close();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -130,10 +118,10 @@ namespace Milkman
 
             stbSwivelOut.Completed += (s, ev) =>
             {
-                Visibility = System.Windows.Visibility.Collapsed;
+                this.Visibility = System.Windows.Visibility.Collapsed;
                 _isOpen = false;
                 this.txtDetails.Text = "";
-                OnPropertyChanged("IsOpen");
+                this.OnPropertyChanged("IsOpen");
             };
         }
 
@@ -148,7 +136,7 @@ namespace Milkman
         {
             if (e.Key == Key.Enter)
             {
-                DoSubmit();
+                this.DoSubmit();
             }
         }
 
@@ -166,13 +154,13 @@ namespace Milkman
         {
             if (Submit != null)
             {
-                DoSubmit();
+                this.DoSubmit();
             }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Close();
         }
     }
 }
