@@ -831,4 +831,7 @@
   <data name="AddTaskUpper">
     <value>ДОБАВИТЬ  ЗАДАЧИ</value>
   </data>
+  <data name="IgnorePrioritySetting">
+    <value>Игнорировать приоритет при сортировке задач</value>
+  </data>
 </root>

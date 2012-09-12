@@ -831,4 +831,7 @@
   <data name="AddTaskUpper">
     <value>AGREGAR TAREA</value>
   </data>
+  <data name="IgnorePrioritySetting">
+    <value>Ignorar la prioridad al ordenar tareas</value>
+  </data>
 </root>
