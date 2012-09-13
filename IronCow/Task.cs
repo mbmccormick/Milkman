@@ -1380,6 +1380,45 @@ namespace IronCow
             }
         }
 
+        public string FriendlyShortDueDate
+        {
+            get
+            {
+                if (this.DueDateTime.HasValue == true)
+                {
+                    if (this.DueDateTime.Value.Date > DateTime.Now.AddDays(6).Date ||
+                        this.DueDateTime.Value.Date < DateTime.Now.Date)
+                    {
+                        if (this.HasDueTime)
+                            return Strings.Due + " " + this.DueDateTime.Value.ToString("MMMM d") + " " + Strings.DueAt + " " + this.DueDateTime.Value.ToString("h:mm tt");
+                        else
+                            return Strings.Due + " " + this.DueDateTime.Value.ToString("MMMM d");
+                    }
+                    else
+                    {
+                        if (this.DueDateTime.Value.Date == DateTime.Now.Date)
+                        {
+                            if (this.HasDueTime)
+                                return Strings.Due + " " + Strings.TodayLower + " " + Strings.DueAt + " " + this.DueDateTime.Value.ToString("h:mm tt");
+                            else
+                                return Strings.Due + " " + Strings.TodayLower;
+                        }
+                        else
+                        {
+                            if (this.HasDueTime)
+                                return Strings.Due + " " + this.DueString + " " + Strings.DueAt + " " + this.DueDateTime.Value.ToString("h:mm tt");
+                            else
+                                return Strings.Due + " " + this.DueString;
+                        }
+                    }
+                }
+                else
+                {
+                    return Strings.NoDueDate;
+                }
+            }
+        }
+
         public string PostponedString
         {
             get
