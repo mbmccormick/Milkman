@@ -1351,7 +1351,7 @@ namespace IronCow
                         this.DueDateTime.Value.Date < DateTime.Now.Date)
                     {
                         if (this.HasDueTime)
-                            return Strings.Due + " " + this.DueDateTime.Value.ToString("dddd, MMMM d") + " " + Strings.DueAt + " " + this.DueDateTime.Value.ToString("h:mm tt");
+                            return Strings.Due + " " + this.DueDateTime.Value.ToString("dddd, MMMM d") + " " + Strings.DueAt + " " + this.LocalizedDueTime;
                         else
                             return Strings.Due + " " + this.DueDateTime.Value.ToString("dddd, MMMM d");
                     }
@@ -1360,14 +1360,14 @@ namespace IronCow
                         if (this.DueDateTime.Value.Date == DateTime.Now.Date)
                         {
                             if (this.HasDueTime)
-                                return Strings.Due + " " + Strings.TodayLower + " " + Strings.DueAt + " " + this.DueDateTime.Value.ToString("h:mm tt");
+                                return Strings.Due + " " + Strings.TodayLower + " " + Strings.DueAt + " " + this.LocalizedDueTime;
                             else
                                 return Strings.Due + " " + Strings.TodayLower;
                         }
                         else
                         {
                             if (this.HasDueTime)
-                                return Strings.Due + " " + this.DueString + " " + Strings.DueAt + " " + this.DueDateTime.Value.ToString("h:mm tt");
+                                return Strings.Due + " " + this.DueString + " " + Strings.DueAt + " " + this.LocalizedDueTime;
                             else
                                 return Strings.Due + " " + this.DueString;
                         }
@@ -1390,7 +1390,7 @@ namespace IronCow
                         this.DueDateTime.Value.Date < DateTime.Now.Date)
                     {
                         if (this.HasDueTime)
-                            return Strings.Due + " " + this.DueDateTime.Value.ToString("MMMM d") + " " + Strings.DueAt + " " + this.DueDateTime.Value.ToString("h:mm tt");
+                            return Strings.Due + " " + this.DueDateTime.Value.ToString("MMMM d") + " " + Strings.DueAt + " " + this.LocalizedDueTime;
                         else
                             return Strings.Due + " " + this.DueDateTime.Value.ToString("MMMM d");
                     }
@@ -1399,14 +1399,14 @@ namespace IronCow
                         if (this.DueDateTime.Value.Date == DateTime.Now.Date)
                         {
                             if (this.HasDueTime)
-                                return Strings.Due + " " + Strings.TodayLower + " " + Strings.DueAt + " " + this.DueDateTime.Value.ToString("h:mm tt");
+                                return Strings.Due + " " + Strings.TodayLower + " " + Strings.DueAt + " " + this.LocalizedDueTime;
                             else
                                 return Strings.Due + " " + Strings.TodayLower;
                         }
                         else
                         {
                             if (this.HasDueTime)
-                                return Strings.Due + " " + this.DueString + " " + Strings.DueAt + " " + this.DueDateTime.Value.ToString("h:mm tt");
+                                return Strings.Due + " " + this.DueString + " " + Strings.DueAt + " " + this.LocalizedDueTime;
                             else
                                 return Strings.Due + " " + this.DueString;
                         }
@@ -1416,6 +1416,17 @@ namespace IronCow
                 {
                     return Strings.NoDueDate;
                 }
+            }
+        }
+
+        public string LocalizedDueTime
+        {
+            get
+            {
+                if (Owner.UserSettings.TimeFormat == TimeFormat.TwelveHours)
+                    return this.DueDateTime.Value.ToString("h:mm tt");
+                else
+                    return this.DueDateTime.Value.ToString("H:mm");
             }
         }
 
