@@ -1351,9 +1351,9 @@ namespace IronCow
                         this.DueDateTime.Value.Date < DateTime.Now.Date)
                     {
                         if (this.HasDueTime)
-                            return Strings.Due + " " + this.DueDateTime.Value.ToString("dddd, MMMM d") + " " + Strings.DueAt + " " + this.LocalizedDueTime;
+                            return Strings.Due + " " + this.LocalizedDueDate + " " + Strings.DueAt + " " + this.LocalizedDueTime;
                         else
-                            return Strings.Due + " " + this.DueDateTime.Value.ToString("dddd, MMMM d");
+                            return Strings.Due + " " + this.LocalizedDueDate;
                     }
                     else
                     {
@@ -1390,9 +1390,9 @@ namespace IronCow
                         this.DueDateTime.Value.Date < DateTime.Now.Date)
                     {
                         if (this.HasDueTime)
-                            return Strings.Due + " " + this.DueDateTime.Value.ToString("MMMM d") + " " + Strings.DueAt + " " + this.LocalizedDueTime;
+                            return Strings.Due + " " + this.LocalizedShortDueDate + " " + Strings.DueAt + " " + this.LocalizedDueTime;
                         else
-                            return Strings.Due + " " + this.DueDateTime.Value.ToString("MMMM d");
+                            return Strings.Due + " " + this.LocalizedShortDueDate;
                     }
                     else
                     {
@@ -1416,6 +1416,28 @@ namespace IronCow
                 {
                     return Strings.NoDueDate;
                 }
+            }
+        }
+
+        public string LocalizedDueDate
+        {
+            get
+            {
+                if (Owner.UserSettings.DateFormat == DateFormat.American)
+                    return this.DueDateTime.Value.ToString("dddd, MMMM d");
+                else
+                    return this.DueDateTime.Value.ToString("dddd, d MMMM");
+            }
+        }
+
+        public string LocalizedShortDueDate
+        {
+            get
+            {
+                if (Owner.UserSettings.DateFormat == DateFormat.American)
+                    return this.DueDateTime.Value.ToString("MMMM d");
+                else
+                    return this.DueDateTime.Value.ToString("d MMMM");
             }
         }
 
