@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.EditTaskUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontWeight="Bold"/>
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.EditTaskUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold" />
             </StackPanel>
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,0,0">

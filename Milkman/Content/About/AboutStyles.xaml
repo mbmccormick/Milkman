@@ -68,11 +68,13 @@
             </Setter.Value>
         </Setter>-->
         <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}" />
     </Style>
 
     <Style x:Key="AboutPivotItemStyle"
            TargetType="controls2:PivotItem">
         <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
     </Style>
 
     <!-- Text based controls -->

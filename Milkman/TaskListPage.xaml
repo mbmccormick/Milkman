@@ -19,7 +19,7 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontWeight="Bold">
+        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold">
             <controls:PivotItem Header="{Binding Resources.AllLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:MultiselectList x:Name="lstAll" ItemsSource="{Binding AllTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
