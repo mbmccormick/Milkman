@@ -1434,10 +1434,11 @@ namespace IronCow
         {
             get
             {
-                if (Owner.UserSettings.DateFormat == DateFormat.American)
-                    return this.DueDateTime.Value.ToString("MMMM d");
-                else
+                if (Owner.UserSettings != null &&
+                    Owner.UserSettings.DateFormat == DateFormat.European)
                     return this.DueDateTime.Value.ToString("d MMMM");
+                else
+                    return this.DueDateTime.Value.ToString("MMMM d");
             }
         }
 
@@ -1445,10 +1446,11 @@ namespace IronCow
         {
             get
             {
-                if (Owner.UserSettings.TimeFormat == TimeFormat.TwelveHours)
-                    return this.DueDateTime.Value.ToString("h:mm tt");
-                else
+                if (Owner.UserSettings != null &&
+                    Owner.UserSettings.TimeFormat == TimeFormat.TwentyFourHours)
                     return this.DueDateTime.Value.ToString("H:mm");
+                else
+                    return this.DueDateTime.Value.ToString("h:mm tt");
             }
         }
 
