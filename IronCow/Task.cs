@@ -1423,7 +1423,8 @@ namespace IronCow
         {
             get
             {
-                if (Owner.UserSettings.DateFormat == DateFormat.American)
+                if (Owner.UserSettings != null &&
+                    Owner.UserSettings.DateFormat == DateFormat.American)
                     return this.DueDateTime.Value.ToString("dddd, MMMM d");
                 else
                     return this.DueDateTime.Value.ToString("dddd, d MMMM");

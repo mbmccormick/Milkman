@@ -195,6 +195,10 @@ namespace Milkman
                         this.lstLocation.Items.Contains(CurrentTask.Location))
                         this.lstLocation.SelectedItem = CurrentTask.Location;
 
+                    // url
+                    if (CurrentTask.Url != null)
+                        this.txtURL.Text = CurrentTask.Url;
+
                     ToggleLoadingText();
                 }
 
@@ -310,18 +314,25 @@ namespace Milkman
 
                                                                             CurrentTask.ChangeLocation(tmpLocation, () =>
                                                                             {
-                                                                                // sync all tasks
-                                                                                App.RtmClient.CacheTasks(() =>
+                                                                                // change url
+                                                                                SmartDispatcher.BeginInvoke(() =>
                                                                                 {
-                                                                                    // now we can go back to task page
-                                                                                    SmartDispatcher.BeginInvoke(() =>
+                                                                                    CurrentTask.ChangeUrl(this.txtURL.Text, () =>
                                                                                     {
-                                                                                        GlobalLoading.Instance.IsLoading = false;
+                                                                                        // sync all tasks
+                                                                                        App.RtmClient.CacheTasks(() =>
+                                                                                        {
+                                                                                            // now we can go back to task page
+                                                                                            SmartDispatcher.BeginInvoke(() =>
+                                                                                            {
+                                                                                                GlobalLoading.Instance.IsLoading = false;
 
-                                                                                        if (this.NavigationService.CanGoBack)
-                                                                                            this.NavigationService.GoBack();
-                                                                                        else
-                                                                                            NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
+                                                                                                if (this.NavigationService.CanGoBack)
+                                                                                                    this.NavigationService.GoBack();
+                                                                                                else
+                                                                                                    NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
+                                                                                            });
+                                                                                        });
                                                                                     });
                                                                                 });
                                                                             });
