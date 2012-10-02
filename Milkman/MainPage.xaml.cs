@@ -27,15 +27,14 @@ namespace Milkman
 
         #region Task Lists Property
 
+        public static readonly DependencyProperty TaskListsProperty =
+               DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<TaskList>()));
+
         public ObservableCollection<TaskList> TaskLists
         {
             get { return (ObservableCollection<TaskList>)GetValue(TaskListsProperty); }
             set { SetValue(TaskListsProperty, value); }
         }
-
-        public static readonly DependencyProperty TaskListsProperty =
-               DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(MainPage),
-                   new PropertyMetadata(new ObservableCollection<TaskList>()));
 
         #endregion
 
