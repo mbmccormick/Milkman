@@ -122,6 +122,8 @@ namespace Milkman
                     // create timeline
                     App.RtmClient.GetOrStartTimeline((int timeline) =>
                     {
+                        App.SaveData();
+                        
                         Dispatcher.BeginInvoke(() =>
                         {
                             GlobalLoading.Instance.IsLoading = false;
