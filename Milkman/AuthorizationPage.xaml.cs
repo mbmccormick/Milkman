@@ -128,6 +128,8 @@ namespace Milkman
 
                             if (NavigationService.CanGoBack)
                             {
+                                MainPage.sReload = true;
+                                
                                 NavigationService.RemoveBackEntry();
                                 NavigationService.Navigate(new Uri("/MainPage.xaml?IsFirstRun=true", UriKind.Relative));
                             }
