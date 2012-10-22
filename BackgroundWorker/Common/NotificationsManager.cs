@@ -41,7 +41,8 @@ namespace BackgroundWorker.Common
                 radius = 0.0;
 
             // setup location notifications
-            if (settings.LocationRemindersEnabled == true)
+            if (settings.LocationRemindersEnabled == true &&
+                location != null)
             {
                 // check for nearby tasks
                 foreach (Task t in App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius))

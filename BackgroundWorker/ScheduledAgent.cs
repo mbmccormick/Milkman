@@ -87,7 +87,10 @@ namespace BackgroundWorker
 
         private void LoadData()
         {
-            NotificationsManager.SetupNotifications(_watcher.Position.Location);
+            if (_watcher != null)
+                NotificationsManager.SetupNotifications(_watcher.Position.Location);
+            else
+                NotificationsManager.SetupNotifications(null);
         }
     }
 }

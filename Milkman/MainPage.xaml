@@ -56,7 +56,7 @@
             <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboard, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
         </Grid>
 
-        <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" />
+        <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" Cancel="dlgAddTask_Cancel" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

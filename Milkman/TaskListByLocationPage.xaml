@@ -83,7 +83,7 @@
             <TextBlock x:Name="txtAllEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyNearbyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
         </Grid>
 
-        <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" />
+        <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" Cancel="dlgAddTask_Cancel" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

@@ -27,6 +27,8 @@ namespace Milkman
         }
     }
 
+    public delegate void CancelEventHandler(object sender, EventArgs e);
+
     public partial class AddTaskDialog : UserControl, INotifyPropertyChanged
     {
         #region IsOpen Property
@@ -69,6 +71,12 @@ namespace Milkman
                 Submit(this, new SubmitEventArgs(this.txtDetails.Text));
             }
         }
+
+        #endregion
+
+        #region Cancel Event
+
+        public event CancelEventHandler Cancel;
 
         #endregion
 
@@ -160,6 +168,11 @@ namespace Milkman
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            if (Cancel != null)
+            {
+                Cancel(this, new EventArgs());
+            }
+
             this.Close();
         }
     }

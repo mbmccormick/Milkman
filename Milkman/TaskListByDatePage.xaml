@@ -303,7 +303,7 @@
             </controls:PivotItem>
         </toolkit:LockablePivot>
 
-        <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" />
+        <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" Cancel="dlgAddTask_Cancel" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
