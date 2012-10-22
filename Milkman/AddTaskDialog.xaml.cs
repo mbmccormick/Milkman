@@ -144,7 +144,7 @@ namespace Milkman
         {
             TextBlock target = (TextBlock)sender;
 
-            this.txtDetails.Text = this.txtDetails.Text + target.Text;
+            this.txtDetails.Text = this.txtDetails.Text + " " + target.Text;
 
             this.txtDetails.Focus();
             this.txtDetails.SelectionStart = this.txtDetails.Text.Length;
