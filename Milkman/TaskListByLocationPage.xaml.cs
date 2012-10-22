@@ -183,10 +183,16 @@ namespace Milkman
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                SyncData();
+                Dispatcher.BeginInvoke(() =>
+                {
+                    SyncData();
+                });
             }
 
-            LoadData();
+            Dispatcher.BeginInvoke(() =>
+            {
+                LoadData();
+            });
 
             base.OnNavigatedTo(e);
         }

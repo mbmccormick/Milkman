@@ -136,17 +136,26 @@ namespace Milkman
             {
                 NavigationService.RemoveBackEntry();
 
-                SyncData();
+                Dispatcher.BeginInvoke(() =>
+                {
+                    SyncData();
+                });
             }
 
             if (e.IsNavigationInitiator == false)
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                SyncData();
+                Dispatcher.BeginInvoke(() =>
+                {
+                    SyncData();
+                });
             }
 
-            LoadData();
+            Dispatcher.BeginInvoke(() =>
+            {
+                LoadData();
+            });
 
             base.OnNavigatedTo(e);
         }

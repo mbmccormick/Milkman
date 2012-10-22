@@ -115,12 +115,18 @@ namespace Milkman
 
                 App.RtmClient.SyncEverything(() =>
                 {
-                    LoadData();
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        LoadData();
+                    });
                 });
             }
             else
             {
-                LoadData();
+                Dispatcher.BeginInvoke(() =>
+                {
+                    LoadData();
+                });
             }
 
             base.OnNavigatedTo(e);

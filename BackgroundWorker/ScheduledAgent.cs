@@ -10,6 +10,7 @@ using System.ComponentModel;
 using Microsoft.Phone.Scheduler;
 using Microsoft.Phone.Shell;
 using System.Device.Location;
+using Milkman.Common;
 
 namespace BackgroundWorker
 {
@@ -31,6 +32,8 @@ namespace BackgroundWorker
 
         private void ScheduledAgent_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
+            LittleWatson.ReportException(e.ExceptionObject, null);
+            
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 System.Diagnostics.Debugger.Break();
