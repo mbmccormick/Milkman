@@ -70,53 +70,6 @@ namespace Milkman.Common
             }
         }
 
-        internal static void CheckForPreviousException(bool isFirstRun)
-        {
-            try
-            {
-                string contents = null;
-                using (var store = IsolatedStorageFile.GetUserStoreForApplication())
-                {
-                    if (store.FileExists(filename))
-                    {
-                        using (TextReader reader = new StreamReader(store.OpenFile(filename, FileMode.Open, FileAccess.Read, FileShare.None)))
-                        {
-                            contents = reader.ReadToEnd();
-                        }
-                        SafeDeleteFile(store);
-                    }
-                }
-
-                if (contents != null)
-                {
-                    string messageText = null;
-                    if (isFirstRun)
-                        messageText = Strings.UnhandledCrashDialog;
-                    else
-                        messageText = Strings.UnhandledErrorDialog;
-
-                    if (MessageBox.Show(messageText, Strings.UnhandledErrorDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                    {
-                        EmailComposeTask email = new EmailComposeTask();
-                        email.To = "milkman@mbmccormick.com";
-                        email.Subject = "Milkman Error Report";
-                        email.Body = "Version " + ExtendedVersionNumber + " (" + PlatformVersionNumber + ")\n" + contents;
-
-                        SafeDeleteFile(IsolatedStorageFile.GetUserStoreForApplication());
-
-                        email.Show();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                SafeDeleteFile(IsolatedStorageFile.GetUserStoreForApplication());
-            }
-        }
-
         private static void SafeDeleteFile(IsolatedStorageFile store)
         {
             try

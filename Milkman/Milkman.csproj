@@ -212,9 +212,14 @@
     </Content>
     <Content Include="Content\About\Data.es-ES.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\About\Data.it-IT.xml" />
-    <Content Include="Content\About\Data.ru-RU.xml" />
+    <Content Include="Content\About\Data.it-IT.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\About\Data.ru-RU.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\About\Data.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -294,7 +299,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
+      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
