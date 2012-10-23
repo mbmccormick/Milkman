@@ -651,9 +651,6 @@
   <data name="AutomaticSyncSetting" xml:space="preserve">
     <value>Sincronizar datos automáticamente</value>
   </data>
-  <data name="LightThemeSetting" xml:space="preserve">
-    <value>Utilice siempre el tema de luz</value>
-  </data>
   <data name="Settings" xml:space="preserve">
     <value>Configuración</value>
   </data>
@@ -677,12 +674,6 @@
   </data>
   <data name="SettingsErrorDialogTitle" xml:space="preserve">
     <value>Error</value>
-  </data>
-  <data name="SettingsThemeDialog" xml:space="preserve">
-    <value>Los cambios realizados en el tema surtirán efecto la próxima vez que inicie a Milkman.</value>
-  </data>
-  <data name="SettingsThemeDialogTitle" xml:space="preserve">
-    <value>Configuración</value>
   </data>
   <data name="Due" xml:space="preserve">
     <value>Límite</value>
@@ -790,19 +781,19 @@
     <value>Cerca de radio de ubicación</value>
   </data>
   <data name="NearbyRadiusSetting1">
-    <value>1 milla</value>
+    <value>1,5 kilometros</value>
   </data>
   <data name="NearbyRadiusSetting2">
-    <value>2 millas</value>
+    <value>3 kilometros</value>
   </data>
   <data name="NearbyRadiusSetting3">
-    <value>5 millas</value>
+    <value>8 kilometros</value>
   </data>
   <data name="NearbyRadiusSetting4">
-    <value>10 millas</value>
+    <value>16 kilometros</value>
   </data>
   <data name="NearbyRadiusSetting5">
-    <value>20 millas</value>
+    <value>32 kilometros</value>
   </data>
   <data name="Error">
     <value>Error</value>

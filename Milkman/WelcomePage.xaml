@@ -15,7 +15,8 @@
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True"
-    toolkit:TiltEffect.IsTiltEnabled="True">
+    toolkit:TiltEffect.IsTiltEnabled="True"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
