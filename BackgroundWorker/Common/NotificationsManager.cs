@@ -35,7 +35,7 @@ namespace BackgroundWorker.Common
                 radius = 5.0;
             else if (settings.NearbyRadius == 3)
                 radius = 10.0;
-            else if (settings.NearbyRadius == 3)
+            else if (settings.NearbyRadius == 4)
                 radius = 20.0;
             else
                 radius = 0.0;
@@ -47,12 +47,16 @@ namespace BackgroundWorker.Common
                 // check for nearby tasks
                 foreach (Task t in App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius))
                 {
-                    ShellToast toast = new ShellToast();
+                    if (t.HasDueTime &&
+                        t.DueDateTime.Value <= DateTime.Now)
+                    {
+                        ShellToast toast = new ShellToast();
 
-                    toast.Title = t.Location.Name;
-                    toast.Content = t.Name;
-                    toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
-                    toast.Show();
+                        toast.Title = t.Location.Name;
+                        toast.Content = t.Name;
+                        toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
+                        toast.Show();
+                    }
                 }
             }
 
