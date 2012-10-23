@@ -23,6 +23,8 @@ namespace Milkman
     {
         public static bool sReload = false;
 
+        public System.Windows.Navigation.NavigationEventArgs navigationArgs = null;
+
         #region Task Property
 
         public static readonly DependencyProperty TaskProperty =
@@ -48,9 +50,28 @@ namespace Milkman
         {
             InitializeComponent();
 
+            this.Loaded += TaskDetailsPage_Loaded;
+
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             this.BuildApplicationBar();
+        }
+
+        private void TaskDetailsPage_Loaded(object sender, EventArgs e)
+        {
+            if (navigationArgs.IsNavigationInitiator == false)
+            {
+                LittleWatson.CheckForPreviousException(true);
+
+                App.RtmClient.SyncEverything(() =>
+                {
+                    LoadData();
+                });
+            }
+            else
+            {
+                LoadData();
+            }
         }
 
         private void BuildApplicationBar()
@@ -109,25 +130,7 @@ namespace Milkman
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
-            if (e.IsNavigationInitiator == false)
-            {
-                LittleWatson.CheckForPreviousException(true);
-
-                App.RtmClient.SyncEverything(() =>
-                {
-                    Dispatcher.BeginInvoke(() =>
-                    {
-                        LoadData();
-                    });
-                });
-            }
-            else
-            {
-                Dispatcher.BeginInvoke(() =>
-                {
-                    LoadData();
-                });
-            }
+            navigationArgs = e;
 
             base.OnNavigatedTo(e);
         }
@@ -204,7 +207,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/EditTaskPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/EditTaskPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
             });
         }
 
@@ -223,7 +226,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/AddNotePage.xaml?task=" + CurrentTask.Id, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/AddNotePage.xaml?task=" + CurrentTask.Id, UriKind.Relative));
             });
         }
 
@@ -236,7 +239,7 @@ namespace Milkman
             TaskNote item = ((FrameworkElement)sender).DataContext as TaskNote;
 
             if (item != null)
-                this.NavigationService.Navigate(new Uri("/EditNotePage.xaml?task=" + CurrentTask.Id + "&id=" + item.Id, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/EditNotePage.xaml?task=" + CurrentTask.Id + "&id=" + item.Id, UriKind.Relative));
         }
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -274,8 +277,8 @@ namespace Milkman
                     {
                         GlobalLoading.Instance.IsLoading = false;
 
-                        if (this.NavigationService.CanGoBack)
-                            this.NavigationService.GoBack();
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
                         else
                             NavigationService.Navigate(new Uri("/MainPage.xaml?IsFirstRun=true", UriKind.Relative));
                     });
@@ -310,8 +313,8 @@ namespace Milkman
                     {
                         GlobalLoading.Instance.IsLoading = false;
 
-                        if (this.NavigationService.CanGoBack)
-                            this.NavigationService.GoBack();
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
                         else
                             NavigationService.Navigate(new Uri("/MainPage.xaml?IsFirstRun=true", UriKind.Relative));
                     });

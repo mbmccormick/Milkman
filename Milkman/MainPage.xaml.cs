@@ -25,6 +25,9 @@ namespace Milkman
     {
         public static bool sReload = true;
 
+        public bool isFirstRun = false;
+        public System.Windows.Navigation.NavigationEventArgs navigationArgs = null;
+
         #region Task Lists Property
 
         public static readonly DependencyProperty TaskListsProperty =
@@ -55,6 +58,8 @@ namespace Milkman
         {
             InitializeComponent();
 
+            this.Loaded += MainPage_Loaded;
+
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
             App.SyncingDisabled += new EventHandler<EventArgs>(App_SyncingDisabled);
 
@@ -62,6 +67,25 @@ namespace Milkman
 
             _watcher = new GeoCoordinateWatcher();
             _watcher.Start();
+        }
+
+        private void MainPage_Loaded(object sender, EventArgs e)
+        {
+            if (isFirstRun == true)
+            {
+                SyncData();
+            }
+
+            if (navigationArgs.IsNavigationInitiator == false)
+            {
+                LittleWatson.CheckForPreviousException(true);
+
+                SyncData();
+            }
+            else
+            {
+                LoadData();
+            }
         }
 
         private void BuildApplicationBar()
@@ -132,30 +156,13 @@ namespace Milkman
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
+            navigationArgs = e;
+
             if (NavigationContext.QueryString.ContainsKey("IsFirstRun") == true)
             {
+                isFirstRun = true;
                 NavigationService.RemoveBackEntry();
-
-                Dispatcher.BeginInvoke(() =>
-                {
-                    SyncData();
-                });
             }
-
-            if (e.IsNavigationInitiator == false)
-            {
-                LittleWatson.CheckForPreviousException(true);
-
-                Dispatcher.BeginInvoke(() =>
-                {
-                    SyncData();
-                });
-            }
-
-            Dispatcher.BeginInvoke(() =>
-            {
-                LoadData();
-            });
 
             base.OnNavigatedTo(e);
         }
@@ -274,7 +281,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/WelcomePage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/WelcomePage.xaml", UriKind.Relative));
             });
         }
 
@@ -316,11 +323,11 @@ namespace Milkman
             if (item != null)
             {
                 if (item.Name.ToLower() == Strings.AllTasksLower)
-                    this.NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml?id=" + item.Id, UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml?id=" + item.Id, UriKind.Relative));
                 else if (item.Name.ToLower() == Strings.NearbyLower)
-                    this.NavigationService.Navigate(new Uri("/TaskListByLocationPage.xaml?id=" + item.Id, UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/TaskListByLocationPage.xaml?id=" + item.Id, UriKind.Relative));
                 else
-                    this.NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
             }
         }
 
@@ -366,7 +373,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
             });
         }
 
@@ -374,7 +381,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
             });
         }
 

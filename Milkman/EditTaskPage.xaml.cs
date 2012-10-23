@@ -225,18 +225,18 @@ namespace Milkman
             {
                 if (this.lstDueDate.SelectedIndex == 0)
                 {
-                    if (dtpDueDateNoTime != null) dtpDueDateNoTime.Visibility = Visibility.Collapsed;
-                    if (dtpDueDateTime != null) dtpDueDateTime.Visibility = Visibility.Collapsed;
+                    if (this.dtpDueDateNoTime != null) this.dtpDueDateNoTime.Visibility = Visibility.Collapsed;
+                    if (this.grdDueDateTime != null) this.grdDueDateTime.Visibility = Visibility.Collapsed;
                 }
                 else if (this.lstDueDate.SelectedIndex == 1)
                 {
-                    if (dtpDueDateNoTime != null) dtpDueDateNoTime.Visibility = Visibility.Visible;
-                    if (dtpDueDateTime != null) dtpDueDateTime.Visibility = Visibility.Collapsed;
+                    if (this.dtpDueDateNoTime != null) this.dtpDueDateNoTime.Visibility = Visibility.Visible;
+                    if (this.grdDueDateTime != null) this.grdDueDateTime.Visibility = Visibility.Collapsed;
                 }
                 else if (this.lstDueDate.SelectedIndex == 2)
                 {
-                    if (dtpDueDateNoTime != null) dtpDueDateNoTime.Visibility = Visibility.Collapsed;
-                    if (dtpDueDateTime != null) dtpDueDateTime.Visibility = Visibility.Visible;
+                    if (this.dtpDueDateNoTime != null) this.dtpDueDateNoTime.Visibility = Visibility.Collapsed;
+                    if (this.grdDueDateTime != null) this.grdDueDateTime.Visibility = Visibility.Visible;
                 }
             }
         }
@@ -327,8 +327,8 @@ namespace Milkman
                                                                                             {
                                                                                                 GlobalLoading.Instance.IsLoading = false;
 
-                                                                                                if (this.NavigationService.CanGoBack)
-                                                                                                    this.NavigationService.GoBack();
+                                                                                                if (NavigationService.CanGoBack)
+                                                                                                    NavigationService.GoBack();
                                                                                                 else
                                                                                                     NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
                                                                                             });
@@ -356,8 +356,8 @@ namespace Milkman
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (this.NavigationService.CanGoBack)
-                this.NavigationService.GoBack();
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
             else
                 NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
         }

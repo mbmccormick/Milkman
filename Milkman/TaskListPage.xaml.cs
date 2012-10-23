@@ -25,6 +25,8 @@ namespace Milkman
     {
         public static bool sReload = true;
 
+        public System.Windows.Navigation.NavigationEventArgs navigationArgs = null;
+
         #region Task List Property
 
         public static readonly DependencyProperty TaskListProperty =
@@ -105,6 +107,8 @@ namespace Milkman
         {
             InitializeComponent();
 
+            this.Loaded += TaskListPage_Loaded;
+
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
             App.SyncingDisabled += new EventHandler<EventArgs>(App_SyncingDisabled);
 
@@ -114,6 +118,20 @@ namespace Milkman
 
             _watcher = new GeoCoordinateWatcher();
             _watcher.Start();
+        }
+
+        private void TaskListPage_Loaded(object sender, EventArgs e)
+        {
+            if (navigationArgs.IsNavigationInitiator == false)
+            {
+                LittleWatson.CheckForPreviousException(true);
+
+                SyncData();
+            }
+            else
+            {
+                LoadData();
+            }
         }
 
         private void BuildApplicationBar()
@@ -224,20 +242,7 @@ namespace Milkman
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
-            if (e.IsNavigationInitiator == false)
-            {
-                LittleWatson.CheckForPreviousException(true);
-
-                Dispatcher.BeginInvoke(() =>
-                {
-                    SyncData();
-                });
-            }
-
-            Dispatcher.BeginInvoke(() =>
-            {
-                LoadData();
-            });
+            navigationArgs = e;
 
             base.OnNavigatedTo(e);
         }
@@ -438,7 +443,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/WelcomePage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/WelcomePage.xaml", UriKind.Relative));
             });
         }
 
@@ -450,10 +455,10 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                if (this.NavigationService.CanGoBack)
-                    this.NavigationService.GoBack();
+                if (NavigationService.CanGoBack)
+                    NavigationService.GoBack();
                 else
-                    this.NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             });
         }
 
@@ -714,14 +719,14 @@ namespace Milkman
             Task item = ((FrameworkElement)sender).DataContext as Task;
 
             if (item != null)
-                this.NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
         }
 
         private void mnuSettings_Click(object sender, EventArgs e)
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/SettingsPage.xaml", UriKind.Relative));
             });
         }
 
@@ -729,7 +734,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
             });
         }
 

@@ -60,7 +60,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/AuthorizationPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/AuthorizationPage.xaml", UriKind.Relative));
             });
         }
 
@@ -76,7 +76,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
             });
         }
 
@@ -84,7 +84,7 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new Uri("/YourLastAboutDialog;component/AboutPage.xaml", UriKind.Relative));
             });
         }
 

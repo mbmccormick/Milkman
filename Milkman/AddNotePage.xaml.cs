@@ -129,8 +129,8 @@ namespace Milkman
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if (this.NavigationService.CanGoBack)
-                this.NavigationService.GoBack();
+            if (NavigationService.CanGoBack)
+                NavigationService.GoBack();
             else
                 NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
         }
