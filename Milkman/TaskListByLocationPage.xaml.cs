@@ -60,8 +60,6 @@ namespace Milkman
         {
             InitializeComponent();
 
-            this.Loaded += TaskListByLocationPage_Loaded;
-
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
             App.SyncingDisabled += new EventHandler<EventArgs>(App_SyncingDisabled);
 
@@ -71,10 +69,6 @@ namespace Milkman
 
             _watcher = new GeoCoordinateWatcher();
             _watcher.Start();
-        }
-
-        private void TaskListByLocationPage_Loaded(object sender, EventArgs e)
-        {
         }
 
         private void BuildApplicationBar()

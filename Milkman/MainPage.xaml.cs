@@ -55,8 +55,6 @@ namespace Milkman
         {
             InitializeComponent();
 
-            this.Loaded += MainPage_Loaded;
-
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
             App.SyncingDisabled += new EventHandler<EventArgs>(App_SyncingDisabled);
 
@@ -64,10 +62,6 @@ namespace Milkman
 
             _watcher = new GeoCoordinateWatcher();
             _watcher.Start();
-        }
-
-        private void MainPage_Loaded(object sender, EventArgs e)
-        {            
         }
 
         private void BuildApplicationBar()
