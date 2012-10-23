@@ -25,8 +25,6 @@ namespace Milkman
     {
         public static bool sReload = true;
 
-        public System.Windows.Navigation.NavigationEventArgs navigationArgs = null;
-
         #region Task List Property
 
         public static readonly DependencyProperty AllTasksProperty =
@@ -77,16 +75,6 @@ namespace Milkman
 
         private void TaskListByLocationPage_Loaded(object sender, EventArgs e)
         {
-            if (navigationArgs.IsNavigationInitiator == false)
-            {
-                LittleWatson.CheckForPreviousException(true);
-
-                SyncData();
-            }
-            else
-            {
-                LoadData();
-            }
         }
 
         private void BuildApplicationBar()
@@ -197,7 +185,16 @@ namespace Milkman
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
-            navigationArgs = e;
+            if (e.IsNavigationInitiator == false)
+            {
+                LittleWatson.CheckForPreviousException(true);
+
+                SyncData();
+            }
+            else
+            {
+                LoadData();
+            }
 
             base.OnNavigatedTo(e);
         }
