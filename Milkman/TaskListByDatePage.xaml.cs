@@ -297,6 +297,13 @@ namespace Milkman
                         Login();
                     }
                 }
+                else
+                {
+                    SmartDispatcher.BeginInvoke(() =>
+                    {
+                        GlobalLoading.Instance.IsLoading = false;
+                    });
+                }
 
                 sReload = false;
             };
