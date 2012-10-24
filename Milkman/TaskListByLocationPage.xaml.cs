@@ -371,7 +371,7 @@ namespace Milkman
             }
             else
             {
-                NavigationService.Navigate(new Uri("/AddTaskPage.xaml"));
+                NavigationService.Navigate(new Uri("/AddTaskPage.xaml", UriKind.Relative));
             }
         }
 
