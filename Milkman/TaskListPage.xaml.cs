@@ -455,9 +455,18 @@ namespace Milkman
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            this.dlgAddTask.Open();
+            AppSettings settings = new AppSettings();
 
-            this.ApplicationBar.IsVisible = false;
+            if (settings.AddTaskDialogEnabled == true)
+            {
+                this.dlgAddTask.Open();
+
+                this.ApplicationBar.IsVisible = false;
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/AddTaskPage.xaml"));
+            }
         }
 
         private void dlgAddTask_Submit(object sender, SubmitEventArgs e)

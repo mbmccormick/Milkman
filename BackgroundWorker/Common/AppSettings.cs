@@ -18,6 +18,7 @@ namespace BackgroundWorker.Common
     {
         IsolatedStorageSettings isolatedStore;
 
+        const string AddTaskDialogEnabledSettingKeyName = "AddTaskDialogEnabled";
         const string IgnorePriorityEnabledSettingKeyName = "IgnorePriorityEnabled";
         const string LocationRemindersEnabledSettingKeyName = "LocationRemindersEnabled";
         const string NearbyRadiusSettingKeyName = "NearbyRadius";
@@ -93,11 +94,24 @@ namespace BackgroundWorker.Common
             isolatedStore.Save();
         }
 
+        public bool AddTaskDialogEnabled
+        {
+            get
+            {
+                return GetValueOrDefault<bool>(AddTaskDialogEnabledSettingKeyName, true);
+            }
+            set
+            {
+                AddOrUpdateValue(AddTaskDialogEnabledSettingKeyName, value);
+                Save();
+            }
+        }
+
         public bool IgnorePriorityEnabled
         {
             get
             {
-                return GetValueOrDefault<bool>(IgnorePriorityEnabledSettingKeyName, false);
+                return GetValueOrDefault<bool>(IgnorePriorityEnabledSettingKeyName, true);
             }
             set
             {

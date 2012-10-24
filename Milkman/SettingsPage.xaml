@@ -29,7 +29,8 @@
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <toolkit:ToggleSwitch x:Name="togIgnorePriority" IsChecked="false" Header="{Binding Resources.IgnorePrioritySetting, Source={StaticResource Strings}}" />
+                <toolkit:ToggleSwitch x:Name="togAddTaskDialog" IsChecked="true" Header="{Binding Resources.AddTaskDialogSetting, Source={StaticResource Strings}}" />
+                <toolkit:ToggleSwitch x:Name="togIgnorePriority" IsChecked="true" Header="{Binding Resources.IgnorePrioritySetting, Source={StaticResource Strings}}" />
                 <toolkit:ToggleSwitch x:Name="togLocationReminders" IsChecked="true" Header="{Binding Resources.LocationRemindersSetting, Source={StaticResource Strings}}" />
                 <StackPanel Margin="12,12,12,12">
                     <TextBlock Text="{Binding Resources.NearbyRadiusSetting, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
