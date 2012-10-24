@@ -183,6 +183,7 @@
                             </Grid.ColumnDefinitions>
                             <ContentControl
                                 x:Name="Header"
+                                Grid.ColumnSpan="2"
                                 Content="{TemplateBinding Header}"
                                 ContentTemplate="{TemplateBinding HeaderTemplate}"
                                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -190,7 +191,7 @@
                                 Foreground="{StaticResource PhoneSubtleBrush}"
                                 HorizontalAlignment="Left"
                                 IsTabStop="False"
-                                Margin="-1,0,0,0"
+                                Margin="-1,0,0,5"
                                 Opacity="{TemplateBinding Opacity}"
                                 VerticalAlignment="Bottom"/>
                             <ContentControl
@@ -200,12 +201,12 @@
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 IsTabStop="False"
-                                Margin="-1,1,0,-7"
+                                Margin="-1,1,0,0"
                                 Opacity="{TemplateBinding Opacity}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             <primitives:ToggleSwitchButton
                                 x:Name="Switch"
-                                Grid.RowSpan="2"
+                                Grid.Row="2"
                                 Grid.Column="1"
                                 Background="{TemplateBinding Background}"
                                 Margin="-22,-29,-24,-28"
