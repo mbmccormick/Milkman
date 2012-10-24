@@ -15,6 +15,7 @@ using IronCow.Resources;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Milkman.Common;
+using MC.Phone.Analytics;
 
 namespace Milkman
 {
@@ -87,6 +88,14 @@ namespace Milkman
             {
                 GlobalLoading.Instance.IsLoading = false;
             });
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            var analyticsTracker = new AnalyticsTracker();
+            analyticsTracker.TrackPage(e.Uri);
+            
+            base.OnNavigatedTo(e);
         }
 
         private void StartAuth()

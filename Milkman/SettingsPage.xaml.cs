@@ -14,6 +14,7 @@ using Milkman.Common;
 using System.Windows.Data;
 using Microsoft.Phone.Shell;
 using IronCow.Resources;
+using MC.Phone.Analytics;
 
 namespace Milkman
 {
@@ -103,6 +104,14 @@ namespace Milkman
             this.togLocationReminders.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
 
             GlobalLoading.Instance.IsLoading = false;
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            var analyticsTracker = new AnalyticsTracker();
+            analyticsTracker.TrackPage(e.Uri);
+            
+            base.OnNavigatedTo(e);
         }
 
         private void ToggleSwitch_Checked(object sender, RoutedEventArgs e)

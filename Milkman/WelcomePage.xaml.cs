@@ -14,6 +14,7 @@ using Microsoft.Phone.Tasks;
 using Microsoft.Phone.Shell;
 using IronCow;
 using IronCow.Resources;
+using MC.Phone.Analytics;
 
 namespace Milkman
 {
@@ -50,6 +51,14 @@ namespace Milkman
             ApplicationBar.MenuItems.Add(about);
             ApplicationBar.MenuItems.Add(feedback);
             ApplicationBar.MenuItems.Add(donate);
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            var analyticsTracker = new AnalyticsTracker();
+            analyticsTracker.TrackPage(e.Uri);
+            
+            base.OnNavigatedTo(e);
         }
 
         #endregion
