@@ -178,72 +178,75 @@ namespace Milkman
 
                 StringBuilder smartText = new StringBuilder();
 
-                // set name
-                smartText.Append(this.txtName.Text);
-                smartText.Append(" ");
+                if (this.txtName.Text.Length > 0)
+                {
+                    // set name
+                    smartText.Append(this.txtName.Text);
+                    smartText.Append(" ");
 
-                // set date
-                if (this.lstDueDate.SelectedIndex == 1)
-                {
-                    smartText.Append("^" + this.dtpDueDateNoTime.ValueString);
-                    smartText.Append(" ");
-                }
-                else if (this.lstDueDate.SelectedIndex == 2)
-                {
-                    smartText.Append("^" + this.dtpDueDate.ValueString + " " + this.dtpDueTime.ValueString);
-                    smartText.Append(" ");
-                }
-
-                // set priority
-                if (this.lstPriority.SelectedIndex == 1)
-                {
-                    smartText.Append("!1");
-                    smartText.Append(" ");
-                }
-                else if (this.lstPriority.SelectedIndex == 2)
-                {
-                    smartText.Append("!2");
-                    smartText.Append(" ");
-                }
-                else if (this.lstPriority.SelectedIndex == 3)
-                {
-                    smartText.Append("!3");
-                    smartText.Append(" ");
-                }
-
-                // set list
-                smartText.Append("#" + (this.lstList.SelectedItem as TaskList).Name);
-                smartText.Append(" ");
-
-                // set repeat
-                if (this.txtRepeat.Text.Length > 0)
-                {
-                    smartText.Append("*" + this.txtRepeat.Text);
-                    smartText.Append(" ");
-                }
-
-                // set estimate
-                if (this.txtEstimate.Text.Length > 0)
-                {
-                    smartText.Append("=" + this.txtEstimate.Text);
-                    smartText.Append(" ");
-                }
-
-                // set tags
-                if (this.txtTags.Text.Length > 0)
-                {
-                    foreach (string tag in this.txtTags.Text.Split(','))
+                    // set date
+                    if (this.lstDueDate.SelectedIndex == 1)
                     {
-                        smartText.Append("#" + tag.Trim());
+                        smartText.Append("^" + this.dtpDueDateNoTime.ValueString);
                         smartText.Append(" ");
                     }
-                }
+                    else if (this.lstDueDate.SelectedIndex == 2)
+                    {
+                        smartText.Append("^" + this.dtpDueDate.ValueString + " " + this.dtpDueTime.ValueString);
+                        smartText.Append(" ");
+                    }
 
-                // set location
-                if (this.lstLocation.SelectedIndex > 0)
-                {
-                    smartText.Append("@" + (this.lstLocation.SelectedItem as Location).Name);
+                    // set priority
+                    if (this.lstPriority.SelectedIndex == 1)
+                    {
+                        smartText.Append("!1");
+                        smartText.Append(" ");
+                    }
+                    else if (this.lstPriority.SelectedIndex == 2)
+                    {
+                        smartText.Append("!2");
+                        smartText.Append(" ");
+                    }
+                    else if (this.lstPriority.SelectedIndex == 3)
+                    {
+                        smartText.Append("!3");
+                        smartText.Append(" ");
+                    }
+
+                    // set list
+                    smartText.Append("#" + (this.lstList.SelectedItem as TaskList).Name);
                     smartText.Append(" ");
+
+                    // set repeat
+                    if (this.txtRepeat.Text.Length > 0)
+                    {
+                        smartText.Append("*" + this.txtRepeat.Text);
+                        smartText.Append(" ");
+                    }
+
+                    // set estimate
+                    if (this.txtEstimate.Text.Length > 0)
+                    {
+                        smartText.Append("=" + this.txtEstimate.Text);
+                        smartText.Append(" ");
+                    }
+
+                    // set tags
+                    if (this.txtTags.Text.Length > 0)
+                    {
+                        foreach (string tag in this.txtTags.Text.Split(','))
+                        {
+                            smartText.Append("#" + tag.Trim());
+                            smartText.Append(" ");
+                        }
+                    }
+
+                    // set location
+                    if (this.lstLocation.SelectedIndex > 0)
+                    {
+                        smartText.Append("@" + (this.lstLocation.SelectedItem as Location).Name);
+                        smartText.Append(" ");
+                    }
                 }
 
                 App.RtmClient.AddTask(smartText.ToString(), true, null, () =>
@@ -251,13 +254,13 @@ namespace Milkman
                     Dispatcher.BeginInvoke(() =>
                     {
                         GlobalLoading.Instance.IsLoading = false;
+
+                        if (NavigationService.CanGoBack)
+                            NavigationService.GoBack();
+                        else
+                            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
                     });
                 });
-
-                if (NavigationService.CanGoBack)
-                    NavigationService.GoBack();
-                else
-                    NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
             }
         }
 
