@@ -32,7 +32,16 @@ namespace BackgroundWorker
 
         private void ScheduledAgent_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            LittleWatson.ReportException(e.ExceptionObject, null);
+            if (e.ExceptionObject is WebException)
+            {
+
+            }
+            else
+            {
+                LittleWatson.ReportException(e.ExceptionObject, null);
+            }
+
+            e.Handled = true;
             
             if (System.Diagnostics.Debugger.IsAttached)
             {
