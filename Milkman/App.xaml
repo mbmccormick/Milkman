@@ -6,6 +6,5 @@
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->
         <shell:PhoneApplicationService Launching="Application_Launching" Closing="Application_Closing" Activated="Application_Activated" Deactivated="Application_Deactivated" />
-        <analytics:GoogleAnalyticsService WebPropertyId="UA-6872595-15" xmlns:analytics="clr-namespace:Milkman.Analytics" />
     </Application.ApplicationLifetimeObjects>
 </Application>

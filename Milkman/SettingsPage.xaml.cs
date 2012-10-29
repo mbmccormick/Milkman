@@ -14,7 +14,6 @@ using Milkman.Common;
 using System.Windows.Data;
 using Microsoft.Phone.Shell;
 using IronCow.Resources;
-using MC.Phone.Analytics;
 
 namespace Milkman
 {
@@ -108,9 +107,6 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            var analyticsTracker = new AnalyticsTracker();
-            analyticsTracker.TrackPage(e.Uri);
-            
             base.OnNavigatedTo(e);
         }
 

@@ -18,7 +18,6 @@ using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using System.Device.Location;
-using MC.Phone.Analytics;
 
 namespace Milkman
 {
@@ -235,9 +234,6 @@ namespace Milkman
             {
                 LoadData();
             }
-
-            var analyticsTracker = new AnalyticsTracker();
-            analyticsTracker.TrackPage(e.Uri);
 
             base.OnNavigatedTo(e);
         }

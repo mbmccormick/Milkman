@@ -16,7 +16,6 @@ using IronCow;
 using IronCow.Resources;
 using System.ComponentModel;
 using Microsoft.Phone.Shell;
-using MC.Phone.Analytics;
 
 namespace Milkman
 {
@@ -104,9 +103,6 @@ namespace Milkman
                 LoadData();
                 loadedDetails = true;
             }
-
-            var analyticsTracker = new AnalyticsTracker();
-            analyticsTracker.TrackPage(e.Uri);
 
             base.OnNavigatedTo(e);
         }

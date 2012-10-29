@@ -62,35 +62,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.WebAnalytics">
-      <HintPath>..\packages\MSAF.GoogleAnalytics.1.5.4.1\lib\sl4-wp71\Google.WebAnalytics.dll</HintPath>
-    </Reference>
-    <Reference Include="MC.Phone.Analytics">
-      <HintPath>..\packages\MSAF.GoogleAnalytics.1.5.4.1\lib\sl4-wp71\MC.Phone.Analytics.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls" />
     <Reference Include="Microsoft.Phone.Interop" />
-    <Reference Include="Microsoft.WebAnalytics">
-      <HintPath>..\packages\MSAF.GoogleAnalytics.1.5.4.1\lib\sl4-wp71\Microsoft.WebAnalytics.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WebAnalytics.Behaviors">
-      <HintPath>..\packages\MSAF.GoogleAnalytics.1.5.4.1\lib\sl4-wp71\Microsoft.WebAnalytics.Behaviors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.Composition">
-      <HintPath>..\packages\MSAF.GoogleAnalytics.1.5.4.1\lib\sl4-wp71\System.ComponentModel.Composition.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.Composition.Initialization">
-      <HintPath>..\packages\MSAF.GoogleAnalytics.1.5.4.1\lib\sl4-wp71\System.ComponentModel.Composition.Initialization.dll</HintPath>
-    </Reference>
     <Reference Include="System.Device" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Windows.Interactivity, Version=3.8.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\MSAF.GoogleAnalytics.1.5.4.1\lib\sl4-wp71\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
     <Reference Include="System.Xml.Serialization" />
@@ -108,7 +87,6 @@
     <Compile Include="AddTaskPage.xaml.cs">
       <DependentUpon>AddTaskPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Analytics\GoogleAnalyticsService.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -217,7 +195,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
@@ -324,7 +301,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
