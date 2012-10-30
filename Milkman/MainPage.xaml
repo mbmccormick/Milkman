@@ -14,23 +14,17 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True"
-    shell:SystemTray.Opacity="0.0"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0.0" shell:SystemTray.ForegroundColor="#FEFEFE"
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot">
-        <controls:Panorama x:Name="panLayout" Title="{Binding Resources.MilkmanLower, Source={StaticResource Strings}}">
+        <controls:Panorama x:Name="panLayout" Title="{Binding Resources.MilkmanLower, Source={StaticResource Strings}}" Foreground="White">
             <controls:Panorama.Background>
-                <ImageBrush ImageSource="PanoramaBackground.jpg" Opacity="0.4" />
+                <ImageBrush ImageSource="PanoramaBackground.jpg" />
             </controls:Panorama.Background>
-            <!--<controls:Panorama.TitleTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" FontSize="160" FontWeight="ExtraBold" Margin="0,48,0,-24" />
-                </DataTemplate>
-            </controls:Panorama.TitleTemplate>-->
             <controls:PanoramaItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}">
-                <Grid Margin="0,0,0,0">
+                <Grid Margin="0,0,0,72">
                     <ListBox x:Name="lstAll" ItemsSource="{Binding DashboardTasks}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
@@ -40,8 +34,8 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="12,0,12,18" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
-                                    <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="White" />
+                                    <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDatePanoramaForegroundBrush}" FontWeight="Normal" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -53,7 +47,7 @@
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="{Binding Resources.ListsLower, Source={StaticResource Strings}}">
-                <Grid Margin="0,0,0,0">
+                <Grid Margin="0,0,0,72">
                     <ListBox Name="lstLists" Margin="0,0,-12,0" ItemsSource="{Binding TaskLists}" >
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -82,7 +76,7 @@
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="{Binding Resources.TagsLower, Source={StaticResource Strings}}">
-                <Grid Margin="0,0,0,0">
+                <Grid Margin="0,0,0,72">
                     <ListBox Name="lstTags" Margin="0,0,-12,0" ItemsSource="{Binding TaskTags}" >
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -115,7 +109,7 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.5" BackgroundColor="Black" ForegroundColor="White">
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
