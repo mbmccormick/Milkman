@@ -388,7 +388,7 @@ namespace Milkman
 
                 if (item != null)
                 {
-                   NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
                 }
             }
             else if (this.panLayout.SelectedIndex == 1)
@@ -503,6 +503,12 @@ namespace Milkman
             set;
         }
 
+        private TaskTag MostRecentTaskTagClick
+        {
+            get;
+            set;
+        }
+
         protected override void OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e)
         {
             if (e.OriginalSource is FrameworkElement)
@@ -512,7 +518,12 @@ namespace Milkman
                 {
                     MostRecentTaskListClick = (TaskList)frameworkElement.DataContext;
                 }
+                else if (frameworkElement.DataContext is TaskTag)
+                {
+                    MostRecentTaskTagClick = (TaskTag)frameworkElement.DataContext;
+                }
             }
+
             base.OnMouseLeftButtonDown(e);
         }
 
@@ -523,7 +534,14 @@ namespace Milkman
 
             if (target.Header.ToString() == Strings.PinToStartLower)
             {
-                ShellTile secondaryTile = ShellTile.ActiveTiles.FirstOrDefault(t => t.NavigationUri.ToString().Contains("id=" + MostRecentTaskListClick.Id));
+                ShellTile secondaryTile = null;
+
+                if (this.panLayout.SelectedIndex == 1)
+                    secondaryTile = ShellTile.ActiveTiles.FirstOrDefault(t => t.NavigationUri.ToString().Contains("id=" + MostRecentTaskListClick.Id));
+                else if (this.panLayout.SelectedIndex == 2)
+                    secondaryTile = ShellTile.ActiveTiles.FirstOrDefault(t => t.NavigationUri.ToString().Contains("id=" + MostRecentTaskTagClick.Name));
+                else
+                    return;
 
                 if (secondaryTile == null)
                 {
@@ -535,9 +553,16 @@ namespace Milkman
 
                     data.BackgroundImage = new Uri("BackgroundPinned.png", UriKind.Relative);
                     data.Title = "Milkman";
-                    data.BackTitle = MostRecentTaskListClick.Name;
 
-                    if (MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
+                    if (this.panLayout.SelectedIndex == 1)
+                        data.BackTitle = MostRecentTaskListClick.Name;
+                    else if (this.panLayout.SelectedIndex == 2)
+                        data.BackTitle = MostRecentTaskTagClick.Name;
+                    else
+                        return;
+
+                    if (this.panLayout.SelectedIndex == 1 &&
+                        MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
                     {
                         AppSettings settings = new AppSettings();
 
@@ -566,12 +591,28 @@ namespace Milkman
                     }
                     else
                     {
-                        if (MostRecentTaskListClick.Tasks != null)
+                        if (this.panLayout.SelectedIndex == 1)
                         {
-                            tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                                     z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-                            tasksOverdue = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                                    z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                            if (MostRecentTaskListClick.Tasks != null)
+                            {
+                                tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                                         z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                                tasksOverdue = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                                        z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                            }
+                        }
+                        else if (this.panLayout.SelectedIndex == 2)
+                        {
+                            var tasks = App.RtmClient.GetTasksByTag()[MostRecentTaskTagClick.Name];
+
+                            tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
+                                                             z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                            tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
+                                                            z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                        }
+                        else
+                        {
+                            return;
                         }
 
                         if (tasksDueToday == 0)
@@ -585,12 +626,23 @@ namespace Milkman
                             data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
                     }
 
-                    if (MostRecentTaskListClick.Name.ToLower() == Strings.AllTasksLower)
-                        ShellTile.Create(new Uri("/TaskListByDatePage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
-                    else if (MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
-                        ShellTile.Create(new Uri("/TaskListByLocationPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
+                    if (this.panLayout.SelectedIndex == 1)
+                    {
+                        if (MostRecentTaskListClick.Name.ToLower() == Strings.AllTasksLower)
+                            ShellTile.Create(new Uri("/TaskListByDatePage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
+                        else if (MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
+                            ShellTile.Create(new Uri("/TaskListByLocationPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
+                        else
+                            ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
+                    }
+                    else if (this.panLayout.SelectedIndex == 2)
+                    {
+                        ShellTile.Create(new Uri("/TaskListByTagPage.xaml?id=" + MostRecentTaskTagClick.Name, UriKind.Relative), data);
+                    }
                     else
-                        ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
+                    {
+                        return;
+                    }
                 }
                 else
                 {

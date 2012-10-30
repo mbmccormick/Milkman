@@ -128,6 +128,37 @@ namespace BackgroundWorker.Common
 
                     tile.Update(data);
                 }
+                else if (tile.NavigationUri.ToString().StartsWith("/TaskListByTagPage.xaml") == true)
+                {
+                    if (App.RtmClient.TaskLists != null)
+                    {
+                        string id = tile.NavigationUri.ToString().Split('=')[1];
+                        var tasks = App.RtmClient.GetTasksByTag()[id];
+
+                        taskListName = id;
+                        if (tasks != null)
+                        {
+                            tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
+                                                             z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                            tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
+                                                            z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                        }
+                    }
+
+                    data.BackTitle = taskListName;
+
+                    if (tasksDueToday == 0)
+                        data.BackContent = Strings.LiveTileEmpty;
+                    else if (tasksDueToday == 1)
+                        data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
+                    else
+                        data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
+
+                    if (tasksOverdue > 0)
+                        data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
+
+                    tile.Update(data);
+                }
                 else
                 {
                     if (App.RtmClient.TaskLists != null)
@@ -158,7 +189,7 @@ namespace BackgroundWorker.Common
                         data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
 
                     tile.Update(data);
-                }                
+                }
             }
         }
 
