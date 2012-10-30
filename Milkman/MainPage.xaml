@@ -24,6 +24,11 @@
             <controls:Panorama.Background>
                 <ImageBrush ImageSource="PanoramaBackground.jpg" Opacity="0.4" />
             </controls:Panorama.Background>
+            <!--<controls:Panorama.TitleTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" FontSize="160" FontWeight="ExtraBold" Margin="0,48,0,-24" />
+                </DataTemplate>
+            </controls:Panorama.TitleTemplate>-->
             <controls:PanoramaItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}">
                 <Grid Margin="0,0,0,0">
                     <ListBox x:Name="lstAll" ItemsSource="{Binding DashboardTasks}">
