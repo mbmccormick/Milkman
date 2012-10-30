@@ -24,8 +24,13 @@
                 <ImageBrush ImageSource="PanoramaBackground.jpg" />
             </controls:Panorama.Background>
             <controls:PanoramaItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}">
-                <Grid Margin="0,0,0,72">
-                    <ListBox x:Name="lstAll" ItemsSource="{Binding DashboardTasks}">
+                <Grid>
+                    <ListBox x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" Margin="0,0,0,0">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Margin="0,0,0,72" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -47,11 +52,11 @@
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="{Binding Resources.ListsLower, Source={StaticResource Strings}}">
-                <Grid Margin="0,0,0,72">
-                    <ListBox Name="lstLists" Margin="0,0,-12,0" ItemsSource="{Binding TaskLists}" >
+                <Grid>
+                    <ListBox Name="lstLists" Margin="0,0,-12,0" ItemsSource="{Binding TaskLists}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <toolkit:WrapPanel x:Name="wrapPanel" Margin="0,0,0,24" />
+                                <toolkit:WrapPanel Margin="0,0,0,96" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
@@ -76,11 +81,11 @@
             </controls:PanoramaItem>
 
             <controls:PanoramaItem Header="{Binding Resources.TagsLower, Source={StaticResource Strings}}">
-                <Grid Margin="0,0,0,72">
-                    <ListBox Name="lstTags" Margin="0,0,-12,0" ItemsSource="{Binding TaskTags}" >
+                <Grid>
+                    <ListBox Name="lstTags" Margin="0,0,-12,0" ItemsSource="{Binding TaskTags}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <toolkit:WrapPanel x:Name="wrapPanel" Margin="0,0,0,24" />
+                                <toolkit:WrapPanel Margin="0,0,0,96" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
@@ -109,7 +114,7 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.5" BackgroundColor="Black" ForegroundColor="White">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.7" BackgroundColor="Black" ForegroundColor="White">
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

@@ -33,7 +33,7 @@
             <ListBox Name="lstTiles" Margin="0,0,-12,0">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <toolkit:WrapPanel x:Name="wrapPanel" Margin="0,0,0,24" />
+                        <toolkit:WrapPanel Margin="0,0,0,24" />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBoxItem>
@@ -56,7 +56,7 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
