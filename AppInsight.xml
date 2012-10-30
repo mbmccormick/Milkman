@@ -966,7 +966,7 @@
           </NamespaceCodeItem>
         </Children>
       </AssemblyCodeItem>
-      <AssemblyCodeItem Name="IronCow.dll" IsInstrumented="true" IsEnabled="true" IsExpanded="true">
+      <AssemblyCodeItem Name="IronCow.dll" IsInstrumented="false" IsEnabled="true" IsExpanded="true">
         <Children>
           <NamespaceCodeItem Name="IronCow" IsInstrumented="true" IsEnabled="true" IsExpanded="true">
             <Children>
