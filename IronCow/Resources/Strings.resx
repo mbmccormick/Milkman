@@ -828,4 +828,19 @@
   <data name="AddTaskDialogSetting" xml:space="preserve">
     <value>Use the Smart Add dialog for adding tasks</value>
   </data>
+  <data name="Lists" xml:space="preserve">
+    <value>Lists</value>
+  </data>
+  <data name="ListsLower" xml:space="preserve">
+    <value>lists</value>
+  </data>
+  <data name="ListUpper" xml:space="preserve">
+    <value>LISTS</value>
+  </data>
+  <data name="TagsLower" xml:space="preserve">
+    <value>tags</value>
+  </data>
+  <data name="TagsUpper" xml:space="preserve">
+    <value>TAGS</value>
+  </data>
 </root>

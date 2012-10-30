@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage 
-    x:Class="Milkman.TaskListByDatePage"
+    x:Class="Milkman.TaskListByTagPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -44,7 +44,7 @@
                                         <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
                                         <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Margin="12,12,36,6" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="SemiBold" />
                                     </Grid>
-                                    
+
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>

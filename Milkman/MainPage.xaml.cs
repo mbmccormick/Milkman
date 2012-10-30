@@ -25,7 +25,16 @@ namespace Milkman
     {
         public static bool sReload = true;
 
-        #region Task Lists Property
+        #region Dashboard Properties
+
+        public static readonly DependencyProperty DashboardTasksProperty =
+               DependencyProperty.Register("DashboardTasks", typeof(ObservableCollection<Task>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<Task>()));
+
+        public ObservableCollection<Task> DashboardTasks
+        {
+            get { return (ObservableCollection<Task>)GetValue(DashboardTasksProperty); }
+            set { SetValue(DashboardTasksProperty, value); }
+        }
 
         public static readonly DependencyProperty TaskListsProperty =
                DependencyProperty.Register("TaskLists", typeof(ObservableCollection<TaskList>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<TaskList>()));
@@ -34,6 +43,15 @@ namespace Milkman
         {
             get { return (ObservableCollection<TaskList>)GetValue(TaskListsProperty); }
             set { SetValue(TaskListsProperty, value); }
+        }
+
+        public static readonly DependencyProperty TaskTagsProperty =
+               DependencyProperty.Register("TaskTags", typeof(ObservableCollection<TaskTag>), typeof(MainPage), new PropertyMetadata(new ObservableCollection<TaskTag>()));
+
+        public ObservableCollection<TaskTag> TaskTags
+        {
+            get { return (ObservableCollection<TaskTag>)GetValue(TaskTagsProperty); }
+            set { SetValue(TaskTagsProperty, value); }
         }
 
         #endregion
@@ -226,21 +244,54 @@ namespace Milkman
 
                 if (App.RtmClient.TaskLists != null)
                 {
+                    var tempDashboardTasks = new SortableObservableCollection<Task>();
                     var tempTaskLists = new SortableObservableCollection<TaskList>();
+                    var tempTaskTags = new SortableObservableCollection<TaskTag>();
+
+                    AppSettings settings = new AppSettings();
 
                     foreach (TaskList l in App.RtmClient.TaskLists)
                     {
+                        if (l.Tasks != null &&
+                            l.IsNormal == true)
+                        {
+                            foreach (Task t in l.Tasks)
+                            {
+                                if (t.IsCompleted == true ||
+                                    t.IsDeleted == true) continue;
+
+                                if (t.DueDateTime.HasValue &&
+                                    t.DueDateTime.Value.Date <= DateTime.Now.AddDays(1).Date)
+                                {
+                                    tempDashboardTasks.Add(t);
+                                }
+                            }
+                        }
+
                         if (l.Name.ToLower() == Strings.AllTasksLower)
                             tempTaskLists.Insert(0, l);
                         else
                             tempTaskLists.Add(l);
                     }
 
+                    tempDashboardTasks.Sort();
+
                     // insert the nearby list placeholder
                     TaskList nearby = new TaskList(Strings.Nearby);
                     tempTaskLists.Insert(1, nearby);
 
+                    foreach (var tag in App.RtmClient.GetTasksByTag().OrderBy(z => z.Key))
+                    {
+                        TaskTag data = new TaskTag();
+                        data.Name = tag.Key;
+                        data.Count = tag.Value.Count;
+
+                        tempTaskTags.Add(data);
+                    }
+
+                    DashboardTasks = tempDashboardTasks;
                     TaskLists = tempTaskLists;
+                    TaskTags = tempTaskTags;
 
                     ToggleLoadingText();
                     ToggleEmptyText();
@@ -254,7 +305,9 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                this.txtLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtDashboardLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtListsLoading.Visibility = System.Windows.Visibility.Collapsed;
+                this.txtTagsLoading.Visibility = System.Windows.Visibility.Collapsed;
             });
         }
 
@@ -262,10 +315,20 @@ namespace Milkman
         {
             SmartDispatcher.BeginInvoke(() =>
             {
-                if (TaskLists.Count == 0)
-                    this.txtEmpty.Visibility = System.Windows.Visibility.Visible;
+                if (DashboardTasks.Count == 0)
+                    this.txtDashboardEmpty.Visibility = System.Windows.Visibility.Visible;
                 else
-                    this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
+                    this.txtDashboardEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (TaskLists.Count == 0)
+                    this.txtListsEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtListsEmpty.Visibility = System.Windows.Visibility.Collapsed;
+
+                if (TaskTags.Count == 0)
+                    this.txtTagsEmpty.Visibility = System.Windows.Visibility.Visible;
+                else
+                    this.txtTagsEmpty.Visibility = System.Windows.Visibility.Collapsed;
             });
         }
 
@@ -319,16 +382,37 @@ namespace Milkman
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            TaskList item = ((FrameworkElement)sender).DataContext as TaskList;
-
-            if (item != null)
+            if (this.panLayout.SelectedIndex == 0)
             {
-                if (item.Name.ToLower() == Strings.AllTasksLower)
-                    NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml?id=" + item.Id, UriKind.Relative));
-                else if (item.Name.ToLower() == Strings.NearbyLower)
-                    NavigationService.Navigate(new Uri("/TaskListByLocationPage.xaml?id=" + item.Id, UriKind.Relative));
-                else
-                    NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
+                Task item = ((FrameworkElement)sender).DataContext as Task;
+
+                if (item != null)
+                {
+                   NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
+                }
+            }
+            else if (this.panLayout.SelectedIndex == 1)
+            {
+                TaskList item = ((FrameworkElement)sender).DataContext as TaskList;
+
+                if (item != null)
+                {
+                    if (item.Name.ToLower() == Strings.AllTasksLower)
+                        NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml?id=" + item.Id, UriKind.Relative));
+                    else if (item.Name.ToLower() == Strings.NearbyLower)
+                        NavigationService.Navigate(new Uri("/TaskListByLocationPage.xaml?id=" + item.Id, UriKind.Relative));
+                    else
+                        NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
+                }
+            }
+            else if (this.panLayout.SelectedIndex == 2)
+            {
+                TaskTag item = ((FrameworkElement)sender).DataContext as TaskTag;
+
+                if (item != null)
+                {
+                    NavigationService.Navigate(new Uri("/TaskListByTagPage.xaml?id=" + item.Name, UriKind.Relative));
+                }
             }
         }
 
@@ -546,5 +630,36 @@ namespace Milkman
         }
 
         #endregion
+    }
+
+    public class TaskTag
+    {
+        private string _name;
+        private int _count;
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public int Count
+        {
+            get { return _count; }
+            set { _count = value; }
+        }
+
+        public string CountString
+        {
+            get
+            {
+                if (Count == 0)
+                    return Strings.NoTasks;
+                else if (Count == 1)
+                    return Count + " " + Strings.TaskSingle;
+                else
+                    return Count + " " + Strings.TaskPlural;
+            }
+        }
     }
 }

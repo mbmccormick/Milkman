@@ -224,8 +224,12 @@
               </TypeCodeItem>
               <TypeCodeItem Name="MainPage" IsInstrumented="true" IsEnabled="true" IsExpanded="true">
                 <Children>
+                  <MethodCodeItem Name="DashboardTasks.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt; Milkman.MainPage.DashboardTasks.get()" />
+                  <MethodCodeItem Name="DashboardTasks.set(ObservableCollection&lt;Task&gt;)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.DashboardTasks.set(System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt;)" />
                   <MethodCodeItem Name="TaskLists.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Collections.ObjectModel.ObservableCollection&lt;IronCow.TaskList&gt; Milkman.MainPage.TaskLists.get()" />
                   <MethodCodeItem Name="TaskLists.set(ObservableCollection&lt;TaskList&gt;)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.TaskLists.set(System.Collections.ObjectModel.ObservableCollection&lt;IronCow.TaskList&gt;)" />
+                  <MethodCodeItem Name="TaskTags.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Collections.ObjectModel.ObservableCollection&lt;Milkman.TaskTag&gt; Milkman.MainPage.TaskTags.get()" />
+                  <MethodCodeItem Name="TaskTags.set(ObservableCollection&lt;TaskTag&gt;)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.TaskTags.set(System.Collections.ObjectModel.ObservableCollection&lt;Milkman.TaskTag&gt;)" />
                   <MethodCodeItem Name=".ctor()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage..ctor()" />
                   <MethodCodeItem Name="BuildApplicationBar()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.BuildApplicationBar()" />
                   <MethodCodeItem Name="App_UnhandledExceptionHandled(Object, ApplicationUnhandledExceptionEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.App_UnhandledExceptionHandled(System.Object, System.Windows.ApplicationUnhandledExceptionEventArgs)" />
@@ -263,17 +267,28 @@
                   <MethodCodeItem Name="&lt;SyncData&gt;b__6()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.MainPage.&lt;SyncData&gt;b__6()" />
                   <MethodCodeItem Name="&lt;LoadData&gt;b__a(Object, DoWorkEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;LoadData&gt;b__a(System.Object, System.ComponentModel.DoWorkEventArgs)" />
                   <MethodCodeItem Name="&lt;LoadDataInBackground&gt;b__b()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;LoadDataInBackground&gt;b__b()" />
-                  <MethodCodeItem Name="&lt;ToggleLoadingText&gt;b__c()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;ToggleLoadingText&gt;b__c()" />
-                  <MethodCodeItem Name="&lt;ToggleEmptyText&gt;b__d()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;ToggleEmptyText&gt;b__d()" />
-                  <MethodCodeItem Name="&lt;Login&gt;b__e()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;Login&gt;b__e()" />
-                  <MethodCodeItem Name="&lt;mnuSettings_Click&gt;b__f()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;mnuSettings_Click&gt;b__f()" />
-                  <MethodCodeItem Name="&lt;mnuAbout_Click&gt;b__10()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;mnuAbout_Click&gt;b__10()" />
-                  <MethodCodeItem Name="&lt;MenuItem_Click&gt;b__11(ShellTile)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Boolean Milkman.MainPage.&lt;MenuItem_Click&gt;b__11(Microsoft.Phone.Shell.ShellTile)" />
-                  <MethodCodeItem Name="&lt;MenuItem_Click&gt;b__12(Task)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Boolean Milkman.MainPage.&lt;MenuItem_Click&gt;b__12(IronCow.Task)" />
-                  <MethodCodeItem Name="&lt;MenuItem_Click&gt;b__13(Task)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Boolean Milkman.MainPage.&lt;MenuItem_Click&gt;b__13(IronCow.Task)" />
-                  <MethodCodeItem Name="&lt;AddTask&gt;b__17()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;AddTask&gt;b__17()" />
-                  <MethodCodeItem Name="&lt;AddTask&gt;b__18()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.MainPage.&lt;AddTask&gt;b__18()" />
+                  <MethodCodeItem Name="&lt;LoadDataInBackground&gt;b__c(KeyValuePair&lt;String, ObservableCollection&lt;Task&gt;&gt;)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.String Milkman.MainPage.&lt;LoadDataInBackground&gt;b__c(System.Collections.Generic.KeyValuePair&lt;System.String, System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt;&gt;)" />
+                  <MethodCodeItem Name="&lt;ToggleLoadingText&gt;b__e()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;ToggleLoadingText&gt;b__e()" />
+                  <MethodCodeItem Name="&lt;ToggleEmptyText&gt;b__f()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;ToggleEmptyText&gt;b__f()" />
+                  <MethodCodeItem Name="&lt;Login&gt;b__10()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;Login&gt;b__10()" />
+                  <MethodCodeItem Name="&lt;mnuSettings_Click&gt;b__11()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;mnuSettings_Click&gt;b__11()" />
+                  <MethodCodeItem Name="&lt;mnuAbout_Click&gt;b__12()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;mnuAbout_Click&gt;b__12()" />
+                  <MethodCodeItem Name="&lt;MenuItem_Click&gt;b__13(ShellTile)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Boolean Milkman.MainPage.&lt;MenuItem_Click&gt;b__13(Microsoft.Phone.Shell.ShellTile)" />
+                  <MethodCodeItem Name="&lt;MenuItem_Click&gt;b__14(Task)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Boolean Milkman.MainPage.&lt;MenuItem_Click&gt;b__14(IronCow.Task)" />
+                  <MethodCodeItem Name="&lt;MenuItem_Click&gt;b__15(Task)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Boolean Milkman.MainPage.&lt;MenuItem_Click&gt;b__15(IronCow.Task)" />
+                  <MethodCodeItem Name="&lt;AddTask&gt;b__19()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.MainPage.&lt;AddTask&gt;b__19()" />
+                  <MethodCodeItem Name="&lt;AddTask&gt;b__1a()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.MainPage.&lt;AddTask&gt;b__1a()" />
                   <MethodCodeItem Name=".cctor()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.MainPage..cctor()" />
+                </Children>
+              </TypeCodeItem>
+              <TypeCodeItem Name="TaskTag" IsInstrumented="true" IsEnabled="true" IsExpanded="true">
+                <Children>
+                  <MethodCodeItem Name="Name.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.String Milkman.TaskTag.Name.get()" />
+                  <MethodCodeItem Name="Name.set(String)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskTag.Name.set(System.String)" />
+                  <MethodCodeItem Name="Count.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Int32 Milkman.TaskTag.Count.get()" />
+                  <MethodCodeItem Name="Count.set(Int32)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskTag.Count.set(System.Int32)" />
+                  <MethodCodeItem Name="CountString.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.String Milkman.TaskTag.CountString.get()" />
+                  <MethodCodeItem Name=".ctor()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskTag..ctor()" />
                 </Children>
               </TypeCodeItem>
               <TypeCodeItem Name="TaskListByDatePage" IsInstrumented="true" IsEnabled="true" IsExpanded="true">
@@ -489,6 +504,85 @@
                   <MethodCodeItem Name="&lt;DeleteTask&gt;b__20()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByLocationPage.&lt;DeleteTask&gt;b__20()" />
                   <MethodCodeItem Name="&lt;DeleteTask&gt;b__21()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByLocationPage.&lt;DeleteTask&gt;b__21()" />
                   <MethodCodeItem Name=".cctor()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByLocationPage..cctor()" />
+                </Children>
+              </TypeCodeItem>
+              <TypeCodeItem Name="TaskListByTagPage" IsInstrumented="true" IsEnabled="true" IsExpanded="true">
+                <Children>
+                  <MethodCodeItem Name="AllTasks.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt; Milkman.TaskListByTagPage.AllTasks.get()" />
+                  <MethodCodeItem Name="AllTasks.set(ObservableCollection&lt;Task&gt;)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.AllTasks.set(System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt;)" />
+                  <MethodCodeItem Name="TodayTasks.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt; Milkman.TaskListByTagPage.TodayTasks.get()" />
+                  <MethodCodeItem Name="TodayTasks.set(ObservableCollection&lt;Task&gt;)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.TodayTasks.set(System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt;)" />
+                  <MethodCodeItem Name="TomorrowTasks.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt; Milkman.TaskListByTagPage.TomorrowTasks.get()" />
+                  <MethodCodeItem Name="TomorrowTasks.set(ObservableCollection&lt;Task&gt;)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.TomorrowTasks.set(System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt;)" />
+                  <MethodCodeItem Name="OverdueTasks.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt; Milkman.TaskListByTagPage.OverdueTasks.get()" />
+                  <MethodCodeItem Name="OverdueTasks.set(ObservableCollection&lt;Task&gt;)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.OverdueTasks.set(System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt;)" />
+                  <MethodCodeItem Name="WeekTasks.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt; Milkman.TaskListByTagPage.WeekTasks.get()" />
+                  <MethodCodeItem Name="WeekTasks.set(ObservableCollection&lt;Task&gt;)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.WeekTasks.set(System.Collections.ObjectModel.ObservableCollection&lt;IronCow.Task&gt;)" />
+                  <MethodCodeItem Name=".ctor()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage..ctor()" />
+                  <MethodCodeItem Name="BuildApplicationBar()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.BuildApplicationBar()" />
+                  <MethodCodeItem Name="App_UnhandledExceptionHandled(Object, ApplicationUnhandledExceptionEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.App_UnhandledExceptionHandled(System.Object, System.Windows.ApplicationUnhandledExceptionEventArgs)" />
+                  <MethodCodeItem Name="App_SyncingDisabled(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.App_SyncingDisabled(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="OnNavigatedTo(NavigationEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::virtual System.Void Milkman.TaskListByTagPage.OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs)" />
+                  <MethodCodeItem Name="OnBackKeyPress(CancelEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::virtual System.Void Milkman.TaskListByTagPage.OnBackKeyPress(System.ComponentModel.CancelEventArgs)" />
+                  <MethodCodeItem Name="SyncData()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.SyncData()" />
+                  <MethodCodeItem Name="LoadData()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.LoadData()" />
+                  <MethodCodeItem Name="LoadDataInBackground()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.LoadDataInBackground()" />
+                  <MethodCodeItem Name="ToggleLoadingText()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.ToggleLoadingText()" />
+                  <MethodCodeItem Name="ToggleEmptyText()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.ToggleEmptyText()" />
+                  <MethodCodeItem Name="Login()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.Login()" />
+                  <MethodCodeItem Name="btnDashboard_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.btnDashboard_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="btnAdd_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.btnAdd_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="dlgAddTask_Submit(Object, SubmitEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.dlgAddTask_Submit(System.Object, Milkman.SubmitEventArgs)" />
+                  <MethodCodeItem Name="dlgAddTask_Cancel(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.dlgAddTask_Cancel(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="btnSelect_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.btnSelect_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="btnComplete_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.btnComplete_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="btnPostpone_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.btnPostpone_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="btnDelete_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.btnDelete_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="btnSync_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.btnSync_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="MultiselectList_SelectionChanged(Object, SelectionChangedEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.MultiselectList_SelectionChanged(System.Object, System.Windows.Controls.SelectionChangedEventArgs)" />
+                  <MethodCodeItem Name="MultiselectList_IsSelectionEnabledChanged(Object, DependencyPropertyChangedEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.MultiselectList_IsSelectionEnabledChanged(System.Object, System.Windows.DependencyPropertyChangedEventArgs)" />
+                  <MethodCodeItem Name="ItemContent_Tap(Object, GestureEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.ItemContent_Tap(System.Object, System.Windows.Input.GestureEventArgs)" />
+                  <MethodCodeItem Name="mnuSettings_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.mnuSettings_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="mnuAbout_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.mnuAbout_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="mnuFeedback_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.mnuFeedback_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="mnuDonate_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.mnuDonate_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="mnuSignOut_Click(Object, EventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.mnuSignOut_Click(System.Object, System.EventArgs)" />
+                  <MethodCodeItem Name="MostRecentTaskClick.get()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::IronCow.Task Milkman.TaskListByTagPage.MostRecentTaskClick.get()" />
+                  <MethodCodeItem Name="MostRecentTaskClick.set(Task)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.MostRecentTaskClick.set(IronCow.Task)" />
+                  <MethodCodeItem Name="OnMouseLeftButtonDown(MouseButtonEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::virtual System.Void Milkman.TaskListByTagPage.OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs)" />
+                  <MethodCodeItem Name="MenuItem_Click(Object, RoutedEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.MenuItem_Click(System.Object, System.Windows.RoutedEventArgs)" />
+                  <MethodCodeItem Name="AddTask(String)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.AddTask(System.String)" />
+                  <MethodCodeItem Name="CompleteTask(Task)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.CompleteTask(IronCow.Task)" />
+                  <MethodCodeItem Name="PostponeTask(Task)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.PostponeTask(IronCow.Task)" />
+                  <MethodCodeItem Name="DeleteTask(Task)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.DeleteTask(IronCow.Task)" />
+                  <MethodCodeItem Name="InitializeComponent()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.InitializeComponent()" />
+                  <MethodCodeItem Name="&lt;App_UnhandledExceptionHandled&gt;b__0()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByTagPage.&lt;App_UnhandledExceptionHandled&gt;b__0()" />
+                  <MethodCodeItem Name="&lt;App_SyncingDisabled&gt;b__2()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;App_SyncingDisabled&gt;b__2()" />
+                  <MethodCodeItem Name="&lt;SyncData&gt;b__3(Object, DoWorkEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;SyncData&gt;b__3(System.Object, System.ComponentModel.DoWorkEventArgs)" />
+                  <MethodCodeItem Name="&lt;SyncData&gt;b__4()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByTagPage.&lt;SyncData&gt;b__4()" />
+                  <MethodCodeItem Name="&lt;SyncData&gt;b__5()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;SyncData&gt;b__5()" />
+                  <MethodCodeItem Name="&lt;SyncData&gt;b__6()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByTagPage.&lt;SyncData&gt;b__6()" />
+                  <MethodCodeItem Name="&lt;LoadData&gt;b__a(Object, DoWorkEventArgs)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;LoadData&gt;b__a(System.Object, System.ComponentModel.DoWorkEventArgs)" />
+                  <MethodCodeItem Name="&lt;LoadDataInBackground&gt;b__b()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;LoadDataInBackground&gt;b__b()" />
+                  <MethodCodeItem Name="&lt;LoadDataInBackground&gt;b__c(Task)" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Nullable&lt;System.DateTime&gt; Milkman.TaskListByTagPage.&lt;LoadDataInBackground&gt;b__c(IronCow.Task)" />
+                  <MethodCodeItem Name="&lt;ToggleLoadingText&gt;b__e()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;ToggleLoadingText&gt;b__e()" />
+                  <MethodCodeItem Name="&lt;ToggleEmptyText&gt;b__f()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;ToggleEmptyText&gt;b__f()" />
+                  <MethodCodeItem Name="&lt;Login&gt;b__10()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;Login&gt;b__10()" />
+                  <MethodCodeItem Name="&lt;btnDashboard_Click&gt;b__11()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;btnDashboard_Click&gt;b__11()" />
+                  <MethodCodeItem Name="&lt;mnuSettings_Click&gt;b__12()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;mnuSettings_Click&gt;b__12()" />
+                  <MethodCodeItem Name="&lt;mnuAbout_Click&gt;b__13()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;mnuAbout_Click&gt;b__13()" />
+                  <MethodCodeItem Name="&lt;AddTask&gt;b__14()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;AddTask&gt;b__14()" />
+                  <MethodCodeItem Name="&lt;AddTask&gt;b__15()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByTagPage.&lt;AddTask&gt;b__15()" />
+                  <MethodCodeItem Name="&lt;CompleteTask&gt;b__17()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;CompleteTask&gt;b__17()" />
+                  <MethodCodeItem Name="&lt;CompleteTask&gt;b__18()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;CompleteTask&gt;b__18()" />
+                  <MethodCodeItem Name="&lt;CompleteTask&gt;b__19()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByTagPage.&lt;CompleteTask&gt;b__19()" />
+                  <MethodCodeItem Name="&lt;PostponeTask&gt;b__1b()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;PostponeTask&gt;b__1b()" />
+                  <MethodCodeItem Name="&lt;PostponeTask&gt;b__1c()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;PostponeTask&gt;b__1c()" />
+                  <MethodCodeItem Name="&lt;PostponeTask&gt;b__1d()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByTagPage.&lt;PostponeTask&gt;b__1d()" />
+                  <MethodCodeItem Name="&lt;DeleteTask&gt;b__1f()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;DeleteTask&gt;b__1f()" />
+                  <MethodCodeItem Name="&lt;DeleteTask&gt;b__20()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::System.Void Milkman.TaskListByTagPage.&lt;DeleteTask&gt;b__20()" />
+                  <MethodCodeItem Name="&lt;DeleteTask&gt;b__21()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByTagPage.&lt;DeleteTask&gt;b__21()" />
+                  <MethodCodeItem Name=".cctor()" IsInstrumented="true" IsEnabled="true" Signature="Milkman::static System.Void Milkman.TaskListByTagPage..cctor()" />
                 </Children>
               </TypeCodeItem>
               <TypeCodeItem Name="TaskListPage" IsInstrumented="true" IsEnabled="true" IsExpanded="true">
@@ -872,7 +966,7 @@
           </NamespaceCodeItem>
         </Children>
       </AssemblyCodeItem>
-      <AssemblyCodeItem Name="IronCow.dll" IsInstrumented="false" IsEnabled="true" IsExpanded="true">
+      <AssemblyCodeItem Name="IronCow.dll" IsInstrumented="true" IsEnabled="true" IsExpanded="true">
         <Children>
           <NamespaceCodeItem Name="IronCow" IsInstrumented="true" IsEnabled="true" IsExpanded="true">
             <Children>
@@ -3191,6 +3285,9 @@
                   <MethodCodeItem Name="IgnorePrioritySetting.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.IgnorePrioritySetting.get()" />
                   <MethodCodeItem Name="JustAMoment.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.JustAMoment.get()" />
                   <MethodCodeItem Name="List.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.List.get()" />
+                  <MethodCodeItem Name="Lists.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.Lists.get()" />
+                  <MethodCodeItem Name="ListsLower.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.ListsLower.get()" />
+                  <MethodCodeItem Name="ListUpper.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.ListUpper.get()" />
                   <MethodCodeItem Name="LiveTileEmpty.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.LiveTileEmpty.get()" />
                   <MethodCodeItem Name="LiveTileNearbyEmpty.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.LiveTileNearbyEmpty.get()" />
                   <MethodCodeItem Name="LiveTileNearbyPlural.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.LiveTileNearbyPlural.get()" />
@@ -3288,6 +3385,8 @@
                   <MethodCodeItem Name="SyncMenuLower.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.SyncMenuLower.get()" />
                   <MethodCodeItem Name="SyncMenuUpper.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.SyncMenuUpper.get()" />
                   <MethodCodeItem Name="Tags.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.Tags.get()" />
+                  <MethodCodeItem Name="TagsLower.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.TagsLower.get()" />
+                  <MethodCodeItem Name="TagsUpper.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.TagsUpper.get()" />
                   <MethodCodeItem Name="Task.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.Task.get()" />
                   <MethodCodeItem Name="TaskDetails.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.TaskDetails.get()" />
                   <MethodCodeItem Name="TaskDetailsLower.get()" IsInstrumented="true" IsEnabled="true" Signature="IronCow::static System.String IronCow.Resources.Strings.TaskDetailsLower.get()" />

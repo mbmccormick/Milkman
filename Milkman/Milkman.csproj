@@ -124,6 +124,9 @@
     <Compile Include="TaskListByLocationPage.xaml.cs">
       <DependentUpon>TaskListByLocationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TaskListByTagPage.xaml.cs">
+      <DependentUpon>TaskListByTagPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TaskListPage.xaml.cs">
       <DependentUpon>TaskListPage.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TaskListByTagPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TaskListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,6 +234,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Libraries\YourLastAboutDialog.dll" />
+    <Content Include="PanoramaBackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\add.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

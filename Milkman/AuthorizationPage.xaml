@@ -13,7 +13,8 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="False"
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.Opacity="0.0"
     toolkit:TiltEffect.IsTiltEnabled="True">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">

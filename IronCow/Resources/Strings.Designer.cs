@@ -997,6 +997,33 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lists.
+        /// </summary>
+        public static string Lists {
+            get {
+                return ResourceManager.GetString("Lists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to lists.
+        /// </summary>
+        public static string ListsLower {
+            get {
+                return ResourceManager.GetString("ListsLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LISTS.
+        /// </summary>
+        public static string ListUpper {
+            get {
+                return ResourceManager.GetString("ListUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No tasks due today.
         /// </summary>
         public static string LiveTileEmpty {
@@ -1866,6 +1893,24 @@ namespace IronCow.Resources {
         public static string Tags {
             get {
                 return ResourceManager.GetString("Tags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tags.
+        /// </summary>
+        public static string TagsLower {
+            get {
+                return ResourceManager.GetString("TagsLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TAGS.
+        /// </summary>
+        public static string TagsUpper {
+            get {
+                return ResourceManager.GetString("TagsUpper", resourceCulture);
             }
         }
         
