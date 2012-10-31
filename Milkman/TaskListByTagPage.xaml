@@ -19,7 +19,8 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold">
+        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold"
+                               toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
             <controls:PivotItem Header="{Binding Resources.AllLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:MultiselectList x:Name="lstAll" ItemsSource="{Binding AllTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
@@ -30,7 +31,8 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
+                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -86,7 +88,8 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
+                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -142,7 +145,8 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
+                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -198,7 +202,8 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
+                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -255,7 +260,8 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
+                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -314,20 +320,20 @@
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
             </toolkit:NavigationInTransition.Backward>
             <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
             </toolkit:NavigationInTransition.Forward>
         </toolkit:NavigationInTransition>
     </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
