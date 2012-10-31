@@ -41,7 +41,7 @@
                             <DataTemplate>
                                 <StackPanel Margin="12,0,12,18" Tap="ItemContent_Tap">
                                     <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="White" />
-                                    <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDatePanoramaForegroundBrush}" FontWeight="Normal" />
+                                    <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDatePanoramaForegroundBrush}" FontWeight="Normal" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
