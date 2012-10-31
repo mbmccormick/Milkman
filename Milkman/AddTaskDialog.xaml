@@ -36,7 +36,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <TextBlock Margin="18,0,18,12" Text="{Binding Resources.AddTaskDialogTitle, Source={StaticResource Strings}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="{StaticResource PhoneFontSizeLarge}" Foreground="{StaticResource PhoneForegroundBrush}" FontWeight="Medium" />
+            <TextBlock x:Name="txtTitle" Margin="18,0,18,12" Text="{Binding Resources.AddTaskDialogTitle, Source={StaticResource Strings}}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="{StaticResource PhoneFontSizeLarge}" Foreground="{StaticResource PhoneForegroundBrush}" FontWeight="Medium" />
             
             <Canvas Margin="18,24" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="White" Canvas.ZIndex="1"/>
             <TextBox x:Name="txtDetails" InputScope="Text" Margin="6,12" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" KeyUp="txtDetails_KeyUp" Canvas.ZIndex="2" Background="White" BorderBrush="{StaticResource PhoneForegroundBrush}" />

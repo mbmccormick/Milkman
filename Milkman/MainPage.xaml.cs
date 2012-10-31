@@ -350,7 +350,7 @@ namespace Milkman
 
             if (settings.AddTaskDialogEnabled == true)
             {
-                this.dlgAddTask.Open();
+                this.dlgAddTask.Open(true);
 
                 this.ApplicationBar.IsVisible = false;
             }

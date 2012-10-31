@@ -47,7 +47,7 @@ namespace Milkman
                 {
                     if (value)
                     {
-                        Open();
+                        Open(false);
                     }
                     else
                     {
@@ -95,8 +95,13 @@ namespace Milkman
 
         #region Open and Close Events
 
-        public void Open()
+        public void Open(bool isPanoramaPage)
         {
+            if (isPanoramaPage == true)
+                this.txtTitle.Margin = new Thickness(18, 32, 18, 12);
+            else
+                this.txtTitle.Margin = new Thickness(18, 0, 18, 12);
+
             stbSwivelIn.Begin();
             SystemTray.BackgroundColor = (Color)Resources["PhoneChromeColor"];
 
