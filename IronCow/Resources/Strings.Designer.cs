@@ -1312,6 +1312,15 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to no.
+        /// </summary>
+        public static string NoLower {
+            get {
+                return ResourceManager.GetString("NoLower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to None.
         /// </summary>
         public static string None {
@@ -2244,6 +2253,15 @@ namespace IronCow.Resources {
         public static string WorkingOffline {
             get {
                 return ResourceManager.GetString("WorkingOffline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to yes.
+        /// </summary>
+        public static string YesLower {
+            get {
+                return ResourceManager.GetString("YesLower", resourceCulture);
             }
         }
     }

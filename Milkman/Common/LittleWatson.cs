@@ -12,6 +12,7 @@ using System.IO.IsolatedStorage;
 using System.IO;
 using Microsoft.Phone.Tasks;
 using IronCow.Resources;
+using Microsoft.Phone.Controls;
 
 namespace Milkman.Common
 {
@@ -59,23 +60,42 @@ namespace Milkman.Common
 
                 if (contents != null)
                 {
-                    string messageText = null;
+                    string messageBoxText = null;
                     if (isFirstRun)
-                        messageText = Strings.UnhandledCrashDialog;
+                        messageBoxText = Strings.UnhandledCrashDialog;
                     else
-                        messageText = Strings.UnhandledErrorDialog;
+                        messageBoxText = Strings.UnhandledErrorDialog;
 
-                    if (MessageBox.Show(messageText, Strings.UnhandledErrorDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    CustomMessageBox messageBox = new CustomMessageBox()
                     {
-                        EmailComposeTask email = new EmailComposeTask();
-                        email.To = "milkman@mbmccormick.com";
-                        email.Subject = "Milkman Error Report";
-                        email.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n" + contents;
+                        Caption = Strings.UnhandledErrorDialogTitle,
+                        Message = messageBoxText,
+                        LeftButtonContent = Strings.YesLower,
+                        RightButtonContent = Strings.NoLower,
+                        IsFullScreen = false
+                    };
 
-                        SafeDeleteFile(IsolatedStorageFile.GetUserStoreForApplication());
+                    messageBox.Dismissed += (s1, e1) =>
+                    {
+                        switch (e1.Result)
+                        {
+                            case CustomMessageBoxResult.LeftButton:
+                                EmailComposeTask email = new EmailComposeTask();
+                                email.To = "milkman@mbmccormick.com";
+                                email.Subject = "Milkman Error Report";
+                                email.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n" + contents;
 
-                        email.Show();
-                    }
+                                SafeDeleteFile(IsolatedStorageFile.GetUserStoreForApplication());
+
+                                email.Show();
+
+                                break;
+                            default:
+                                break;
+                        }
+                    };
+
+                    messageBox.Show();
                 }
             }
             catch (Exception)

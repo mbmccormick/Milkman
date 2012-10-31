@@ -527,16 +527,35 @@ namespace Milkman
             else
                 messageBoxText = Strings.CompleteTaskPluralDialog;
 
-            if (MessageBox.Show(messageBoxText, Strings.CompleteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            CustomMessageBox messageBox = new CustomMessageBox()
             {
-                while (target.SelectedItems.Count > 0)
-                {
-                    CompleteTask((Task)target.SelectedItems[0]);
-                    target.SelectedItems.RemoveAt(0);
-                }
+                Caption = Strings.CompleteDialogTitle,
+                Message = messageBoxText,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
 
-                target.IsSelectionEnabled = false;
-            }
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                    case CustomMessageBoxResult.LeftButton:
+                        while (target.SelectedItems.Count > 0)
+                        {
+                            CompleteTask((Task)target.SelectedItems[0]);
+                            target.SelectedItems.RemoveAt(0);
+                        }
+
+                        target.IsSelectionEnabled = false;
+
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            messageBox.Show();
         }
 
         private void btnPostpone_Click(object sender, EventArgs e)
@@ -561,16 +580,35 @@ namespace Milkman
             else
                 messageBoxText = Strings.PostponeTaskPluralDialog;
 
-            if (MessageBox.Show(messageBoxText, Strings.PostponeDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            CustomMessageBox messageBox = new CustomMessageBox()
             {
-                while (target.SelectedItems.Count > 0)
-                {
-                    PostponeTask((Task)target.SelectedItems[0]);
-                    target.SelectedItems.RemoveAt(0);
-                }
+                Caption = Strings.PostponeDialogTitle,
+                Message = messageBoxText,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
 
-                target.IsSelectionEnabled = false;
-            }
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                    case CustomMessageBoxResult.LeftButton:
+                        while (target.SelectedItems.Count > 0)
+                        {
+                            PostponeTask((Task)target.SelectedItems[0]);
+                            target.SelectedItems.RemoveAt(0);
+                        }
+
+                        target.IsSelectionEnabled = false;
+
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            messageBox.Show();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -595,16 +633,35 @@ namespace Milkman
             else
                 messageBoxText = Strings.DeleteTaskPluralDialog;
 
-            if (MessageBox.Show(messageBoxText, Strings.DeleteTaskDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            CustomMessageBox messageBox = new CustomMessageBox()
             {
-                while (target.SelectedItems.Count > 0)
-                {
-                    DeleteTask((Task)target.SelectedItems[0]);
-                    target.SelectedItems.RemoveAt(0);
-                }
+                Caption = Strings.DeleteTaskDialogTitle,
+                Message = messageBoxText,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
 
-                target.IsSelectionEnabled = false;
-            }
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                    case CustomMessageBoxResult.LeftButton:
+                        while (target.SelectedItems.Count > 0)
+                        {
+                            DeleteTask((Task)target.SelectedItems[0]);
+                            target.SelectedItems.RemoveAt(0);
+                        }
+
+                        target.IsSelectionEnabled = false;
+
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            messageBox.Show();
         }
 
         private void btnSync_Click(object sender, EventArgs e)
@@ -765,11 +822,30 @@ namespace Milkman
 
         private void mnuSignOut_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Strings.SignOutDialog, Strings.SignOutDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            CustomMessageBox messageBox = new CustomMessageBox()
             {
-                App.DeleteData();
-                Login();
-            }
+                Caption = Strings.SignOutDialogTitle,
+                Message = Strings.SignOutDialog,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                    case CustomMessageBoxResult.LeftButton:
+                        App.DeleteData();
+                        Login();
+
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            messageBox.Show();
         }
 
         private Task MostRecentTaskClick
@@ -798,18 +874,81 @@ namespace Milkman
 
             if (target.Header.ToString() == Strings.CompleteMenuLower)
             {
-                if (MessageBox.Show(Strings.CompleteDialog, Strings.CompleteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                    CompleteTask(MostRecentTaskClick);
+                CustomMessageBox messageBox = new CustomMessageBox()
+                {
+                    Caption = Strings.CompleteDialogTitle,
+                    Message = Strings.CompleteDialog,
+                    LeftButtonContent = Strings.YesLower,
+                    RightButtonContent = Strings.NoLower,
+                    IsFullScreen = false
+                };
+
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            CompleteTask(MostRecentTaskClick);
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
             }
             else if (target.Header.ToString() == Strings.PostponeMenuLower)
             {
-                if (MessageBox.Show(Strings.PostponeDialog, Strings.PostponeDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                    PostponeTask(MostRecentTaskClick);
+                CustomMessageBox messageBox = new CustomMessageBox()
+                {
+                    Caption = Strings.PostponeDialogTitle,
+                    Message = Strings.PostponeDialog,
+                    LeftButtonContent = Strings.YesLower,
+                    RightButtonContent = Strings.NoLower,
+                    IsFullScreen = false
+                };
+
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            PostponeTask(MostRecentTaskClick);
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
             }
             else if (target.Header.ToString() == Strings.DeleteMenuLower)
             {
-                if (MessageBox.Show(Strings.DeleteTaskDialog, Strings.DeleteTaskDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                    DeleteTask(MostRecentTaskClick);
+                CustomMessageBox messageBox = new CustomMessageBox()
+                {
+                    Caption = Strings.DeleteTaskDialogTitle,
+                    Message = Strings.DeleteTaskDialog,
+                    LeftButtonContent = Strings.YesLower,
+                    RightButtonContent = Strings.NoLower,
+                    IsFullScreen = false
+                };
+
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            DeleteTask(MostRecentTaskClick);
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
             }
         }
 

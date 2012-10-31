@@ -157,26 +157,45 @@ namespace Milkman
         {
             if (!GlobalLoading.Instance.IsLoading)
             {
-                if (MessageBox.Show(Strings.DeleteNoteDialog, Strings.DeleteNoteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                CustomMessageBox messageBox = new CustomMessageBox()
                 {
-                    GlobalLoading.Instance.IsLoadingText(Strings.DeletingNote);
+                    Caption = Strings.DeleteNoteDialogTitle,
+                    Message = Strings.DeleteNoteDialog,
+                    LeftButtonContent = Strings.YesLower,
+                    RightButtonContent = Strings.NoLower,
+                    IsFullScreen = false
+                };
 
-                    // delete note
-                    SmartDispatcher.BeginInvoke(() =>
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
                     {
-                        CurrentTask.DeleteNote(CurrentNote, () =>
-                        {
-                            App.RtmClient.CacheTasks(() =>
+                        case CustomMessageBoxResult.LeftButton:
+                            GlobalLoading.Instance.IsLoadingText(Strings.DeletingNote);
+
+                            // delete note
+                            SmartDispatcher.BeginInvoke(() =>
                             {
-                                Dispatcher.BeginInvoke(() =>
+                                CurrentTask.DeleteNote(CurrentNote, () =>
                                 {
-                                    GlobalLoading.Instance.IsLoading = false;
-                                    NavigationService.GoBack();
+                                    App.RtmClient.CacheTasks(() =>
+                                    {
+                                        Dispatcher.BeginInvoke(() =>
+                                        {
+                                            GlobalLoading.Instance.IsLoading = false;
+                                            NavigationService.GoBack();
+                                        });
+                                    });
                                 });
                             });
-                        });
-                    });
-                }
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
             }
         }
 

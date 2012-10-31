@@ -490,11 +490,30 @@ namespace Milkman
 
         private void mnuSignOut_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Strings.SignOutDialog, Strings.SignOutDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            CustomMessageBox messageBox = new CustomMessageBox()
             {
-                App.DeleteData();
-                Login();
-            }
+                Caption = Strings.SignOutDialogTitle,
+                Message = Strings.SignOutDialog,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                    case CustomMessageBoxResult.LeftButton:
+                        App.DeleteData();
+                        Login();
+
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            messageBox.Show();
         }
 
         private TaskList MostRecentTaskListClick

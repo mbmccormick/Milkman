@@ -188,19 +188,35 @@ namespace Milkman
             if (currentVersion != App.VersionNumber) // override if this is a new version
                 installDate = DateTime.UtcNow;
 
-            if (DateTime.UtcNow.AddDays(-2) >= installDate) // prompt after 2 days
+            if (DateTime.UtcNow.AddDays(-3) >= installDate) // prompt after 3 days
             {
-                if (MessageBox.Show(Strings.MarketplaceDialog, Strings.MarketplaceDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                CustomMessageBox messageBox = new CustomMessageBox()
                 {
-                    MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
-                    marketplaceReviewTask.Show();
+                    Caption = Strings.MarketplaceDialogTitle,
+                    Message = Strings.MarketplaceDialog,
+                    LeftButtonContent = Strings.YesLower,
+                    RightButtonContent = Strings.NoLower,
+                    IsFullScreen = false
+                };
 
-                    installDate = DateTime.MaxValue; // they have rated, don't prompt again
-                }
-                else
+                messageBox.Dismissed += (s1, e1) =>
                 {
-                    installDate = DateTime.UtcNow; // they did not rate, prompt again in 2 days
-                }
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
+                            marketplaceReviewTask.Show();
+
+                            installDate = DateTime.MaxValue; // they have rated, don't prompt again
+
+                            break;
+                        default:
+                            installDate = DateTime.UtcNow; // they did not rate, prompt again in 2 days
+                            break;
+                    }
+                };
+
+                messageBox.Show();
             }
 
             IsolatedStorageSettings.ApplicationSettings["CurrentVersion"] = App.VersionNumber; // save current version of application
@@ -280,14 +296,33 @@ namespace Milkman
                     {
                         RootFrame.Dispatcher.BeginInvoke(() =>
                         {
-                            if (MessageBox.Show(Strings.OfflineConnectionDialog, Strings.OfflineConnectionDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                            CustomMessageBox messageBox = new CustomMessageBox()
                             {
-                                RtmClient.DisableSyncing();
-                                GlobalLoading.Instance.StatusText(Strings.WorkingOffline);
+                                Caption = Strings.OfflineConnectionDialogTitle,
+                                Message = Strings.OfflineConnectionDialog,
+                                LeftButtonContent = Strings.YesLower,
+                                RightButtonContent = Strings.NoLower,
+                                IsFullScreen = false
+                            };
 
-                                if (SyncingDisabled != null)
-                                    SyncingDisabled(sender, null);
-                            }
+                            messageBox.Dismissed += (s1, e1) =>
+                            {
+                                switch (e1.Result)
+                                {
+                                    case CustomMessageBoxResult.LeftButton:
+                                        RtmClient.DisableSyncing();
+                                        GlobalLoading.Instance.StatusText(Strings.WorkingOffline);
+
+                                        if (SyncingDisabled != null)
+                                            SyncingDisabled(sender, null);
+
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            };
+
+                            messageBox.Show();
                         });
                     }
                 }

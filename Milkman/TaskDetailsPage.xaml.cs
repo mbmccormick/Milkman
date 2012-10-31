@@ -183,24 +183,62 @@ namespace Milkman
 
         private void btnComplete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Strings.CompleteDialog, Strings.CompleteDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            CustomMessageBox messageBox = new CustomMessageBox()
             {
-                if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
+                Caption = Strings.CompleteDialogTitle,
+                Message = Strings.CompleteDialog,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
                 {
-                    CompleteTask(CurrentTask);
+                    case CustomMessageBoxResult.LeftButton:
+                        if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
+                        {
+                            CompleteTask(CurrentTask);
+                        }
+
+                        break;
+                    default:
+                        break;
                 }
-            }
+            };
+
+            messageBox.Show();
         }
 
         private void btnPostpone_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Strings.PostponeDialog, Strings.PostponeDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            CustomMessageBox messageBox = new CustomMessageBox()
             {
-                if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
+                Caption = Strings.PostponeDialogTitle,
+                Message = Strings.PostponeDialog,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
                 {
-                    PostponeTask(CurrentTask);
+                    case CustomMessageBoxResult.LeftButton:
+                        if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
+                        {
+                            PostponeTask(CurrentTask);
+                        }
+
+                        break;
+                    default:
+                        break;
                 }
-            }
+            };
+
+            messageBox.Show();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -213,13 +251,32 @@ namespace Milkman
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(Strings.DeleteTaskDialog, Strings.DeleteTaskDialogTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            CustomMessageBox messageBox = new CustomMessageBox()
             {
-                if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
+                Caption = Strings.DeleteTaskDialogTitle,
+                Message = Strings.DeleteTaskDialog,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
                 {
-                    DeleteTask(CurrentTask);
+                    case CustomMessageBoxResult.LeftButton:
+                        if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
+                        {
+                            DeleteTask(CurrentTask);
+                        }
+
+                        break;
+                    default:
+                        break;
                 }
-            }
+            };
+
+            messageBox.Show();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
