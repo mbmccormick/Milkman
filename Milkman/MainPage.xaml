@@ -28,7 +28,7 @@
                     <ListBox x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" Margin="0,0,0,0">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Margin="0,0,0,72" />
+                                <StackPanel Margin="0,0,0,78" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                         <ListBox.ItemContainerStyle>
@@ -47,7 +47,7 @@
                     </ListBox>
 
                     <TextBlock x:Name="txtDashboardLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-                    <TextBlock x:Name="txtDashboardEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboard, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock x:Name="txtDashboardEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                 </Grid>
             </controls:PanoramaItem>
 
@@ -76,7 +76,7 @@
                     </ListBox>
 
                     <TextBlock x:Name="txtListsLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-                    <TextBlock x:Name="txtListsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboard, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock x:Name="txtListsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboardLists, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                 </Grid>
             </controls:PanoramaItem>
 
@@ -105,7 +105,7 @@
                     </ListBox>
 
                     <TextBlock x:Name="txtTagsLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
-                    <TextBlock x:Name="txtTagsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboard, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock x:Name="txtTagsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboardTags, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                 </Grid>
             </controls:PanoramaItem>
         </controls:Panorama>

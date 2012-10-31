@@ -864,9 +864,18 @@ namespace IronCow.Resources {
         /// <summary>
         ///   Looks up a localized string similar to You have no lists to display..
         /// </summary>
-        public static string EmptyDashboard {
+        public static string EmptyDashboardLists {
             get {
-                return ResourceManager.GetString("EmptyDashboard", resourceCulture);
+                return ResourceManager.GetString("EmptyDashboardLists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have no tags to display..
+        /// </summary>
+        public static string EmptyDashboardTags {
+            get {
+                return ResourceManager.GetString("EmptyDashboardTags", resourceCulture);
             }
         }
         
