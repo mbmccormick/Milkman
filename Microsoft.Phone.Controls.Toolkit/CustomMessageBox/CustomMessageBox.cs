@@ -139,6 +139,11 @@ namespace Microsoft.Phone.Controls
         private Color _systemTrayColor;
 
         /// <summary>
+        /// The current opacity of the system tray.
+        /// </summary>
+        private double _systemTrayOpacity;
+
+        /// <summary>
         /// Called when the message is being dismissing.
         /// </summary>
         public event EventHandler<DismissingEventArgs> Dismissing;
@@ -500,11 +505,14 @@ namespace Microsoft.Phone.Controls
             _frame = Application.Current.RootVisual as PhoneApplicationFrame;
             _page = _frame.Content as PhoneApplicationPage;
          
-            // Change the color of the system tray if necessary.
+            // Change the color and opacity of the system tray if necessary.
             if (SystemTray.IsVisible)
             {
                 // Cache the original color of the system tray.
                 _systemTrayColor = SystemTray.BackgroundColor;
+
+                // Cache the original opacity of the system tray.
+                _systemTrayOpacity = SystemTray.Opacity;
 
                 // Change the color of the system tray to match the message box.
                 if (Background is SolidColorBrush)
@@ -515,6 +523,9 @@ namespace Microsoft.Phone.Controls
                 {
                     SystemTray.BackgroundColor = (Color)Application.Current.Resources["PhoneChromeColor"];
                 }
+
+                // Change the opacity of the system tray to match the message box.
+                SystemTray.Opacity = 1.0;
             }
 
             // Hide the application bar if necessary.
@@ -659,10 +670,11 @@ namespace Microsoft.Phone.Controls
             if (restoreOriginalValues)
             {
                 // Set the system tray back to its original 
-                // color if necessary.
+                // color and opacity if necessary.
                 if (SystemTray.IsVisible)
                 {
                     SystemTray.BackgroundColor = _systemTrayColor;
+                    SystemTray.Opacity = _systemTrayOpacity;
                 }
 
                 // Bring the application bar if necessary.

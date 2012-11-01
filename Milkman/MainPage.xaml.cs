@@ -670,6 +670,14 @@ namespace Milkman
             }
         }
 
+        private void ApplicationBar_StateChanged(object sender, ApplicationBarStateChangedEventArgs e)
+        {
+            if (e.IsMenuVisible == true)
+                ApplicationBar.Opacity = 1.0;
+            else
+                ApplicationBar.Opacity = 0.7;
+        }
+
         #endregion
 
         #region Task Methods

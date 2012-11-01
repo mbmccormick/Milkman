@@ -114,7 +114,7 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.7" BackgroundColor="Black" ForegroundColor="White">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.7" BackgroundColor="Black" ForegroundColor="White" StateChanged="ApplicationBar_StateChanged">
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
