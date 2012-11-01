@@ -183,6 +183,7 @@
                             </Grid.ColumnDefinitions>
                             <ContentControl
                                 x:Name="Header"
+                                Grid.ColumnSpan="2"
                                 Content="{TemplateBinding Header}"
                                 ContentTemplate="{TemplateBinding HeaderTemplate}"
                                 FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -190,7 +191,7 @@
                                 Foreground="{StaticResource PhoneSubtleBrush}"
                                 HorizontalAlignment="Left"
                                 IsTabStop="False"
-                                Margin="-1,0,0,0"
+                                Margin="-1,0,0,5"
                                 Opacity="{TemplateBinding Opacity}"
                                 VerticalAlignment="Bottom"/>
                             <ContentControl
@@ -1415,7 +1416,7 @@
                                        Fill="{TemplateBinding Background}"
                                        StrokeThickness="0" Opacity="0.0"/>
                             <Canvas HorizontalAlignment="Left">
-                                <CheckBox x:Name="SelectBox" VerticalAlignment="Top" Margin="12,-20,5,0" Visibility="Collapsed"
+                                <CheckBox x:Name="SelectBox" VerticalAlignment="Top" Margin="12,-8,5,0" Visibility="Collapsed"
                                           IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected, Mode=TwoWay}">
                                     <CheckBox.RenderTransform>
                                         <CompositeTransform TranslateX="-58"/>
