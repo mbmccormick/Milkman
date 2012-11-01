@@ -23,10 +23,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28"
-                    toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.EditNoteUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold" />
-        </StackPanel>
+            </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <Grid.RowDefinitions>
@@ -36,15 +35,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="{Binding Resources.Title, Source={StaticResource Strings}}" Grid.Row="0" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="1" />
-            <TextBox x:Name="txtTitle" Grid.Row="1" Margin="0,0,0,0" InputScope="Text"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="1" />
+            <TextBlock Text="{Binding Resources.Title, Source={StaticResource Strings}}" Grid.Row="0" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+            <TextBox x:Name="txtTitle" Grid.Row="1" Margin="0,0,0,0" InputScope="Text" />
 
-            <TextBlock Text="{Binding Resources.Body, Source={StaticResource Strings}}" Grid.Row="2" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="2" />
-            <TextBox x:Name="txtBody" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,12" InputScope="Text"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="2" />
+            <TextBlock Text="{Binding Resources.Body, Source={StaticResource Strings}}" Grid.Row="2" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+            <TextBox x:Name="txtBody" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,12" InputScope="Text" />
         </Grid>
     </Grid>
 
@@ -56,20 +51,20 @@
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
             </toolkit:NavigationInTransition.Backward>
             <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
             </toolkit:NavigationInTransition.Forward>
         </toolkit:NavigationInTransition>
     </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>

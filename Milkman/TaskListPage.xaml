@@ -19,9 +19,8 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold"
-                               toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
-            <controls:PivotItem Header="{Binding Resources.AllLower, Source={StaticResource Strings}}" Margin="0,24,0,0">
+        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold">
+            <controls:PivotItem Header="{Binding Resources.AllLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:MultiselectList x:Name="lstAll" ItemsSource="{Binding AllTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
@@ -31,19 +30,22 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
-                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+                                    
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="99"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
-                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Normal" Margin="0,0,36,0" />
-                                    </Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    </Grid>
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -57,12 +59,12 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtAllLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,0,0,0"/>
-                    <TextBlock x:Name="txtAllEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,0,0,0"/>
+                    <TextBlock x:Name="txtAllLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtAllEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                 </Grid>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="{Binding Resources.TodayLower, Source={StaticResource Strings}}" Margin="0,24,0,0">
+            <controls:PivotItem Header="{Binding Resources.TodayLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:MultiselectList x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
@@ -72,19 +74,22 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
-                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="99"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
-                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Normal" Margin="0,0,36,0" />
-                                    </Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    </Grid>
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -98,12 +103,12 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtTodayLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,0,0,0"/>
-                    <TextBlock x:Name="txtTodayEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,0,0,0"/>
+                    <TextBlock x:Name="txtTodayLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtTodayEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                 </Grid>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="{Binding Resources.TomorrowLower, Source={StaticResource Strings}}" Margin="0,24,0,0">
+            <controls:PivotItem Header="{Binding Resources.TomorrowLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:MultiselectList x:Name="lstTomorrow" ItemsSource="{Binding TomorrowTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
@@ -113,19 +118,22 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
-                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="99"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
-                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Normal" Margin="0,0,36,0" />
-                                    </Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    </Grid>
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -139,12 +147,12 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtTomorrowLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,-9,0,0"/>
-                    <TextBlock x:Name="txtTomorrowEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,-9,0,0"/>
+                    <TextBlock x:Name="txtTomorrowLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtTomorrowEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                 </Grid>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="{Binding Resources.OverdueLower, Source={StaticResource Strings}}" Margin="0,24,0,0">
+            <controls:PivotItem Header="{Binding Resources.OverdueLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:MultiselectList x:Name="lstOverdue" ItemsSource="{Binding OverdueTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
@@ -154,19 +162,22 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
-                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="99"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
-                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Normal" Margin="0,0,36,0" />
-                                    </Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    </Grid>
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -180,13 +191,13 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtOverdueLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,0,0,0"/>
-                    <TextBlock x:Name="txtOverdueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,0,0,0"/>
+                    <TextBlock x:Name="txtOverdueLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtOverdueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
 
                 </Grid>
             </controls:PivotItem>
 
-            <controls:PivotItem Header="{Binding Resources.WeekLower, Source={StaticResource Strings}}" Margin="0,24,0,0">
+            <controls:PivotItem Header="{Binding Resources.WeekLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:MultiselectList x:Name="lstWeek" ItemsSource="{Binding WeekTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged">
                         <toolkit:MultiselectList.ItemContainerStyle>
@@ -196,19 +207,22 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap"
-                                            toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
+                                    <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+
                                     <Grid Margin="0">
                                         <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="99"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
-                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextWrapping="NoWrap" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Normal" Margin="0,0,36,0" />
-                                    </Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
 
-                                    <TextBlock Text="{Binding TagsString}" Grid.Row="1" Grid.Column="0" TextWrapping="NoWrap" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
+                                        <TextBlock Text="{Binding TagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="12,-6,36,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" HorizontalAlignment="Right" />
+                                    </Grid>
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -222,8 +236,8 @@
                         </toolkit:MultiselectList.ItemTemplate>
                     </toolkit:MultiselectList>
 
-                    <TextBlock x:Name="txtWeekLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,0,0,0"/>
-                    <TextBlock x:Name="txtWeekEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="24,0,0,0"/>
+                    <TextBlock x:Name="txtWeekLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
+                    <TextBlock x:Name="txtWeekEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
 
                 </Grid>
             </controls:PivotItem>
@@ -240,20 +254,20 @@
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
             </toolkit:NavigationInTransition.Backward>
             <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
             </toolkit:NavigationInTransition.Forward>
         </toolkit:NavigationInTransition>
     </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>

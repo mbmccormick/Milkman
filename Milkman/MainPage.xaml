@@ -25,8 +25,7 @@
             </controls:Panorama.Background>
             <controls:PanoramaItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}">
                 <Grid>
-                    <ListBox x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" Margin="0,0,0,0"
-                             toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+                    <ListBox x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" Margin="0,0,0,0">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Margin="0,0,0,78" />
@@ -41,7 +40,7 @@
                             <DataTemplate>
                                 <StackPanel Margin="12,0,12,18" Tap="ItemContent_Tap">
                                     <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="White" />
-                                    <TextBlock Text="{Binding FriendlyDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDatePanoramaForegroundBrush}" FontWeight="Normal" />
+                                    <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDatePanoramaForegroundBrush}" FontWeight="Normal" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -54,8 +53,7 @@
 
             <controls:PanoramaItem Header="{Binding Resources.ListsLower, Source={StaticResource Strings}}">
                 <Grid>
-                    <ListBox Name="lstLists" Margin="0,0,-12,0" ItemsSource="{Binding TaskLists}"
-                             toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+                    <ListBox Name="lstLists" Margin="0,0,-12,0" ItemsSource="{Binding TaskLists}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <toolkit:WrapPanel Margin="0,0,0,96" />
@@ -84,8 +82,7 @@
 
             <controls:PanoramaItem Header="{Binding Resources.TagsLower, Source={StaticResource Strings}}">
                 <Grid>
-                    <ListBox Name="lstTags" Margin="0,0,-12,0" ItemsSource="{Binding TaskTags}"
-                             toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+                    <ListBox Name="lstTags" Margin="0,0,-12,0" ItemsSource="{Binding TaskTags}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <toolkit:WrapPanel Margin="0,0,0,96" />
@@ -124,20 +121,20 @@
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
             </toolkit:NavigationInTransition.Backward>
             <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
             </toolkit:NavigationInTransition.Forward>
         </toolkit:NavigationInTransition>
     </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>

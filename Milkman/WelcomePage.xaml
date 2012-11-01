@@ -25,15 +25,12 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="0" />
-            <TextBlock x:Name="PageTitle" Text="{Binding Resources.WelcomeLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="1" />
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold" />
+            <TextBlock x:Name="PageTitle" Text="{Binding Resources.WelcomeLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Name="lstTiles" Margin="0,0,-12,0"
-                     toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
+            <ListBox Name="lstTiles" Margin="0,0,-12,0">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <toolkit:WrapPanel Margin="0,0,0,24" />
@@ -66,20 +63,20 @@
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
             </toolkit:NavigationInTransition.Backward>
             <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
             </toolkit:NavigationInTransition.Forward>
         </toolkit:NavigationInTransition>
     </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
