@@ -33,7 +33,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
                                     <TextBlock Text="{Binding FriendlyShortDueDate}" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
@@ -65,7 +65,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
                                     <TextBlock Text="{Binding FriendlyShortDueDate}" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
@@ -97,7 +97,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
                                     <TextBlock Text="{Binding FriendlyShortDueDate}" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
@@ -129,7 +129,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
                                     <TextBlock Text="{Binding FriendlyShortDueDate}" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
@@ -161,7 +161,7 @@
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,12,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,36,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
                                     <TextBlock Text="{Binding FriendlyShortDueDate}" TextWrapping="NoWrap" Margin="0,-6,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
