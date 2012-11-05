@@ -23,11 +23,6 @@
             <controls:PivotItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid>
                     <ListBox x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" Margin="0,0,0,0">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Margin="0,0,0,78" />
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -53,7 +48,7 @@
                     <ListBox Name="lstLists" Margin="0,0,-12,0" ItemsSource="{Binding TaskLists}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <toolkit:WrapPanel Margin="0,0,0,96" />
+                                <toolkit:WrapPanel Margin="0,0,0,24" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
@@ -82,7 +77,7 @@
                     <ListBox Name="lstTags" Margin="0,0,-12,0" ItemsSource="{Binding TaskTags}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <toolkit:WrapPanel Margin="0,0,0,96" />
+                                <toolkit:WrapPanel Margin="0,0,0,24" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>

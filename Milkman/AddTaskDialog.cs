@@ -104,6 +104,11 @@ namespace Milkman
                 IsFullScreen = false
             };
 
+            messageBox.Loaded += (s1, e1) =>
+            {
+                txtDetails.Focus();
+            };
+
             return messageBox;
         }
 
