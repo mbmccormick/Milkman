@@ -382,7 +382,7 @@ namespace Milkman
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            if (this.panLayout.SelectedIndex == 0)
+            if (this.pivLayout.SelectedIndex == 0)
             {
                 Task item = ((FrameworkElement)sender).DataContext as Task;
 
@@ -391,7 +391,7 @@ namespace Milkman
                     NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + item.Id, UriKind.Relative));
                 }
             }
-            else if (this.panLayout.SelectedIndex == 1)
+            else if (this.pivLayout.SelectedIndex == 1)
             {
                 TaskList item = ((FrameworkElement)sender).DataContext as TaskList;
 
@@ -405,7 +405,7 @@ namespace Milkman
                         NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
                 }
             }
-            else if (this.panLayout.SelectedIndex == 2)
+            else if (this.pivLayout.SelectedIndex == 2)
             {
                 TaskTag item = ((FrameworkElement)sender).DataContext as TaskTag;
 
@@ -555,9 +555,9 @@ namespace Milkman
             {
                 ShellTile secondaryTile = null;
 
-                if (this.panLayout.SelectedIndex == 1)
+                if (this.pivLayout.SelectedIndex == 1)
                     secondaryTile = ShellTile.ActiveTiles.FirstOrDefault(t => t.NavigationUri.ToString().Contains("id=" + MostRecentTaskListClick.Id));
-                else if (this.panLayout.SelectedIndex == 2)
+                else if (this.pivLayout.SelectedIndex == 2)
                     secondaryTile = ShellTile.ActiveTiles.FirstOrDefault(t => t.NavigationUri.ToString().Contains("id=" + MostRecentTaskTagClick.Name));
                 else
                     return;
@@ -573,14 +573,14 @@ namespace Milkman
                     data.BackgroundImage = new Uri("BackgroundPinned.png", UriKind.Relative);
                     data.Title = "Milkman";
 
-                    if (this.panLayout.SelectedIndex == 1)
+                    if (this.pivLayout.SelectedIndex == 1)
                         data.BackTitle = MostRecentTaskListClick.Name;
-                    else if (this.panLayout.SelectedIndex == 2)
+                    else if (this.pivLayout.SelectedIndex == 2)
                         data.BackTitle = MostRecentTaskTagClick.Name;
                     else
                         return;
 
-                    if (this.panLayout.SelectedIndex == 1 &&
+                    if (this.pivLayout.SelectedIndex == 1 &&
                         MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
                     {
                         AppSettings settings = new AppSettings();
@@ -610,7 +610,7 @@ namespace Milkman
                     }
                     else
                     {
-                        if (this.panLayout.SelectedIndex == 1)
+                        if (this.pivLayout.SelectedIndex == 1)
                         {
                             if (MostRecentTaskListClick.Tasks != null)
                             {
@@ -620,7 +620,7 @@ namespace Milkman
                                                                                         z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                             }
                         }
-                        else if (this.panLayout.SelectedIndex == 2)
+                        else if (this.pivLayout.SelectedIndex == 2)
                         {
                             var tasks = App.RtmClient.GetTasksByTag()[MostRecentTaskTagClick.Name];
 
@@ -645,7 +645,7 @@ namespace Milkman
                             data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
                     }
 
-                    if (this.panLayout.SelectedIndex == 1)
+                    if (this.pivLayout.SelectedIndex == 1)
                     {
                         if (MostRecentTaskListClick.Name.ToLower() == Strings.AllTasksLower)
                             ShellTile.Create(new Uri("/TaskListByDatePage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
@@ -654,7 +654,7 @@ namespace Milkman
                         else
                             ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
                     }
-                    else if (this.panLayout.SelectedIndex == 2)
+                    else if (this.pivLayout.SelectedIndex == 2)
                     {
                         ShellTile.Create(new Uri("/TaskListByTagPage.xaml?id=" + MostRecentTaskTagClick.Name, UriKind.Relative), data);
                     }

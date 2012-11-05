@@ -1503,18 +1503,6 @@ namespace IronCow
             }
         }
 
-        public SolidColorBrush DueDatePanoramaForegroundBrush
-        {
-            get
-            {
-                if (this.DueDateTime.HasValue &&
-                    this.DueDateTime.Value.Date <= DateTime.Now.Date)
-                    return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
-                else
-                    return new SolidColorBrush(Color.FromArgb(255, 179, 179, 179));
-            }
-        }
-
         public SolidColorBrush PriorityForegroundBrush
         {
             get

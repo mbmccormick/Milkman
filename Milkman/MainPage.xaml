@@ -6,24 +6,21 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:uc="clr-namespace:Milkman"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0.0" shell:SystemTray.ForegroundColor="#FEFEFE"
+    shell:SystemTray.IsVisible="True"
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot">
-        <controls:Panorama x:Name="panLayout" Title="{Binding Resources.MilkmanLower, Source={StaticResource Strings}}" Foreground="White">
-            <controls:Panorama.Background>
-                <ImageBrush ImageSource="PanoramaBackground.jpg" />
-            </controls:Panorama.Background>
-            <controls:PanoramaItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}">
+        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold">
+            <controls:PivotItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid>
                     <ListBox x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" Margin="0,0,0,0">
                         <ListBox.ItemsPanel>
@@ -40,7 +37,7 @@
                             <DataTemplate>
                                 <StackPanel Margin="12,0,12,18" Tap="ItemContent_Tap">
                                     <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="White" />
-                                    <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-4,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDatePanoramaForegroundBrush}" FontWeight="Normal" />
+                                    <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,-4,0,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding DueDateForegroundBrush}" FontWeight="Normal" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
@@ -49,9 +46,9 @@
                     <TextBlock x:Name="txtDashboardLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtDashboardEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                 </Grid>
-            </controls:PanoramaItem>
+            </controls:PivotItem>
 
-            <controls:PanoramaItem Header="{Binding Resources.ListsLower, Source={StaticResource Strings}}">
+            <controls:PivotItem Header="{Binding Resources.ListsLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid>
                     <ListBox Name="lstLists" Margin="0,0,-12,0" ItemsSource="{Binding TaskLists}">
                         <ListBox.ItemsPanel>
@@ -78,9 +75,9 @@
                     <TextBlock x:Name="txtListsLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtListsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboardLists, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                 </Grid>
-            </controls:PanoramaItem>
+            </controls:PivotItem>
 
-            <controls:PanoramaItem Header="{Binding Resources.TagsLower, Source={StaticResource Strings}}">
+            <controls:PivotItem Header="{Binding Resources.TagsLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid>
                     <ListBox Name="lstTags" Margin="0,0,-12,0" ItemsSource="{Binding TaskTags}">
                         <ListBox.ItemsPanel>
@@ -107,14 +104,14 @@
                     <TextBlock x:Name="txtTagsLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtTagsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboardTags, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                 </Grid>
-            </controls:PanoramaItem>
-        </controls:Panorama>
+            </controls:PivotItem>
+        </toolkit:LockablePivot>
 
         <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" Cancel="dlgAddTask_Cancel" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Opacity="0.7" BackgroundColor="Black" ForegroundColor="White" StateChanged="ApplicationBar_StateChanged">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
