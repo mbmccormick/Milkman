@@ -302,8 +302,6 @@
                 </Grid>
             </controls:PivotItem>
         </toolkit:LockablePivot>
-
-        <uc:AddTaskDialog x:Name="dlgAddTask" Dismissed="dlgAddTask_Dismissed" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

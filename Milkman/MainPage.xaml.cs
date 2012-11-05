@@ -58,6 +58,8 @@ namespace Milkman
 
         #region Construction and Navigation
 
+        AddTaskDialog dlgAddTask;
+
         ApplicationBarIconButton add;
         ApplicationBarIconButton sync;
 
@@ -342,14 +344,16 @@ namespace Milkman
 
             if (settings.AddTaskDialogEnabled == true)
             {
-                AddTaskDialog dialog = new AddTaskDialog();
+                this.dlgAddTask = new AddTaskDialog();
 
-                dialog.Dismissed += (s1, e1) =>
+                CustomMessageBox messageBox = this.dlgAddTask.CreateDialog();
+
+                messageBox.Dismissed += (s1, e1) =>
                 {
                     switch (e1.Result)
                     {
                         case CustomMessageBoxResult.LeftButton:
-                            
+                            AddTask(this.dlgAddTask.txtDetails.Text);
 
                             break;
                         default:
@@ -357,24 +361,12 @@ namespace Milkman
                     }
                 };
 
-                dialog.Show();
+                messageBox.Show();
             }
             else
             {
                 NavigationService.Navigate(new Uri("/AddTaskPage.xaml", UriKind.Relative));
             }
-        }
-
-        private void dlgAddTask_Dismissed(object sender, EventArgs e)
-        {
-            // AddTask(e.Text);
-
-            this.ApplicationBar.IsVisible = true;
-        }
-
-        private void dlgAddTask_Cancel(object sender, EventArgs e)
-        {
-            this.ApplicationBar.IsVisible = true;
         }
 
         private void btnSync_Click(object sender, EventArgs e)
