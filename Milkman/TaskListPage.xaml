@@ -243,7 +243,7 @@
             </controls:PivotItem>
         </toolkit:LockablePivot>
 
-        <uc:AddTaskDialog x:Name="dlgAddTask" Submit="dlgAddTask_Submit" Cancel="dlgAddTask_Cancel" />
+        <uc:AddTaskDialog x:Name="dlgAddTask" Dismissed="dlgAddTask_Dismissed" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

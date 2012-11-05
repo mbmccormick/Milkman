@@ -252,14 +252,6 @@ namespace Milkman
             else if (this.pivLayout.SelectedIndex == 4)
                 target = this.lstWeek;
 
-            if (this.dlgAddTask.IsOpen)
-            {
-                this.dlgAddTask.Close();
-                e.Cancel = true;
-
-                this.ApplicationBar.IsVisible = true;
-            }
-
             if (target.IsSelectionEnabled)
             {
                 target.IsSelectionEnabled = false;
@@ -466,9 +458,7 @@ namespace Milkman
 
             if (settings.AddTaskDialogEnabled == true)
             {
-                this.dlgAddTask.Open(false);
-
-                this.ApplicationBar.IsVisible = false;
+                this.dlgAddTask.Show();
             }
             else
             {
@@ -476,7 +466,7 @@ namespace Milkman
             }
         }
 
-        private void dlgAddTask_Submit(object sender, SubmitEventArgs e)
+        private void dlgAddTask_Dismissed(object sender, SubmitEventArgs e)
         {
             AddTask(e.Text);
 
