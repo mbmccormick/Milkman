@@ -394,9 +394,7 @@ namespace Milkman
 
                 if (item != null)
                 {
-                    if (item.Name.ToLower() == Strings.AllTasksLower)
-                        NavigationService.Navigate(new Uri("/TaskListByDatePage.xaml?id=" + item.Id, UriKind.Relative));
-                    else if (item.Name.ToLower() == Strings.NearbyLower)
+                    if (item.Name.ToLower() == Strings.NearbyLower)
                         NavigationService.Navigate(new Uri("/TaskListByLocationPage.xaml?id=" + item.Id, UriKind.Relative));
                     else
                         NavigationService.Navigate(new Uri("/TaskListPage.xaml?id=" + item.Id, UriKind.Relative));
@@ -644,9 +642,7 @@ namespace Milkman
 
                     if (this.pivLayout.SelectedIndex == 1)
                     {
-                        if (MostRecentTaskListClick.Name.ToLower() == Strings.AllTasksLower)
-                            ShellTile.Create(new Uri("/TaskListByDatePage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
-                        else if (MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
+                        if (MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
                             ShellTile.Create(new Uri("/TaskListByLocationPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
                         else
                             ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
