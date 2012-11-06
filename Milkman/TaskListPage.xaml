@@ -32,7 +32,7 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,36,18" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,36,0" Tap="ItemContent_Tap">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -81,7 +81,7 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,36,18" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,36,0" Tap="ItemContent_Tap">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -130,7 +130,7 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,36,18" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,36,0" Tap="ItemContent_Tap">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -179,7 +179,7 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,36,18" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,36,0" Tap="ItemContent_Tap">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
@@ -228,7 +228,7 @@
                         </toolkit:MultiselectList.ItemContainerStyle>
                         <toolkit:MultiselectList.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="-12,0,36,18" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,36,0" Tap="ItemContent_Tap">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>

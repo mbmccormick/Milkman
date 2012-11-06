@@ -1443,9 +1443,9 @@ namespace IronCow
             {
                 if (Owner.UserSettings != null &&
                     Owner.UserSettings.TimeFormat == TimeFormat.TwentyFourHours)
-                    return this.DueDateTime.Value.ToString("H:mm");
+                    return this.DueDateTime.Value.ToString("H:mm").ToLower();
                 else
-                    return this.DueDateTime.Value.ToString("h:mmt");
+                    return this.DueDateTime.Value.ToString("h:mmt").ToLower();
             }
         }
 
