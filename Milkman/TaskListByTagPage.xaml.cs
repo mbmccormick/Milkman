@@ -334,9 +334,6 @@ namespace Milkman
 
                     if (data != null)
                     {
-                        if (settings.IgnorePriorityEnabled == true)
-                            data.OrderBy(z => z.DueDateTime);
-
                         foreach (var t in data)
                         {
                             if (t.IsCompleted == true ||
@@ -367,6 +364,23 @@ namespace Milkman
                                 tempWeekTasks.Add(t);
                             }
                         }
+                    }
+
+                    if (settings.IgnorePriorityEnabled == true)
+                    {
+                        tempAllTasks.Sort(Task.CompareByDate);
+                        tempTodayTasks.Sort(Task.CompareByDate);
+                        tempTomorrowTasks.Sort(Task.CompareByDate);
+                        tempOverdueTasks.Sort(Task.CompareByDate);
+                        tempWeekTasks.Sort(Task.CompareByDate);
+                    }
+                    else
+                    {
+                        tempAllTasks.Sort(Task.CompareByPriority);
+                        tempTodayTasks.Sort(Task.CompareByPriority);
+                        tempTomorrowTasks.Sort(Task.CompareByPriority);
+                        tempOverdueTasks.Sort(Task.CompareByPriority);
+                        tempWeekTasks.Sort(Task.CompareByPriority);
                     }
 
                     AllTasks = tempAllTasks;

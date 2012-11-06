@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -9,19 +10,13 @@ namespace Milkman.Common
         // Use Comparer<T>.Default
         public void Sort()
         {
-            Sort(0, Count, null);
+            Sort(null);
         }
 
-        // Pass custom comparer
-        public void Sort(IComparer<T> Comparer)
+        // Pass custom comparison
+        public void Sort(Comparison<T> comparison)
         {
-            Sort(0, Count, null);
-        }
-
-        // Sort part of the collection
-        public void Sort(int index, int count, IComparer<T> comparer)
-        {
-            (Items as List<T>).Sort(index, count, comparer);
+            (Items as List<T>).Sort(comparison);
             OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
     }

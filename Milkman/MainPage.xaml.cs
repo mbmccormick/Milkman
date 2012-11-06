@@ -268,7 +268,7 @@ namespace Milkman
                             tempTaskLists.Add(l);
                     }
 
-                    tempDashboardTasks.Sort();
+                    tempDashboardTasks.Sort(Task.CompareByDate);
 
                     // insert the nearby list placeholder
                     TaskList nearby = new TaskList(Strings.Nearby);

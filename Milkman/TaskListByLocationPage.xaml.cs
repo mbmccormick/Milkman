@@ -326,71 +326,52 @@ namespace Milkman
                     else
                         radius = 0.0;
 
+                    foreach (Task t in App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius))
+                    {
+                        if (t.IsCompleted == true ||
+                            t.IsDeleted == true) continue;
+
+                        tempAllTasks.Add(t);
+
+                        if (t.DueDateTime.HasValue &&
+                            t.DueDateTime.Value.Date == DateTime.Now.Date)
+                        {
+                            tempTodayTasks.Add(t);
+                        }
+
+                        if (t.DueDateTime.HasValue &&
+                            t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1))
+                        {
+                            tempTomorrowTasks.Add(t);
+                        }
+
+                        if (t.IsLate == true)
+                        {
+                            tempOverdueTasks.Add(t);
+                        }
+
+                        if (t.DueDateTime.HasValue &&
+                            t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7))
+                        {
+                            tempWeekTasks.Add(t);
+                        }
+                    }
+
                     if (settings.IgnorePriorityEnabled == true)
                     {
-                        foreach (Task t in App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).OrderBy(z => z.DueDateTime))
-                        {
-                            if (t.IsCompleted == true ||
-                                t.IsDeleted == true) continue;
-
-                            tempAllTasks.Add(t);
-
-                            if (t.DueDateTime.HasValue &&
-                                t.DueDateTime.Value.Date == DateTime.Now.Date)
-                            {
-                                tempTodayTasks.Add(t);
-                            }
-
-                            if (t.DueDateTime.HasValue &&
-                                t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1))
-                            {
-                                tempTomorrowTasks.Add(t);
-                            }
-
-                            if (t.IsLate == true)
-                            {
-                                tempOverdueTasks.Add(t);
-                            }
-
-                            if (t.DueDateTime.HasValue &&
-                                t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7))
-                            {
-                                tempWeekTasks.Add(t);
-                            }
-                        }
+                        tempAllTasks.Sort(Task.CompareByDate);
+                        tempTodayTasks.Sort(Task.CompareByDate);
+                        tempTomorrowTasks.Sort(Task.CompareByDate);
+                        tempOverdueTasks.Sort(Task.CompareByDate);
+                        tempWeekTasks.Sort(Task.CompareByDate);
                     }
                     else
                     {
-                        foreach (Task t in App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius))
-                        {
-                            if (t.IsCompleted == true ||
-                                t.IsDeleted == true) continue;
-
-                            tempAllTasks.Add(t);
-
-                            if (t.DueDateTime.HasValue &&
-                                t.DueDateTime.Value.Date == DateTime.Now.Date)
-                            {
-                                tempTodayTasks.Add(t);
-                            }
-
-                            if (t.DueDateTime.HasValue &&
-                                t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1))
-                            {
-                                tempTomorrowTasks.Add(t);
-                            }
-
-                            if (t.IsLate == true)
-                            {
-                                tempOverdueTasks.Add(t);
-                            }
-
-                            if (t.DueDateTime.HasValue &&
-                                t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7))
-                            {
-                                tempWeekTasks.Add(t);
-                            }
-                        }
+                        tempAllTasks.Sort(Task.CompareByPriority);
+                        tempTodayTasks.Sort(Task.CompareByPriority);
+                        tempTomorrowTasks.Sort(Task.CompareByPriority);
+                        tempOverdueTasks.Sort(Task.CompareByPriority);
+                        tempWeekTasks.Sort(Task.CompareByPriority);
                     }
 
                     AllTasks = tempAllTasks;
