@@ -40,6 +40,9 @@
 
     </Item>
     <Item Title="what's new?" Type="text">
+      Version 2.6
+      This release finally introduces sort by tags functionality. You can now view your tasks by tag, pin tags to your start screen, etc. The home
+      
       Version 2.5
       This release introduces the Nearby task list, new task list sorting options, offline mode, and new user interface enhancements. The syncing and responsiveness of the application has been greatly improved. Russian language is now supported. This release also includes several bug fixes.
 

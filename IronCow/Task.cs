@@ -1389,26 +1389,20 @@ namespace IronCow
                     if (this.DueDateTime.Value.Date > DateTime.Now.AddDays(6).Date ||
                         this.DueDateTime.Value.Date < DateTime.Now.Date)
                     {
-                        if (this.HasDueTime)
-                            return Strings.Due + " " + this.LocalizedShortDueDate + " " + Strings.DueAt + " " + this.LocalizedDueTime;
-                        else
-                            return Strings.Due + " " + this.LocalizedShortDueDate;
+                        return this.LocalizedShortDueDate;
                     }
                     else
                     {
                         if (this.DueDateTime.Value.Date == DateTime.Now.Date)
                         {
                             if (this.HasDueTime)
-                                return Strings.Due + " " + Strings.TodayLower + " " + Strings.DueAt + " " + this.LocalizedDueTime;
+                                return this.LocalizedDueTime;
                             else
-                                return Strings.Due + " " + Strings.TodayLower;
+                                return Strings.Today;
                         }
                         else
                         {
-                            if (this.HasDueTime)
-                                return Strings.Due + " " + this.DueString + " " + Strings.DueAt + " " + this.LocalizedDueTime;
-                            else
-                                return Strings.Due + " " + this.DueString;
+                            return this.DueDateTime.Value.ToString("ddd");
                         }
                     }
                 }
@@ -1437,9 +1431,9 @@ namespace IronCow
             {
                 if (Owner.UserSettings != null &&
                     Owner.UserSettings.DateFormat == DateFormat.European)
-                    return this.DueDateTime.Value.ToString("d MMMM");
+                    return this.DueDateTime.Value.ToString("d MMM");
                 else
-                    return this.DueDateTime.Value.ToString("MMMM d");
+                    return this.DueDateTime.Value.ToString("MMM d");
             }
         }
 
@@ -1451,7 +1445,7 @@ namespace IronCow
                     Owner.UserSettings.TimeFormat == TimeFormat.TwentyFourHours)
                     return this.DueDateTime.Value.ToString("H:mm");
                 else
-                    return this.DueDateTime.Value.ToString("h:mm tt");
+                    return this.DueDateTime.Value.ToString("h:mmt");
             }
         }
 
@@ -1499,7 +1493,7 @@ namespace IronCow
                     this.DueDateTime.Value.Date <= DateTime.Now.Date)
                     return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
                 else
-                    return (SolidColorBrush)Owner.Resources["PhoneSubtleBrush"];
+                    return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
             }
         }
 
