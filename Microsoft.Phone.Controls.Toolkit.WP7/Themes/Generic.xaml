@@ -1416,7 +1416,7 @@
                                        Fill="{TemplateBinding Background}"
                                        StrokeThickness="0" Opacity="0.0"/>
                             <Canvas HorizontalAlignment="Left">
-                                <CheckBox x:Name="SelectBox" VerticalAlignment="Top" Margin="12,-8,5,0" Visibility="Collapsed"
+                                <CheckBox x:Name="SelectBox" VerticalAlignment="Top" Margin="12,-16,5,0" Visibility="Collapsed"
                                           IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=IsSelected, Mode=TwoWay}">
                                     <CheckBox.RenderTransform>
                                         <CompositeTransform TranslateX="-58"/>

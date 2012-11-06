@@ -1462,6 +1462,18 @@ namespace IronCow
             }
         }
 
+        public string FriendlyTagsString
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(TagsString) == false)
+                {
+                    return "#" + TagsString.Replace(", ", ", #");
+                }
+                return "";
+            }
+        }
+
         private double _Distance = 0;
 
         public double Distance

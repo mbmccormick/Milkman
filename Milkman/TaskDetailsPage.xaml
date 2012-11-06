@@ -74,7 +74,7 @@
 
                             <TextBlock Text="{Binding Resources.URL, Source={StaticResource Strings}}" Grid.Row="7" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
                                        toolkit:TurnstileFeatherEffect.FeatheringIndex="7" />
-                            <HyperlinkButton Content="{Binding Url}" Grid.Row="7" Grid.Column="1" Margin="-12,-12,0,0" HorizontalContentAlignment="Left" NavigateUri="{Binding Url}" TargetName="_blank" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
+                            <HyperlinkButton Content="{Binding Url}" Grid.Row="7" Grid.Column="1" Margin="-12,-12,0,0" HorizontalContentAlignment="Left" NavigateUri="{Binding Url}" TargetName="_blank" FontSize="{StaticResource PhoneFontSizeMediumLarge}" FontFamily="{StaticResource PhoneFontFamilyNormal}"
                                        toolkit:TurnstileFeatherEffect.FeatheringIndex="7" />
 
                             <TextBlock Text="{Binding Resources.Postponed, Source={StaticResource Strings}}" Grid.Row="8" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
