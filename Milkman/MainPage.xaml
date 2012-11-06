@@ -19,7 +19,7 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontWeight="Bold"
+        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}"
                                toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
             <controls:PivotItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
@@ -44,7 +44,7 @@
                                             <ColumnDefinition Width="68"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+                                        <TextBlock Text="{Binding Name}" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" LineHeight="10" />
                                         <TextBlock Text="{Binding FriendlyShortDueDate}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="0,0,12,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding ShortDueDateForegroundBrush}" FontWeight="Normal" />
                                     </Grid>
 
