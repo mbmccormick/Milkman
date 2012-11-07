@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{06412dbe-d449-4e67-9143-1734e1103d33}" Title="Milkman" RuntimeType="Silverlight" Version="2.6.3.0" Genre="apps.normal" Author="Matt McCormick" Description="Remember The Milk for Windows Phone" Publisher="Matt McCormick" BitsPerPixel="32">
+  <App xmlns="" ProductID="{06412dbe-d449-4e67-9143-1734e1103d33}" Title="Milkman" RuntimeType="Silverlight" Version="2.6.0.0" Genre="apps.normal" Author="Matt McCormick" Description="Remember The Milk for Windows Phone" Publisher="Matt McCormick" BitsPerPixel="32">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES" />
