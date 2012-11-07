@@ -26,8 +26,8 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" />
-            <TextBlock Text="{Binding FriendlyTagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" />
+            <TextBlock Text="{Binding List}" Grid.Row="0" Grid.Column="0" TextWrapping="NoWrap" Margin="0,0,24,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" Foreground="{Binding DueDateForegroundBrush}" />
+            <TextBlock Text="{Binding FriendlyTagsString}" Grid.Row="0" Grid.Column="1" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" Foreground="{Binding DueDateForegroundBrush}" />
         </Grid>
     </StackPanel>
 </UserControl>

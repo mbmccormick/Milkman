@@ -1468,7 +1468,7 @@ namespace IronCow
             {
                 if (String.IsNullOrEmpty(TagsString) == false)
                 {
-                    return "#" + TagsString.Replace(", ", ", #");
+                    return "#" + TagsString.Replace(", ", " #");
                 }
                 return "";
             }
