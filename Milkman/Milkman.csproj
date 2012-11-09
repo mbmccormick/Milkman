@@ -73,9 +73,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="mscorlib.extensions" />
     <Reference Include="System.Xml.Serialization" />
-    <Reference Include="YourLastAboutDialog">
-      <HintPath>Libraries\YourLastAboutDialog.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddNotePage.xaml.cs">
@@ -198,8 +195,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Milkman_2012_11_06_22_22_08.sap" />
-    <None Include="Milkman_2012_11_06_22_27_27.sap" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
@@ -231,7 +226,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Libraries\YourLastAboutDialog.dll" />
     <Content Include="Resources\add.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -282,6 +276,10 @@
       <Project>{0754458A-7AFC-463A-B27D-2F6980522119}</Project>
       <Name>Microsoft.Phone.Controls.Toolkit.WP7</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YourLastAboutDialog\YourLastAboutDialog.csproj">
+      <Project>{9E37F631-D351-48D8-B303-A3B5529A5AD9}</Project>
+      <Name>YourLastAboutDialog</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -306,7 +304,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -3,8 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
                     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
                     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-                    xmlns:controls2="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
-                    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
+                    xmlns:controls2="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls">
 
     <!-- About Page -->
     <Style x:Key="AboutPageStyle"
@@ -15,11 +14,11 @@
                 Value="{StaticResource PhoneFontSizeNormal}" />
         <Setter Property="Foreground"
                 Value="{StaticResource PhoneForegroundBrush}" />
-        
+
         <!-- Use the following setter to enable/disable the system tray on the about page -->
         <Setter Property="shell:SystemTray.IsVisible"
                 Value="True" />
-        
+
         <!-- You can use setters like the following to add transitions to your about page. 
              To make this work, you have to add:
              1.) A reference to the Microsoft.Phone.Controls.Toolkit assembly from the toolkit
@@ -29,10 +28,10 @@
             <Setter.Value>
                 <toolkit:NavigationInTransition>
                     <toolkit:NavigationInTransition.Backward>
-                        <toolkit:TurnstileFeatherTransition Mode="BackwardIn" />
+                        <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
                     </toolkit:NavigationInTransition.Backward>
                     <toolkit:NavigationInTransition.Forward>
-                        <toolkit:TurnstileFeatherTransition Mode="ForwardIn" />
+                        <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
                     </toolkit:NavigationInTransition.Forward>
                 </toolkit:NavigationInTransition>
             </Setter.Value>
@@ -41,16 +40,16 @@
             <Setter.Value>
                 <toolkit:NavigationOutTransition>
                     <toolkit:NavigationOutTransition.Backward>
-                        <toolkit:TurnstileFeatherTransition Mode="BackwardOut" />
+                        <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
                     </toolkit:NavigationOutTransition.Backward>
                     <toolkit:NavigationOutTransition.Forward>
-                        <toolkit:TurnstileFeatherTransition Mode="ForwardOut" />
+                        <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
                     </toolkit:NavigationOutTransition.Forward>
                 </toolkit:NavigationOutTransition>
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <!-- Pivot control and items -->
     <!-- You can use this style to e.g. change the HeaderTemplate -->
     <Style x:Key="AboutPivotStyle"
@@ -67,14 +66,12 @@
                 </DataTemplate>
             </Setter.Value>
         </Setter>-->
-        <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}" />
+        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}" />
     </Style>
 
     <Style x:Key="AboutPivotItemStyle"
            TargetType="controls2:PivotItem">
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}" />
+        <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}" />
     </Style>
 
     <!-- Text based controls -->
