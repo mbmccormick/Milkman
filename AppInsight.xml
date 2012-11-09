@@ -10,6 +10,7 @@
       <AssemblyCodeItem Name="IronCow.dll" IsInstrumented="false" IsEnabled="true" IsExpanded="true" />
       <AssemblyCodeItem Name="YourLastAboutDialog.dll" IsInstrumented="true" IsEnabled="true" IsExpanded="true" />
       <AssemblyCodeItem Name="IronCow.resources.dll" IsInstrumented="false" IsEnabled="true" IsExpanded="true" />
+      <AssemblyCodeItem Name="YourLastAboutDialog.dll" IsInstrumented="true" IsEnabled="true" IsExpanded="true" />
     </Children>
   </CodeStructure>
 </InstrumentationConfig>
