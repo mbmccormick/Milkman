@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <InstrumentationConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Mode>Custom</Mode>
-  <AppInsightAppKey>6ab28546-5d05-487e-9a53-a33f68992561</AppInsightAppKey>
+  <AppInsightAppKey>65635417-76b3-44de-ad3f-8a79db2d9fa4</AppInsightAppKey>
   <VerifyIlAfterInstrumentation>false</VerifyIlAfterInstrumentation>
   <CodeStructure IsInstrumented="true" IsEnabled="true" IsExpanded="true">
     <Children>
