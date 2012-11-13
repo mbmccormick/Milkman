@@ -68,6 +68,7 @@
             </Setter.Value>
         </Setter>-->
         <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}" />
+        <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}" />
     </Style>
 
     <Style x:Key="AboutPivotItemStyle"
