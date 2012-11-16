@@ -511,6 +511,12 @@ namespace Milkman
             messageBox.Show();
         }
 
+        private Task MostRecentTaskClick
+        {
+            get;
+            set;
+        }
+
         private TaskList MostRecentTaskListClick
         {
             get;
@@ -528,6 +534,10 @@ namespace Milkman
             if (e.OriginalSource is FrameworkElement)
             {
                 FrameworkElement frameworkElement = (FrameworkElement)e.OriginalSource;
+                if (frameworkElement.DataContext is Task)
+                {
+                    MostRecentTaskClick = (Task)frameworkElement.DataContext;
+                }
                 if (frameworkElement.DataContext is TaskList)
                 {
                     MostRecentTaskListClick = (TaskList)frameworkElement.DataContext;
@@ -566,7 +576,7 @@ namespace Milkman
                     int tasksNearby = 0;
 
                     data.BackgroundImage = new Uri("BackgroundPinned.png", UriKind.Relative);
-                    data.Title = "Milkman";
+                    data.Title = Strings.Milkman;
 
                     if (this.pivLayout.SelectedIndex == 1)
                         data.BackTitle = MostRecentTaskListClick.Name;
@@ -661,6 +671,84 @@ namespace Milkman
                     MessageBox.Show(Strings.PinToStartDialog, Strings.PinToStartDialogTitle, MessageBoxButton.OK);
                 }
             }
+            else if (target.Header.ToString() == Strings.CompleteMenuLower)
+            {
+                CustomMessageBox messageBox = new CustomMessageBox()
+                {
+                    Caption = Strings.CompleteDialogTitle,
+                    Message = Strings.CompleteDialog,
+                    LeftButtonContent = Strings.YesLower,
+                    RightButtonContent = Strings.NoLower,
+                    IsFullScreen = false
+                };
+
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            CompleteTask(MostRecentTaskClick);
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
+            }
+            else if (target.Header.ToString() == Strings.PostponeMenuLower)
+            {
+                CustomMessageBox messageBox = new CustomMessageBox()
+                {
+                    Caption = Strings.PostponeDialogTitle,
+                    Message = Strings.PostponeDialog,
+                    LeftButtonContent = Strings.YesLower,
+                    RightButtonContent = Strings.NoLower,
+                    IsFullScreen = false
+                };
+
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            PostponeTask(MostRecentTaskClick);
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
+            }
+            else if (target.Header.ToString() == Strings.DeleteMenuLower)
+            {
+                CustomMessageBox messageBox = new CustomMessageBox()
+                {
+                    Caption = Strings.DeleteTaskDialogTitle,
+                    Message = Strings.DeleteTaskDialog,
+                    LeftButtonContent = Strings.YesLower,
+                    RightButtonContent = Strings.NoLower,
+                    IsFullScreen = false
+                };
+
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            DeleteTask(MostRecentTaskClick);
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
+            }
         }
 
         private void ApplicationBar_StateChanged(object sender, ApplicationBarStateChangedEventArgs e)
@@ -698,6 +786,60 @@ namespace Milkman
                 LoadData();
 
                 NotificationsManager.SetupNotifications(_watcher.Position.Location);
+            });
+        }
+
+        private void CompleteTask(Task data)
+        {
+            GlobalLoading.Instance.IsLoadingText(Strings.CompletingTask);
+            data.Complete(() =>
+            {
+                App.RtmClient.CacheTasks(() =>
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        GlobalLoading.Instance.IsLoading = false;
+                    });
+
+                    sReload = true;
+                    LoadData();
+                });
+            });
+        }
+
+        private void PostponeTask(Task data)
+        {
+            GlobalLoading.Instance.IsLoadingText(Strings.PostponingTask);
+            data.Postpone(() =>
+            {
+                App.RtmClient.CacheTasks(() =>
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        GlobalLoading.Instance.IsLoading = false;
+                    });
+
+                    sReload = true;
+                    LoadData();
+                });
+            });
+        }
+
+        private void DeleteTask(Task data)
+        {
+            GlobalLoading.Instance.IsLoadingText(Strings.DeletingTask);
+            data.Delete(() =>
+            {
+                App.RtmClient.CacheTasks(() =>
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        GlobalLoading.Instance.IsLoading = false;
+                    });
+
+                    sReload = true;
+                    LoadData();
+                });
             });
         }
 

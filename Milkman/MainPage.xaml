@@ -38,6 +38,14 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <uc:TaskItemControl Margin="12,0,12,24" Tap="ItemContent_Tap" />
+
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
+                                        <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
+                                        <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
