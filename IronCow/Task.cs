@@ -467,6 +467,8 @@ namespace IronCow
             }
         }
 
+        private string mRawDue;
+
         private string mDue;
         public string Due
         {
@@ -596,7 +598,14 @@ namespace IronCow
         {
             get
             {
-                return mDueDateTime;
+                if (HasDueTime || mDueDateTime.HasValue == false)
+                {
+                    return mDueDateTime;
+                }
+                else
+                {
+                    return Convert.ToDateTime(mRawDue.Split('T')[0]);
+                }
             }
             set
             {
@@ -1060,6 +1069,8 @@ namespace IronCow
 
         private void DoDownloadSyncFromTask(bool firstSync, RawTask task)
         {
+            mRawDue = task.Due;
+            
             if (string.IsNullOrEmpty(task.Due))
             {
                 SetDueAndIsLate(null, false);
@@ -1333,6 +1344,8 @@ namespace IronCow
 
         #endregion
 
+        #region Helper Methods
+
         public bool ClientSyncing
         {
             get
@@ -1535,5 +1548,7 @@ namespace IronCow
                     return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
             }
         }
+
+        #endregion
     }
 }
