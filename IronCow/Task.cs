@@ -1421,7 +1421,7 @@ namespace IronCow
                 }
                 else
                 {
-                    return Strings.NoDueDate;
+                    return "";
                 }
             }
         }
