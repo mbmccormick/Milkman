@@ -247,6 +247,22 @@ namespace Milkman
                         smartText.Append("@" + (this.lstLocation.SelectedItem as Location).Name);
                         smartText.Append(" ");
                     }
+
+                    // set url
+                    if (this.txtURL.Text.Length > 0)
+                    {
+                        if (this.txtURL.Text.ToLower().StartsWith("http://") ||
+                            this.txtURL.Text.ToLower().StartsWith("https://"))
+                        {
+                            smartText.Append(this.txtURL.Text);
+                            smartText.Append(" ");
+                        }
+                        else
+                        {
+                            smartText.Append("http://" + this.txtURL.Text);
+                            smartText.Append(" ");
+                        }
+                    }
                 }
 
                 App.RtmClient.AddTask(smartText.ToString(), true, null, () =>
