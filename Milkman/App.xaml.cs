@@ -285,46 +285,36 @@ namespace Milkman
 
                 if (RtmClient.Syncing == true)
                 {
-                    if (NetworkInterface.GetIsNetworkAvailable() == true)
+                    RootFrame.Dispatcher.BeginInvoke(() =>
                     {
-                        RootFrame.Dispatcher.BeginInvoke(() =>
+                        CustomMessageBox messageBox = new CustomMessageBox()
                         {
-                            MessageBox.Show(ex.Message + "\n\n" + Strings.NetworkConnectionDialog, Strings.NetworkConnectionDialogTitle, MessageBoxButton.OK);
-                        });
-                    }
-                    else
-                    {
-                        RootFrame.Dispatcher.BeginInvoke(() =>
+                            Caption = Strings.OfflineConnectionDialogTitle,
+                            Message = Strings.OfflineConnectionDialog,
+                            LeftButtonContent = Strings.YesLower,
+                            RightButtonContent = Strings.NoLower,
+                            IsFullScreen = false
+                        };
+
+                        messageBox.Dismissed += (s1, e1) =>
                         {
-                            CustomMessageBox messageBox = new CustomMessageBox()
+                            switch (e1.Result)
                             {
-                                Caption = Strings.OfflineConnectionDialogTitle,
-                                Message = Strings.OfflineConnectionDialog,
-                                LeftButtonContent = Strings.YesLower,
-                                RightButtonContent = Strings.NoLower,
-                                IsFullScreen = false
-                            };
+                                case CustomMessageBoxResult.LeftButton:
+                                    RtmClient.DisableSyncing();
+                                    GlobalLoading.Instance.StatusText(Strings.WorkingOffline);
 
-                            messageBox.Dismissed += (s1, e1) =>
-                            {
-                                switch (e1.Result)
-                                {
-                                    case CustomMessageBoxResult.LeftButton:
-                                        RtmClient.DisableSyncing();
-                                        GlobalLoading.Instance.StatusText(Strings.WorkingOffline);
+                                    if (SyncingDisabled != null)
+                                        SyncingDisabled(sender, null);
 
-                                        if (SyncingDisabled != null)
-                                            SyncingDisabled(sender, null);
+                                    break;
+                                default:
+                                    break;
+                            }
+                        };
 
-                                        break;
-                                    default:
-                                        break;
-                                }
-                            };
-
-                            messageBox.Show();
-                        });
-                    }
+                        messageBox.Show();
+                    });
                 }
             }
             else
