@@ -18,8 +18,8 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.TaskUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged"
-                               toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.TaskUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged"
+                        toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
             <controls:PivotItem Header="{Binding Resources.DetailsLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <Grid Margin="0,0,0,0">
@@ -105,7 +105,7 @@
                     <TextBlock x:Name="txtEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyNotes, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0" />
                 </Grid>
             </controls:PivotItem>
-        </toolkit:LockablePivot>
+        </controls:Pivot>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

@@ -145,7 +145,7 @@ namespace Milkman
             if (ScheduledActionService.Find("BackgroundWorker") != null)
                 ScheduledActionService.Remove("BackgroundWorker");
 
-            foreach (var item in ScheduledActionService.GetActions<Reminder>())
+            foreach (var item in ScheduledActionService.GetActions<Microsoft.Phone.Scheduler.Reminder>())
                 ScheduledActionService.Remove(item.Name);
 
             ShellTile primaryTile = ShellTile.ActiveTiles.First();

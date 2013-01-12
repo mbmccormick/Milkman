@@ -19,8 +19,8 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <toolkit:LockablePivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}"
-                               toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}"
+                        toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
             <controls:PivotItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <ListBox x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" Margin="0,0,0,0"
@@ -116,7 +116,7 @@
                     <TextBlock x:Name="txtTagsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboardTags, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                 </Grid>
             </controls:PivotItem>
-        </toolkit:LockablePivot>
+        </controls:Pivot>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
