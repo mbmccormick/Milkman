@@ -569,25 +569,23 @@ namespace Milkman
 
                 if (secondaryTile == null)
                 {
-                    StandardTileData data = new StandardTileData();
+                    IconicTileData data = new IconicTileData();
 
-                    int tasksDueToday = 0;
-                    int tasksOverdue = 0;
-                    int tasksNearby = 0;
-
-                    data.BackgroundImage = new Uri("BackgroundPinned.png", UriKind.Relative);
-                    data.Title = Strings.Milkman;
-
+                    data.IconImage = new Uri("Background.png", UriKind.Relative);
+                    data.SmallIconImage = new Uri("ApplicationIcon.png", UriKind.Relative);
+                    
                     if (this.pivLayout.SelectedIndex == 1)
-                        data.BackTitle = MostRecentTaskListClick.Name;
+                        data.Title = MostRecentTaskListClick.Name;
                     else if (this.pivLayout.SelectedIndex == 2)
-                        data.BackTitle = MostRecentTaskTagClick.Name;
+                        data.Title = MostRecentTaskTagClick.Name;
                     else
                         return;
 
                     if (this.pivLayout.SelectedIndex == 1 &&
                         MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
                     {
+                        int tasksNearby = 0;
+
                         AppSettings settings = new AppSettings();
 
                         double radius;
@@ -606,15 +604,21 @@ namespace Milkman
 
                         tasksNearby = App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).Count;
 
+                        data.Count = tasksNearby;
+
                         if (tasksNearby == 0)
-                            data.BackContent = Strings.LiveTileNearbyEmpty;
+                            data.WideContent1 = Strings.LiveTileNearbyEmpty;
                         else if (tasksNearby == 1)
-                            data.BackContent = tasksNearby + " " + Strings.LiveTileNearbySingle;
+                            data.WideContent1 = tasksNearby + " " + Strings.LiveTileNearbySingle;
                         else
-                            data.BackContent = tasksNearby + " " + Strings.LiveTileNearbyPlural;
+                            data.WideContent1 = tasksNearby + " " + Strings.LiveTileNearbyPlural;
                     }
                     else
                     {
+                        int tasksDueToday = 0;
+                        int tasksDueTomorrow = 0;
+                        int tasksOverdue = 0;
+                        
                         if (this.pivLayout.SelectedIndex == 1)
                         {
                             if (MostRecentTaskListClick.Tasks != null)
@@ -639,27 +643,40 @@ namespace Milkman
                             return;
                         }
 
+                        data.Count = tasksDueToday;
+
                         if (tasksDueToday == 0)
-                            data.BackContent = Strings.LiveTileEmpty;
+                            data.WideContent1 = Strings.LiveTileEmpty;
                         else if (tasksDueToday == 1)
-                            data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
+                            data.WideContent1 = tasksDueToday + " " + Strings.LiveTileSingle;
                         else
-                            data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
+                            data.WideContent1 = tasksDueToday + " " + Strings.LiveTilePlural;
+
+                        if (tasksDueTomorrow > 0)
+                            data.WideContent2 = tasksOverdue + " task due tomorrow"; // TODO: fix this
+                        else if (tasksDueTomorrow == 1)
+                            data.WideContent2 = tasksOverdue + " tasks due tomorrow";
+                        else
+                            data.WideContent2 = "No tasks due tomorrow";
 
                         if (tasksOverdue > 0)
-                            data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
+                            data.WideContent3 = tasksOverdue + " task overdue"; // TODO: fix this
+                        else if (tasksOverdue == 1)
+                            data.WideContent3 = tasksOverdue + " tasks overdue";
+                        else
+                            data.WideContent3 = "";
                     }
 
                     if (this.pivLayout.SelectedIndex == 1)
                     {
                         if (MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
-                            ShellTile.Create(new Uri("/TaskListByLocationPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
+                            ShellTile.Create(new Uri("/TaskListByLocationPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data, true);
                         else
-                            ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data);
+                            ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data, true);
                     }
                     else if (this.pivLayout.SelectedIndex == 2)
                     {
-                        ShellTile.Create(new Uri("/TaskListByTagPage.xaml?id=" + MostRecentTaskTagClick.Name, UriKind.Relative), data);
+                        ShellTile.Create(new Uri("/TaskListByTagPage.xaml?id=" + MostRecentTaskTagClick.Name, UriKind.Relative), data, true);
                     }
                     else
                     {
