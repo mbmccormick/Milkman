@@ -101,7 +101,7 @@ namespace Milkman
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
             App.SyncingDisabled += new EventHandler<EventArgs>(App_SyncingDisabled);
 
-            TiltEffect.TiltableItems.Add(typeof(MultiselectItem));
+            TiltEffect.TiltableItems.Add(typeof(LongListMultiSelectorItem));
 
             this.BuildApplicationBar();
 
@@ -487,7 +487,7 @@ namespace Milkman
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            MultiselectList target = null;
+            LongListMultiSelector target = null;
             if (this.pivLayout.SelectedIndex == 0)
                 target = this.lstAll;
             else if (this.pivLayout.SelectedIndex == 1)
@@ -506,7 +506,7 @@ namespace Milkman
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            MultiselectList target = null;
+            LongListMultiSelector target = null;
             if (this.pivLayout.SelectedIndex == 0)
                 target = this.lstAll;
             else if (this.pivLayout.SelectedIndex == 1)
@@ -559,7 +559,7 @@ namespace Milkman
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            MultiselectList target = null;
+            LongListMultiSelector target = null;
             if (this.pivLayout.SelectedIndex == 0)
                 target = this.lstAll;
             else if (this.pivLayout.SelectedIndex == 1)
@@ -612,7 +612,7 @@ namespace Milkman
         {
             if (GlobalLoading.Instance.IsLoading) return;
 
-            MultiselectList target = null;
+            LongListMultiSelector target = null;
             if (this.pivLayout.SelectedIndex == 0)
                 target = this.lstAll;
             else if (this.pivLayout.SelectedIndex == 1)
@@ -667,9 +667,9 @@ namespace Milkman
             SyncData();
         }
 
-        private void MultiselectList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void LongListMultiSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MultiselectList target = (MultiselectList)sender;
+            LongListMultiSelector target = (LongListMultiSelector)sender;
             ApplicationBarIconButton i = (ApplicationBarIconButton)ApplicationBar.Buttons[0]; // complete
             ApplicationBarIconButton j = (ApplicationBarIconButton)ApplicationBar.Buttons[1]; // postpone
             ApplicationBarIconButton k = (ApplicationBarIconButton)ApplicationBar.Buttons[2]; // delete
@@ -707,9 +707,9 @@ namespace Milkman
             }
         }
 
-        private void MultiselectList_IsSelectionEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void LongListMultiSelector_IsSelectionEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            MultiselectList target = (MultiselectList)sender;
+            LongListMultiSelector target = (LongListMultiSelector)sender;
 
             while (ApplicationBar.Buttons.Count > 0)
             {

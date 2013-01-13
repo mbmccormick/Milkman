@@ -23,14 +23,14 @@
                         toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
             <controls:PivotItem Header="{Binding Resources.AllLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
-                    <toolkit:MultiselectList x:Name="lstAll" ItemsSource="{Binding AllTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:MultiselectList.ItemContainerStyle>
-                            <Style TargetType="toolkit:MultiselectItem">
+                    <toolkit:LongListMultiSelector x:Name="lstAll" ItemsSource="{Binding AllTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                        <toolkit:LongListMultiSelector.ItemContainerStyle>
+                            <Style TargetType="toolkit:LongListMultiSelectorItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>
                             </Style>
-                        </toolkit:MultiselectList.ItemContainerStyle>
-                        <toolkit:MultiselectList.ItemTemplate>
+                        </toolkit:LongListMultiSelector.ItemContainerStyle>
+                        <toolkit:LongListMultiSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
                                     <uc:TaskItemControl />
@@ -44,8 +44,8 @@
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
                             </DataTemplate>
-                        </toolkit:MultiselectList.ItemTemplate>
-                    </toolkit:MultiselectList>
+                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtAllLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                     <TextBlock x:Name="txtAllEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -54,14 +54,14 @@
 
             <controls:PivotItem Header="{Binding Resources.TodayLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
-                    <toolkit:MultiselectList x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:MultiselectList.ItemContainerStyle>
-                            <Style TargetType="toolkit:MultiselectItem">
+                    <toolkit:LongListMultiSelector x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                        <toolkit:LongListMultiSelector.ItemContainerStyle>
+                            <Style TargetType="toolkit:LongListMultiSelectorItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>
                             </Style>
-                        </toolkit:MultiselectList.ItemContainerStyle>
-                        <toolkit:MultiselectList.ItemTemplate>
+                        </toolkit:LongListMultiSelector.ItemContainerStyle>
+                        <toolkit:LongListMultiSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
                                     <uc:TaskItemControl />
@@ -75,8 +75,8 @@
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
                             </DataTemplate>
-                        </toolkit:MultiselectList.ItemTemplate>
-                    </toolkit:MultiselectList>
+                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtTodayLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                     <TextBlock x:Name="txtTodayEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -85,14 +85,14 @@
 
             <controls:PivotItem Header="{Binding Resources.TomorrowLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
-                    <toolkit:MultiselectList x:Name="lstTomorrow" ItemsSource="{Binding TomorrowTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:MultiselectList.ItemContainerStyle>
-                            <Style TargetType="toolkit:MultiselectItem">
+                    <toolkit:LongListMultiSelector x:Name="lstTomorrow" ItemsSource="{Binding TomorrowTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                        <toolkit:LongListMultiSelector.ItemContainerStyle>
+                            <Style TargetType="toolkit:LongListMultiSelectorItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>
                             </Style>
-                        </toolkit:MultiselectList.ItemContainerStyle>
-                        <toolkit:MultiselectList.ItemTemplate>
+                        </toolkit:LongListMultiSelector.ItemContainerStyle>
+                        <toolkit:LongListMultiSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
                                     <uc:TaskItemControl />
@@ -106,8 +106,8 @@
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
                             </DataTemplate>
-                        </toolkit:MultiselectList.ItemTemplate>
-                    </toolkit:MultiselectList>
+                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtTomorrowLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                     <TextBlock x:Name="txtTomorrowEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -116,14 +116,14 @@
 
             <controls:PivotItem Header="{Binding Resources.OverdueLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
-                    <toolkit:MultiselectList x:Name="lstOverdue" ItemsSource="{Binding OverdueTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:MultiselectList.ItemContainerStyle>
-                            <Style TargetType="toolkit:MultiselectItem">
+                    <toolkit:LongListMultiSelector x:Name="lstOverdue" ItemsSource="{Binding OverdueTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                        <toolkit:LongListMultiSelector.ItemContainerStyle>
+                            <Style TargetType="toolkit:LongListMultiSelectorItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>
                             </Style>
-                        </toolkit:MultiselectList.ItemContainerStyle>
-                        <toolkit:MultiselectList.ItemTemplate>
+                        </toolkit:LongListMultiSelector.ItemContainerStyle>
+                        <toolkit:LongListMultiSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
                                     <uc:TaskItemControl />
@@ -137,8 +137,8 @@
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
                             </DataTemplate>
-                        </toolkit:MultiselectList.ItemTemplate>
-                    </toolkit:MultiselectList>
+                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtOverdueLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                     <TextBlock x:Name="txtOverdueEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -147,14 +147,14 @@
 
             <controls:PivotItem Header="{Binding Resources.WeekLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
-                    <toolkit:MultiselectList x:Name="lstWeek" ItemsSource="{Binding WeekTasks}" SelectionChanged="MultiselectList_SelectionChanged" IsSelectionEnabledChanged="MultiselectList_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:MultiselectList.ItemContainerStyle>
-                            <Style TargetType="toolkit:MultiselectItem">
+                    <toolkit:LongListMultiSelector x:Name="lstWeek" ItemsSource="{Binding WeekTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                        <toolkit:LongListMultiSelector.ItemContainerStyle>
+                            <Style TargetType="toolkit:LongListMultiSelectorItem">
                                 <Setter Property="HintPanelHeight" Value="90"/>
                             </Style>
-                        </toolkit:MultiselectList.ItemContainerStyle>
-                        <toolkit:MultiselectList.ItemTemplate>
+                        </toolkit:LongListMultiSelector.ItemContainerStyle>
+                        <toolkit:LongListMultiSelector.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
                                     <uc:TaskItemControl />
@@ -168,8 +168,8 @@
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
                             </DataTemplate>
-                        </toolkit:MultiselectList.ItemTemplate>
-                    </toolkit:MultiselectList>
+                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtWeekLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
                     <TextBlock x:Name="txtWeekEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
