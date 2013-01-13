@@ -18,33 +18,30 @@
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="dttItemTemplate">
+            <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
+                <uc:TaskItemControl />
+
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
+                        <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
+                        <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
+            </StackPanel>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.NearbyUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}"
                         toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
             <controls:PivotItem Header="{Binding Resources.AllLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
-                    <toolkit:LongListMultiSelector x:Name="lstAll" ItemsSource="{Binding AllTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:LongListMultiSelector.ItemContainerStyle>
-                            <Style TargetType="toolkit:LongListMultiSelectorItem">
-                                <Setter Property="HintPanelHeight" Value="90"/>
-                            </Style>
-                        </toolkit:LongListMultiSelector.ItemContainerStyle>
-                        <toolkit:LongListMultiSelector.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
-                                    <uc:TaskItemControl />
-
-                                    <toolkit:ContextMenuService.ContextMenu>
-                                        <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                        </toolkit:ContextMenu>
-                                    </toolkit:ContextMenuService.ContextMenu>
-                                </StackPanel>
-                            </DataTemplate>
-                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    <toolkit:LongListMultiSelector x:Name="lstAll" ItemsSource="{Binding AllTasks}" LayoutMode="List"  SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
+                                                   ItemTemplate="{StaticResource dttItemTemplate}"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtAllLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -55,27 +52,8 @@
             <controls:PivotItem Header="{Binding Resources.TodayLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:LongListMultiSelector.ItemContainerStyle>
-                            <Style TargetType="toolkit:LongListMultiSelectorItem">
-                                <Setter Property="HintPanelHeight" Value="90"/>
-                            </Style>
-                        </toolkit:LongListMultiSelector.ItemContainerStyle>
-                        <toolkit:LongListMultiSelector.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
-                                    <uc:TaskItemControl />
-
-                                    <toolkit:ContextMenuService.ContextMenu>
-                                        <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                        </toolkit:ContextMenu>
-                                    </toolkit:ContextMenuService.ContextMenu>
-                                </StackPanel>
-                            </DataTemplate>
-                        </toolkit:LongListMultiSelector.ItemTemplate>
+                                                   ItemTemplate="{StaticResource dttItemTemplate}"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtTodayLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -86,27 +64,8 @@
             <controls:PivotItem Header="{Binding Resources.TomorrowLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstTomorrow" ItemsSource="{Binding TomorrowTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:LongListMultiSelector.ItemContainerStyle>
-                            <Style TargetType="toolkit:LongListMultiSelectorItem">
-                                <Setter Property="HintPanelHeight" Value="90"/>
-                            </Style>
-                        </toolkit:LongListMultiSelector.ItemContainerStyle>
-                        <toolkit:LongListMultiSelector.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
-                                    <uc:TaskItemControl />
-
-                                    <toolkit:ContextMenuService.ContextMenu>
-                                        <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                        </toolkit:ContextMenu>
-                                    </toolkit:ContextMenuService.ContextMenu>
-                                </StackPanel>
-                            </DataTemplate>
-                        </toolkit:LongListMultiSelector.ItemTemplate>
+                                                   ItemTemplate="{StaticResource dttItemTemplate}"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtTomorrowLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -117,27 +76,8 @@
             <controls:PivotItem Header="{Binding Resources.OverdueLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstOverdue" ItemsSource="{Binding OverdueTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:LongListMultiSelector.ItemContainerStyle>
-                            <Style TargetType="toolkit:LongListMultiSelectorItem">
-                                <Setter Property="HintPanelHeight" Value="90"/>
-                            </Style>
-                        </toolkit:LongListMultiSelector.ItemContainerStyle>
-                        <toolkit:LongListMultiSelector.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
-                                    <uc:TaskItemControl />
-
-                                    <toolkit:ContextMenuService.ContextMenu>
-                                        <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                        </toolkit:ContextMenu>
-                                    </toolkit:ContextMenuService.ContextMenu>
-                                </StackPanel>
-                            </DataTemplate>
-                        </toolkit:LongListMultiSelector.ItemTemplate>
+                                                   ItemTemplate="{StaticResource dttItemTemplate}"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtOverdueLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -148,27 +88,8 @@
             <controls:PivotItem Header="{Binding Resources.WeekLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstWeek" ItemsSource="{Binding WeekTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
-                        <toolkit:LongListMultiSelector.ItemContainerStyle>
-                            <Style TargetType="toolkit:LongListMultiSelectorItem">
-                                <Setter Property="HintPanelHeight" Value="90"/>
-                            </Style>
-                        </toolkit:LongListMultiSelector.ItemContainerStyle>
-                        <toolkit:LongListMultiSelector.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Margin="-12,0,36,24" Tap="ItemContent_Tap">
-                                    <uc:TaskItemControl />
-
-                                    <toolkit:ContextMenuService.ContextMenu>
-                                        <toolkit:ContextMenu>
-                                            <toolkit:MenuItem Header="{Binding Resources.CompleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.PostponeMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                            <toolkit:MenuItem Header="{Binding Resources.DeleteMenuLower, Source={StaticResource Strings}}" IsEnabled="{Binding ClientSyncing}" Click="MenuItem_Click" />
-                                        </toolkit:ContextMenu>
-                                    </toolkit:ContextMenuService.ContextMenu>
-                                </StackPanel>
-                            </DataTemplate>
-                        </toolkit:LongListMultiSelector.ItemTemplate>
+                                                   ItemTemplate="{StaticResource dttItemTemplate}"
+                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtWeekLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
