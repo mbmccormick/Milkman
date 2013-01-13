@@ -65,9 +65,10 @@ namespace BackgroundWorker.Common
             {
                 if (tile.NavigationUri.ToString() == "/") // application tile
                 {
-                    FlipTileData data = new FlipTileData();
+                    IconicTileData data = new IconicTileData();
 
                     int tasksDueToday = 0;
+                    int tasksDueTomorrow = 0;
                     int tasksOverdue = 0;
 
                     if (App.RtmClient.TaskLists != null)
@@ -88,21 +89,34 @@ namespace BackgroundWorker.Common
 
                         tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                 z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                        tasksDueTomorrow = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
+                                                                   z.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).Count();
                         tasksOverdue = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                     }
 
-                    data.BackTitle = Strings.AllTasks;
+                    data.Count = tasksDueToday;
 
                     if (tasksDueToday == 0)
-                        data.BackContent = Strings.LiveTileEmpty;
+                        data.WideContent1 = Strings.LiveTileEmpty;
                     else if (tasksDueToday == 1)
-                        data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
+                        data.WideContent1 = tasksDueToday + " " + Strings.LiveTileSingle;
                     else
-                        data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
+                        data.WideContent1 = tasksDueToday + " " + Strings.LiveTilePlural;
+
+                    if (tasksDueTomorrow > 0)
+                        data.WideContent2 = tasksOverdue + " tasks due tomorrow"; // TODO: fix this
+                    else if (tasksDueTomorrow == 1)
+                        data.WideContent2 = tasksOverdue + " task due tomorrow";
+                    else
+                        data.WideContent2 = "No tasks due tomorrow";
 
                     if (tasksOverdue > 0)
-                        data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
+                        data.WideContent3 = tasksOverdue + " tasks overdue"; // TODO: fix this
+                    else if (tasksOverdue == 1)
+                        data.WideContent3 = tasksOverdue + " task overdue";
+                    else
+                        data.WideContent3 = "";
 
                     tile.Update(data);
                 }
@@ -166,16 +180,16 @@ namespace BackgroundWorker.Common
                         data.WideContent1 = tasksDueToday + " " + Strings.LiveTilePlural;
 
                     if (tasksDueTomorrow > 0)
-                        data.WideContent2 = tasksOverdue + " task due tomorrow"; // TODO: fix this
+                        data.WideContent2 = tasksOverdue + " tasks due tomorrow"; // TODO: fix this
                     else if (tasksDueTomorrow == 1)
-                        data.WideContent2 = tasksOverdue + " tasks due tomorrow";
+                        data.WideContent2 = tasksOverdue + " task due tomorrow";
                     else
                         data.WideContent2 = "No tasks due tomorrow";
 
                     if (tasksOverdue > 0)
-                        data.WideContent3 = tasksOverdue + " task overdue"; // TODO: fix this
+                        data.WideContent3 = tasksOverdue + " tasks overdue"; // TODO: fix this
                     else if (tasksOverdue == 1)
-                        data.WideContent3 = tasksOverdue + " tasks overdue";
+                        data.WideContent3 = tasksOverdue + " task overdue";
                     else
                         data.WideContent3 = "";
 
@@ -218,16 +232,16 @@ namespace BackgroundWorker.Common
                         data.WideContent1 = tasksDueToday + " " + Strings.LiveTilePlural;
 
                     if (tasksDueTomorrow > 0)
-                        data.WideContent2 = tasksOverdue + " task due tomorrow"; // TODO: fix this
+                        data.WideContent2 = tasksOverdue + " tasks due tomorrow"; // TODO: fix this
                     else if (tasksDueTomorrow == 1)
-                        data.WideContent2 = tasksOverdue + " tasks due tomorrow";
+                        data.WideContent2 = tasksOverdue + " task due tomorrow";
                     else
                         data.WideContent2 = "No tasks due tomorrow";
 
                     if (tasksOverdue > 0)
-                        data.WideContent3 = tasksOverdue + " task overdue"; // TODO: fix this
+                        data.WideContent3 = tasksOverdue + " tasks overdue"; // TODO: fix this
                     else if (tasksOverdue == 1)
-                        data.WideContent3 = tasksOverdue + " tasks overdue";
+                        data.WideContent3 = tasksOverdue + " task overdue";
                     else
                         data.WideContent3 = "";
 
