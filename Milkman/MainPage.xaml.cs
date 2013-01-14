@@ -174,14 +174,23 @@ namespace Milkman
             if (NavigationContext.QueryString.ContainsKey("voiceCommandName") == true)
             {
                 SpeechRecognizerUI voicePrompt = new SpeechRecognizerUI();
-                
-                voicePrompt.Settings.ExampleText = "Pick up milk due today";
+
+                voicePrompt.Settings.ExampleText = "\"Pick up milk, due today, list personal\"";
                 voicePrompt.Settings.ShowConfirmation = true;
                 voicePrompt.Settings.ReadoutEnabled = true;
                 
                 SpeechRecognitionUIResult result = await voicePrompt.RecognizeWithUIAsync();
 
-                ShowAddTaskDialog(result.RecognitionResult.Text.Replace(" do ", " due "));
+                string resultText = result.RecognitionResult.Text;
+                resultText = resultText.Replace(".", "");
+                resultText = resultText.Replace(" do ", " ^");
+                resultText = resultText.Replace(" priority one", " !1");
+                resultText = resultText.Replace(" priority two", " !2");
+                resultText = resultText.Replace(" priority three", " !3");
+                resultText = resultText.Replace(" list ", " #");
+                resultText = resultText.Replace(" tag ", " #");
+
+                ShowAddTaskDialog(resultText);
             }
 
             base.OnNavigatedTo(e);
