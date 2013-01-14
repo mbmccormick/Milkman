@@ -33,8 +33,7 @@
           <SmallImageURI IsRelative="true" IsResource="false">ApplicationIcon.png</SmallImageURI>
           <Count>0</Count>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
-          <Title>
-          </Title>
+          <Title>Milkman</Title>
           <BackContent>
           </BackContent>
           <BackBackgroundImageURI IsRelative="true" IsResource="false">
