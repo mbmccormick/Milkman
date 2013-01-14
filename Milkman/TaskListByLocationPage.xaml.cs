@@ -217,15 +217,13 @@ namespace Milkman
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
+            LoadData(); 
+            
             if (e.IsNavigationInitiator == false)
             {
                 LittleWatson.CheckForPreviousException(true);
 
                 SyncData();
-            }
-            else
-            {
-                LoadData();
             }
 
             base.OnNavigatedTo(e);

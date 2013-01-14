@@ -158,15 +158,13 @@ namespace Milkman
                 SyncData();
             }
 
+            LoadData();
+
             if (e.IsNavigationInitiator == false)
             {
                 LittleWatson.CheckForPreviousException(true);
 
                 SyncData();
-            }
-            else
-            {
-                LoadData();
             }
 
             base.OnNavigatedTo(e);
@@ -846,6 +844,8 @@ namespace Milkman
         #endregion
     }
 
+    #region TaskTag Class Declaration
+
     public class TaskTag
     {
         private string _name;
@@ -876,4 +876,6 @@ namespace Milkman
             }
         }
     }
+
+    #endregion
 }
