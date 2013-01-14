@@ -45,22 +45,37 @@ namespace BackgroundWorker.Common
                 location != null)
             {
                 // check for nearby tasks
-                foreach (Task t in App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius))
-                {
-                    if (t.HasDueTime &&
-                        t.DueDateTime.Value <= DateTime.Now)
-                    {
-                        ShellToast toast = new ShellToast();
-
-                        toast.Title = t.Location.Name;
-                        toast.Content = t.Name;
-                        toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
-                        toast.Show();
-                    }
-                }
+                UpdateLocationNotifications(location, radius);
             }
 
             // update live tiles
+            UpdateLiveTiles(location, radius);
+        }
+
+        public static void ClearNotifications()
+        {
+            ResetLiveTiles();
+        }
+
+        public static void UpdateLocationNotifications(GeoCoordinate location, double radius)
+        {
+            foreach (Task t in App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius))
+            {
+                if (t.HasDueTime &&
+                    t.DueDateTime.Value <= DateTime.Now)
+                {
+                    ShellToast toast = new ShellToast();
+
+                    toast.Title = t.Location.Name;
+                    toast.Content = t.Name;
+                    toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
+                    toast.Show();
+                }
+            }
+        }
+
+        public static void UpdateLiveTiles(GeoCoordinate location, double radius)
+        {
             foreach (ShellTile tile in ShellTile.ActiveTiles)
             {
                 if (tile.NavigationUri.ToString() == "/") // application tile
@@ -234,11 +249,6 @@ namespace BackgroundWorker.Common
                     tile.Update(data);
                 }
             }
-        }
-
-        public static void ClearNotifications()
-        {
-            ResetLiveTiles();
         }
 
         public static void ResetLiveTiles()

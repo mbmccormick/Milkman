@@ -70,7 +70,22 @@ namespace Milkman.Common
             // setup task reminders
             if (settings.TaskRemindersEnabled > 0)
             {
-                // create new reminders
+                UpdateReminders(interval);
+            }
+
+            // update live tiles
+            UpdateLiveTiles(location, radius);
+        }
+
+        public static void ClearNotifications()
+        {
+            ResetReminders();
+            ResetLiveTiles();
+        }
+
+        public static void UpdateReminders(double interval)
+        {
+            // create new reminders
                 if (App.RtmClient.TaskLists != null)
                 {
                     foreach (TaskList l in App.RtmClient.TaskLists)
@@ -107,9 +122,24 @@ namespace Milkman.Common
                         }
                     }
                 }
-            }
+        }
 
-            // update live tiles
+        public static void ResetReminders()
+        {
+            try
+            {
+                // delete all existing reminders
+                foreach (var item in ScheduledActionService.GetActions<Reminder>())
+                    ScheduledActionService.Remove(item.Name);
+            }
+            catch (Exception ex)
+            {
+                // do nothing
+            }
+        }
+
+        public static void UpdateLiveTiles(GeoCoordinate location, double radius)
+        {
             foreach (ShellTile tile in ShellTile.ActiveTiles)
             {
                 if (tile.NavigationUri.ToString() == "/") // application tile
@@ -285,29 +315,8 @@ namespace Milkman.Common
             }
         }
 
-        public static void ClearNotifications()
-        {
-            ResetReminders();
-            ResetLiveTiles();
-        }
-
-        public static void ResetReminders()
-        {
-            try
-            {
-                // delete all existing reminders
-                foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                    ScheduledActionService.Remove(item.Name);
-            }
-            catch (Exception ex)
-            {
-                // do nothing
-            }
-        }
-
         public static void ResetLiveTiles()
         {
-            // remove live tiles
             foreach (ShellTile tile in ShellTile.ActiveTiles)
             {
                 if (tile.NavigationUri.ToString() == "/")
