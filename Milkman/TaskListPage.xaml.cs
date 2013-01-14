@@ -462,7 +462,7 @@ namespace Milkman
             {
                 this.dlgAddTask = new AddTaskDialog();
 
-                CustomMessageBox messageBox = this.dlgAddTask.CreateDialog();
+                CustomMessageBox messageBox = this.dlgAddTask.CreateDialog("");
 
                 messageBox.Dismissed += (s1, e1) =>
                 {

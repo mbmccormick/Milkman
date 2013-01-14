@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.0">
+  <CommandSet xml:lang="en-US">
+    <CommandPrefix>Milkman</CommandPrefix>
+    <Example>add new task</Example>
+
+    <Command Name="AddTask">
+      <Example>add new task</Example>
+      <ListenFor>new task</ListenFor>
+      <Feedback>Starting a new task...</Feedback>
+      <Navigate Target="/MainPage.xaml" />
+    </Command>
+
+  </CommandSet>
+</VoiceCommands>

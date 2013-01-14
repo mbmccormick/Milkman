@@ -20,6 +20,7 @@ using Microsoft.Phone.Scheduler;
 using System.IO.IsolatedStorage;
 using Microsoft.Phone.Tasks;
 using System.Net.NetworkInformation;
+using Windows.Phone.Speech.VoiceCommands;
 
 namespace Milkman
 {
@@ -81,7 +82,7 @@ namespace Milkman
                 MetroGridHelper.IsVisible = true;
         }
 
-        public static void LoadData()
+        public static async void LoadData()
         {
             string RtmAuthToken = IsolatedStorageHelper.GetObject<string>("RtmAuthToken");
             int? Timeline = IsolatedStorageHelper.GetObject<int?>("RtmTimeline");
@@ -117,6 +118,8 @@ namespace Milkman
             }
 
             RtmClient.Resources = App.Current.Resources;
+
+            await VoiceCommandService.InstallCommandSetsFromFileAsync(new Uri("ms-appx:///Commands.xml"));
         }
 
         public static void SaveData()

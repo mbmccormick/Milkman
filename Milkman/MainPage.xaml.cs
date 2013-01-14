@@ -18,6 +18,7 @@ using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using System.Device.Location;
+using Windows.Phone.Speech.Recognition;
 
 namespace Milkman
 {
@@ -148,7 +149,7 @@ namespace Milkman
             });
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        protected override async void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
@@ -167,6 +168,20 @@ namespace Milkman
             else
             {
                 LoadData();
+            }
+
+            // check for voice command entry
+            if (NavigationContext.QueryString.ContainsKey("voiceCommandName") == true)
+            {
+                SpeechRecognizerUI voicePrompt = new SpeechRecognizerUI();
+                
+                voicePrompt.Settings.ExampleText = "Pick up milk due today";
+                voicePrompt.Settings.ShowConfirmation = true;
+                voicePrompt.Settings.ReadoutEnabled = true;
+                
+                SpeechRecognitionUIResult result = await voicePrompt.RecognizeWithUIAsync();
+
+                ShowAddTaskDialog(result.RecognitionResult.Text.Replace(" do ", " due "));
             }
 
             base.OnNavigatedTo(e);
@@ -344,29 +359,39 @@ namespace Milkman
 
             if (settings.AddTaskDialogEnabled == true)
             {
-                this.dlgAddTask = new AddTaskDialog();
-
-                CustomMessageBox messageBox = this.dlgAddTask.CreateDialog();
-
-                messageBox.Dismissed += (s1, e1) =>
-                {
-                    switch (e1.Result)
-                    {
-                        case CustomMessageBoxResult.LeftButton:
-                            AddTask(this.dlgAddTask.txtDetails.Text);
-
-                            break;
-                        default:
-                            break;
-                    }
-                };
-
-                messageBox.Show();
+                this.ShowAddTaskDialog();
             }
             else
             {
                 NavigationService.Navigate(new Uri("/AddTaskPage.xaml", UriKind.Relative));
             }
+        }
+
+        private void ShowAddTaskDialog()
+        {
+            this.ShowAddTaskDialog("");
+        }
+
+        private void ShowAddTaskDialog(string defaultText)
+        {
+            this.dlgAddTask = new AddTaskDialog();
+
+            CustomMessageBox messageBox = this.dlgAddTask.CreateDialog(defaultText);
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                    case CustomMessageBoxResult.LeftButton:
+                        AddTask(this.dlgAddTask.txtDetails.Text);
+
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            messageBox.Show();
         }
 
         private void btnSync_Click(object sender, EventArgs e)

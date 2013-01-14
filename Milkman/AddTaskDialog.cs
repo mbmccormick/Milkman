@@ -14,7 +14,7 @@ namespace Milkman
     {
         public TextBox txtDetails;
 
-        public CustomMessageBox CreateDialog()
+        public CustomMessageBox CreateDialog(string defaultText)
         {
             StackPanel stkContent = new StackPanel();
 
@@ -24,7 +24,8 @@ namespace Milkman
                 InputScope = new InputScope()
                 {
                     Names = { new InputScopeName() { NameValue = InputScopeNameValue.Text } }
-                }
+                },
+                Text = defaultText
             };
             stkContent.Children.Add(txtDetails);
 
