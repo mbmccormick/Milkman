@@ -159,15 +159,13 @@ namespace Milkman
                 SyncData();
             }
 
+            LoadData();
+
             if (e.IsNavigationInitiator == false)
             {
                 LittleWatson.CheckForPreviousException(true);
 
                 SyncData();
-            }
-            else
-            {
-                LoadData();
             }
 
             // check for voice command entry
@@ -178,7 +176,7 @@ namespace Milkman
                 voicePrompt.Settings.ExampleText = "\"Pick up milk, due today, list personal\"";
                 voicePrompt.Settings.ShowConfirmation = true;
                 voicePrompt.Settings.ReadoutEnabled = true;
-                
+
                 SpeechRecognitionUIResult result = await voicePrompt.RecognizeWithUIAsync();
 
                 string resultText = result.RecognitionResult.Text;
@@ -608,7 +606,7 @@ namespace Milkman
 
                     data.IconImage = new Uri("IconicTile.png", UriKind.Relative);
                     data.SmallIconImage = new Uri("IconicTileSmall.png", UriKind.Relative);
-                    
+
                     if (this.pivLayout.SelectedIndex == 1)
                         data.Title = MostRecentTaskListClick.Name;
                     else if (this.pivLayout.SelectedIndex == 2)
@@ -653,7 +651,7 @@ namespace Milkman
                         int tasksDueToday = 0;
                         int tasksDueTomorrow = 0;
                         int tasksOverdue = 0;
-                        
+
                         if (this.pivLayout.SelectedIndex == 1)
                         {
                             if (MostRecentTaskListClick.Tasks != null)
@@ -898,6 +896,8 @@ namespace Milkman
         #endregion
     }
 
+    #region TaskTag Class Declaration
+
     public class TaskTag
     {
         private string _name;
@@ -928,4 +928,6 @@ namespace Milkman
             }
         }
     }
+
+    #endregion
 }

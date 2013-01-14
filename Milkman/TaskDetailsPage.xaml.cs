@@ -59,6 +59,8 @@ namespace Milkman
 
         private void TaskDetailsPage_Loaded(object sender, EventArgs e)
         {
+            LoadData(); 
+            
             if (navigationArgs.IsNavigationInitiator == false)
             {
                 LittleWatson.CheckForPreviousException(true);
@@ -67,10 +69,6 @@ namespace Milkman
                 {
                     LoadData();
                 });
-            }
-            else
-            {
-                LoadData();
             }
         }
 
