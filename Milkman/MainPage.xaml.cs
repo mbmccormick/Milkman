@@ -169,7 +169,8 @@ namespace Milkman
             }
 
             // check for voice command entry
-            if (NavigationContext.QueryString.ContainsKey("voiceCommandName") == true)
+            if (e.IsNavigationInitiator == false &&
+                NavigationContext.QueryString.ContainsKey("voiceCommandName") == true)
             {
                 SpeechRecognizerUI voicePrompt = new SpeechRecognizerUI();
 

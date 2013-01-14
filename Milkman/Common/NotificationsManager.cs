@@ -250,19 +250,19 @@ namespace Milkman.Common
                     else
                         data.WideContent1 = tasksDueToday + " " + Strings.LiveTilePlural;
 
-                    if (tasksDueTomorrow > 0)
-                        data.WideContent2 = tasksDueTomorrow + " tasks due tomorrow"; // TODO: fix this
+                    if (tasksDueTomorrow == 0)
+                        data.WideContent2 = "No tasks due tomorrow"; // TODO: fix this
                     else if (tasksDueTomorrow == 1)
-                        data.WideContent2 = tasksDueTomorrow + " task due tomorrow";
+                        data.WideContent2 = tasksDueTomorrow + " task due tomorrow"; // TODO: fix this
                     else
-                        data.WideContent2 = "No tasks due tomorrow";
+                        data.WideContent2 = tasksDueTomorrow + " tasks due tomorrow"; // TODO: fix this
 
-                    if (tasksOverdue > 0)
-                        data.WideContent3 = tasksOverdue + " tasks overdue"; // TODO: fix this
+                    if (tasksOverdue == 0)
+                        data.WideContent3 = "No tasks overdue"; // TODO: fix this
                     else if (tasksOverdue == 1)
-                        data.WideContent3 = tasksOverdue + " task overdue";
+                        data.WideContent3 = tasksOverdue + " task overdue"; // TODO: fix this
                     else
-                        data.WideContent3 = "";
+                        data.WideContent3 = tasksOverdue + " tasks overdue"; // TODO: fix this
 
                     tile.Update(data);
                 }
@@ -302,19 +302,19 @@ namespace Milkman.Common
                     else
                         data.WideContent1 = tasksDueToday + " " + Strings.LiveTilePlural;
 
-                    if (tasksDueTomorrow > 0)
-                        data.WideContent2 = tasksDueTomorrow + " tasks due tomorrow"; // TODO: fix this
+                    if (tasksDueTomorrow == 0)
+                        data.WideContent2 = "No tasks due tomorrow"; // TODO: fix this
                     else if (tasksDueTomorrow == 1)
-                        data.WideContent2 = tasksDueTomorrow + " task due tomorrow";
+                        data.WideContent2 = tasksDueTomorrow + " task due tomorrow"; // TODO: fix this
                     else
-                        data.WideContent2 = "No tasks due tomorrow";
+                        data.WideContent2 = tasksDueTomorrow + " tasks due tomorrow"; // TODO: fix this
 
-                    if (tasksOverdue > 0)
-                        data.WideContent3 = tasksOverdue + " tasks overdue"; // TODO: fix this
+                    if (tasksOverdue == 0)
+                        data.WideContent3 = "No tasks overdue"; // TODO: fix this
                     else if (tasksOverdue == 1)
-                        data.WideContent3 = tasksOverdue + " task overdue";
+                        data.WideContent3 = tasksOverdue + " task overdue"; // TODO: fix this
                     else
-                        data.WideContent3 = "";
+                        data.WideContent3 = tasksOverdue + " tasks overdue"; // TODO: fix this
 
                     tile.Update(data);
                 }
