@@ -186,6 +186,7 @@ namespace Milkman
                 resultText = resultText.Replace(" do ", " ^");
                 resultText = resultText.Replace(" priority one", " !1");
                 resultText = resultText.Replace(" priority two", " !2");
+                resultText = resultText.Replace(" priority too", " !2");
                 resultText = resultText.Replace(" priority three", " !3");
                 resultText = resultText.Replace(" list ", " #");
                 resultText = resultText.Replace(" tag ", " #");
