@@ -147,6 +147,7 @@ namespace Milkman.Common
                     FlipTileData data = new FlipTileData();
 
                     int tasksDueToday = 0;
+                    int tasksDueTomorrow = 0;
                     int tasksOverdue = 0;
 
                     if (App.RtmClient.TaskLists != null)
@@ -167,6 +168,8 @@ namespace Milkman.Common
 
                         tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                 z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                        tasksDueTomorrow = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
+                                                                   z.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).Count();
                         tasksOverdue = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                     }
@@ -179,6 +182,9 @@ namespace Milkman.Common
                         data.BackContent = tasksDueToday + " " + Strings.LiveTileSingle;
                     else
                         data.BackContent = tasksDueToday + " " + Strings.LiveTilePlural;
+
+                    if (tasksDueTomorrow > 0)
+                        data.BackContent += ", " + tasksDueTomorrow + " due tomorrow"; // TODO: fix this
 
                     if (tasksOverdue > 0)
                         data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
