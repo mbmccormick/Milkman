@@ -215,9 +215,9 @@ namespace Milkman.Common
                         data.WideContent1 = tasksDueToday + " " + Strings.LiveTilePlural;
 
                     if (tasksDueTomorrow > 0)
-                        data.WideContent2 = tasksOverdue + " tasks due tomorrow"; // TODO: fix this
+                        data.WideContent2 = tasksDueTomorrow + " tasks due tomorrow"; // TODO: fix this
                     else if (tasksDueTomorrow == 1)
-                        data.WideContent2 = tasksOverdue + " task due tomorrow";
+                        data.WideContent2 = tasksDueTomorrow + " task due tomorrow";
                     else
                         data.WideContent2 = "No tasks due tomorrow";
 
@@ -267,9 +267,9 @@ namespace Milkman.Common
                         data.WideContent1 = tasksDueToday + " " + Strings.LiveTilePlural;
 
                     if (tasksDueTomorrow > 0)
-                        data.WideContent2 = tasksOverdue + " tasks due tomorrow"; // TODO: fix this
+                        data.WideContent2 = tasksDueTomorrow + " tasks due tomorrow"; // TODO: fix this
                     else if (tasksDueTomorrow == 1)
-                        data.WideContent2 = tasksOverdue + " task due tomorrow";
+                        data.WideContent2 = tasksDueTomorrow + " task due tomorrow";
                     else
                         data.WideContent2 = "No tasks due tomorrow";
 
