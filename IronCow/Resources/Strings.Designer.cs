@@ -1033,15 +1033,6 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No tasks due today.
-        /// </summary>
-        public static string LiveTileEmpty {
-            get {
-                return ResourceManager.GetString("LiveTileEmpty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No tasks nearby.
         /// </summary>
         public static string LiveTileNearbyEmpty {
@@ -1078,20 +1069,92 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No tasks overdue.
+        /// </summary>
+        public static string LiveTileOverdueEmpty {
+            get {
+                return ResourceManager.GetString("LiveTileOverdueEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tasks overdue.
+        /// </summary>
+        public static string LiveTileOverduePlural {
+            get {
+                return ResourceManager.GetString("LiveTileOverduePlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task overdue.
+        /// </summary>
+        public static string LiveTileOverdueSingle {
+            get {
+                return ResourceManager.GetString("LiveTileOverdueSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No tasks due today.
+        /// </summary>
+        public static string LiveTileTodayEmpty {
+            get {
+                return ResourceManager.GetString("LiveTileTodayEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to tasks due today.
         /// </summary>
-        public static string LiveTilePlural {
+        public static string LiveTileTodayPlural {
             get {
-                return ResourceManager.GetString("LiveTilePlural", resourceCulture);
+                return ResourceManager.GetString("LiveTileTodayPlural", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to task due today.
         /// </summary>
-        public static string LiveTileSingle {
+        public static string LiveTileTodaySingle {
             get {
-                return ResourceManager.GetString("LiveTileSingle", resourceCulture);
+                return ResourceManager.GetString("LiveTileTodaySingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to due tomorrow.
+        /// </summary>
+        public static string LiveTileTomorrow {
+            get {
+                return ResourceManager.GetString("LiveTileTomorrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No tasks due tomorrow.
+        /// </summary>
+        public static string LiveTileTomorrowEmpty {
+            get {
+                return ResourceManager.GetString("LiveTileTomorrowEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tasks due tomorrow.
+        /// </summary>
+        public static string LiveTileTomorrowPlural {
+            get {
+                return ResourceManager.GetString("LiveTileTomorrowPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to task due tomorrow.
+        /// </summary>
+        public static string LiveTileTomorrowSingle {
+            get {
+                return ResourceManager.GetString("LiveTileTomorrowSingle", resourceCulture);
             }
         }
         

@@ -684,25 +684,25 @@ namespace Milkman
                         data.Count = tasksDueToday;
 
                         if (tasksDueToday == 0)
-                            data.WideContent1 = Strings.LiveTileEmpty;
+                            data.WideContent1 = Strings.LiveTileTodayEmpty;
                         else if (tasksDueToday == 1)
-                            data.WideContent1 = tasksDueToday + " " + Strings.LiveTileSingle;
+                            data.WideContent1 = tasksDueToday + " " + Strings.LiveTileTodaySingle;
                         else
-                            data.WideContent1 = tasksDueToday + " " + Strings.LiveTilePlural;
+                            data.WideContent1 = tasksDueToday + " " + Strings.LiveTileTodayPlural;
 
                         if (tasksDueTomorrow == 0)
-                            data.WideContent2 = "No tasks due tomorrow"; // TODO: fix this
+                            data.WideContent2 = Strings.LiveTileTomorrowEmpty;
                         else if (tasksDueTomorrow == 1)
-                            data.WideContent2 = tasksDueTomorrow + " task due tomorrow"; // TODO: fix this
+                            data.WideContent2 = tasksDueTomorrow + " " + Strings.LiveTileTomorrowSingle;
                         else
-                            data.WideContent2 = tasksDueTomorrow + " tasks due tomorrow"; // TODO: fix this
+                            data.WideContent2 = tasksDueTomorrow + " " + Strings.LiveTileTomorrowPlural;
 
                         if (tasksOverdue == 0)
-                            data.WideContent3 = "No tasks overdue"; // TODO: fix this
+                            data.WideContent3 = Strings.LiveTileOverdueEmpty;
                         else if (tasksOverdue == 1)
-                            data.WideContent3 = tasksOverdue + " task overdue"; // TODO: fix this
+                            data.WideContent3 = tasksOverdue + " " + Strings.LiveTileOverdueSingle;
                         else
-                            data.WideContent3 = tasksOverdue + " tasks overdue"; // TODO: fix this
+                            data.WideContent3 = tasksOverdue + " " + Strings.LiveTileOverduePlural;
                     }
 
                     if (this.pivLayout.SelectedIndex == 1)
