@@ -663,6 +663,8 @@ namespace Milkman
                             {
                                 tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
                                                                                          z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                                tasksDueTomorrow = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                                            z.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).Count();
                                 tasksOverdue = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
                                                                                         z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                             }
@@ -673,6 +675,8 @@ namespace Milkman
 
                             tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
                                                              z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
+                            tasksDueTomorrow = tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                z.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).Count();
                             tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
                                                             z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
                         }
