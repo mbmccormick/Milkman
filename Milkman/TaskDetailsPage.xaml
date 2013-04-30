@@ -18,8 +18,7 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.TaskUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged"
-                        toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.TaskUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" DataContext="{Binding Task}" SelectionChanged="Pivot_SelectionChanged">
             <controls:PivotItem Header="{Binding Resources.DetailsLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <Grid Margin="0,0,0,0">
@@ -41,46 +40,30 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock x:Name="txtName" Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="1" />
+                            <TextBlock x:Name="txtName" Text="{Binding Name}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
 
-                            <TextBlock x:Name="txtDueDate" Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{Binding DueDateForegroundBrush}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="1" />
+                            <TextBlock x:Name="txtDueDate" Text="{Binding FriendlyDueDate}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin="0" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{Binding DueDateForegroundBrush}" />
 
-                            <TextBlock Text="{Binding Resources.List, Source={StaticResource Strings}}" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="2" />
-                            <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="2" />
+                            <TextBlock Text="{Binding Resources.List, Source={StaticResource Strings}}" Grid.Row="2" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <TextBlock Text="{Binding List}" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
 
-                            <TextBlock Text="{Binding Resources.Repeat, Source={StaticResource Strings}}" Grid.Row="3" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="3" />
-                            <TextBlock Text="{Binding Recurrence}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="3" />
+                            <TextBlock Text="{Binding Resources.Repeat, Source={StaticResource Strings}}" Grid.Row="3" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <TextBlock Text="{Binding Recurrence}" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
 
-                            <TextBlock Text="{Binding Resources.Estimate, Source={StaticResource Strings}}" Grid.Row="4" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="4" />
-                            <TextBlock Text="{Binding Estimate}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="4" />
+                            <TextBlock Text="{Binding Resources.Estimate, Source={StaticResource Strings}}" Grid.Row="4" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <TextBlock Text="{Binding Estimate}" Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
 
-                            <TextBlock Text="{Binding Resources.Tags, Source={StaticResource Strings}}" Grid.Row="5" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="5" />
-                            <TextBlock Text="{Binding TagsString}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="5" />
+                            <TextBlock Text="{Binding Resources.Tags, Source={StaticResource Strings}}" Grid.Row="5" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <TextBlock Text="{Binding TagsString}" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
 
-                            <TextBlock Text="{Binding Resources.Location, Source={StaticResource Strings}}" Grid.Row="6" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="6" />
-                            <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="6" />
+                            <TextBlock Text="{Binding Resources.Location, Source={StaticResource Strings}}" Grid.Row="6" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <TextBlock Text="{Binding LocationName}" Grid.Row="6" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
 
-                            <TextBlock Text="{Binding Resources.URL, Source={StaticResource Strings}}" Grid.Row="7" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="7" />
-                            <HyperlinkButton Content="{Binding Url}" Grid.Row="7" Grid.Column="1" Margin="-12,-12,0,0" HorizontalContentAlignment="Left" NavigateUri="{Binding Url}" TargetName="_blank" FontSize="{StaticResource PhoneFontSizeMediumLarge}" FontFamily="{StaticResource PhoneFontFamilyNormal}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="7" />
+                            <TextBlock Text="{Binding Resources.URL, Source={StaticResource Strings}}" Grid.Row="7" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <HyperlinkButton Content="{Binding Url}" Grid.Row="7" Grid.Column="1" Margin="-12,-12,0,0" HorizontalContentAlignment="Left" NavigateUri="{Binding Url}" TargetName="_blank" FontSize="{StaticResource PhoneFontSizeMediumLarge}" FontFamily="{StaticResource PhoneFontFamilyNormal}" />
 
-                            <TextBlock Text="{Binding Resources.Postponed, Source={StaticResource Strings}}" Grid.Row="8" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="8" />
-                            <TextBlock Text="{Binding PostponedString}" Grid.Row="8" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}"
-                                       toolkit:TurnstileFeatherEffect.FeatheringIndex="8" />
+                            <TextBlock Text="{Binding Resources.Postponed, Source={StaticResource Strings}}" Grid.Row="8" Grid.Column="0" Margin="0,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
+                            <TextBlock Text="{Binding PostponedString}" Grid.Row="8" Grid.Column="1" TextWrapping="Wrap" Margin="0,0,12,0" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMediumLarge}" />
                         </Grid>
 
                         <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0" />
@@ -90,8 +73,7 @@
 
             <controls:PivotItem Header="{Binding Resources.NotesLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstNotes" Margin="0" ItemsSource="{Binding Notes}"
-                             toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                    <ListBox x:Name="lstNotes" Margin="0" ItemsSource="{Binding Notes}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Margin="0,0,0,17" Tap="ItemContent_Tap">

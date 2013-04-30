@@ -23,22 +23,16 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="0" />
-            <TextBlock x:Name="PageTitle" Text="{Binding Resources.SettingsLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="1" />
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
+            <TextBlock x:Name="PageTitle" Text="{Binding Resources.SettingsLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel>
-                <toolkit:ToggleSwitch x:Name="togAddTaskDialog" IsChecked="true" Header="{Binding Resources.AddTaskDialogSetting, Source={StaticResource Strings}}" Margin="0,0,0,-15"
-                                      toolkit:TurnstileFeatherEffect.FeatheringIndex="2" />
-                <toolkit:ToggleSwitch x:Name="togIgnorePriority" IsChecked="true" Header="{Binding Resources.IgnorePrioritySetting, Source={StaticResource Strings}}" Margin="0,0,0,-15"
-                                      toolkit:TurnstileFeatherEffect.FeatheringIndex="3" />
-                <toolkit:ToggleSwitch x:Name="togLocationReminders" IsChecked="true" Header="{Binding Resources.LocationRemindersSetting, Source={StaticResource Strings}}" Margin="0,0,0,-15"
-                                      toolkit:TurnstileFeatherEffect.FeatheringIndex="4" />
-                <StackPanel Margin="12,12,12,12"
-                            toolkit:TurnstileFeatherEffect.FeatheringIndex="5">
+                <toolkit:ToggleSwitch x:Name="togAddTaskDialog" IsChecked="true" Header="{Binding Resources.AddTaskDialogSetting, Source={StaticResource Strings}}" Margin="0,0,0,-15" />
+                <toolkit:ToggleSwitch x:Name="togIgnorePriority" IsChecked="true" Header="{Binding Resources.IgnorePrioritySetting, Source={StaticResource Strings}}" Margin="0,0,0,-15" />
+                <toolkit:ToggleSwitch x:Name="togLocationReminders" IsChecked="true" Header="{Binding Resources.LocationRemindersSetting, Source={StaticResource Strings}}" Margin="0,0,0,-15" />
+                <StackPanel Margin="12,12,12,12">
                     <TextBlock Text="{Binding Resources.NearbyRadiusSetting, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
                     <toolkit:ListPicker x:Name="lstNearbyRadius" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1">
                         <toolkit:ListPickerItem Content="{Binding Resources.NearbyRadiusSetting1, Source={StaticResource Strings}}" />
@@ -48,8 +42,7 @@
                         <toolkit:ListPickerItem Content="{Binding Resources.NearbyRadiusSetting5, Source={StaticResource Strings}}" />
                     </toolkit:ListPicker>
                 </StackPanel>
-                <StackPanel Margin="12,12,12,12"
-                            toolkit:TurnstileFeatherEffect.FeatheringIndex="6">
+                <StackPanel Margin="12,12,12,12">
                     <TextBlock Text="{Binding Resources.TaskRemindersSetting, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
                     <toolkit:ListPicker x:Name="lstTaskReminders" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1">
                         <toolkit:ListPickerItem Content="{Binding Resources.TaskRemindersSetting1, Source={StaticResource Strings}}" />

@@ -35,13 +35,11 @@
     </phone:PhoneApplicationPage.Resources>
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}"
-                        toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
+        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}">
             <controls:PivotItem Header="{Binding Resources.AllLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstAll" ItemsSource="{Binding AllTasks}" LayoutMode="List"  SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                                   ItemTemplate="{StaticResource dttItemTemplate}"
-                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                                   ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtAllLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -52,8 +50,7 @@
             <controls:PivotItem Header="{Binding Resources.TodayLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                                   ItemTemplate="{StaticResource dttItemTemplate}"
-                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                                   ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtTodayLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -64,8 +61,7 @@
             <controls:PivotItem Header="{Binding Resources.TomorrowLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstTomorrow" ItemsSource="{Binding TomorrowTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                                   ItemTemplate="{StaticResource dttItemTemplate}"
-                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                                   ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtTomorrowLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -76,8 +72,7 @@
             <controls:PivotItem Header="{Binding Resources.OverdueLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstOverdue" ItemsSource="{Binding OverdueTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                                   ItemTemplate="{StaticResource dttItemTemplate}"
-                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                                   ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtOverdueLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>
@@ -88,8 +83,7 @@
             <controls:PivotItem Header="{Binding Resources.WeekLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstWeek" ItemsSource="{Binding WeekTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
-                                                   ItemTemplate="{StaticResource dttItemTemplate}"
-                                                   toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                                                   ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtWeekLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,-9,0,0"/>

@@ -25,15 +25,12 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,24">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="0" />
-            <TextBlock x:Name="PageTitle" Text="{Binding Resources.WelcomeLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"
-                       toolkit:TurnstileFeatherEffect.FeatheringIndex="1" />
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
+            <TextBlock x:Name="PageTitle" Text="{Binding Resources.WelcomeLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Name="lstTiles" Margin="0,0,-12,0"
-                     toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
+            <ListBox Name="lstTiles" Margin="0,0,-12,0">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <toolkit:WrapPanel Margin="0,0,0,24" />
