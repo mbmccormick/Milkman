@@ -23,7 +23,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.AddNoteUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
         </StackPanel>
 
@@ -36,11 +36,11 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="{Binding Resources.Title, Source={StaticResource Strings}}" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                <TextBox x:Name="txtTitle" Grid.Row="1" Margin="0,0,0,0" InputScope="Text" />
+                <TextBlock Text="{Binding Resources.Title, Source={StaticResource Strings}}" Grid.Row="0" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                <TextBox x:Name="txtTitle" Grid.Row="1" Margin="0,0,0,0" InputScope="Text" />
 
-                <TextBlock Text="{Binding Resources.Body, Source={StaticResource Strings}}" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                <TextBox x:Name="txtBody" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,0" InputScope="Text" />
+                <TextBlock Text="{Binding Resources.Body, Source={StaticResource Strings}}" Grid.Row="2" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,-6" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}" />
+                <TextBox x:Name="txtBody" Grid.Row="3" AcceptsReturn="True" TextWrapping="Wrap" Margin="0,0,0,0" InputScope="Text" />
             </Grid>
         </ScrollViewer>
     </Grid>
