@@ -261,8 +261,8 @@ namespace IronCow
         {
             TaskListTaskCollection tmp = new TaskListTaskCollection(this);
 
-            if (!GetFlag(TaskListFlags.Smart))
-            {
+            //if (!GetFlag(TaskListFlags.Smart))
+            //{
                 tmp.Resync(() =>
                 {
                     mTasks = tmp;
@@ -270,19 +270,19 @@ namespace IronCow
                     OnPropertyChanged("Count");
                     callback();
                 });
-            }
-            else if (!IsFrozen && GetFlag(TaskListFlags.Smart))
-            {
-                // Resync all the time for smart lists...
-                //TODO: maybe use cache like normal lists, but for only a short time?
-                tmp.SmartResync(() =>
-                {
-                    mTasks = tmp;
-                    OnPropertyChanged("Tasks");
-                    OnPropertyChanged("Count");
-                    callback();
-                });
-            }
+            //}
+            //else if (!IsFrozen && GetFlag(TaskListFlags.Smart))
+            //{
+            //    // Resync all the time for smart lists...
+            //    //TODO: maybe use cache like normal lists, but for only a short time?
+            //    tmp.SmartResync(() =>
+            //    {
+            //        mTasks = tmp;
+            //        OnPropertyChanged("Tasks");
+            //        OnPropertyChanged("Count");
+            //        callback();
+            //    });
+            //}
         }
 
         #endregion
