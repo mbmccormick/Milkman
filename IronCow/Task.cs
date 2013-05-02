@@ -1521,7 +1521,10 @@ namespace IronCow
                     this.DueDateTime.Value.Date <= DateTime.Now.Date)
                     return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
                 else
-                    return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
+                    if (Owner == null)
+                        return null;
+                    else
+                        return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
             }
         }
 
