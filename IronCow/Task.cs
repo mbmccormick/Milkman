@@ -366,6 +366,7 @@ namespace IronCow
         {
             get
             {
+                if (Owner == null) return null;
                 if (Owner.Locations == null) return null;
 
                 if (mLocation == null && mLocationId != RtmElement.UnsyncedId)
@@ -1505,7 +1506,10 @@ namespace IronCow
                     this.DueDateTime.Value.Date <= DateTime.Now.Date)
                     return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
                 else
-                    return (SolidColorBrush)Owner.Resources["PhoneSubtleBrush"];
+                    if (Owner == null)
+                        return null;
+                    else
+                        return (SolidColorBrush)Owner.Resources["PhoneSubtleBrush"];
             }
         }
 
@@ -1517,7 +1521,10 @@ namespace IronCow
                     this.DueDateTime.Value.Date <= DateTime.Now.Date)
                     return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
                 else
-                    return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
+                    if (Owner == null)
+                        return null;
+                    else
+                        return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
             }
         }
 
