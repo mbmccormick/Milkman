@@ -1539,7 +1539,10 @@ namespace IronCow
                 else if (this.Priority == TaskPriority.Three)
                     return new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
                 else
-                    return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
+                    if (Owner == null)
+                        return null;
+                    else
+                        return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
             }
         }
     }
