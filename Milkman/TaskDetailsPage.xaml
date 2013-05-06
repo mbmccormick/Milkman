@@ -98,7 +98,7 @@
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
             </toolkit:NavigationInTransition.Backward>
             <toolkit:NavigationInTransition.Forward>
                 <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
@@ -111,7 +111,7 @@
                 <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
