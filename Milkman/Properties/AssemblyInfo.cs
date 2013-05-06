@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Matt McCormick")]
 [assembly: AssemblyProduct("Milkman")]
-[assembly: AssemblyCopyright("Copyright © Matt McCormick 2012")]
+[assembly: AssemblyCopyright("Copyright © Matt McCormick 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,6 +32,6 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.6.3")]
-[assembly: AssemblyFileVersion("2.6.3")]
+[assembly: AssemblyVersion("2.7.0")]
+[assembly: AssemblyFileVersion("2.7.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
