@@ -126,7 +126,7 @@ namespace IronCow
                                 throw new IronCowException(string.Format("Internal Error: Can't find task list with id '{0}'.", list.Id));
                             Task actualTask = parentList.Tasks.GetById(series.Id, task.Id);
                             if (actualTask == null)
-                                throw new IronCowException(string.Format("Internal Error: Can't find task with id '{0}' in list '{1}'.", task.Id, list.Id));
+                                continue; // throw new IronCowException(string.Format("Internal Error: Can't find task with id '{0}' in list '{1}'.", task.Id, list.Id));
                             mImpl.Add(actualTask);
                         }
                         else
