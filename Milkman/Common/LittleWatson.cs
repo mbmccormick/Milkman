@@ -81,7 +81,7 @@ namespace Milkman.Common
                         {
                             case CustomMessageBoxResult.LeftButton:
                                 EmailComposeTask email = new EmailComposeTask();
-                                email.To = "milkman@mbmccormick.com";
+                                email.To = "feedback@mbmccormick.com";
                                 email.Subject = "Milkman Error Report";
                                 email.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n" + contents;
 

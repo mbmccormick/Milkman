@@ -810,7 +810,7 @@ namespace Milkman
         {
             EmailComposeTask emailComposeTask = new EmailComposeTask();
 
-            emailComposeTask.To = "milkman@mbmccormick.com";
+            emailComposeTask.To = "feedback@mbmccormick.com";
             emailComposeTask.Subject = "Milkman Feedback";
             emailComposeTask.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n\n";
             emailComposeTask.Show();
