@@ -609,8 +609,8 @@ namespace Milkman
                 {
                     IconicTileData data = new IconicTileData();
 
-                    data.IconImage = new Uri("IconicTile.png", UriKind.Relative);
-                    data.SmallIconImage = new Uri("IconicTileSmall.png", UriKind.Relative);
+                    data.IconImage = new Uri("/Assets/IconicTile.png", UriKind.Relative);
+                    data.SmallIconImage = new Uri("/Assets/IconicTileSmall.png", UriKind.Relative);
 
                     if (this.pivLayout.SelectedIndex == 1)
                         data.Title = MostRecentTaskListClick.Name;

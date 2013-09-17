@@ -9,7 +9,7 @@
     <Language code="de-DE" />
   </Languages>
   <App xmlns="" ProductID="{39713eb4-d173-46ee-932a-0d49bd2eb3c1}" Title="Milkman" RuntimeType="Silverlight" Version="3.1.0.0" Genre="apps.normal" Author="Matt McCormick" Description="Remember The Milk for Windows Phone" Publisher="Matt McCormick" BitsPerPixel="32" PublisherID="{99bc19ba-5660-436e-a3d8-7e7fc12151b8}">
-    <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
+    <IconPath IsRelative="true" IsResource="false">Assets/ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
       <Capability Name="ID_CAP_IDENTITY_USER" />
@@ -30,9 +30,9 @@
     <Tokens>
       <PrimaryToken TokenID="MilkmanToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">ApplicationIcon.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets/ApplicationIcon.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets/Background.png</BackgroundImageURI>
           <Title>Milkman</Title>
           <BackContent>
           </BackContent>
