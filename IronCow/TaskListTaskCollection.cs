@@ -51,33 +51,24 @@ namespace IronCow
         {
             if (Syncing)
             {
-                /*
-                Owner.GetTasks(mList.Id, (tasks) =>
-                {
-                    mImpl.Clear();
-                    mImpl.AddRange(tasks);
-                    Sort();
-                    callback();
-                });*/
-                
                 var request = new RestRequest("rtm.tasks.getList");
                 request.Parameters.Add("list_id", mList.Id.ToString());
                 request.Parameters.Add("filter", "status:Incomplete");
                 request.Callback = r =>
+                {
+                    mImpl.Clear();
+
+                    if (r.Tasks != null)
                     {
-                        mImpl.Clear();
+                        InternalSync(r.Tasks);
+                    }
 
-                        if (r.Tasks != null)
-                        {
-                            InternalSync(r.Tasks);
-                        }
+                    Sort();
 
-                        Sort();
+                    callback();
+                };
 
-                        callback();
-                    };
-                Owner.ExecuteRequest(request);
-                
+                Owner.ExecuteRequest(request);                
             }
         }
 
@@ -86,19 +77,10 @@ namespace IronCow
             if (!mList.GetFlag(TaskListFlags.Smart))
                 throw new InvalidOperationException("This list isn't a smart list and cannot use SmartResync: " + mList.Name);
 
-            /*
-            Owner.GetTasks(mList.Filter, (tasks) => 
-            {
-                mImpl.Clear();
-                mImpl.AddRange(tasks);
-                Sort();
-
-                callback();
-            }); */
-
             mImpl.Clear();
             mImpl.AddRange(Owner.SearchTasksLocally(mList.Filter));
             Sort();
+
             callback();
         }
 
@@ -469,8 +451,6 @@ namespace IronCow
                     mImpl.Sort(Task.CompareByName);
                     break;
             }
-            
-            // mImpl.Sort(Task.CompareByDate);
         }
 
         public void Sort(TaskListSortOrder sortOrder)
@@ -487,8 +467,6 @@ namespace IronCow
                     mImpl.Sort(Task.CompareByName);
                     break;
             }
-
-            // mImpl.Sort(Task.CompareByDate);
         }
     }
 }
