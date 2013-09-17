@@ -15,6 +15,7 @@ using Microsoft.Phone.Shell;
 using BackgroundWorker.Common;
 using IronCow;
 using IronCow.Rest;
+using System.IO.IsolatedStorage;
 
 namespace BackgroundWorker
 {
@@ -26,6 +27,7 @@ namespace BackgroundWorker
         public static Rtm RtmClient;
         public static Response ListsResponse;
         public static Response TasksResponse;
+        public static DateTime LastUpdated;
                 
         public static void LoadData()
         {
@@ -33,6 +35,7 @@ namespace BackgroundWorker
             int? Timeline = IsolatedStorageHelper.GetObject<int?>("RtmTimeline");
             ListsResponse = IsolatedStorageHelper.GetObject<Response>("ListsResponse");
             TasksResponse = IsolatedStorageHelper.GetObject<Response>("TasksResponse");
+            LastUpdated = IsolatedStorageHelper.GetObject<DateTime>("LastUpdated");
 
             if (!string.IsNullOrEmpty(RtmAuthToken))
             {
@@ -67,6 +70,9 @@ namespace BackgroundWorker
             IsolatedStorageHelper.SaveObject<int?>("RtmTimeline", RtmClient.CurrentTimeline);
             IsolatedStorageHelper.SaveObject<Response>("ListsResponse", ListsResponse);
             IsolatedStorageHelper.SaveObject<Response>("TasksResponse", TasksResponse);
+            IsolatedStorageHelper.SaveObject<DateTime>("LastUpdated", LastUpdated);
+
+            IsolatedStorageSettings.ApplicationSettings.Save();
         }
 
         public static void DeleteData()
@@ -75,6 +81,8 @@ namespace BackgroundWorker
             IsolatedStorageHelper.DeleteObject("ListsResponse");
             IsolatedStorageHelper.DeleteObject("TasksResponse");
             IsolatedStorageHelper.DeleteObject("RtmTimeline");
+            IsolatedStorageHelper.DeleteObject("LastUpdated");
+
             RtmClient = new Rtm(RtmApiKey, RtmSharedKey);
             ListsResponse = null;
             TasksResponse = null;
@@ -83,11 +91,13 @@ namespace BackgroundWorker
         public static void OnCacheLists(Response response)
         {
             ListsResponse = response;
+            LastUpdated = DateTime.Now;
         }
 
         public static void OnCacheTasks(Response response)
         {
             TasksResponse = response;
+            LastUpdated = DateTime.Now;
         }
     }
 }

@@ -246,51 +246,41 @@ namespace Milkman
 
         private void SyncData()
         {
-            System.ComponentModel.BackgroundWorker b = new System.ComponentModel.BackgroundWorker();
-            b.DoWork += (s, e) =>
+            if (sReload)
             {
-                if (sReload)
-                {
-                    if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
-                    {
-                        SmartDispatcher.BeginInvoke(() =>
-                        {
-                            GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
-                        });
-
-                        App.RtmClient.SyncEverything(() =>
-                        {
-                            LoadData();
-                        });
-                    }
-                    else
-                    {
-                        Login();
-                    }
-                }
-                else
+                if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
                 {
                     SmartDispatcher.BeginInvoke(() =>
                     {
-                        GlobalLoading.Instance.IsLoading = false;
+                        GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
+                    });
+
+                    App.RtmClient.SyncEverything(() =>
+                    {
+                        LoadData();
                     });
                 }
+                else
+                {
+                    Login();
+                }
+            }
+            else
+            {
+                SmartDispatcher.BeginInvoke(() =>
+                {
+                    GlobalLoading.Instance.IsLoading = false;
+                });
+            }
 
-                sReload = false;
-            };
-
-            b.RunWorkerAsync();
+            sReload = false;
         }
 
         private void LoadData()
         {
-            System.ComponentModel.BackgroundWorker b = new System.ComponentModel.BackgroundWorker();
-            b.DoWork += (s, e) =>
-            {
-                LoadDataInBackground();
-                NotificationsManager.SetupNotifications(_watcher.Position.Location);
-            };
-            b.RunWorkerAsync();
+            LoadDataInBackground();
+
+            NotificationsManager.SetupNotifications(_watcher.Position.Location);
         }
 
         private void LoadDataInBackground()

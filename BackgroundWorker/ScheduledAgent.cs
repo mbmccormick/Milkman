@@ -53,19 +53,16 @@ namespace BackgroundWorker
 
         protected override void OnInvoke(ScheduledTask task)
         {
-            // load cached data
             App.LoadData();
 
             AppSettings settings = new AppSettings();
 
-            // update current location
             if (settings.LocationRemindersEnabled == true)
             {
                 _watcher = new GeoCoordinateWatcher();
                 _watcher.Start();
             }
 
-            // sync data
             SyncData();
         }
 
@@ -79,6 +76,8 @@ namespace BackgroundWorker
 
                     if (System.Diagnostics.Debugger.IsAttached)
                         ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+
+                    App.SaveData();
 
                     NotifyComplete();
                 });

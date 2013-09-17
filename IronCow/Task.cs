@@ -1419,10 +1419,10 @@ namespace IronCow
             get
             {
                 if (Owner.UserSettings != null &&
-                    Owner.UserSettings.DateFormat == DateFormat.American)
-                    return this.DueDateTime.Value.ToString("dddd, MMMM d");
-                else
+                    Owner.UserSettings.DateFormat == DateFormat.European)
                     return this.DueDateTime.Value.ToString("dddd, d MMMM");
+                else
+                    return this.DueDateTime.Value.ToString("dddd, MMMM d");
             }
         }
 

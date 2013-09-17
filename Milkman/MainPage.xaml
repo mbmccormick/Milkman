@@ -19,6 +19,11 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
         <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}">
             <controls:PivotItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
@@ -113,6 +118,8 @@
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>
+        
+        <TextBlock x:Name="txtLastUpdated" Grid.Row="1" Margin="24,12,24,12" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

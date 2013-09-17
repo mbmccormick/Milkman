@@ -32,6 +32,31 @@ namespace Milkman
         public static Rtm RtmClient;
         public static Response ListsResponse;
         public static Response TasksResponse;
+        public static DateTime LastUpdated;
+
+        public static string LastUpdatedText
+        {
+            get
+            {
+                if (RtmClient.UserSettings != null &&
+                    RtmClient.UserSettings.DateFormat == DateFormat.European)
+                {
+                    if (RtmClient.UserSettings != null &&
+                        RtmClient.UserSettings.TimeFormat == TimeFormat.TwentyFourHours)
+                        return LastUpdated.ToString("d/M/yyyy H:mm").ToLower();
+                    else
+                        return LastUpdated.ToString("d/M/yyyy h:mmtt").ToLower(); 
+                }
+                else
+                {
+                    if (RtmClient.UserSettings != null &&
+                        RtmClient.UserSettings.TimeFormat == TimeFormat.TwentyFourHours)
+                        return LastUpdated.ToString("M/d/yyyy H:mm").ToLower();
+                    else
+                        return LastUpdated.ToString("M/d/yyyy h:mmtt").ToLower();
+                }
+            }
+        }
 
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
         public static event EventHandler<EventArgs> SyncingDisabled;
@@ -88,6 +113,7 @@ namespace Milkman
             int? Timeline = IsolatedStorageHelper.GetObject<int?>("RtmTimeline");
             ListsResponse = IsolatedStorageHelper.GetObject<Response>("ListsResponse");
             TasksResponse = IsolatedStorageHelper.GetObject<Response>("TasksResponse");
+            LastUpdated = IsolatedStorageHelper.GetObject<DateTime>("LastUpdated");
 
             if (!string.IsNullOrEmpty(RtmAuthToken))
             {
@@ -128,14 +154,18 @@ namespace Milkman
             IsolatedStorageHelper.SaveObject<int?>("RtmTimeline", RtmClient.CurrentTimeline);
             IsolatedStorageHelper.SaveObject<Response>("ListsResponse", ListsResponse);
             IsolatedStorageHelper.SaveObject<Response>("TasksResponse", TasksResponse);
+            IsolatedStorageHelper.SaveObject<DateTime>("LastUpdated", LastUpdated);
+
+            IsolatedStorageSettings.ApplicationSettings.Save();
         }
 
         public static void DeleteData()
         {
             IsolatedStorageHelper.DeleteObject("RtmAuthToken");
+            IsolatedStorageHelper.DeleteObject("RtmTimeline");
             IsolatedStorageHelper.DeleteObject("ListsResponse");
             IsolatedStorageHelper.DeleteObject("TasksResponse");
-            IsolatedStorageHelper.DeleteObject("RtmTimeline");
+            IsolatedStorageHelper.DeleteObject("LastUpdated");
 
             RtmClient = new Rtm(RtmApiKey, RtmSharedKey);
             ListsResponse = null;
@@ -162,11 +192,13 @@ namespace Milkman
         public static void OnCacheLists(Response response)
         {
             ListsResponse = response;
+            LastUpdated = DateTime.Now;
         }
 
         public static void OnCacheTasks(Response response)
         {
             TasksResponse = response;
+            LastUpdated = DateTime.Now;
         }
 
         private void Application_Launching(object sender, LaunchingEventArgs e)
