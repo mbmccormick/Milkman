@@ -197,7 +197,7 @@ namespace Milkman
                     case CustomMessageBoxResult.LeftButton:
                         if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                         {
-                            CompleteTask(CurrentTask);
+                            CompleteTask(CurrentTask, false);
                         }
 
                         break;
@@ -227,7 +227,7 @@ namespace Milkman
                     case CustomMessageBoxResult.LeftButton:
                         if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                         {
-                            PostponeTask(CurrentTask);
+                            PostponeTask(CurrentTask, false);
                         }
 
                         break;
@@ -265,7 +265,7 @@ namespace Milkman
                     case CustomMessageBoxResult.LeftButton:
                         if (CurrentTask != null && !GlobalLoading.Instance.IsLoading)
                         {
-                            DeleteTask(CurrentTask);
+                            DeleteTask(CurrentTask, false);
                         }
 
                         break;
@@ -321,7 +321,7 @@ namespace Milkman
 
         #region Task Methods
 
-        private void CompleteTask(Task data)
+        private void CompleteTask(Task data, bool isMultiple)
         {
             GlobalLoading.Instance.IsLoadingText(Strings.CompletingTask);
             data.Complete(() =>
@@ -341,7 +341,7 @@ namespace Milkman
             });
         }
 
-        private void PostponeTask(Task data)
+        private void PostponeTask(Task data, bool isMultiple)
         {
             GlobalLoading.Instance.IsLoadingText(Strings.PostponingTask);
             data.Postpone(() =>
@@ -357,7 +357,7 @@ namespace Milkman
             });
         }
 
-        private void DeleteTask(Task data)
+        private void DeleteTask(Task data, bool isMultiple)
         {
             GlobalLoading.Instance.IsLoadingText(Strings.DeletingTask);
             data.Delete(() =>

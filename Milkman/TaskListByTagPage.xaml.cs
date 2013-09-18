@@ -566,9 +566,11 @@ namespace Milkman
                 switch (e1.Result)
                 {
                     case CustomMessageBoxResult.LeftButton:
+                        bool isMultiple = target.SelectedItems.Count > 1;
+
                         while (target.SelectedItems.Count > 0)
                         {
-                            CompleteTask((Task)target.SelectedItems[0]);
+                            CompleteTask((Task)target.SelectedItems[0], isMultiple);
                             target.SelectedItems.RemoveAt(0);
                         }
 
@@ -619,9 +621,11 @@ namespace Milkman
                 switch (e1.Result)
                 {
                     case CustomMessageBoxResult.LeftButton:
+                        bool isMultiple = target.SelectedItems.Count > 1;
+
                         while (target.SelectedItems.Count > 0)
                         {
-                            PostponeTask((Task)target.SelectedItems[0]);
+                            PostponeTask((Task)target.SelectedItems[0], isMultiple);
                             target.SelectedItems.RemoveAt(0);
                         }
 
@@ -672,9 +676,11 @@ namespace Milkman
                 switch (e1.Result)
                 {
                     case CustomMessageBoxResult.LeftButton:
+                        bool isMultiple = target.SelectedItems.Count > 1;
+
                         while (target.SelectedItems.Count > 0)
                         {
-                            DeleteTask((Task)target.SelectedItems[0]);
+                            DeleteTask((Task)target.SelectedItems[0], isMultiple);
                             target.SelectedItems.RemoveAt(0);
                         }
 
@@ -915,7 +921,7 @@ namespace Milkman
                     switch (e1.Result)
                     {
                         case CustomMessageBoxResult.LeftButton:
-                            CompleteTask(MostRecentTaskClick);
+                            CompleteTask(MostRecentTaskClick, false);
 
                             break;
                         default:
@@ -941,7 +947,7 @@ namespace Milkman
                     switch (e1.Result)
                     {
                         case CustomMessageBoxResult.LeftButton:
-                            PostponeTask(MostRecentTaskClick);
+                            PostponeTask(MostRecentTaskClick, false);
 
                             break;
                         default:
@@ -967,7 +973,7 @@ namespace Milkman
                     switch (e1.Result)
                     {
                         case CustomMessageBoxResult.LeftButton:
-                            DeleteTask(MostRecentTaskClick);
+                            DeleteTask(MostRecentTaskClick, false);
 
                             break;
                         default:
@@ -1005,7 +1011,7 @@ namespace Milkman
             });
         }
 
-        private void CompleteTask(Task data)
+        private void CompleteTask(Task data, bool isMultiple)
         {
             GlobalLoading.Instance.IsLoadingText(Strings.CompletingTask);
             data.Complete(() =>
@@ -1023,7 +1029,7 @@ namespace Milkman
             });
         }
 
-        private void PostponeTask(Task data)
+        private void PostponeTask(Task data, bool isMultiple)
         {
             GlobalLoading.Instance.IsLoadingText(Strings.PostponingTask);
             data.Postpone(() =>
@@ -1041,7 +1047,7 @@ namespace Milkman
             });
         }
 
-        private void DeleteTask(Task data)
+        private void DeleteTask(Task data, bool isMultiple)
         {
             GlobalLoading.Instance.IsLoadingText(Strings.DeletingTask);
             data.Delete(() =>
