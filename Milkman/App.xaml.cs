@@ -290,44 +290,6 @@ namespace Milkman
                     MessageBox.Show(ex.Message, Strings.Error + " " + ex.Code, MessageBoxButton.OK);
                 });
             }
-            else if (e.ExceptionObject is WebException)
-            {
-                WebException ex = e.ExceptionObject as WebException;
-
-                if (RtmClient.Syncing == true)
-                {
-                    RootFrame.Dispatcher.BeginInvoke(() =>
-                    {
-                        CustomMessageBox messageBox = new CustomMessageBox()
-                        {
-                            Caption = Strings.OfflineConnectionDialogTitle,
-                            Message = Strings.OfflineConnectionDialog,
-                            LeftButtonContent = Strings.YesLower,
-                            RightButtonContent = Strings.NoLower,
-                            IsFullScreen = false
-                        };
-
-                        messageBox.Dismissed += (s1, e1) =>
-                        {
-                            switch (e1.Result)
-                            {
-                                case CustomMessageBoxResult.LeftButton:
-                                    RtmClient.DisableSyncing();
-                                    GlobalLoading.Instance.StatusText(Strings.WorkingOffline);
-
-                                    if (SyncingDisabled != null)
-                                        SyncingDisabled(sender, null);
-
-                                    break;
-                                default:
-                                    break;
-                            }
-                        };
-
-                        messageBox.Show();
-                    });
-                }
-            }
             else
             {
                 LittleWatson.ReportException(e.ExceptionObject, null);
