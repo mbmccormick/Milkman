@@ -34,30 +34,6 @@ namespace Milkman
         public static Response TasksResponse;
         public static DateTime LastUpdated;
 
-        public static string LastUpdatedText
-        {
-            get
-            {
-                if (RtmClient.UserSettings != null &&
-                    RtmClient.UserSettings.DateFormat == DateFormat.European)
-                {
-                    if (RtmClient.UserSettings != null &&
-                        RtmClient.UserSettings.TimeFormat == TimeFormat.TwentyFourHours)
-                        return LastUpdated.ToString("d/M/yyyy H:mm").ToLower();
-                    else
-                        return LastUpdated.ToString("d/M/yyyy h:mmtt").ToLower(); 
-                }
-                else
-                {
-                    if (RtmClient.UserSettings != null &&
-                        RtmClient.UserSettings.TimeFormat == TimeFormat.TwentyFourHours)
-                        return LastUpdated.ToString("M/d/yyyy H:mm").ToLower();
-                    else
-                        return LastUpdated.ToString("M/d/yyyy h:mmtt").ToLower();
-                }
-            }
-        }
-
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
         public static event EventHandler<EventArgs> SyncingDisabled;
 

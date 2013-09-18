@@ -873,4 +873,22 @@
   <data name="LiveTileTomorrowSingle" xml:space="preserve">
     <value>task due tomorrow</value>
   </data>
+  <data name="CompletingTasks" xml:space="preserve">
+    <value>Completing tasks...</value>
+  </data>
+  <data name="DeletingTasks" xml:space="preserve">
+    <value>Deleting tasks...</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last updated</value>
+  </data>
+  <data name="MinutesAgo" xml:space="preserve">
+    <value>minutes ago</value>
+  </data>
+  <data name="PostponingTasks" xml:space="preserve">
+    <value>Postponing tasks...</value>
+  </data>
+  <data name="UpToDate" xml:space="preserve">
+    <value>Milkman is up-to-date</value>
+  </data>
 </root>

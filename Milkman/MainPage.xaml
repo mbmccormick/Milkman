@@ -118,8 +118,6 @@
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>
-        
-        <TextBlock x:Name="txtLastUpdated" Grid.Row="1" Margin="24,12,24,12" />
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>

@@ -101,7 +101,7 @@ namespace Milkman.Common
             _statusText = true;
         }
 
-        public void ClearStatusText(string loadingText)
+        public void ClearStatusText()
         {
             _mangoIndicator.Text = null;
 

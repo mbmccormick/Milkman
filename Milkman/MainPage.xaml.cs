@@ -25,6 +25,7 @@ namespace Milkman
     public partial class MainPage : PhoneApplicationPage
     {
         public static bool sReload = true;
+        public static bool sFirstLaunch = false;
 
         #region Dashboard Properties
 
@@ -159,14 +160,14 @@ namespace Milkman
                 SyncData();
             }
 
-            LoadData();
-
             if (e.IsNavigationInitiator == false)
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                // SyncData();
+                sFirstLaunch = true;
             }
+
+            LoadData();
 
             // check for voice command entry
             if (e.IsNavigationInitiator == false &&
@@ -308,9 +309,9 @@ namespace Milkman
                     ToggleLoadingText();
                     ToggleEmptyText();
 
-                    this.txtLastUpdated.Text = "Last Updated: " + App.LastUpdatedText;
-
                     GlobalLoading.Instance.IsLoading = false;
+
+                    ShowLastUpdatedStatus();
                 }
             });
         }
@@ -344,6 +345,34 @@ namespace Milkman
                 else
                     this.txtTagsEmpty.Visibility = System.Windows.Visibility.Collapsed;
             });
+        }
+
+        private void ShowLastUpdatedStatus()
+        {
+            if (sFirstLaunch == true)
+            {
+                int minutes = Convert.ToInt32((DateTime.Now - App.LastUpdated).TotalMinutes);
+
+                if (minutes < 2)
+                    GlobalLoading.Instance.StatusText(Strings.UpToDate);
+                else
+                    GlobalLoading.Instance.StatusText(Strings.LastUpdated + " " + minutes + " " + Strings.MinutesAgo);
+
+                System.ComponentModel.BackgroundWorker b = new System.ComponentModel.BackgroundWorker();
+                b.DoWork += (s, e) =>
+                {
+                    System.Threading.Thread.Sleep(4000);
+
+                    SmartDispatcher.BeginInvoke(() =>
+                    {
+                        GlobalLoading.Instance.ClearStatusText();
+                    });
+                };
+
+                sFirstLaunch = false;
+
+                b.RunWorkerAsync();
+            }
         }
 
         public void Login()
@@ -402,6 +431,8 @@ namespace Milkman
         private void btnSync_Click(object sender, EventArgs e)
         {
             sReload = true;
+            sFirstLaunch = true;
+
             SyncData();
         }
 
