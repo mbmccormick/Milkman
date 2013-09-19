@@ -1519,6 +1519,15 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to over an hour ago.
+        /// </summary>
+        public static string OverAnHourAgo {
+            get {
+                return ResourceManager.GetString("OverAnHourAgo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Overdue.
         /// </summary>
         public static string Overdue {

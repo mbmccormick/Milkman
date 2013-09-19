@@ -891,4 +891,7 @@
   <data name="UpToDate" xml:space="preserve">
     <value>Milkman is up-to-date</value>
   </data>
+  <data name="OverAnHourAgo" xml:space="preserve">
+    <value>over an hour ago</value>
+  </data>
 </root>

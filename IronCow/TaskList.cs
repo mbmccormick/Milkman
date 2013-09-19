@@ -260,14 +260,27 @@ namespace IronCow
         public void SyncTasks(SyncCallback callback)
         {
             TaskListTaskCollection tmp = new TaskListTaskCollection(this);
-                        
-            tmp.Resync(() =>
+
+            if (IsSmart == true)
             {
-                mTasks = tmp;
-                OnPropertyChanged("Tasks");
-                OnPropertyChanged("Count");
-                callback();
-            });
+                tmp.SmartResync(() =>
+                {
+                    mTasks = tmp;
+                    OnPropertyChanged("Tasks");
+                    OnPropertyChanged("Count");
+                    callback();
+                });
+            }
+            else
+            {
+                tmp.Resync(() =>
+                {
+                    mTasks = tmp;
+                    OnPropertyChanged("Tasks");
+                    OnPropertyChanged("Count");
+                    callback();
+                });
+            }
         }
 
         #endregion

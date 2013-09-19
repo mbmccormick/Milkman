@@ -355,6 +355,8 @@ namespace Milkman
 
                 if (minutes < 2)
                     GlobalLoading.Instance.StatusText(Strings.UpToDate);
+                else if (minutes > 60)
+                    GlobalLoading.Instance.StatusText(Strings.LastUpdated + " " + Strings.OverAnHourAgo);
                 else
                     GlobalLoading.Instance.StatusText(Strings.LastUpdated + " " + minutes + " " + Strings.MinutesAgo);
 

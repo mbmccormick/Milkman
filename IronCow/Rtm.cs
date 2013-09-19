@@ -839,7 +839,6 @@ namespace IronCow
             System.Threading.Interlocked.Exchange(ref mTaskLists, temp);
         }
 
-
         public TaskList GetInbox()
         {
             return TaskLists["Inbox"];

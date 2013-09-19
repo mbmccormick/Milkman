@@ -102,14 +102,14 @@ namespace IronCow
                     {
                         if (IsListSmart)
                         {
-                            //// Get the task from the list it really belongs to.
-                            //TaskList parentList = Owner.TaskLists.GetById(list.Id);
-                            //if (parentList == null)
-                            //    throw new IronCowException(string.Format("Internal Error: Can't find task list with id '{0}'.", list.Id));
-                            //Task actualTask = parentList.Tasks.GetById(series.Id, task.Id);
-                            //if (actualTask == null)
-                            //    continue; // throw new IronCowException(string.Format("Internal Error: Can't find task with id '{0}' in list '{1}'.", task.Id, list.Id));
-                            //mImpl.Add(actualTask);
+                            // Get the task from the list it really belongs to.
+                            TaskList parentList = Owner.TaskLists.GetById(list.Id);
+                            if (parentList == null)
+                                throw new IronCowException(string.Format("Internal Error: Can't find task list with id '{0}'.", list.Id));
+                            Task actualTask = parentList.Tasks.GetById(series.Id, task.Id);
+                            if (actualTask == null)
+                                continue; // throw new IronCowException(string.Format("Internal Error: Can't find task with id '{0}' in list '{1}'.", task.Id, list.Id));
+                            mImpl.Add(actualTask);
                         }
                         else
                         {
