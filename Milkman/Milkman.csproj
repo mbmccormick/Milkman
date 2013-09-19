@@ -172,7 +172,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Content Include="Assets\IconTileLarge.png" />
     <Content Include="Commands.xml" />
     <Content Include="Assets\IconicTile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
