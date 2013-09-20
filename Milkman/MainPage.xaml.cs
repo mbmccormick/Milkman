@@ -19,6 +19,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using System.Device.Location;
 using Windows.Phone.Speech.Recognition;
+using Milkman.Controls;
 
 namespace Milkman
 {

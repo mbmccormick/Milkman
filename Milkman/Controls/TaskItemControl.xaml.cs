@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace Milkman
+namespace Milkman.Controls
 {
     public partial class TaskItemControl : UserControl
     {

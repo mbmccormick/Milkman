@@ -18,6 +18,7 @@ using System.ComponentModel;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using System.Device.Location;
+using Milkman.Controls;
 
 namespace Milkman
 {

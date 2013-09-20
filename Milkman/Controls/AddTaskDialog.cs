@@ -7,8 +7,9 @@ using System.Windows;
 using IronCow.Resources;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
-namespace Milkman
+namespace Milkman.Controls
 {
     public class AddTaskDialog
     {
@@ -25,7 +26,9 @@ namespace Milkman
                 {
                     Names = { new InputScopeName() { NameValue = InputScopeNameValue.Text } }
                 },
-                Text = defaultText
+                Text = defaultText,
+                ActionIcon = new BitmapImage(new Uri("/Resources/microphone.png", UriKind.Relative)),
+                HidesActionItemWhenEmpty = false
             };
             txtDetails.SpeechRecognized += txtDetails_SpeechRecognized;
             stkContent.Children.Add(txtDetails);
@@ -131,6 +134,8 @@ namespace Milkman
             resultText = resultText.Replace(" tag ", " #");
 
             txtDetails.Text = resultText;
+
+            e.Canceled = true;
         }
 
         private void Shortcut_Tap(object sender, System.Windows.Input.GestureEventArgs e)
