@@ -30,9 +30,9 @@
     <Tokens>
       <PrimaryToken TokenID="MilkmanToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets/ApplicationIcon.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets/Background.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\FlipCycleTileMedium.png</BackgroundImageURI>
           <Title>Milkman</Title>
           <BackContent>
           </BackContent>
