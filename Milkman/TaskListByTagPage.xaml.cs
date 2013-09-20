@@ -102,8 +102,7 @@ namespace Milkman
             InitializeComponent();
 
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
-            App.SyncingDisabled += new EventHandler<EventArgs>(App_SyncingDisabled);
-
+            
             TiltEffect.TiltableItems.Add(typeof(LongListMultiSelectorItem));
 
             this.BuildApplicationBar();
@@ -197,22 +196,6 @@ namespace Milkman
             Dispatcher.BeginInvoke(() =>
             {
                 GlobalLoading.Instance.IsLoading = false;
-            });
-        }
-
-        private void App_SyncingDisabled(object sender, EventArgs e)
-        {
-            Dispatcher.BeginInvoke(() =>
-            {
-                // disable buttons when working offline
-                if (App.RtmClient.Syncing == false)
-                {
-                    add.IsEnabled = false;
-                    sync.IsEnabled = false;
-                    complete.IsEnabled = false;
-                    postpone.IsEnabled = false;
-                    delete.IsEnabled = false;
-                }
             });
         }
 

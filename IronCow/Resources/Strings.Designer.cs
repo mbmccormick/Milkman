@@ -304,7 +304,7 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sign in to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue..
+        ///   Looks up a localized string similar to Milkman needs permission to use your Remember The Milk account to continue. Sign in to your account and tap the Complete button to continue.\n\nMilkman will never store or share your personal information..
         /// </summary>
         public static string AuthorizationDialog {
             get {
@@ -1731,6 +1731,24 @@ namespace IronCow.Resources {
         public static string RegisterUpper {
             get {
                 return ResourceManager.GetString("RegisterUpper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Milkman requires a Remember The Milk account to sync your tasks to the web and across all of your devices. Create an account and return to Milkman to continue.\n\nMilkman will never store or share your personal information..
+        /// </summary>
+        public static string RegistrationDialog {
+            get {
+                return ResourceManager.GetString("RegistrationDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration.
+        /// </summary>
+        public static string RegistrationDialogTitle {
+            get {
+                return ResourceManager.GetString("RegistrationDialogTitle", resourceCulture);
             }
         }
         

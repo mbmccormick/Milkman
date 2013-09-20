@@ -71,6 +71,8 @@ namespace Milkman
 
         private void stkRegister_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            MessageBox.Show(Strings.RegistrationDialog.Replace("\\n", "\n"), Strings.RegistrationDialogTitle, MessageBoxButton.OK);
+
             WebBrowserTask webBrowserTask = new WebBrowserTask();
 
             webBrowserTask.Uri = new Uri("http://www.rememberthemilk.com/signup/");

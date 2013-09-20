@@ -30,12 +30,12 @@ namespace Milkman
         private static readonly string RtmSharedKey = "d2ffaf49356b07f9";
 
         public static Rtm RtmClient;
-        public static Response ListsResponse;
         public static Response TasksResponse;
+        public static Response ListsResponse;
+        public static Response LocationsResponse;
         public static DateTime LastUpdated;
 
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
-        public static event EventHandler<EventArgs> SyncingDisabled;
 
         public static string VersionNumber
         {
@@ -87,8 +87,9 @@ namespace Milkman
         {
             string RtmAuthToken = IsolatedStorageHelper.GetObject<string>("RtmAuthToken");
             int? Timeline = IsolatedStorageHelper.GetObject<int?>("RtmTimeline");
-            ListsResponse = IsolatedStorageHelper.GetObject<Response>("ListsResponse");
             TasksResponse = IsolatedStorageHelper.GetObject<Response>("TasksResponse");
+            ListsResponse = IsolatedStorageHelper.GetObject<Response>("ListsResponse");
+            LocationsResponse = IsolatedStorageHelper.GetObject<Response>("LocationsResponse");
             LastUpdated = IsolatedStorageHelper.GetObject<DateTime>("LastUpdated");
 
             if (!string.IsNullOrEmpty(RtmAuthToken))
@@ -107,13 +108,18 @@ namespace Milkman
                 RtmClient.CurrentTimeline = Timeline.Value;
             }
 
-            RtmClient.CacheListsEvent += OnCacheLists;
             RtmClient.CacheTasksEvent += OnCacheTasks;
+            RtmClient.CacheListsEvent += OnCacheLists;
+            RtmClient.CacheLocationsEvent += OnCacheLocations;
 
+            if (LocationsResponse != null)
+            {
+                RtmClient.LoadLocationsFromResponse(LocationsResponse);
+            }
             if (ListsResponse != null)
             {
                 RtmClient.LoadListsFromResponse(ListsResponse);
-            }
+            } 
             if (TasksResponse != null)
             {
                 RtmClient.LoadTasksFromResponse(TasksResponse);
@@ -128,8 +134,9 @@ namespace Milkman
         {
             IsolatedStorageHelper.SaveObject<string>("RtmAuthToken", RtmClient.AuthToken);
             IsolatedStorageHelper.SaveObject<int?>("RtmTimeline", RtmClient.CurrentTimeline);
-            IsolatedStorageHelper.SaveObject<Response>("ListsResponse", ListsResponse);
             IsolatedStorageHelper.SaveObject<Response>("TasksResponse", TasksResponse);
+            IsolatedStorageHelper.SaveObject<Response>("ListsResponse", ListsResponse);
+            IsolatedStorageHelper.SaveObject<Response>("LocationsResponse", LocationsResponse);
             IsolatedStorageHelper.SaveObject<DateTime>("LastUpdated", LastUpdated);
 
             IsolatedStorageSettings.ApplicationSettings.Save();
@@ -139,13 +146,15 @@ namespace Milkman
         {
             IsolatedStorageHelper.DeleteObject("RtmAuthToken");
             IsolatedStorageHelper.DeleteObject("RtmTimeline");
-            IsolatedStorageHelper.DeleteObject("ListsResponse");
             IsolatedStorageHelper.DeleteObject("TasksResponse");
+            IsolatedStorageHelper.DeleteObject("ListsResponse");
+            IsolatedStorageHelper.DeleteObject("LocationsResponse");
             IsolatedStorageHelper.DeleteObject("LastUpdated");
 
             RtmClient = new Rtm(RtmApiKey, RtmSharedKey);
-            ListsResponse = null;
             TasksResponse = null;
+            ListsResponse = null;
+            LocationsResponse = null;
 
             RtmClient.Resources = App.Current.Resources;
 
@@ -165,15 +174,21 @@ namespace Milkman
             }
         }
 
+        public static void OnCacheTasks(Response response)
+        {
+            TasksResponse = response;
+            LastUpdated = DateTime.Now;
+        }
+
         public static void OnCacheLists(Response response)
         {
             ListsResponse = response;
             LastUpdated = DateTime.Now;
         }
 
-        public static void OnCacheTasks(Response response)
+        public static void OnCacheLocations(Response response)
         {
-            TasksResponse = response;
+            LocationsResponse = response;
             LastUpdated = DateTime.Now;
         }
 

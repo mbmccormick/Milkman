@@ -25,16 +25,18 @@ namespace BackgroundWorker
         private static readonly string RtmSharedKey = "d2ffaf49356b07f9";
 
         public static Rtm RtmClient;
-        public static Response ListsResponse;
         public static Response TasksResponse;
+        public static Response ListsResponse;
+        public static Response LocationsResponse;
         public static DateTime LastUpdated;
                 
         public static void LoadData()
         {
             string RtmAuthToken = IsolatedStorageHelper.GetObject<string>("RtmAuthToken");
             int? Timeline = IsolatedStorageHelper.GetObject<int?>("RtmTimeline");
-            ListsResponse = IsolatedStorageHelper.GetObject<Response>("ListsResponse");
             TasksResponse = IsolatedStorageHelper.GetObject<Response>("TasksResponse");
+            ListsResponse = IsolatedStorageHelper.GetObject<Response>("ListsResponse");
+            LocationsResponse = IsolatedStorageHelper.GetObject<Response>("LocationsResponse");
             LastUpdated = IsolatedStorageHelper.GetObject<DateTime>("LastUpdated");
 
             if (!string.IsNullOrEmpty(RtmAuthToken))
@@ -51,9 +53,14 @@ namespace BackgroundWorker
                 RtmClient.CurrentTimeline = Timeline.Value;
             }
 
-            RtmClient.CacheListsEvent += OnCacheLists;
             RtmClient.CacheTasksEvent += OnCacheTasks;
+            RtmClient.CacheListsEvent += OnCacheLists;
+            RtmClient.CacheLocationsEvent += OnCacheLocations;
 
+            if (LocationsResponse != null)
+            {
+                RtmClient.LoadLocationsFromResponse(LocationsResponse);
+            }
             if (ListsResponse != null)
             {
                 RtmClient.LoadListsFromResponse(ListsResponse);
@@ -68,8 +75,9 @@ namespace BackgroundWorker
         {
             IsolatedStorageHelper.SaveObject<string>("RtmAuthToken", RtmClient.AuthToken);
             IsolatedStorageHelper.SaveObject<int?>("RtmTimeline", RtmClient.CurrentTimeline);
-            IsolatedStorageHelper.SaveObject<Response>("ListsResponse", ListsResponse);
             IsolatedStorageHelper.SaveObject<Response>("TasksResponse", TasksResponse);
+            IsolatedStorageHelper.SaveObject<Response>("ListsResponse", ListsResponse);
+            IsolatedStorageHelper.SaveObject<Response>("LocationsResponse", LocationsResponse);
             IsolatedStorageHelper.SaveObject<DateTime>("LastUpdated", LastUpdated);
 
             IsolatedStorageSettings.ApplicationSettings.Save();
@@ -78,14 +86,22 @@ namespace BackgroundWorker
         public static void DeleteData()
         {
             IsolatedStorageHelper.DeleteObject("RtmAuthToken");
-            IsolatedStorageHelper.DeleteObject("ListsResponse");
-            IsolatedStorageHelper.DeleteObject("TasksResponse");
             IsolatedStorageHelper.DeleteObject("RtmTimeline");
+            IsolatedStorageHelper.DeleteObject("TasksResponse");
+            IsolatedStorageHelper.DeleteObject("ListsResponse");
+            IsolatedStorageHelper.DeleteObject("LocationsResponse");
             IsolatedStorageHelper.DeleteObject("LastUpdated");
 
             RtmClient = new Rtm(RtmApiKey, RtmSharedKey);
-            ListsResponse = null;
             TasksResponse = null;
+            ListsResponse = null;
+            LocationsResponse = null;
+        }
+
+        public static void OnCacheTasks(Response response)
+        {
+            TasksResponse = response;
+            LastUpdated = DateTime.Now;
         }
 
         public static void OnCacheLists(Response response)
@@ -94,9 +110,9 @@ namespace BackgroundWorker
             LastUpdated = DateTime.Now;
         }
 
-        public static void OnCacheTasks(Response response)
+        public static void OnCacheLocations(Response response)
         {
-            TasksResponse = response;
+            LocationsResponse = response;
             LastUpdated = DateTime.Now;
         }
     }

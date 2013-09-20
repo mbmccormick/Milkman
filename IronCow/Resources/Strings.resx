@@ -178,7 +178,7 @@
     <value>Authorization</value>
   </data>
   <data name="AuthorizationDialog" xml:space="preserve">
-    <value>Sign in to Remember The Milk to authorize Milkman. When you finish the authorization process, tap the Complete button to continue.</value>
+    <value>Milkman needs permission to use your Remember The Milk account to continue. Sign in to your account and tap the Complete button to continue.\n\nMilkman will never store or share your personal information.</value>
   </data>
   <data name="AuthorizationDialogTitle" xml:space="preserve">
     <value>Authorization</value>
@@ -893,5 +893,11 @@
   </data>
   <data name="OverAnHourAgo" xml:space="preserve">
     <value>over an hour ago</value>
+  </data>
+  <data name="RegistrationDialog" xml:space="preserve">
+    <value>Milkman requires a Remember The Milk account to sync your tasks to the web and across all of your devices. Create an account and return to Milkman to continue.\n\nMilkman will never store or share your personal information.</value>
+  </data>
+  <data name="RegistrationDialogTitle" xml:space="preserve">
+    <value>Registration</value>
   </data>
 </root>

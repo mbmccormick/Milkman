@@ -78,7 +78,7 @@ namespace Milkman
         private void AuthorizationPage_Loaded(object sender, RoutedEventArgs e)
         {
             StartAuth();
-            MessageBox.Show(Strings.AuthorizationDialog, Strings.AuthorizationDialogTitle, MessageBoxButton.OK);
+            MessageBox.Show(Strings.AuthorizationDialog.Replace("\\n", "\n"), Strings.AuthorizationDialogTitle, MessageBoxButton.OK);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)

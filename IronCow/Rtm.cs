@@ -39,6 +39,7 @@ namespace IronCow
         // cache events
         public event ResponseCallback CacheTasksEvent;
         public event ResponseCallback CacheListsEvent;
+        public event ResponseCallback CacheLocationsEvent;
 
         #endregion
 
@@ -56,7 +57,7 @@ namespace IronCow
         {
             SyncUserSettings(() =>
             {
-                SyncLocations(() =>
+                CacheLocations(() =>
                 {
                     CacheLists(() =>
                     {
@@ -886,6 +887,37 @@ namespace IronCow
                                                  (!tl.GetFlag(TaskListFlags.Archived) || includeArchivedLists)
                                            select tl;
             return result;
+        }
+        #endregion
+
+        #region Locations
+        public void CacheLocations(VoidCallback callback)
+        {
+            GetResponse("rtm.locations.getList", response =>
+            {
+                LoadLocationsFromResponse(response);
+
+                if (CacheLocationsEvent != null)
+                    CacheLocationsEvent(response);
+
+                callback();
+            });
+        }
+
+        public void LoadLocationsFromResponse(Response response)
+        {
+            LocationCollection temp = new LocationCollection(this);
+
+            if (response.Locations != null)
+            {
+                foreach (var location in response.Locations)
+                {
+                    Location newLocation = new Location(location);
+                    temp.Add(newLocation);
+                }
+            }
+
+            System.Threading.Interlocked.Exchange(ref mLocations, temp);
         }
         #endregion
 
