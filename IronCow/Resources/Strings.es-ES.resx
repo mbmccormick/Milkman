@@ -177,9 +177,6 @@
   <data name="Authorization" xml:space="preserve">
     <value>Autorización</value>
   </data>
-  <data name="AuthorizationDialog" xml:space="preserve">
-    <value>Identifícate en Remember The Milk para autorizar a Milkman. Cuando termine el proceso de autorización, puntee en el botón completado para continuar.</value>
-  </data>
   <data name="AuthorizationDialogTitle" xml:space="preserve">
     <value>Autorización</value>
   </data>
@@ -397,7 +394,7 @@
     <value>Completar</value>
   </data>
   <data name="CompletingTask" xml:space="preserve">
-    <value>Completar tareas...</value>
+    <value>Completar tarea...</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Fecha</value>
@@ -872,5 +869,35 @@
   </data>
   <data name="LiveTileTomorrowSingle">
     <value>tarea debidamente mañana</value>
+  </data>
+  <data name="CompletingTasks">
+    <value>Completar tareas...</value>
+  </data>
+  <data name="DeletingTasks">
+    <value>Eliminar tareas...</value>
+  </data>
+  <data name="PostponingTasks">
+    <value>Aplazar las tareas...</value>
+  </data>
+  <data name="AuthorizationDialog">
+    <value>Milkman necesita permiso para utilizar su cuenta de Remember The Milk para continuar. Iniciar sesión en su cuenta y toque el botón completo para continue.\n\nMilkman nunca guardar o compartir su información personal.</value>
+  </data>
+  <data name="LastUpdated">
+    <value>Última actualización</value>
+  </data>
+  <data name="MinutesAgo">
+    <value>hace minutos</value>
+  </data>
+  <data name="OverAnHourAgo">
+    <value>hace una hora</value>
+  </data>
+  <data name="RegistrationDialog">
+    <value>Milkman requiere una cuenta de Remember The Milk para sincronizar tus tareas en la web y a través de todos los dispositivos. Crear una cuenta y regreso a Lechero a continue.\n\nMilkman nunca guardar o compartir su información personal.</value>
+  </data>
+  <data name="RegistrationDialogTitle">
+    <value>Registro</value>
+  </data>
+  <data name="UpToDate">
+    <value>Lechero está actualizado</value>
   </data>
 </root>

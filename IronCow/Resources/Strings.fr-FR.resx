@@ -177,9 +177,6 @@
   <data name="Authorization" xml:space="preserve">
     <value>Autorisation</value>
   </data>
-  <data name="AuthorizationDialog" xml:space="preserve">
-    <value>Enregistrez-vous pour Remember The Milk pour autoriser milkman.</value>
-  </data>
   <data name="AuthorizationDialogTitle" xml:space="preserve">
     <value>Autorisation</value>
   </data>
@@ -397,7 +394,7 @@
     <value>Compléter</value>
   </data>
   <data name="CompletingTask" xml:space="preserve">
-    <value>Fin de tâche ...</value>
+    <value>Fin de tâche...</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
@@ -439,10 +436,10 @@
     <value>Effacer</value>
   </data>
   <data name="DeletingNote" xml:space="preserve">
-    <value>Suppression de la note ...</value>
+    <value>Suppression de la note...</value>
   </data>
   <data name="DeletingTask" xml:space="preserve">
-    <value>Suppression de la tâche ...</value>
+    <value>Suppression de la tâche...</value>
   </data>
   <data name="DueDate" xml:space="preserve">
     <value>Due Date</value>
@@ -526,7 +523,7 @@
     <value>REPORTER</value>
   </data>
   <data name="PostponingTask" xml:space="preserve">
-    <value>Le report de la tâche ...</value>
+    <value>Le report de la tâche...</value>
   </data>
   <data name="Priority" xml:space="preserve">
     <value>Priorité</value>
@@ -872,5 +869,35 @@
   </data>
   <data name="LiveTileTomorrowSingle">
     <value>tâche en demain</value>
+  </data>
+  <data name="UpToDate">
+    <value>Milkman está actualizado</value>
+  </data>
+  <data name="RegistrationDialogTitle">
+    <value>Enregistrement</value>
+  </data>
+  <data name="PostponingTasks">
+    <value>Le report de les tâches...</value>
+  </data>
+  <data name="RegistrationDialog">
+    <value>Milkman requiert un compte de Remember The Milk pour synchroniser vos tâches sur le web et sur l'ensemble de vos appareils. Créer un compte et retour au laitier à continue.\n\nMilkman ne sera jamais stocker ou partager vos renseignements personnels.</value>
+  </data>
+  <data name="OverAnHourAgo">
+    <value>plus d'une heure il y a</value>
+  </data>
+  <data name="MinutesAgo">
+    <value>Il y a</value>
+  </data>
+  <data name="LastUpdated">
+    <value>Dernière mise à jour</value>
+  </data>
+  <data name="DeletingTasks">
+    <value>Suppression de les tâches...</value>
+  </data>
+  <data name="CompletingTasks">
+    <value>Fin de tâches...</value>
+  </data>
+  <data name="AuthorizationDialog">
+    <value>Milkman a besoin de la permission d'utiliser votre compte de Remember The Milk pour continuer. Connectez-vous à votre compte et le robinet le bouton complet à continue.\n\nMilkman ne sera jamais stocker ou partager vos renseignements personnels.</value>
   </data>
 </root>

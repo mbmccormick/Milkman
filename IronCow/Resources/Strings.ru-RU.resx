@@ -186,9 +186,6 @@
   <data name="Authorization" xml:space="preserve">
     <value>Авторизация</value>
   </data>
-  <data name="AuthorizationDialog" xml:space="preserve">
-    <value>Войдите в Remember The Milk чтобы авторизировать Milkman. Когда вы закончите процесс авторизации, нажмите кнопку Завершить чтобы продолжить.</value>
-  </data>
   <data name="AuthorizationDialogTitle" xml:space="preserve">
     <value>Авторизация</value>
   </data>
@@ -869,5 +866,38 @@
   </data>
   <data name="LiveTileTomorrowPlural">
     <value>задачи должным образом завтра</value>
+  </data>
+  <data name="UpToDate">
+    <value>Milkman актуальна</value>
+  </data>
+  <data name="RegistrationDialogTitle">
+    <value>Регистрация</value>
+  </data>
+  <data name="RegistrationDialog">
+    <value>Milkman требуется учетная запись Remember The Milk синхронизировать ваши задачи в Интернете и во всех ваших устройств. Создайте учетную запись и вернуться к молочник continue.\n\nMilkman никогда не будет хранить или передавать вашу личную информацию.</value>
+  </data>
+  <data name="PostponingTasks">
+    <value>Перенос задач...</value>
+  </data>
+  <data name="OverAnHourAgo">
+    <value>более часа назад</value>
+  </data>
+  <data name="MinutesAgo">
+    <value>минут(-ы) назад</value>
+  </data>
+  <data name="LiveTileTomorrowSingle">
+    <value>задача должным образом завтра</value>
+  </data>
+  <data name="LastUpdated">
+    <value>Последнее обновление</value>
+  </data>
+  <data name="DeletingTasks">
+    <value>Удаление задач...</value>
+  </data>
+  <data name="CompletingTasks">
+    <value>Выполнение задач...</value>
+  </data>
+  <data name="AuthorizationDialog">
+    <value>Milkman необходимо предоставить разрешение на использование учетной записи Remember The Milk продолжать. Войдите в свой аккаунт и нажмите полный кнопку для continue.\n\nMilkman никогда не будет хранить или передавать вашу личную информацию.</value>
   </data>
 </root>

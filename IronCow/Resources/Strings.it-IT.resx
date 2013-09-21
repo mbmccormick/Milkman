@@ -81,9 +81,6 @@
   <data name="Authorization" xml:space="preserve">
     <value>Autorizzazione</value>
   </data>
-  <data name="AuthorizationDialog" xml:space="preserve">
-    <value>Accedi a Remember The Milk per autorizzare Milkman all'accesso. Quando il processo è completato, tocca il pulsante Completa per continuare.</value>
-  </data>
   <data name="AuthorizationDialogTitle" xml:space="preserve">
     <value>Autorizzazione</value>
   </data>
@@ -767,5 +764,35 @@
   </data>
   <data name="LiveTileTomorrowSingle">
     <value>attività dovuta domani</value>
+  </data>
+  <data name="AuthorizationDialog">
+    <value>Milkman ha bisogno dell'autorizzazione a utilizzare il tuo account Remember The Milk per continuare. Accedi al tuo account e toccare il pulsante completo per continue.\n\nMilkman mai memorizzare o condividere le tue informazioni personali.</value>
+  </data>
+  <data name="CompletingTasks">
+    <value>Completare i compiti...</value>
+  </data>
+  <data name="DeletingTasks">
+    <value>Eliminazione di attività...</value>
+  </data>
+  <data name="LastUpdated">
+    <value>Ultimo aggiornamento</value>
+  </data>
+  <data name="MinutesAgo">
+    <value>minuti fa</value>
+  </data>
+  <data name="OverAnHourAgo">
+    <value>più di un'ora fa</value>
+  </data>
+  <data name="PostponingTasks">
+    <value>Rimandare i compiti...</value>
+  </data>
+  <data name="RegistrationDialog">
+    <value>Milkman richiede un account Remember The Milk per sincronizzare le attività sul Web e in tutti i tuoi dispositivi. Creare un account e ritorno al lattaio a continue.\n\nMilkman sarà mai memorizzare o condividere le tue informazioni personali.</value>
+  </data>
+  <data name="RegistrationDialogTitle">
+    <value>Registrazione</value>
+  </data>
+  <data name="UpToDate">
+    <value>Milkman è aggiornato</value>
   </data>
 </root>
