@@ -245,7 +245,7 @@ namespace Milkman
                 messageBox.Show();
             }
 
-            IsolatedStorageSettings.ApplicationSettings["CurrentVersion"] = App.VersionNumber; // save current version of application
+            IsolatedStorageSettings.ApplicationSettings["CurrentVersion"] = currentVersion; // save current version of application
             IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
         }
 
