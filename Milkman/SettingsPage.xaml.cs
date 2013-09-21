@@ -114,12 +114,16 @@ namespace Milkman
         {
             ToggleSwitch target = (ToggleSwitch)sender;
             target.Content = Strings.On;
+
+            this.lstNearbyRadius.IsEnabled = this.togLocationReminders.IsChecked.Value;
         }
 
         private void ToggleSwitch_Unchecked(object sender, RoutedEventArgs e)
         {
             ToggleSwitch target = (ToggleSwitch)sender;
             target.Content = Strings.Off;
+
+            this.lstNearbyRadius.IsEnabled = this.togLocationReminders.IsChecked.Value;
         }
     }
 }
