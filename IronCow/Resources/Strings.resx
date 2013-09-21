@@ -264,18 +264,6 @@
   <data name="JustAMoment" xml:space="preserve">
     <value>Just a moment...</value>
   </data>
-  <data name="LiveTileTodayEmpty" xml:space="preserve">
-    <value>No tasks due today</value>
-  </data>
-  <data name="LiveTileOverdue" xml:space="preserve">
-    <value>overdue</value>
-  </data>
-  <data name="LiveTileTodayPlural" xml:space="preserve">
-    <value>tasks due today</value>
-  </data>
-  <data name="LiveTileTodaySingle" xml:space="preserve">
-    <value>task due today</value>
-  </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading...</value>
   </data>
@@ -762,15 +750,6 @@
   <data name="TaskUpper" xml:space="preserve">
     <value>TASK</value>
   </data>
-  <data name="LiveTileNearbyEmpty" xml:space="preserve">
-    <value>No tasks nearby</value>
-  </data>
-  <data name="LiveTileNearbyPlural" xml:space="preserve">
-    <value>tasks nearby</value>
-  </data>
-  <data name="LiveTileNearbySingle" xml:space="preserve">
-    <value>task nearby</value>
-  </data>
   <data name="EmptyNearbyTaskList" xml:space="preserve">
     <value>There are no tasks nearby. Woohoo!</value>
   </data>
@@ -852,27 +831,6 @@
   <data name="YesLower" xml:space="preserve">
     <value>yes</value>
   </data>
-  <data name="LiveTileOverdueEmpty" xml:space="preserve">
-    <value>No tasks overdue</value>
-  </data>
-  <data name="LiveTileOverduePlural" xml:space="preserve">
-    <value>tasks overdue</value>
-  </data>
-  <data name="LiveTileOverdueSingle" xml:space="preserve">
-    <value>task overdue</value>
-  </data>
-  <data name="LiveTileTomorrow" xml:space="preserve">
-    <value>due tomorrow</value>
-  </data>
-  <data name="LiveTileTomorrowEmpty" xml:space="preserve">
-    <value>No tasks due tomorrow</value>
-  </data>
-  <data name="LiveTileTomorrowPlural" xml:space="preserve">
-    <value>tasks due tomorrow</value>
-  </data>
-  <data name="LiveTileTomorrowSingle" xml:space="preserve">
-    <value>task due tomorrow</value>
-  </data>
   <data name="CompletingTasks" xml:space="preserve">
     <value>Completing tasks...</value>
   </data>
@@ -899,5 +857,17 @@
   </data>
   <data name="RegistrationDialogTitle" xml:space="preserve">
     <value>Registration</value>
+  </data>
+  <data name="LiveTileDueToday" xml:space="preserve">
+    <value>Due today</value>
+  </data>
+  <data name="LiveTileMoreDueToday" xml:space="preserve">
+    <value>more due today</value>
+  </data>
+  <data name="LiveTileMoreNearby" xml:space="preserve">
+    <value>more nearby</value>
+  </data>
+  <data name="LiveTileNearby" xml:space="preserve">
+    <value>Nearby</value>
   </data>
 </root>

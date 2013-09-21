@@ -669,17 +669,17 @@ namespace Milkman
 
                             if (tasksNearby.Count > 1)
                             {
-                                data.BackTitle = (tasksNearby.Count - 1) + " more nearby";
+                                data.BackTitle = (tasksNearby.Count - 1) + " " + Strings.LiveTileMoreNearby;
                             }
                             else
                             {
-                                data.BackTitle = Strings.Nearby;
+                                data.BackTitle = Strings.LiveTileNearby;
                             }
                         }
                         else
                         {
-                            data.BackContent = Strings.LiveTileTodayEmpty;
-                            data.BackTitle = Strings.Nearby;
+                            data.BackContent = null;
+                            data.BackTitle = null;
                         }
                     }
                     else
@@ -703,17 +703,17 @@ namespace Milkman
 
                                 if (tasksDueToday.Count > 1)
                                 {
-                                    data.BackTitle = (tasksDueToday.Count - 1) + " more";
+                                    data.BackTitle = (tasksDueToday.Count - 1) + " " + Strings.LiveTileMoreDueToday;
                                 }
                                 else
                                 {
-                                    data.BackTitle = "Due today";
+                                    data.BackTitle = Strings.LiveTileDueToday;
                                 }
                             }
                             else
                             {
-                                data.BackContent = Strings.LiveTileTodayEmpty;
-                                data.BackTitle = MostRecentTaskListClick.Name;
+                                data.BackContent = null;
+                                data.BackTitle = null;
                             }
                         }
                         else if (this.pivLayout.SelectedIndex == 2)
@@ -740,17 +740,17 @@ namespace Milkman
 
                                 if (tasksDueToday.Count > 1)
                                 {
-                                    data.BackTitle = (tasksDueToday.Count - 1) + " more due today";
+                                    data.BackTitle = (tasksDueToday.Count - 1) + " " + Strings.LiveTileMoreDueToday;
                                 }
                                 else
                                 {
-                                    data.BackTitle = "Due today";
+                                    data.BackTitle = Strings.LiveTileDueToday;
                                 }
                             }
                             else
                             {
-                                data.BackContent = Strings.LiveTileTodayEmpty;
-                                data.BackTitle = MostRecentTaskTagClick.Name;
+                                data.BackContent = null;
+                                data.BackTitle = null;
                             }
                         }
                         else
