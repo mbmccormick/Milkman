@@ -20,6 +20,7 @@ using Microsoft.Phone.Tasks;
 using System.Device.Location;
 using Windows.Phone.Speech.Recognition;
 using Milkman.Controls;
+using Windows.ApplicationModel.Store;
 
 namespace Milkman
 {
@@ -523,12 +524,16 @@ namespace Milkman
             emailComposeTask.Show();
         }
 
-        private void mnuDonate_Click(object sender, EventArgs e)
+        private async void mnuDonate_Click(object sender, EventArgs e)
         {
-            WebBrowserTask webBrowserTask = new WebBrowserTask();
+            var productList = await CurrentApp.LoadListingInformationAsync();
+            var product = productList.ProductListings.FirstOrDefault(p => p.Value.ProductType == ProductType.Consumable);
+            var receipt = await CurrentApp.RequestProductPurchaseAsync(product.Value.ProductId, true);
 
-            webBrowserTask.Uri = new Uri("http://mbmccormick.com/donate/", UriKind.Absolute);
-            webBrowserTask.Show();
+            if (CurrentApp.LicenseInformation.ProductLicenses[product.Value.ProductId].IsActive)
+            {
+                CurrentApp.ReportProductFulfillment(product.Value.ProductId);
+            }
         }
 
         private void mnuSignOut_Click(object sender, EventArgs e)

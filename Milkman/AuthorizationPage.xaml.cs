@@ -15,6 +15,7 @@ using IronCow.Resources;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Milkman.Common;
+using Windows.ApplicationModel.Store;
 
 namespace Milkman
 {
@@ -184,12 +185,16 @@ namespace Milkman
             emailComposeTask.Show();
         }
 
-        private void mnuDonate_Click(object sender, EventArgs e)
+        private async void mnuDonate_Click(object sender, EventArgs e)
         {
-            WebBrowserTask webBrowserTask = new WebBrowserTask();
+            var productList = await CurrentApp.LoadListingInformationAsync();
+            var product = productList.ProductListings.FirstOrDefault(p => p.Value.ProductType == ProductType.Consumable);
+            var receipt = await CurrentApp.RequestProductPurchaseAsync(product.Value.ProductId, true);
 
-            webBrowserTask.Uri = new Uri("http://mbmccormick.com/donate/", UriKind.Absolute);
-            webBrowserTask.Show();
+            if (CurrentApp.LicenseInformation.ProductLicenses[product.Value.ProductId].IsActive)
+            {
+                CurrentApp.ReportProductFulfillment(product.Value.ProductId);
+            }
         }
 
         #endregion
