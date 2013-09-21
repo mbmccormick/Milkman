@@ -82,9 +82,7 @@ namespace BackgroundWorker.Common
                 {
                     FlipTileData data = new FlipTileData();
 
-                    int tasksDueToday = 0;
-                    int tasksDueTomorrow = 0;
-                    int tasksOverdue = 0;
+                    List<Task> tasksDueToday = new List<Task>();
 
                     if (App.RtmClient.TaskLists != null)
                     {
@@ -103,113 +101,118 @@ namespace BackgroundWorker.Common
                         }
 
                         tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
-                                                                z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-                        tasksDueTomorrow = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
-                                                                   z.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).Count();
-                        tasksOverdue = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
-                                                               z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                                                                z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
                     }
 
-                    data.BackTitle = Strings.AllTasks;
+                    data.Title = Strings.Milkman;
+                    data.Count = tasksDueToday.Count;
 
-                    if (tasksDueToday == 0)
-                        data.BackContent = Strings.LiveTileTodayEmpty;
-                    else if (tasksDueToday == 1)
-                        data.BackContent = tasksDueToday + " " + Strings.LiveTileTodaySingle;
+                    if (tasksDueToday.Count > 0)
+                    {
+                        data.BackContent = tasksDueToday.First().Name;
+
+                        if (tasksDueToday.Count > 1)
+                        {
+                            data.BackTitle = (tasksDueToday.Count - 1) + " more due today";
+                        }
+                        else
+                        {
+                            data.BackTitle = "Due today";
+                        }
+                    }
                     else
-                        data.BackContent = tasksDueToday + " " + Strings.LiveTileTodayPlural;
-
-                    if (tasksDueTomorrow > 0)
-                        data.BackContent += ", " + tasksDueTomorrow + " " + Strings.LiveTileTomorrow;
-
-                    if (tasksOverdue > 0)
-                        data.BackContent += ", " + tasksOverdue + " " + Strings.LiveTileOverdue;
+                    {
+                        data.BackContent = Strings.LiveTileTodayEmpty;
+                        data.BackTitle = Strings.AllTasks;
+                    }
 
                     tile.Update(data);
                 }
                 else if (tile.NavigationUri.ToString().StartsWith("/TaskListByLocationPage.xaml") == true) // nearby task list
                 {
-                    IconicTileData data = new IconicTileData();
+                    FlipTileData data = new FlipTileData();
 
-                    int tasksNearby = 0;
+                    List<Task> tasksNearby = new List<Task>();
 
                     if (App.RtmClient.TaskLists != null)
                     {
-                        tasksNearby = App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius).Count;
+                        tasksNearby = App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius).ToList();
                     }
 
                     data.Title = Strings.Nearby;
-                    data.Count = tasksNearby;
+                    data.Count = tasksNearby.Count;
 
-                    if (tasksNearby == 0)
-                        data.WideContent1 = Strings.LiveTileNearbyEmpty;
-                    else if (tasksNearby == 1)
-                        data.WideContent1 = tasksNearby + " " + Strings.LiveTileNearbySingle;
+                    if (tasksNearby.Count > 0)
+                    {
+                        data.BackContent = tasksNearby.First().Name;
+
+                        if (tasksNearby.Count > 1)
+                        {
+                            data.BackTitle = (tasksNearby.Count - 1) + " more nearby";
+                        }
+                        else
+                        {
+                            data.BackTitle = Strings.Nearby;
+                        }
+                    }
                     else
-                        data.WideContent1 = tasksNearby + " " + Strings.LiveTileNearbyPlural;
+                    {
+                        data.BackContent = Strings.LiveTileTodayEmpty;
+                        data.BackTitle = Strings.Nearby;
+                    }
 
                     tile.Update(data);
                 }
                 else if (tile.NavigationUri.ToString().StartsWith("/TaskListByTagPage.xaml") == true) // tag task list
                 {
-                    IconicTileData data = new IconicTileData();
+                    FlipTileData data = new FlipTileData();
 
-                    string taskListName = null;
-                    int tasksDueToday = 0;
-                    int tasksDueTomorrow = 0;
-                    int tasksOverdue = 0;
+                    string tagName = null;
+                    List<Task> tasksDueToday = new List<Task>();
 
                     if (App.RtmClient.TaskLists != null)
                     {
                         string id = tile.NavigationUri.ToString().Split('=')[1];
                         var tasks = App.RtmClient.GetTasksByTag()[id];
 
-                        taskListName = id;
+                        tagName = id;
                         if (tasks != null)
                         {
                             tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
-                                                             z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-                            tasksDueTomorrow = tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                z.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).Count();
-                            tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
-                                                            z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                                                             z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
                         }
                     }
 
-                    data.Title = taskListName;
-                    data.Count = tasksDueToday;
+                    data.Title = tagName;
+                    data.Count = tasksDueToday.Count;
 
-                    if (tasksDueToday == 0)
-                        data.WideContent1 = Strings.LiveTileTodayEmpty;
-                    else if (tasksDueToday == 1)
-                        data.WideContent1 = tasksDueToday + " " + Strings.LiveTileTodaySingle;
-                    else
-                        data.WideContent1 = tasksDueToday + " " + Strings.LiveTileTodayPlural;
+                    if (tasksDueToday.Count > 0)
+                    {
+                        data.BackContent = tasksDueToday.First().Name;
 
-                    if (tasksDueTomorrow == 0)
-                        data.WideContent2 = Strings.LiveTileTomorrowEmpty;
-                    else if (tasksDueTomorrow == 1)
-                        data.WideContent2 = tasksDueTomorrow + " " + Strings.LiveTileTomorrowSingle;
+                        if (tasksDueToday.Count > 1)
+                        {
+                            data.BackTitle = (tasksDueToday.Count - 1) + " more due today";
+                        }
+                        else
+                        {
+                            data.BackTitle = "Due today";
+                        }
+                    }
                     else
-                        data.WideContent2 = tasksDueTomorrow + " " + Strings.LiveTileTomorrowPlural;
-
-                    if (tasksOverdue == 0)
-                        data.WideContent3 = Strings.LiveTileOverdueEmpty;
-                    else if (tasksOverdue == 1)
-                        data.WideContent3 = tasksOverdue + " " + Strings.LiveTileOverdueSingle;
-                    else
-                        data.WideContent3 = tasksOverdue + " " + Strings.LiveTileOverduePlural;
+                    {
+                        data.BackContent = Strings.LiveTileTodayEmpty;
+                        data.BackTitle = tagName;
+                    }
 
                     tile.Update(data);
                 }
                 else // standard task list
                 {
-                    IconicTileData data = new IconicTileData();
+                    FlipTileData data = new FlipTileData();
 
                     string taskListName = null;
-                    int tasksDueToday = 0;
-                    int tasksDueTomorrow = 0;
-                    int tasksOverdue = 0;
+                    List<Task> tasksDueToday = new List<Task>();
 
                     if (App.RtmClient.TaskLists != null)
                     {
@@ -220,37 +223,31 @@ namespace BackgroundWorker.Common
                         if (list.Tasks != null)
                         {
                             tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                  z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-                            tasksDueTomorrow = list.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                     z.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).Count();
-                            tasksOverdue = list.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                 z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                                                                  z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
                         }
                     }
 
                     data.Title = taskListName;
-                    data.Count = tasksDueToday;
+                    data.Count = tasksDueToday.Count;
 
-                    if (tasksDueToday == 0)
-                        data.WideContent1 = Strings.LiveTileTodayEmpty;
-                    else if (tasksDueToday == 1)
-                        data.WideContent1 = tasksDueToday + " " + Strings.LiveTileTodaySingle;
-                    else
-                        data.WideContent1 = tasksDueToday + " " + Strings.LiveTileTodayPlural;
+                    if (tasksDueToday.Count > 0)
+                    {
+                        data.BackContent = tasksDueToday.First().Name;
 
-                    if (tasksDueTomorrow == 0)
-                        data.WideContent2 = Strings.LiveTileTomorrowEmpty;
-                    else if (tasksDueTomorrow == 1)
-                        data.WideContent2 = tasksDueTomorrow + " " + Strings.LiveTileTomorrowSingle;
+                        if (tasksDueToday.Count > 1)
+                        {
+                            data.BackTitle = (tasksDueToday.Count - 1) + " more due today";
+                        }
+                        else
+                        {
+                            data.BackTitle = "Due today";
+                        }
+                    }
                     else
-                        data.WideContent2 = tasksDueTomorrow + " " + Strings.LiveTileTomorrowPlural;
-
-                    if (tasksOverdue == 0)
-                        data.WideContent3 = Strings.LiveTileOverdueEmpty;
-                    else if (tasksOverdue == 1)
-                        data.WideContent3 = tasksOverdue + " " + Strings.LiveTileOverdueSingle;
-                    else
-                        data.WideContent3 = tasksOverdue + " " + Strings.LiveTileOverduePlural;
+                    {
+                        data.BackContent = Strings.LiveTileTodayEmpty;
+                        data.BackTitle = taskListName;
+                    }
 
                     tile.Update(data);
                 }

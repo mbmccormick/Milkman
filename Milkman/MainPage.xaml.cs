@@ -79,7 +79,7 @@ namespace Milkman
             InitializeComponent();
 
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
-            
+
             this.BuildApplicationBar();
 
             _watcher = new GeoCoordinateWatcher();
@@ -247,8 +247,6 @@ namespace Milkman
                     var tempDashboardTasks = new SortableObservableCollection<Task>();
                     var tempTaskLists = new SortableObservableCollection<TaskList>();
                     var tempTaskTags = new SortableObservableCollection<TaskTag>();
-
-                    AppSettings settings = new AppSettings();
 
                     foreach (TaskList l in App.RtmClient.TaskLists)
                     {
@@ -619,10 +617,10 @@ namespace Milkman
 
                 if (secondaryTile == null)
                 {
-                    IconicTileData data = new IconicTileData();
+                    FlipTileData data = new FlipTileData();
 
-                    data.IconImage = new Uri("/Assets/IconicTile.png", UriKind.Relative);
-                    data.SmallIconImage = new Uri("/Assets/IconicTileSmall.png", UriKind.Relative);
+                    data.BackgroundImage = new Uri("/Assets/FlipCycleTileMedium.png", UriKind.Relative);
+                    data.SmallBackgroundImage = new Uri("/Assets/FlipCycleTileSmall.png", UriKind.Relative);
 
                     if (this.pivLayout.SelectedIndex == 1)
                         data.Title = MostRecentTaskListClick.Name;
@@ -634,8 +632,6 @@ namespace Milkman
                     if (this.pivLayout.SelectedIndex == 1 &&
                         MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
                     {
-                        int tasksNearby = 0;
-
                         AppSettings settings = new AppSettings();
 
                         double radius;
@@ -652,73 +648,110 @@ namespace Milkman
                         else
                             radius = 0.0;
 
-                        tasksNearby = App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).Count;
+                        List<Task> tasksNearby = new List<Task>();
 
-                        data.Count = tasksNearby;
+                        if (App.RtmClient.TaskLists != null)
+                        {
+                            tasksNearby = App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).ToList();
+                        }
 
-                        if (tasksNearby == 0)
-                            data.WideContent1 = Strings.LiveTileNearbyEmpty;
-                        else if (tasksNearby == 1)
-                            data.WideContent1 = tasksNearby + " " + Strings.LiveTileNearbySingle;
+                        data.Title = Strings.Nearby;
+                        data.Count = tasksNearby.Count;
+
+                        if (tasksNearby.Count > 0)
+                        {
+                            data.BackContent = tasksNearby.First().Name;
+
+                            if (tasksNearby.Count > 1)
+                            {
+                                data.BackTitle = (tasksNearby.Count - 1) + " more nearby";
+                            }
+                            else
+                            {
+                                data.BackTitle = Strings.Nearby;
+                            }
+                        }
                         else
-                            data.WideContent1 = tasksNearby + " " + Strings.LiveTileNearbyPlural;
+                        {
+                            data.BackContent = Strings.LiveTileTodayEmpty;
+                            data.BackTitle = Strings.Nearby;
+                        }
                     }
                     else
                     {
-                        int tasksDueToday = 0;
-                        int tasksDueTomorrow = 0;
-                        int tasksOverdue = 0;
-
                         if (this.pivLayout.SelectedIndex == 1)
                         {
+                            List<Task> tasksDueToday = new List<Task>();
+
                             if (MostRecentTaskListClick.Tasks != null)
                             {
                                 tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                                         z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-                                tasksDueTomorrow = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                                            z.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).Count();
-                                tasksOverdue = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                                        z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                                                                                    z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
+                            }
+
+                            data.Title = MostRecentTaskListClick.Name;
+                            data.Count = tasksDueToday.Count;
+
+                            if (tasksDueToday.Count > 0)
+                            {
+                                data.BackContent = tasksDueToday.First().Name;
+
+                                if (tasksDueToday.Count > 1)
+                                {
+                                    data.BackTitle = (tasksDueToday.Count - 1) + " more";
+                                }
+                                else
+                                {
+                                    data.BackTitle = "Due today";
+                                }
+                            }
+                            else
+                            {
+                                data.BackContent = Strings.LiveTileTodayEmpty;
+                                data.BackTitle = MostRecentTaskListClick.Name;
                             }
                         }
                         else if (this.pivLayout.SelectedIndex == 2)
                         {
-                            var tasks = App.RtmClient.GetTasksByTag()[MostRecentTaskTagClick.Name];
+                            List<Task> tasksDueToday = new List<Task>();
 
-                            tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
-                                                             z.DueDateTime.Value.Date == DateTime.Now.Date).Count();
-                            tasksDueTomorrow = tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                z.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1)).Count();
-                            tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
-                                                            z.DueDateTime.Value.Date < DateTime.Now.Date).Count();
+                            if (App.RtmClient.TaskLists != null)
+                            {
+                                var tasks = App.RtmClient.GetTasksByTag()[MostRecentTaskTagClick.Name];
+
+                                if (tasks != null)
+                                {
+                                    tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                     z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
+                                }
+                            }
+
+                            data.Title = MostRecentTaskTagClick.Name;
+                            data.Count = tasksDueToday.Count;
+
+                            if (tasksDueToday.Count > 0)
+                            {
+                                data.BackContent = tasksDueToday.First().Name;
+
+                                if (tasksDueToday.Count > 1)
+                                {
+                                    data.BackTitle = (tasksDueToday.Count - 1) + " more due today";
+                                }
+                                else
+                                {
+                                    data.BackTitle = "Due today";
+                                }
+                            }
+                            else
+                            {
+                                data.BackContent = Strings.LiveTileTodayEmpty;
+                                data.BackTitle = MostRecentTaskTagClick.Name;
+                            }
                         }
                         else
                         {
                             return;
                         }
-
-                        data.Count = tasksDueToday;
-
-                        if (tasksDueToday == 0)
-                            data.WideContent1 = Strings.LiveTileTodayEmpty;
-                        else if (tasksDueToday == 1)
-                            data.WideContent1 = tasksDueToday + " " + Strings.LiveTileTodaySingle;
-                        else
-                            data.WideContent1 = tasksDueToday + " " + Strings.LiveTileTodayPlural;
-
-                        if (tasksDueTomorrow == 0)
-                            data.WideContent2 = Strings.LiveTileTomorrowEmpty;
-                        else if (tasksDueTomorrow == 1)
-                            data.WideContent2 = tasksDueTomorrow + " " + Strings.LiveTileTomorrowSingle;
-                        else
-                            data.WideContent2 = tasksDueTomorrow + " " + Strings.LiveTileTomorrowPlural;
-
-                        if (tasksOverdue == 0)
-                            data.WideContent3 = Strings.LiveTileOverdueEmpty;
-                        else if (tasksOverdue == 1)
-                            data.WideContent3 = tasksOverdue + " " + Strings.LiveTileOverdueSingle;
-                        else
-                            data.WideContent3 = tasksOverdue + " " + Strings.LiveTileOverduePlural;
                     }
 
                     if (this.pivLayout.SelectedIndex == 1)
