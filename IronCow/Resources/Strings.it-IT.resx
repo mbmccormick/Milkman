@@ -285,9 +285,6 @@
   <data name="List" xml:space="preserve">
     <value>Lista</value>
   </data>
-  <data name="LiveTileOverdue" xml:space="preserve">
-    <value>scadute</value>
-  </data>
   <data name="Loading" xml:space="preserve">
     <value>Sto caricando…</value>
   </data>
@@ -630,15 +627,6 @@
   <data name="TaskUpper" xml:space="preserve">
     <value>ATTIVITÀ</value>
   </data>
-  <data name="LiveTileNearbyEmpty" xml:space="preserve">
-    <value>Nessuna attività nei pressi</value>
-  </data>
-  <data name="LiveTileNearbyPlural" xml:space="preserve">
-    <value>attività nei pressi</value>
-  </data>
-  <data name="LiveTileNearbySingle" xml:space="preserve">
-    <value>attività nei pressi</value>
-  </data>
   <data name="EmptyNearbyTaskList" xml:space="preserve">
     <value>Non ci sono attività nei pressi. Urrà!</value>
   </data>
@@ -732,38 +720,8 @@
   <data name="NoLower">
     <value>no</value>
   </data>
-  <data name="LiveTileTodayEmpty">
-    <value>Nessuna attività scade oggi</value>
-  </data>
-  <data name="LiveTileTodayPlural">
-    <value>attività che scadono oggi</value>
-  </data>
-  <data name="LiveTileTodaySingle">
-    <value>attività che scade oggi</value>
-  </data>
   <data name="YesLower">
     <value>sì</value>
-  </data>
-  <data name="LiveTileOverdueEmpty">
-    <value>Nessuna attività in ritardo</value>
-  </data>
-  <data name="LiveTileOverduePlural">
-    <value>attività scadute</value>
-  </data>
-  <data name="LiveTileOverdueSingle">
-    <value>attività scadute</value>
-  </data>
-  <data name="LiveTileTomorrow">
-    <value>Scadenza domani</value>
-  </data>
-  <data name="LiveTileTomorrowEmpty">
-    <value>Nessuna attività dovuta domani</value>
-  </data>
-  <data name="LiveTileTomorrowPlural">
-    <value>attività dovuta domani</value>
-  </data>
-  <data name="LiveTileTomorrowSingle">
-    <value>attività dovuta domani</value>
   </data>
   <data name="AuthorizationDialog">
     <value>Milkman ha bisogno dell'autorizzazione a utilizzare il tuo account Remember The Milk per continuare. Accedi al tuo account e toccare il pulsante completo per continue.\n\nMilkman mai memorizzare o condividere le tue informazioni personali.</value>
@@ -794,5 +752,17 @@
   </data>
   <data name="UpToDate">
     <value>Milkman è aggiornato</value>
+  </data>
+  <data name="LiveTileNearby">
+    <value>Vicino</value>
+  </data>
+  <data name="LiveTileDueToday">
+    <value>A causa oggi</value>
+  </data>
+  <data name="LiveTileMoreDueToday">
+    <value>più dovuto oggi</value>
+  </data>
+  <data name="LiveTileMoreNearby">
+    <value>più vicina</value>
   </data>
 </root>
