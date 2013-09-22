@@ -13,24 +13,21 @@ namespace Milkman.Controls
 {
     public class AddTaskDialog
     {
-        public SpeechTextBox txtDetails;
+        public TextBox txtDetails;
 
         public CustomMessageBox CreateDialog(string defaultText)
         {
             StackPanel stkContent = new StackPanel();
 
-            txtDetails = new SpeechTextBox()
+            txtDetails = new TextBox()
             {
                 Margin = new Thickness(0, 24, 12, 6),
                 InputScope = new InputScope()
                 {
                     Names = { new InputScopeName() { NameValue = InputScopeNameValue.Text } }
                 },
-                Text = defaultText,
-                ActionIcon = new BitmapImage(new Uri("/Resources/microphone.png", UriKind.Relative)),
-                HidesActionItemWhenEmpty = false
+                Text = defaultText
             };
-            txtDetails.SpeechRecognized += txtDetails_SpeechRecognized;
             stkContent.Children.Add(txtDetails);
 
             WrapPanel wrpShortcuts = new WrapPanel()
@@ -115,27 +112,6 @@ namespace Milkman.Controls
             };
 
             return messageBox;
-        }
-
-        void txtDetails_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
-        {
-            string resultText = e.Result.Text;
-            resultText = resultText.Replace(".", "");
-            resultText = resultText.Replace(" do ", " ^");
-            resultText = resultText.Replace(" priority one", " !1");
-            resultText = resultText.Replace(" priority 1", " !1");
-            resultText = resultText.Replace(" priority two", " !2");
-            resultText = resultText.Replace(" priority 2", " !2");
-            resultText = resultText.Replace(" priority to", " !2");
-            resultText = resultText.Replace(" priority too", " !2");
-            resultText = resultText.Replace(" priority three", " !3");
-            resultText = resultText.Replace(" priority 3", " !3");
-            resultText = resultText.Replace(" list ", " #");
-            resultText = resultText.Replace(" tag ", " #");
-
-            txtDetails.Text = resultText;
-
-            e.Canceled = true;
         }
 
         private void Shortcut_Tap(object sender, System.Windows.Input.GestureEventArgs e)
