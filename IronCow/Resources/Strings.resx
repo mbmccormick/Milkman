@@ -694,10 +694,10 @@
     <value>Error Report</value>
   </data>
   <data name="MarketplaceDialog" xml:space="preserve">
-    <value>It's been a few days since you downloaded Milkman. Would you like to rate it on the Marketplace?</value>
+    <value>It's been a few days since you downloaded Milkman. Would you like to leave a review for it on the Windows Phone Store?</value>
   </data>
   <data name="MarketplaceDialogTitle" xml:space="preserve">
-    <value>Rate Milkman</value>
+    <value>Review Milkman</value>
   </data>
   <data name="Never" xml:space="preserve">
     <value>Never</value>
