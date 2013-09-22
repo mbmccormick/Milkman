@@ -56,6 +56,8 @@ namespace Milkman
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            App.PromptForMarketplaceReview();
+            
             base.OnNavigatedTo(e);
         }
 

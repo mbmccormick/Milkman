@@ -197,11 +197,9 @@ namespace Milkman
             SmartDispatcher.Initialize(RootFrame.Dispatcher);
 
             LoadData();
-
-            this.PromptForMarketplaceReview();
         }
 
-        private void PromptForMarketplaceReview()
+        public static void PromptForMarketplaceReview()
         {
             string currentVersion = App.VersionNumber;
             if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<string>("CurrentVersion", out currentVersion) == false)
