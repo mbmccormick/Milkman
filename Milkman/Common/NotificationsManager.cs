@@ -326,8 +326,8 @@ namespace Milkman.Common
                 {
                     StandardTileData data = new StandardTileData();
 
-                    data.BackTitle = null;
-                    data.BackContent = null;
+                    data.BackTitle = "";
+                    data.BackContent = "";
 
                     tile.Update(data);
                 }
