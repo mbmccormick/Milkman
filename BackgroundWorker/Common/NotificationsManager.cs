@@ -122,8 +122,8 @@ namespace BackgroundWorker.Common
                     }
                     else
                     {
-                        data.BackContent = null;
-                        data.BackTitle = null;
+                        data.BackContent = "";
+                        data.BackTitle = "";
                     }
 
                     tile.Update(data);
@@ -157,8 +157,8 @@ namespace BackgroundWorker.Common
                     }
                     else
                     {
-                        data.BackContent = null;
-                        data.BackTitle = null;
+                        data.BackContent = "";
+                        data.BackTitle = "";
                     }
 
                     tile.Update(data);
@@ -201,8 +201,8 @@ namespace BackgroundWorker.Common
                     }
                     else
                     {
-                        data.BackContent = null;
-                        data.BackTitle = null;
+                        data.BackContent = "";
+                        data.BackTitle = "";
                     }
 
                     tile.Update(data);
@@ -245,8 +245,8 @@ namespace BackgroundWorker.Common
                     }
                     else
                     {
-                        data.BackContent = null;
-                        data.BackTitle = null;
+                        data.BackContent = "";
+                        data.BackTitle = "";
                     }
 
                     tile.Update(data);
@@ -263,8 +263,8 @@ namespace BackgroundWorker.Common
                 {
                     StandardTileData data = new StandardTileData();
 
-                    data.BackTitle = null;
-                    data.BackContent = null;
+                    data.BackTitle = "";
+                    data.BackContent = "";
 
                     tile.Update(data);
                 }
