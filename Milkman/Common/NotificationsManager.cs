@@ -186,8 +186,8 @@ namespace Milkman.Common
                     }
                     else
                     {
-                        data.BackContent = null;
-                        data.BackTitle = null;
+                        data.BackContent = "";
+                        data.BackTitle = "";
                     }
 
                     tile.Update(data);
@@ -221,8 +221,8 @@ namespace Milkman.Common
                     }
                     else
                     {
-                        data.BackContent = null;
-                        data.BackTitle = null;
+                        data.BackContent = "";
+                        data.BackTitle = "";
                     }
 
                     tile.Update(data);
@@ -265,8 +265,8 @@ namespace Milkman.Common
                     }
                     else
                     {
-                        data.BackContent = null;
-                        data.BackTitle = null;
+                        data.BackContent = "";
+                        data.BackTitle = "";
                     }
 
                     tile.Update(data);
@@ -309,8 +309,8 @@ namespace Milkman.Common
                     }
                     else
                     {
-                        data.BackContent = null;
-                        data.BackTitle = null;
+                        data.BackContent = "";
+                        data.BackTitle = "";
                     }
 
                     tile.Update(data);
