@@ -142,9 +142,11 @@ namespace Milkman
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
+            if (NavigationService.CanGoBack == true)
+                NavigationService.RemoveBackEntry();
+            
             if (NavigationContext.QueryString.ContainsKey("IsFirstRun") == true)
             {
-                NavigationService.RemoveBackEntry();
                 SyncData();
             }
 

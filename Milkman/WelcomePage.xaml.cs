@@ -57,6 +57,9 @@ namespace Milkman
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             App.PromptForMarketplaceReview();
+
+            if (NavigationService.CanGoBack == true)
+                NavigationService.RemoveBackEntry();
             
             base.OnNavigatedTo(e);
         }
