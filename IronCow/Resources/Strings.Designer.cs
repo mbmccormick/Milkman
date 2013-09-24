@@ -745,6 +745,24 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thank you for your donation! Your support motivates me to keep developing for Milkman, the best Remember The Milk client for Windows Phone..
+        /// </summary>
+        public static string DonateDialog {
+            get {
+                return ResourceManager.GetString("DonateDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank You.
+        /// </summary>
+        public static string DonateDialogTitle {
+            get {
+                return ResourceManager.GetString("DonateDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Donate.
         /// </summary>
         public static string DonateMenu {
@@ -1123,7 +1141,7 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to It&apos;s been a few days since you downloaded Milkman. Would you like to rate it on the Marketplace?.
+        ///   Looks up a localized string similar to It&apos;s been a few days since you downloaded Milkman. Would you like to leave a review for it on the Windows Phone Store?.
         /// </summary>
         public static string MarketplaceDialog {
             get {
@@ -1132,7 +1150,7 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate Milkman.
+        ///   Looks up a localized string similar to Review Milkman.
         /// </summary>
         public static string MarketplaceDialogTitle {
             get {

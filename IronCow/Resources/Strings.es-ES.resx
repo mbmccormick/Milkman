@@ -870,4 +870,10 @@
   <data name="LiveTileMoreNearby">
     <value>más cercano</value>
   </data>
+  <data name="DonateDialog" xml:space="preserve">
+    <value>Gracias por tu donación! Su apoyo me motiva a seguir desarrollando para Milkman, el mejor cliente de Remember The Milk para Windows Phone.</value>
+  </data>
+  <data name="DonateDialogTitle" xml:space="preserve">
+    <value>Gracias</value>
+  </data>
 </root>

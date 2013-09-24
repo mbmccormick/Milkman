@@ -836,13 +836,22 @@ namespace Milkman
 
         private async void mnuDonate_Click(object sender, EventArgs e)
         {
-            var productList = await CurrentApp.LoadListingInformationAsync();
-            var product = productList.ProductListings.FirstOrDefault(p => p.Value.ProductType == ProductType.Consumable);
-            var receipt = await CurrentApp.RequestProductPurchaseAsync(product.Value.ProductId, true);
-
-            if (CurrentApp.LicenseInformation.ProductLicenses[product.Value.ProductId].IsActive)
+            try
             {
-                CurrentApp.ReportProductFulfillment(product.Value.ProductId);
+                var productList = await CurrentApp.LoadListingInformationAsync();
+                var product = productList.ProductListings.FirstOrDefault(p => p.Value.ProductType == ProductType.Consumable);
+                var receipt = await CurrentApp.RequestProductPurchaseAsync(product.Value.ProductId, true);
+
+                if (CurrentApp.LicenseInformation.ProductLicenses[product.Value.ProductId].IsActive)
+                {
+                    CurrentApp.ReportProductFulfillment(product.Value.ProductId);
+
+                    MessageBox.Show(Strings.DonateDialog, Strings.DonateDialogTitle, MessageBoxButton.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                // do nothing
             }
         }
 
