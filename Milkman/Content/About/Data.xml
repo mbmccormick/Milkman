@@ -41,7 +41,7 @@
     </Item>
     <Item Title="what's new?" Type="text">
       Version 3.2
-      This release adds new live tile functionality, implements background syncing, and greatly reduces the startup time. This release also includes several user interface improvements, icon resolution improvments, and bug fixes.
+      This release adds new live tile functionality, implements background syncing, and greatly reduces the start up time. This release also includes several user interface improvements, icon resolution improvments, and bug fixes.
       
       Version 3.1
       This release includes several fixes related to Smart Lists and offers more efficient syncing of tasks. This release also includes several bug fixes.
