@@ -102,6 +102,8 @@ namespace Milkman
             this.togLocationReminders.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
             this.togLocationReminders.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
 
+            this.lstNearbyRadius.IsEnabled = this.togLocationReminders.IsChecked.Value;
+
             GlobalLoading.Instance.IsLoading = false;
         }
 
