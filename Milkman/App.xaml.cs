@@ -119,7 +119,7 @@ namespace Milkman
             if (ListsResponse != null)
             {
                 RtmClient.LoadListsFromResponse(ListsResponse);
-            } 
+            }
             if (TasksResponse != null)
             {
                 RtmClient.LoadTasksFromResponse(TasksResponse);
@@ -228,14 +228,21 @@ namespace Milkman
                     switch (e1.Result)
                     {
                         case CustomMessageBoxResult.LeftButton:
+                            installDate = DateTime.MaxValue; // they have rated, don't prompt again
+
+                            IsolatedStorageSettings.ApplicationSettings["CurrentVersion"] = currentVersion; // save current version of application
+                            IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
+
                             MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
                             marketplaceReviewTask.Show();
-
-                            installDate = DateTime.MaxValue; // they have rated, don't prompt again
 
                             break;
                         default:
                             installDate = DateTime.UtcNow; // they did not rate, prompt again in 2 days
+
+                            IsolatedStorageSettings.ApplicationSettings["CurrentVersion"] = currentVersion; // save current version of application
+                            IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
+
                             break;
                     }
                 };
