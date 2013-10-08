@@ -155,6 +155,8 @@ namespace Milkman
             ApplicationBar.MenuItems.Add(feedback);
             ApplicationBar.MenuItems.Add(donate);
             ApplicationBar.MenuItems.Add(signOut);
+
+            this.pivLayout.SelectionChanged += pivLayout_SelectionChanged;
         }
 
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
