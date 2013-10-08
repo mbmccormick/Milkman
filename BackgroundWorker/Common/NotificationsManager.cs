@@ -82,6 +82,7 @@ namespace BackgroundWorker.Common
                 {
                     FlipTileData data = new FlipTileData();
 
+                    List<Task> tasksOverdue = new List<Task>();
                     List<Task> tasksDueToday = new List<Task>();
 
                     if (App.RtmClient.TaskLists != null)
@@ -100,12 +101,14 @@ namespace BackgroundWorker.Common
                             }
                         }
 
+                        tasksOverdue = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
+                                                               z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
                         tasksDueToday = tempAllTasks.Where(z => z.DueDateTime.HasValue &&
                                                                 z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
                     }
 
                     data.Title = Strings.Milkman;
-                    data.Count = tasksDueToday.Count;
+                    data.Count = tasksOverdue.Count + tasksDueToday.Count;
 
                     if (tasksDueToday.Count > 0)
                     {
@@ -168,6 +171,7 @@ namespace BackgroundWorker.Common
                     FlipTileData data = new FlipTileData();
 
                     string tagName = null;
+                    List<Task> tasksOverdue = new List<Task>();
                     List<Task> tasksDueToday = new List<Task>();
 
                     if (App.RtmClient.TaskLists != null)
@@ -178,13 +182,15 @@ namespace BackgroundWorker.Common
                         tagName = id;
                         if (tasks != null)
                         {
+                            tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
+                                                            z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
                             tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
                                                              z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
                         }
                     }
 
                     data.Title = tagName;
-                    data.Count = tasksDueToday.Count;
+                    data.Count = tasksOverdue.Count + tasksDueToday.Count;
 
                     if (tasksDueToday.Count > 0)
                     {
@@ -212,6 +218,7 @@ namespace BackgroundWorker.Common
                     FlipTileData data = new FlipTileData();
 
                     string taskListName = null;
+                    List<Task> tasksOverdue = new List<Task>();
                     List<Task> tasksDueToday = new List<Task>();
 
                     if (App.RtmClient.TaskLists != null)
@@ -222,13 +229,15 @@ namespace BackgroundWorker.Common
                         taskListName = list.Name;
                         if (list.Tasks != null)
                         {
+                            tasksOverdue = list.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                 z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
                             tasksDueToday = list.Tasks.Where(z => z.DueDateTime.HasValue &&
                                                                   z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
                         }
                     }
 
                     data.Title = taskListName;
-                    data.Count = tasksDueToday.Count;
+                    data.Count = tasksOverdue.Count + tasksDueToday.Count;
 
                     if (tasksDueToday.Count > 0)
                     {
