@@ -699,16 +699,19 @@ namespace Milkman
                     {
                         if (this.pivLayout.SelectedIndex == 1)
                         {
+                            List<Task> tasksOverdue = new List<Task>();
                             List<Task> tasksDueToday = new List<Task>();
 
                             if (MostRecentTaskListClick.Tasks != null)
                             {
+                                tasksOverdue = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                                        z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
                                 tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
                                                                                     z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
                             }
 
                             data.Title = MostRecentTaskListClick.Name;
-                            data.Count = tasksDueToday.Count;
+                            data.Count = tasksOverdue.Count + tasksDueToday.Count;
 
                             if (tasksDueToday.Count > 0)
                             {
@@ -731,6 +734,7 @@ namespace Milkman
                         }
                         else if (this.pivLayout.SelectedIndex == 2)
                         {
+                            List<Task> tasksOverdue = new List<Task>();
                             List<Task> tasksDueToday = new List<Task>();
 
                             if (App.RtmClient.TaskLists != null)
@@ -739,13 +743,15 @@ namespace Milkman
 
                                 if (tasks != null)
                                 {
+                                    tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
+                                                                    z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
                                     tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
                                                                      z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
                                 }
                             }
 
                             data.Title = MostRecentTaskTagClick.Name;
-                            data.Count = tasksDueToday.Count;
+                            data.Count = tasksOverdue.Count + tasksDueToday.Count;
 
                             if (tasksDueToday.Count > 0)
                             {
