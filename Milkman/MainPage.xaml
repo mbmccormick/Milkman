@@ -23,24 +23,14 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}">
+
+        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" SelectionChanged="Pivot_SelectionChanged">
             <controls:PivotItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
-                    <ListBox x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" Margin="0,0,0,0">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel Margin="0,0,0,6" />
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                        <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            </Style>
-                        </ListBox.ItemContainerStyle>
-                        <ListBox.ItemTemplate>
+                    <toolkit:LongListMultiSelector x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" LayoutMode="List" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged">
+                        <toolkit:LongListMultiSelector.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Margin="12,0,12,24" Tap="ItemContent_Tap">
+                                <StackPanel Margin="-12,0,24,24" Tap="ItemContent_Tap">
                                     <uc:TaskItemControl />
 
                                     <toolkit:ContextMenuService.ContextMenu>
@@ -52,8 +42,8 @@
                                     </toolkit:ContextMenuService.ContextMenu>
                                 </StackPanel>
                             </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                        </toolkit:LongListMultiSelector.ItemTemplate>
+                    </toolkit:LongListMultiSelector>
 
                     <TextBlock x:Name="txtDashboardLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>
                     <TextBlock x:Name="txtDashboardEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}"/>

@@ -38,7 +38,7 @@
         <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.NearbyUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}">
             <controls:PivotItem Header="{Binding Resources.AllLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
                 <Grid Margin="0,0,0,0">
-                    <toolkit:LongListMultiSelector x:Name="lstAll" ItemsSource="{Binding AllTasks}" LayoutMode="List"  SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
+                    <toolkit:LongListMultiSelector x:Name="lstAll" ItemsSource="{Binding AllTasks}" LayoutMode="List" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
                                                    ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
 

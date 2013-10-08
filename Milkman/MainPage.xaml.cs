@@ -65,7 +65,11 @@ namespace Milkman
         AddTaskDialog dlgAddTask;
 
         ApplicationBarIconButton add;
+        ApplicationBarIconButton select;
         ApplicationBarIconButton sync;
+        ApplicationBarIconButton complete;
+        ApplicationBarIconButton postpone;
+        ApplicationBarIconButton delete;
 
         ApplicationBarMenuItem settings;
         ApplicationBarMenuItem about;
@@ -94,10 +98,30 @@ namespace Milkman
             add.Text = Strings.AddMenuLower;
             add.Click += btnAdd_Click;
 
+            select = new ApplicationBarIconButton();
+            select.IconUri = new Uri("/Resources/select.png", UriKind.RelativeOrAbsolute);
+            select.Text = Strings.SelectMenuLower;
+            select.Click += btnSelect_Click;
+
             sync = new ApplicationBarIconButton();
             sync.IconUri = new Uri("/Resources/retry.png", UriKind.RelativeOrAbsolute);
             sync.Text = Strings.SyncMenuLower;
             sync.Click += btnSync_Click;
+
+            complete = new ApplicationBarIconButton();
+            complete.IconUri = new Uri("/Resources/complete.png", UriKind.RelativeOrAbsolute);
+            complete.Text = Strings.CompleteMenuLower;
+            complete.Click += btnComplete_Click;
+
+            postpone = new ApplicationBarIconButton();
+            postpone.IconUri = new Uri("/Resources/postpone.png", UriKind.RelativeOrAbsolute);
+            postpone.Text = Strings.PostponeMenuLower;
+            postpone.Click += btnPostpone_Click;
+
+            delete = new ApplicationBarIconButton();
+            delete.IconUri = new Uri("/Resources/delete.png", UriKind.RelativeOrAbsolute);
+            delete.Text = Strings.DeleteMenuLower;
+            delete.Click += btnDelete_Click;
 
             settings = new ApplicationBarMenuItem();
             settings.Text = Strings.SettingsMenuLower;
@@ -121,6 +145,7 @@ namespace Milkman
 
             // build application bar
             ApplicationBar.Buttons.Add(add);
+            ApplicationBar.Buttons.Add(select);
             ApplicationBar.Buttons.Add(sync);
 
             ApplicationBar.MenuItems.Add(settings);
@@ -144,7 +169,7 @@ namespace Milkman
 
             if (NavigationService.CanGoBack == true)
                 NavigationService.RemoveBackEntry();
-            
+
             if (NavigationContext.QueryString.ContainsKey("IsFirstRun") == true)
             {
                 SyncData();
@@ -187,7 +212,24 @@ namespace Milkman
                 resultText = resultText.Replace(" list ", " #");
                 resultText = resultText.Replace(" tag ", " #");
 
-                ShowAddTaskDialog(resultText);
+                this.dlgAddTask = new AddTaskDialog();
+
+                CustomMessageBox messageBox = this.dlgAddTask.CreateDialog(resultText);
+
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            AddTask(this.dlgAddTask.txtDetails.Text);
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
             }
 
             base.OnNavigatedTo(e);
@@ -195,6 +237,12 @@ namespace Milkman
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
         {
+            if (this.lstTasks.IsSelectionEnabled)
+            {
+                this.lstTasks.IsSelectionEnabled = false;
+                e.Cancel = true;
+            }
+
             base.OnBackKeyPress(e);
         }
 
@@ -385,7 +433,24 @@ namespace Milkman
 
             if (settings.AddTaskDialogEnabled == true)
             {
-                this.ShowAddTaskDialog();
+                this.dlgAddTask = new AddTaskDialog();
+
+                CustomMessageBox messageBox = this.dlgAddTask.CreateDialog("");
+
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            AddTask(this.dlgAddTask.txtDetails.Text);
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
             }
             else
             {
@@ -393,23 +458,138 @@ namespace Milkman
             }
         }
 
-        private void ShowAddTaskDialog()
+        private void btnSelect_Click(object sender, EventArgs e)
         {
-            this.ShowAddTaskDialog("");
+            LongListMultiSelector target = this.lstTasks;
+
+            target.IsSelectionEnabled = true;
         }
 
-        private void ShowAddTaskDialog(string defaultText)
+        private void btnComplete_Click(object sender, EventArgs e)
         {
-            this.dlgAddTask = new AddTaskDialog();
+            if (GlobalLoading.Instance.IsLoading) return;
 
-            CustomMessageBox messageBox = this.dlgAddTask.CreateDialog(defaultText);
+            LongListMultiSelector target = this.lstTasks;
+
+            string messageBoxText;
+            if (target.SelectedItems.Count == 1)
+                messageBoxText = Strings.CompleteTaskSingleDialog;
+            else
+                messageBoxText = Strings.CompleteTaskPluralDialog;
+
+            CustomMessageBox messageBox = new CustomMessageBox()
+            {
+                Caption = Strings.CompleteDialogTitle,
+                Message = messageBoxText,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
 
             messageBox.Dismissed += (s1, e1) =>
             {
                 switch (e1.Result)
                 {
                     case CustomMessageBoxResult.LeftButton:
-                        AddTask(this.dlgAddTask.txtDetails.Text);
+                        bool isMultiple = target.SelectedItems.Count > 1;
+
+                        while (target.SelectedItems.Count > 0)
+                        {
+                            CompleteTask((Task)target.SelectedItems[0], isMultiple);
+                            target.SelectedItems.RemoveAt(0);
+                        }
+
+                        target.IsSelectionEnabled = false;
+
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            messageBox.Show();
+        }
+
+        private void btnPostpone_Click(object sender, EventArgs e)
+        {
+            if (GlobalLoading.Instance.IsLoading) return;
+
+            LongListMultiSelector target = this.lstTasks;
+
+            string messageBoxText;
+            if (target.SelectedItems.Count == 1)
+                messageBoxText = Strings.PostponeTaskSingleDialog;
+            else
+                messageBoxText = Strings.PostponeTaskPluralDialog;
+
+            CustomMessageBox messageBox = new CustomMessageBox()
+            {
+                Caption = Strings.PostponeDialogTitle,
+                Message = messageBoxText,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                    case CustomMessageBoxResult.LeftButton:
+                        bool isMultiple = target.SelectedItems.Count > 1;
+
+                        while (target.SelectedItems.Count > 0)
+                        {
+                            PostponeTask((Task)target.SelectedItems[0], isMultiple);
+                            target.SelectedItems.RemoveAt(0);
+                        }
+
+                        target.IsSelectionEnabled = false;
+
+                        break;
+                    default:
+                        break;
+                }
+            };
+
+            messageBox.Show();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (GlobalLoading.Instance.IsLoading) return;
+
+            LongListMultiSelector target = this.lstTasks;
+
+            string messageBoxText;
+            if (target.SelectedItems.Count == 1)
+                messageBoxText = Strings.DeleteTaskSingleDialog;
+            else
+                messageBoxText = Strings.DeleteTaskPluralDialog;
+
+            CustomMessageBox messageBox = new CustomMessageBox()
+            {
+                Caption = Strings.DeleteTaskDialogTitle,
+                Message = messageBoxText,
+                LeftButtonContent = Strings.YesLower,
+                RightButtonContent = Strings.NoLower,
+                IsFullScreen = false
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+            {
+                switch (e1.Result)
+                {
+                    case CustomMessageBoxResult.LeftButton:
+                        bool isMultiple = target.SelectedItems.Count > 1;
+
+                        while (target.SelectedItems.Count > 0)
+                        {
+                            DeleteTask((Task)target.SelectedItems[0], isMultiple);
+                            target.SelectedItems.RemoveAt(0);
+                        }
+
+                        target.IsSelectionEnabled = false;
 
                         break;
                     default:
@@ -426,6 +606,145 @@ namespace Milkman
             sFirstLaunch = true;
 
             SyncData();
+        }
+
+        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            while (ApplicationBar.Buttons.Count > 0)
+            {
+                ApplicationBar.Buttons.RemoveAt(0);
+            }
+
+            while (ApplicationBar.MenuItems.Count > 0)
+            {
+                ApplicationBar.MenuItems.RemoveAt(0);
+            }
+
+            if (this.pivLayout.SelectedIndex == 0)
+            {
+                ApplicationBar.Buttons.Add(add);
+                ApplicationBar.Buttons.Add(select);
+                ApplicationBar.Buttons.Add(sync);
+
+                ApplicationBar.MenuItems.Add(settings);
+                ApplicationBar.MenuItems.Add(about);
+                ApplicationBar.MenuItems.Add(feedback);
+                ApplicationBar.MenuItems.Add(donate);
+                ApplicationBar.MenuItems.Add(signOut);
+            }
+            else
+            {
+                ApplicationBar.Buttons.Add(add);
+                ApplicationBar.Buttons.Add(sync);
+
+                ApplicationBar.MenuItems.Add(settings);
+                ApplicationBar.MenuItems.Add(about);
+                ApplicationBar.MenuItems.Add(feedback);
+                ApplicationBar.MenuItems.Add(donate);
+                ApplicationBar.MenuItems.Add(signOut);
+            }
+        }
+
+        private void LongListMultiSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LongListMultiSelector target = (LongListMultiSelector)sender;
+            ApplicationBarIconButton i = (ApplicationBarIconButton)ApplicationBar.Buttons[0]; // complete
+            ApplicationBarIconButton j = (ApplicationBarIconButton)ApplicationBar.Buttons[1]; // postpone
+            ApplicationBarIconButton k = (ApplicationBarIconButton)ApplicationBar.Buttons[2]; // delete
+
+            if (target.IsSelectionEnabled)
+            {
+                if (target.SelectedItems.Count > 0)
+                {
+                    i.IsEnabled = true;
+                    j.IsEnabled = true;
+                    k.IsEnabled = true;
+                }
+                else
+                {
+                    i.IsEnabled = false;
+                    j.IsEnabled = false;
+                    k.IsEnabled = false;
+                }
+            }
+            else
+            {
+                i.IsEnabled = true;
+                j.IsEnabled = true;
+                k.IsEnabled = true;
+            }
+
+            // disable buttons when working offline
+            if (App.RtmClient.Syncing == false)
+            {
+                add.IsEnabled = false;
+                sync.IsEnabled = false;
+                complete.IsEnabled = false;
+                postpone.IsEnabled = false;
+                delete.IsEnabled = false;
+            }
+        }
+
+        private void LongListMultiSelector_IsSelectionEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            LongListMultiSelector target = (LongListMultiSelector)sender;
+
+            while (ApplicationBar.Buttons.Count > 0)
+            {
+                ApplicationBar.Buttons.RemoveAt(0);
+            }
+
+            while (ApplicationBar.MenuItems.Count > 0)
+            {
+                ApplicationBar.MenuItems.RemoveAt(0);
+            }
+
+            if ((bool)e.NewValue)
+            {
+                this.pivLayout.IsLocked = true;
+
+                ApplicationBar.Buttons.Add(complete);
+                ApplicationBarIconButton i = (ApplicationBarIconButton)ApplicationBar.Buttons[0];
+                i.IsEnabled = false;
+
+                ApplicationBar.Buttons.Add(postpone);
+                ApplicationBarIconButton j = (ApplicationBarIconButton)ApplicationBar.Buttons[1];
+                j.IsEnabled = false;
+
+                ApplicationBar.Buttons.Add(delete);
+                ApplicationBarIconButton k = (ApplicationBarIconButton)ApplicationBar.Buttons[2];
+                k.IsEnabled = false;
+            }
+            else
+            {
+                this.pivLayout.IsLocked = false;
+
+                ApplicationBar.Buttons.Add(add);
+                ApplicationBar.Buttons.Add(select);
+                ApplicationBar.Buttons.Add(sync);
+
+                ApplicationBar.MenuItems.Add(settings);
+                ApplicationBar.MenuItems.Add(about);
+                ApplicationBar.MenuItems.Add(feedback);
+                ApplicationBar.MenuItems.Add(donate);
+                ApplicationBar.MenuItems.Add(signOut);
+            }
+
+            Thickness margin = target.Margin;
+
+            if (target.IsSelectionEnabled)
+                margin.Left = margin.Left - 12;
+            else
+                margin.Left = margin.Left + 12;
+
+            target.Margin = margin;
+
+            // disable buttons when working offline
+            if (App.RtmClient.Syncing == false)
+            {
+                add.IsEnabled = false;
+                sync.IsEnabled = false;
+            }
         }
 
         private void ItemContent_Tap(object sender, System.Windows.Input.GestureEventArgs e)
