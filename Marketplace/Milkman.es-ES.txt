@@ -1,4 +1,4 @@
-### Application Title
+﻿### Application Title
 
 Milkman
 
@@ -15,10 +15,6 @@ Milkman es la forma más rápida y limpia para administrar sus tareas en su Wind
 Milkman se integra perfectamente con su teléfono para mostrar contadores de tareas en vivo mosaico de la aplicación, muestra avisos antes de que una tarea es debida y incluso permite establecer recordatorios basados en localización utilizando Remember The Milk.
 
 Esta aplicación utiliza la interfaz de programación de aplicaciones de Remember The Milk pero no es aprobada o certificada por Remember The Milk.
-
-Desarrollo de aplicaciones por Matt McCormick
-
-Interfaz de usuario por Libby Puccinelli
 
 
 ### Update Description

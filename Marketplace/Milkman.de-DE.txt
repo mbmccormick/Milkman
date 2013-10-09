@@ -1,4 +1,4 @@
-### Application Title
+﻿### Application Title
 
 Milkman
 
@@ -15,10 +15,6 @@ Milkman ist die schnellste und einfachste Möglichkeit deine Aufgaben mit deinem
 In einem Live-Tile zeigt Milkman die Anzahl der heute fälligen sowie bereits überfälligen Aufgaben an. Milkman erinnert dich an Aufgaben bevor diese fällig werden und erlaubt darüber hinaus sogar ortsabhängige Erinnerungen.
 
 Diese Anwendung verwendet die offizielle Remember The Milk API, wurde nicht von Rembember The Milk entwickelt und zertifiziert.
-
-Anwendungsentwicklung von Matt McCormick
-
-Anwendungsgestaltung von Libby Puccinelli
 
 
 ### Update Description

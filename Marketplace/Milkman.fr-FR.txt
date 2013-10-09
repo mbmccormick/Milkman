@@ -1,4 +1,4 @@
-### Application Title
+﻿### Application Title
 
 Milkman
 
@@ -15,10 +15,6 @@ Milkman est le moyen le plus rapide et plus propre pour gérer vos tâches sur v
 Milkman s'intègre parfaitement à votre téléphone pour afficher les compteurs de tâche sur le carrelage direct de l'application, il affiche des rappels avant une tâche est due et permet même de définir des rappels basés sur la localisation à l'aide de Remember The Milk.
 
 Cette application utilise l'interface de programmation d'application Remember The Milk mais n'est pas approuvée ou certifiée par Remember The Milk.
-
-Développement d'applications par Matt McCormick
-
-Interface utilisateur de Libby Puccinelli
 
 
 ### Update Description

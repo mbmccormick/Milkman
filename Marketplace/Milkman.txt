@@ -16,10 +16,6 @@ Milkman seamlessly integrates with your phone to display task counters on the ap
 
 This application uses the Remember The Milk application programming interface but is not endorsed or certified by Remember The Milk.
 
-Application Development by Matt McCormick
-
-User Interface by Libby Puccinelli
-
 
 ### Update Description
 
