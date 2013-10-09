@@ -87,6 +87,8 @@ namespace Milkman
 
             this.BuildApplicationBar();
 
+            this.Loaded += MainPage_Loaded;
+
             _watcher = new GeoCoordinateWatcher();
             _watcher.Start();
         }
@@ -153,6 +155,11 @@ namespace Milkman
             ApplicationBar.MenuItems.Add(feedback);
             ApplicationBar.MenuItems.Add(donate);
             ApplicationBar.MenuItems.Add(signOut);
+        }
+
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.pivLayout.SelectionChanged += pivLayout_SelectionChanged;
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
@@ -608,7 +615,7 @@ namespace Milkman
             SyncData();
         }
 
-        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void pivLayout_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             while (ApplicationBar.Buttons.Count > 0)
             {
