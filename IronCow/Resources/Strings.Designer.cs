@@ -1105,11 +1105,29 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to more overdue.
+        /// </summary>
+        public static string LiveTileMoreOverdue {
+            get {
+                return ResourceManager.GetString("LiveTileMoreOverdue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nearby.
         /// </summary>
         public static string LiveTileNearby {
             get {
                 return ResourceManager.GetString("LiveTileNearby", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Overdue.
+        /// </summary>
+        public static string LiveTileOverdue {
+            get {
+                return ResourceManager.GetString("LiveTileOverdue", resourceCulture);
             }
         }
         

@@ -123,6 +123,19 @@ namespace BackgroundWorker.Common
                             data.BackTitle = Strings.LiveTileDueToday;
                         }
                     }
+                    else if (tasksOverdue.Count > 0)
+                    {
+                        data.BackContent = tasksOverdue.First().Name;
+
+                        if (tasksOverdue.Count > 1)
+                        {
+                            data.BackTitle = (tasksOverdue.Count - 1) + " " + Strings.LiveTileMoreOverdue;
+                        }
+                        else
+                        {
+                            data.BackTitle = Strings.LiveTileOverdue;
+                        }
+                    }
                     else
                     {
                         data.BackContent = "";
@@ -205,6 +218,19 @@ namespace BackgroundWorker.Common
                             data.BackTitle = Strings.LiveTileDueToday;
                         }
                     }
+                    else if (tasksOverdue.Count > 0)
+                    {
+                        data.BackContent = tasksOverdue.First().Name;
+
+                        if (tasksOverdue.Count > 1)
+                        {
+                            data.BackTitle = (tasksOverdue.Count - 1) + " " + Strings.LiveTileMoreOverdue;
+                        }
+                        else
+                        {
+                            data.BackTitle = Strings.LiveTileOverdue;
+                        }
+                    }
                     else
                     {
                         data.BackContent = "";
@@ -250,6 +276,19 @@ namespace BackgroundWorker.Common
                         else
                         {
                             data.BackTitle = Strings.LiveTileDueToday;
+                        }
+                    }
+                    else if (tasksOverdue.Count > 0)
+                    {
+                        data.BackContent = tasksOverdue.First().Name;
+
+                        if (tasksOverdue.Count > 1)
+                        {
+                            data.BackTitle = (tasksOverdue.Count - 1) + " " + Strings.LiveTileMoreOverdue;
+                        }
+                        else
+                        {
+                            data.BackTitle = Strings.LiveTileOverdue;
                         }
                     }
                     else

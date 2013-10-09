@@ -1239,7 +1239,11 @@ namespace Milkman
 
         private void CompleteTask(Task data, bool isMultiple)
         {
-            GlobalLoading.Instance.IsLoadingText(Strings.CompletingTask);
+            if (isMultiple == true)
+                GlobalLoading.Instance.IsLoadingText(Strings.CompletingTasks);
+            else
+                GlobalLoading.Instance.IsLoadingText(Strings.CompletingTask);
+
             data.Complete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -1257,7 +1261,11 @@ namespace Milkman
 
         private void PostponeTask(Task data, bool isMultiple)
         {
-            GlobalLoading.Instance.IsLoadingText(Strings.PostponingTask);
+            if (isMultiple == true)
+                GlobalLoading.Instance.IsLoadingText(Strings.PostponingTasks);
+            else
+                GlobalLoading.Instance.IsLoadingText(Strings.PostponingTask);
+
             data.Postpone(() =>
             {
                 App.RtmClient.CacheTasks(() =>
@@ -1275,7 +1283,11 @@ namespace Milkman
 
         private void DeleteTask(Task data, bool isMultiple)
         {
-            GlobalLoading.Instance.IsLoadingText(Strings.DeletingTask);
+            if (isMultiple == true)
+                GlobalLoading.Instance.IsLoadingText(Strings.DeletingTasks);
+            else
+                GlobalLoading.Instance.IsLoadingText(Strings.DeletingTask);
+
             data.Delete(() =>
             {
                 App.RtmClient.CacheTasks(() =>
