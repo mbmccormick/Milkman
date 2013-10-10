@@ -20,19 +20,47 @@ namespace Milkman.Controls
             this.Loaded += TaskItemControl_Loaded;
         }
 
+        private bool DarkThemeUsed()
+        {
+            return Visibility.Visible == (Visibility)Application.Current.Resources["PhoneDarkThemeVisibility"];
+        }
+
         private void TaskItemControl_Loaded(object sender, RoutedEventArgs e)
         {
             Task target = (Task)this.DataContext;
 
-            if (target.Notes.Count > 0)
-                this.vbxNotes.Visibility = System.Windows.Visibility.Visible;
+            if (this.DarkThemeUsed() == true)
+            {
+                this.stkDark.Visibility = System.Windows.Visibility.Visible;
+                this.stkLight.Visibility = System.Windows.Visibility.Collapsed;
+            }
             else
-                this.vbxNotes.Visibility = System.Windows.Visibility.Collapsed;
+            {
+                this.stkLight.Visibility = System.Windows.Visibility.Visible;
+                this.stkDark.Visibility = System.Windows.Visibility.Collapsed;
+            }
+
+            if (target.Notes.Count > 0)
+            {
+                this.vbxNotesLight.Visibility = System.Windows.Visibility.Visible;
+                this.vbxNotesDark.Visibility = System.Windows.Visibility.Visible;
+            }
+            else
+            {
+                this.vbxNotesLight.Visibility = System.Windows.Visibility.Collapsed;
+                this.vbxNotesDark.Visibility = System.Windows.Visibility.Collapsed;
+            }
 
             if (target.HasRecurrence == true)
-                this.vbxRecurrence.Visibility = System.Windows.Visibility.Visible;
+            {
+                this.vbxRecurrenceLight.Visibility = System.Windows.Visibility.Visible;
+                this.vbxRecurrenceDark.Visibility = System.Windows.Visibility.Visible;
+            }
             else
-                this.vbxRecurrence.Visibility = System.Windows.Visibility.Collapsed;
+            {
+                this.vbxRecurrenceLight.Visibility = System.Windows.Visibility.Collapsed;
+                this.vbxRecurrenceDark.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
     }
 }
