@@ -965,161 +965,31 @@ namespace Milkman
                 {
                     FlipTileData data = new FlipTileData();
 
-                    data.BackgroundImage = new Uri("/Assets/FlipCycleTileMedium.png", UriKind.Relative);
-                    data.SmallBackgroundImage = new Uri("/Assets/FlipCycleTileSmall.png", UriKind.Relative);
-
-                    if (this.pivLayout.SelectedIndex == 1)
-                        data.Title = MostRecentTaskListClick.Name;
-                    else if (this.pivLayout.SelectedIndex == 2)
-                        data.Title = MostRecentTaskTagClick.Name;
-                    else
-                        return;
-
                     if (this.pivLayout.SelectedIndex == 1 &&
                         MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
                     {
-                        AppSettings settings = new AppSettings();
+                        data = LiveTileManager.RenderNearbyLiveTile(_watcher.Position.Location);
 
-                        double radius;
-                        if (settings.NearbyRadius == 0)
-                            radius = 1.0;
-                        else if (settings.NearbyRadius == 1)
-                            radius = 2.0;
-                        else if (settings.NearbyRadius == 2)
-                            radius = 5.0;
-                        else if (settings.NearbyRadius == 3)
-                            radius = 10.0;
-                        else if (settings.NearbyRadius == 3)
-                            radius = 20.0;
-                        else
-                            radius = 0.0;
-
-                        List<Task> tasksNearby = new List<Task>();
-
-                        if (App.RtmClient.TaskLists != null)
-                        {
-                            tasksNearby = App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).ToList();
-                        }
-
-                        data.Title = Strings.Nearby;
-                        data.Count = tasksNearby.Count;
-
-                        if (tasksNearby.Count > 0)
-                        {
-                            data.BackContent = tasksNearby.First().Name;
-
-                            if (tasksNearby.Count > 1)
-                            {
-                                data.BackTitle = (tasksNearby.Count - 1) + " " + Strings.LiveTileMoreNearby;
-                            }
-                            else
-                            {
-                                data.BackTitle = Strings.LiveTileNearby;
-                            }
-                        }
-                        else
-                        {
-                            data.BackContent = null;
-                            data.BackTitle = null;
-                        }
+                        ShellTile.Create(new Uri("/TaskListByLocationPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data, true);
                     }
                     else
                     {
                         if (this.pivLayout.SelectedIndex == 1)
                         {
-                            List<Task> tasksOverdue = new List<Task>();
-                            List<Task> tasksDueToday = new List<Task>();
+                            data = LiveTileManager.RenderLiveTile(MostRecentTaskListClick);
 
-                            if (MostRecentTaskListClick.Tasks != null)
-                            {
-                                tasksOverdue = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                                        z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
-                                tasksDueToday = MostRecentTaskListClick.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                                    z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
-                            }
-
-                            data.Title = MostRecentTaskListClick.Name;
-                            data.Count = tasksOverdue.Count + tasksDueToday.Count;
-
-                            if (tasksDueToday.Count > 0)
-                            {
-                                data.BackContent = tasksDueToday.First().Name;
-
-                                if (tasksDueToday.Count > 1)
-                                {
-                                    data.BackTitle = (tasksDueToday.Count - 1) + " " + Strings.LiveTileMoreDueToday;
-                                }
-                                else
-                                {
-                                    data.BackTitle = Strings.LiveTileDueToday;
-                                }
-                            }
-                            else
-                            {
-                                data.BackContent = null;
-                                data.BackTitle = null;
-                            }
+                            ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data, true);
                         }
                         else if (this.pivLayout.SelectedIndex == 2)
                         {
-                            List<Task> tasksOverdue = new List<Task>();
-                            List<Task> tasksDueToday = new List<Task>();
+                            data = LiveTileManager.RenderLiveTile(MostRecentTaskTagClick.Name);
 
-                            if (App.RtmClient.TaskLists != null)
-                            {
-                                var tasks = App.RtmClient.GetTasksByTag()[MostRecentTaskTagClick.Name];
-
-                                if (tasks != null)
-                                {
-                                    tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                    z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
-                                    tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
-                                                                     z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
-                                }
-                            }
-
-                            data.Title = MostRecentTaskTagClick.Name;
-                            data.Count = tasksOverdue.Count + tasksDueToday.Count;
-
-                            if (tasksDueToday.Count > 0)
-                            {
-                                data.BackContent = tasksDueToday.First().Name;
-
-                                if (tasksDueToday.Count > 1)
-                                {
-                                    data.BackTitle = (tasksDueToday.Count - 1) + " " + Strings.LiveTileMoreDueToday;
-                                }
-                                else
-                                {
-                                    data.BackTitle = Strings.LiveTileDueToday;
-                                }
-                            }
-                            else
-                            {
-                                data.BackContent = null;
-                                data.BackTitle = null;
-                            }
+                            ShellTile.Create(new Uri("/TaskListByTagPage.xaml?id=" + MostRecentTaskTagClick.Name, UriKind.Relative), data, true);
                         }
                         else
                         {
                             return;
                         }
-                    }
-
-                    if (this.pivLayout.SelectedIndex == 1)
-                    {
-                        if (MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
-                            ShellTile.Create(new Uri("/TaskListByLocationPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data, true);
-                        else
-                            ShellTile.Create(new Uri("/TaskListPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data, true);
-                    }
-                    else if (this.pivLayout.SelectedIndex == 2)
-                    {
-                        ShellTile.Create(new Uri("/TaskListByTagPage.xaml?id=" + MostRecentTaskTagClick.Name, UriKind.Relative), data, true);
-                    }
-                    else
-                    {
-                        return;
                     }
                 }
                 else
