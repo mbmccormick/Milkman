@@ -117,6 +117,7 @@
       <DependentUpon>AddNotePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\LittleWatson.cs" />
+    <Compile Include="Common\LiveTileManager.cs" />
     <Compile Include="Common\SortableObservableCollection.cs" />
     <Compile Include="Controls\AddTaskDialog.cs" />
     <Compile Include="AddTaskPage.xaml.cs">

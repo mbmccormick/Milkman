@@ -1,14 +1,15 @@
-﻿using IronCow;
+﻿using BackgroundWorker;
+using BackgroundWorker.Common;
+using IronCow;
 using IronCow.Resources;
 using Microsoft.Phone.Shell;
-using Milkman.Common;
 using System;
 using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
 using System.Text;
 
-namespace BackgroundWorker.Common
+namespace Milkman.Common
 {
     public class LiveTileManager
     {
