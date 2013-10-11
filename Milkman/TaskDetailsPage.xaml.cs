@@ -22,8 +22,7 @@ namespace Milkman
     public partial class TaskDetailsPage : PhoneApplicationPage
     {
         public static bool sReload = false;
-
-        public System.Windows.Navigation.NavigationEventArgs navigationArgs = null;
+        public static bool sFirstLaunch = false;
 
         #region Task Property
 
@@ -50,26 +49,9 @@ namespace Milkman
         {
             InitializeComponent();
 
-            this.Loaded += TaskDetailsPage_Loaded;
-
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             this.BuildApplicationBar();
-        }
-
-        private void TaskDetailsPage_Loaded(object sender, EventArgs e)
-        {
-            LoadData(); 
-            
-            if (navigationArgs.IsNavigationInitiator == false)
-            {
-                LittleWatson.CheckForPreviousException(true);
-
-                App.RtmClient.SyncEverything(() =>
-                {
-                    LoadData();
-                });
-            }
         }
 
         private void BuildApplicationBar()
@@ -128,7 +110,16 @@ namespace Milkman
         {
             GlobalLoading.Instance.IsLoadingText(Strings.Loading);
 
-            navigationArgs = e;
+            if (e.IsNavigationInitiator == false)
+            {
+                LittleWatson.CheckForPreviousException(true);
+
+                App.PromptForMarketplaceReview();
+
+                sFirstLaunch = true;
+            }
+
+            LoadData();
 
             base.OnNavigatedTo(e);
         }
@@ -151,6 +142,8 @@ namespace Milkman
                 }
 
                 GlobalLoading.Instance.IsLoading = false;
+
+                ShowLastUpdatedStatus();
             });
         }
 
@@ -173,6 +166,36 @@ namespace Milkman
                 else
                     this.txtEmpty.Visibility = System.Windows.Visibility.Collapsed;
             });
+        }
+
+        private void ShowLastUpdatedStatus()
+        {
+            if (sFirstLaunch == true)
+            {
+                int minutes = Convert.ToInt32((DateTime.Now - App.LastUpdated).TotalMinutes);
+
+                if (minutes < 2)
+                    GlobalLoading.Instance.StatusText(Strings.UpToDate);
+                else if (minutes > 60)
+                    GlobalLoading.Instance.StatusText(Strings.LastUpdated + " " + Strings.OverAnHourAgo);
+                else
+                    GlobalLoading.Instance.StatusText(Strings.LastUpdated + " " + minutes + " " + Strings.MinutesAgo);
+
+                System.ComponentModel.BackgroundWorker b = new System.ComponentModel.BackgroundWorker();
+                b.DoWork += (s, e) =>
+                {
+                    System.Threading.Thread.Sleep(4000);
+
+                    SmartDispatcher.BeginInvoke(() =>
+                    {
+                        GlobalLoading.Instance.ClearStatusText();
+                    });
+                };
+
+                sFirstLaunch = false;
+
+                b.RunWorkerAsync();
+            }
         }
 
         #endregion
@@ -314,6 +337,59 @@ namespace Milkman
             else if (this.pivLayout.SelectedIndex == 1)
             {
                 ApplicationBar.Buttons.Add(add);
+            }
+        }
+
+        private TaskNote MostRecentTaskNoteClick
+        {
+            get;
+            set;
+        }
+
+        protected override void OnMouseLeftButtonDown(System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.OriginalSource is FrameworkElement)
+            {
+                FrameworkElement frameworkElement = (FrameworkElement)e.OriginalSource;
+                if (frameworkElement.DataContext is TaskNote)
+                {
+                    MostRecentTaskNoteClick = (TaskNote)frameworkElement.DataContext;
+                }
+            }
+
+            base.OnMouseLeftButtonDown(e);
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem target = (MenuItem)sender;
+            ContextMenu parent = (ContextMenu)target.Parent;
+
+            if (target.Header.ToString() == Strings.DeleteMenuLower)
+            {
+                CustomMessageBox messageBox = new CustomMessageBox()
+                {
+                    Caption = Strings.DeleteNoteDialogTitle,
+                    Message = Strings.DeleteNoteDialog,
+                    LeftButtonContent = Strings.YesLower,
+                    RightButtonContent = Strings.NoLower,
+                    IsFullScreen = false
+                };
+
+                messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                            DeleteNote(MostRecentTaskNoteClick);
+
+                            break;
+                        default:
+                            break;
+                    }
+                };
+
+                messageBox.Show();
             }
         }
 

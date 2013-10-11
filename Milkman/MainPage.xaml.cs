@@ -932,7 +932,7 @@ namespace Milkman
                 {
                     MostRecentTaskClick = (Task)frameworkElement.DataContext;
                 }
-                if (frameworkElement.DataContext is TaskList)
+                else if (frameworkElement.DataContext is TaskList)
                 {
                     MostRecentTaskListClick = (TaskList)frameworkElement.DataContext;
                 }
