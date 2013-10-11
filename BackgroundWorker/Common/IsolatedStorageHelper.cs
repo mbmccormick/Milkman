@@ -1,5 +1,4 @@
-﻿
-// ----------------------------------------------------------------------------------
+﻿// ----------------------------------------------------------------------------------
 // Microsoft Developer & Platform Evangelism
 // 
 // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -20,7 +19,7 @@ using System.IO.IsolatedStorage;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace BackgroundWorker.Common
+namespace Milkman.Common
 {
     public static class IsolatedStorageHelper
     {

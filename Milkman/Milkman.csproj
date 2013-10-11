@@ -116,7 +116,8 @@
     <Compile Include="AddNotePage.xaml.cs">
       <DependentUpon>AddNotePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\LiveTileManager.cs" />
+    <Compile Include="Common\LittleWatson.cs" />
+    <Compile Include="Common\SortableObservableCollection.cs" />
     <Compile Include="Controls\AddTaskDialog.cs" />
     <Compile Include="AddTaskPage.xaml.cs">
       <DependentUpon>AddTaskPage.xaml</DependentUpon>
@@ -129,12 +130,8 @@
     </Compile>
     <Compile Include="Common\AppSettings.cs" />
     <Compile Include="Common\GlobalLoading.cs" />
-    <Compile Include="Common\IsolatedStorageHelper.cs" />
-    <Compile Include="Common\LittleWatson.cs" />
     <Compile Include="Common\MetroGridHelper.cs" />
     <Compile Include="Common\NotificationsManager.cs" />
-    <Compile Include="Common\SmartDispatcher.cs" />
-    <Compile Include="Common\SortableObservableCollection.cs" />
     <Compile Include="Controls\FlipTileTemplateWide.xaml.cs">
       <DependentUpon>FlipTileTemplateWide.xaml</DependentUpon>
     </Compile>

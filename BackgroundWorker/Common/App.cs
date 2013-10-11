@@ -16,6 +16,7 @@ using BackgroundWorker.Common;
 using IronCow;
 using IronCow.Rest;
 using System.IO.IsolatedStorage;
+using Milkman.Common;
 
 namespace BackgroundWorker
 {

@@ -17,6 +17,7 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Scheduler;
 using System.Device.Location;
 using IronCow.Resources;
+using Milkman.Common;
 
 namespace BackgroundWorker.Common
 {

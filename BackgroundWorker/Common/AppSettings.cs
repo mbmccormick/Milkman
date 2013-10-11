@@ -12,7 +12,7 @@ using System.IO.IsolatedStorage;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace BackgroundWorker.Common
+namespace Milkman.Common
 {
     public class AppSettings
     {
