@@ -1,23 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using Microsoft.Phone.Controls;
-using System.Collections.ObjectModel;
-using IronCow;
-using System.ComponentModel;
+﻿using IronCow;
 using Microsoft.Phone.Shell;
-using Microsoft.Phone.Scheduler;
-using System.Device.Location;
-using IronCow.Resources;
 using Milkman.Common;
+using System;
+using System.Device.Location;
+using System.Linq;
 
 namespace BackgroundWorker.Common
 {

@@ -1,13 +1,10 @@
-﻿using BackgroundWorker;
-using BackgroundWorker.Common;
-using IronCow;
+﻿using IronCow;
 using IronCow.Resources;
 using Microsoft.Phone.Shell;
 using System;
 using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
-using System.Text;
 
 namespace Milkman.Common
 {

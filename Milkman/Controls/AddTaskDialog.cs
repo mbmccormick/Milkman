@@ -1,13 +1,8 @@
-﻿using Microsoft.Phone.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using IronCow.Resources;
+using Microsoft.Phone.Controls;
 using System.Windows;
-using IronCow.Resources;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace Milkman.Controls
 {
