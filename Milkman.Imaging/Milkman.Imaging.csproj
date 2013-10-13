@@ -86,12 +86,19 @@
     <Compile Include="Common\EditableImage.cs" />
     <Compile Include="Common\PngEncoder.cs" />
     <Compile Include="Common\PngHelper.cs" />
+    <Compile Include="FlipTileTemplate.xaml.cs">
+      <DependentUpon>FlipTileTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FlipTileTemplateWide.xaml.cs">
       <DependentUpon>FlipTileTemplateWide.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="FlipTileTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FlipTileTemplateWide.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
