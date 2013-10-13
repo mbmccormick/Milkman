@@ -26,7 +26,7 @@
 
         <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}">
             <controls:PivotItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
-                <Grid Margin="0,0,0,0">
+                <Grid Margin="0,5,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" LayoutMode="List" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged">
                         <toolkit:LongListMultiSelector.ItemTemplate>
                             <DataTemplate>

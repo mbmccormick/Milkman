@@ -37,7 +37,7 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.NearbyUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}">
             <controls:PivotItem Header="{Binding Resources.AllLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
-                <Grid Margin="0,0,0,0">
+                <Grid Margin="0,5,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstAll" ItemsSource="{Binding AllTasks}" LayoutMode="List" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
                                                    ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
@@ -48,7 +48,7 @@
             </controls:PivotItem>
 
             <controls:PivotItem Header="{Binding Resources.TodayLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
-                <Grid Margin="0,0,0,0">
+                <Grid Margin="0,5,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstToday" ItemsSource="{Binding TodayTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
                                                    ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
@@ -59,7 +59,7 @@
             </controls:PivotItem>
 
             <controls:PivotItem Header="{Binding Resources.TomorrowLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
-                <Grid Margin="0,0,0,0">
+                <Grid Margin="0,5,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstTomorrow" ItemsSource="{Binding TomorrowTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
                                                    ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
@@ -70,7 +70,7 @@
             </controls:PivotItem>
 
             <controls:PivotItem Header="{Binding Resources.OverdueLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
-                <Grid Margin="0,0,0,0">
+                <Grid Margin="0,5,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstOverdue" ItemsSource="{Binding OverdueTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
                                                    ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
@@ -81,7 +81,7 @@
             </controls:PivotItem>
 
             <controls:PivotItem Header="{Binding Resources.WeekLower, Source={StaticResource Strings}}" Margin="12,24,0,0">
-                <Grid Margin="0,0,0,0">
+                <Grid Margin="0,5,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstWeek" ItemsSource="{Binding WeekTasks}" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged"
                                                    ItemTemplate="{StaticResource dttItemTemplate}">
                     </toolkit:LongListMultiSelector>
