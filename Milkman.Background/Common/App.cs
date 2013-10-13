@@ -4,7 +4,7 @@ using Milkman.Common;
 using System;
 using System.IO.IsolatedStorage;
 
-namespace BackgroundWorker
+namespace Milkman.Background
 {
     public partial class App
     {

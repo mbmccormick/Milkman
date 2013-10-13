@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace BackgroundWorker.Common
+namespace Milkman.Background.Common
 {
     public class SortableObservableCollection<T> : ObservableCollection<T>
     {

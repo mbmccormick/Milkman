@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BackgroundWorker.Common
+namespace Milkman.Background.Common
 {
     public static class LocationHelper
     {

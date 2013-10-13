@@ -1,4 +1,4 @@
-﻿using BackgroundWorker.Common;
+﻿using Milkman.Background.Common;
 using Microsoft.Phone.Scheduler;
 using Milkman.Common;
 using System;
@@ -6,7 +6,7 @@ using System.Device.Location;
 using System.Net;
 using System.Windows;
 
-namespace BackgroundWorker
+namespace Milkman.Background
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {
@@ -69,7 +69,7 @@ namespace BackgroundWorker
                     LoadData();
 
                     if (System.Diagnostics.Debugger.IsAttached)
-                        ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+                        ScheduledActionService.LaunchForTest("Milkman.Background", new TimeSpan(0, 0, 1, 0)); // every minute
 
                     App.SaveData();
 
@@ -81,7 +81,7 @@ namespace BackgroundWorker
                 NotificationsManager.ClearNotifications();
                 
                 if (System.Diagnostics.Debugger.IsAttached)
-                    ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+                    ScheduledActionService.LaunchForTest("Milkman.Background", new TimeSpan(0, 0, 1, 0)); // every minute
 
                 NotifyComplete();
             }

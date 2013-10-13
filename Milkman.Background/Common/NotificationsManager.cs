@@ -5,7 +5,7 @@ using System;
 using System.Device.Location;
 using System.Linq;
 
-namespace BackgroundWorker.Common
+namespace Milkman.Background.Common
 {
     public class NotificationsManager
     {

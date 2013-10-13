@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
 
-namespace BackgroundWorker.Common
+namespace Milkman.Background.Common
 {
     public class LiveTileManager
     {

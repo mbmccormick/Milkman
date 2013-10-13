@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using Milkman.Imaging.Common;
+using System.IO.IsolatedStorage;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using System.Windows.Media.Imaging;
-using System.IO.IsolatedStorage;
-using System.Windows.Media;
 
-namespace Milkman.Controls
+namespace Milkman.Imaging
 {
     public partial class FlipTileTemplateWide : UserControl
     {
@@ -20,9 +13,10 @@ namespace Milkman.Controls
             InitializeComponent();
         }
 
-        public void RenderLiveTileImage(string filename)
+        public void RenderLiveTileImage(string filename, string title, string content)
         {
-            this.LayoutRoot.Background = (App.Current.Resources["PhoneAccentBrush"] as SolidColorBrush);
+            this.txtTitle.Text = title;
+            this.txtContent.Text = content;
 
             this.Measure(new Size(691, 336));
             this.Arrange(new Rect(0, 0, 691, 336));
@@ -35,7 +29,7 @@ namespace Milkman.Controls
             {
                 using (var stream = output.OpenFile(filename, System.IO.FileMode.OpenOrCreate))
                 {
-                    image.SaveJpeg(stream, 691, 336, 0, 100);
+                    image.SavePng(stream);
                 }
             }
         }

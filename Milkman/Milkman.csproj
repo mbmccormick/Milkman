@@ -133,9 +133,6 @@
     <Compile Include="Common\GlobalLoading.cs" />
     <Compile Include="Common\MetroGridHelper.cs" />
     <Compile Include="Common\NotificationsManager.cs" />
-    <Compile Include="Controls\FlipTileTemplateWide.xaml.cs">
-      <DependentUpon>FlipTileTemplateWide.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EditNotePage.xaml.cs">
       <DependentUpon>EditNotePage.xaml</DependentUpon>
     </Compile>
@@ -209,10 +206,6 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Page Include="Controls\FlipTileTemplateWide.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="EditNotePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -320,13 +313,17 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BackgroundWorker\BackgroundWorker.csproj">
+    <ProjectReference Include="..\BackgroundWorker\Milkman.Background.csproj">
       <Project>{34058D55-C5C1-4381-936C-A183F2E72601}</Project>
-      <Name>BackgroundWorker</Name>
+      <Name>Milkman.Background</Name>
     </ProjectReference>
     <ProjectReference Include="..\IronCow\IronCow.csproj">
       <Project>{22D8C142-6D0F-4D5E-8B46-9FCA34CE3A8E}</Project>
       <Name>IronCow</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Milkman.Imaging\Milkman.Imaging.csproj">
+      <Project>{657A482D-F912-4333-9FE8-DEFE1142E05C}</Project>
+      <Name>Milkman.Imaging</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -363,7 +360,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
+      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

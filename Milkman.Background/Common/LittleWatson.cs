@@ -2,7 +2,7 @@
 using System.IO;
 using System.IO.IsolatedStorage;
 
-namespace BackgroundWorker.Common
+namespace Milkman.Background.Common
 {
     public class LittleWatson
     {

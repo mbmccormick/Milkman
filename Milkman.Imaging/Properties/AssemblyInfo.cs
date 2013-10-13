@@ -6,12 +6,12 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BackgroundWorker")]
+[assembly: AssemblyTitle("Milkman.Imaging")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("BackgroundWorker")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Milkman.Imaging")]
+[assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -21,7 +21,7 @@ using System.Resources;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("042bf17d-ea54-4303-ad04-9c65e5604d8a")]
+[assembly: Guid("657a482d-f912-4333-9fe8-defe1142e05c")]
 
 // Version information for an assembly consists of the following four values:
 //
