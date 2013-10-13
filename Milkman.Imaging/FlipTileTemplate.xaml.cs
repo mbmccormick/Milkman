@@ -2,6 +2,7 @@
 using System.IO.IsolatedStorage;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Milkman.Imaging
@@ -15,6 +16,8 @@ namespace Milkman.Imaging
 
         public void RenderLiveTileImage(string filename, string title, string content)
         {
+            this.LayoutRoot.Background = new SolidColorBrush(IsolatedStorageHelper.GetObject<Color>("AccentColor"));
+
             this.txtTitle.Text = title;
             this.txtContent.Text = content;
 
@@ -29,7 +32,7 @@ namespace Milkman.Imaging
             {
                 using (var stream = output.OpenFile(filename, System.IO.FileMode.OpenOrCreate))
                 {
-                    image.SavePng(stream);
+                    image.SaveJpeg(stream, 336, 336, 0, 100);
                 }
             }
         }
