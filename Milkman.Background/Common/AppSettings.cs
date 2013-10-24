@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO.IsolatedStorage;
 
-namespace Milkman.Common
+namespace Milkman.Background.Common
 {
     public class AppSettings
     {

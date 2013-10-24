@@ -1,7 +1,6 @@
 ﻿using IronCow;
 using IronCow.Resources;
 using Microsoft.Phone.Shell;
-using Milkman.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Device.Location;
@@ -84,12 +83,6 @@ namespace Milkman.Common
 
             tile.BackgroundImage = new Uri("/Assets/FlipCycleTileMedium.png", UriKind.Relative);
             tile.SmallBackgroundImage = new Uri("/Assets/FlipCycleTileSmall.png", UriKind.Relative);
-
-            //FlipTileTemplateWide image = new FlipTileTemplateWide();
-            //image.RenderLiveTileImage("/Shared/ShellContent/background.png");
-
-            //tile.WideBackContent = "";
-            //tile.WideBackgroundImage = new Uri("isostore:/Shared/ShellContent/background.png", UriKind.Absolute);
 
             List<Task> tasksOverdue = new List<Task>();
             List<Task> tasksDueToday = new List<Task>();
