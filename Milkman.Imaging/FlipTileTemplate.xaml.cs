@@ -23,6 +23,7 @@ namespace Milkman.Imaging
 
             this.Measure(new Size(336, 336));
             this.Arrange(new Rect(0, 0, 336, 336));
+            this.UpdateLayout();
             
             WriteableBitmap image = new WriteableBitmap(336, 336);
             image.Render(this, null);
