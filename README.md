@@ -6,7 +6,3 @@ Milkman is the fastest and cleanest way to manage your tasks on your Windows Pho
 Milkman seamlessly integrates with your phone to display task counters on the application's live tile, it shows reminders before a task is due, and even allows you to set location-based reminders using Remember The Milk.
 
 This application uses the Remember The Milk application programming interface but is not endorsed or certified by Remember The Milk.
-
-Application Development by Matt McCormick
-
-User Interface by Libby Puccinelli
