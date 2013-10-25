@@ -22,9 +22,6 @@
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
-      <ExtendedTask Name="BackgroundTask">
-        <BackgroundServiceAgent Specifier="ScheduledTaskAgent" Name="BackgroundWorker" Source="BackgroundWorker" Type="Milkman.Background" />
-      </ExtendedTask>
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="MilkmanToken" TaskName="_default">
