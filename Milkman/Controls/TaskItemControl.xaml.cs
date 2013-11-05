@@ -32,28 +32,6 @@ namespace Milkman.Controls
                 this.stkLight.Visibility = System.Windows.Visibility.Visible;
                 this.stkDark.Visibility = System.Windows.Visibility.Collapsed;
             }
-
-            if (target.Notes.Count > 0)
-            {
-                this.vbxNotesLight.Visibility = System.Windows.Visibility.Visible;
-                this.vbxNotesDark.Visibility = System.Windows.Visibility.Visible;
-            }
-            else
-            {
-                this.vbxNotesLight.Visibility = System.Windows.Visibility.Collapsed;
-                this.vbxNotesDark.Visibility = System.Windows.Visibility.Collapsed;
-            }
-
-            if (target.HasRecurrence == true)
-            {
-                this.vbxRecurrenceLight.Visibility = System.Windows.Visibility.Visible;
-                this.vbxRecurrenceDark.Visibility = System.Windows.Visibility.Visible;
-            }
-            else
-            {
-                this.vbxRecurrenceLight.Visibility = System.Windows.Visibility.Collapsed;
-                this.vbxRecurrenceDark.Visibility = System.Windows.Visibility.Collapsed;
-            }
         }
     }
 }
