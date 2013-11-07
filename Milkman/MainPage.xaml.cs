@@ -75,11 +75,10 @@ namespace Milkman
         {
             InitializeComponent();
 
+            this.Loaded += new RoutedEventHandler(MainPage_Loaded);
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             this.BuildApplicationBar();
-
-            this.Loaded += MainPage_Loaded;
 
             _watcher = new GeoCoordinateWatcher();
             _watcher.Start();
