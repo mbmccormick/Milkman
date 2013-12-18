@@ -16,8 +16,6 @@ namespace Milkman.Imaging
 
         public void RenderLiveTileImage(string filename, string title, string content)
         {
-            this.LayoutRoot.Background = new SolidColorBrush(IsolatedStorageHelper.GetObject<Color>("AccentColor"));
-
             this.txtTitle.Text = title;
             this.txtContent.Text = content;
 
@@ -33,7 +31,7 @@ namespace Milkman.Imaging
             {
                 using (var stream = output.OpenFile(filename, System.IO.FileMode.OpenOrCreate))
                 {
-                    image.SaveJpeg(stream, 691, 336, 0, 100);
+                    image.SavePng(stream);
                 }
             }
         }

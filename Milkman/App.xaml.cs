@@ -77,9 +77,6 @@ namespace Milkman
 
         public static async void LoadData()
         {
-            Color accentColor = (Color)Application.Current.Resources["PhoneAccentColor"];
-            IsolatedStorageHelper.SaveObject<Color>("AccentColor", accentColor);
-
             string RtmAuthToken = IsolatedStorageHelper.GetObject<string>("RtmAuthToken");
             int? Timeline = IsolatedStorageHelper.GetObject<int?>("RtmTimeline");
             TasksResponse = IsolatedStorageHelper.GetObject<Response>("TasksResponse");
