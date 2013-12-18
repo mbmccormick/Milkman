@@ -138,6 +138,10 @@
       <Project>{22D8C142-6D0F-4D5E-8B46-9FCA34CE3A8E}</Project>
       <Name>IronCow</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Milkman.Imaging\Milkman.Imaging.csproj">
+      <Project>{657A482D-F912-4333-9FE8-DEFE1142E05C}</Project>
+      <Name>Milkman.Imaging</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
