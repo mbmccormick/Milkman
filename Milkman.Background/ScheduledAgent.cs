@@ -36,7 +36,7 @@ namespace Milkman.Background
             }
 
             e.Handled = true;
-            
+
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 System.Diagnostics.Debugger.Break();
@@ -79,7 +79,7 @@ namespace Milkman.Background
             else
             {
                 NotificationsManager.ClearNotifications();
-                
+
                 if (System.Diagnostics.Debugger.IsAttached)
                     ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
@@ -89,10 +89,13 @@ namespace Milkman.Background
 
         private void LoadData()
         {
-            if (_watcher != null)
-                NotificationsManager.SetupNotifications(_watcher.Position.Location);
-            else
-                NotificationsManager.SetupNotifications(null);
+            Deployment.Current.Dispatcher.BeginInvoke(delegate
+            {
+                if (_watcher != null)
+                    NotificationsManager.SetupNotifications(_watcher.Position.Location);
+                else
+                    NotificationsManager.SetupNotifications(null);
+            });
         }
     }
 }

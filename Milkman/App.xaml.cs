@@ -10,6 +10,7 @@ using System;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Navigation;
 using Windows.Phone.Speech.VoiceCommands;
 

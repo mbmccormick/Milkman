@@ -1,6 +1,7 @@
 ﻿using IronCow;
 using IronCow.Resources;
 using Microsoft.Phone.Shell;
+using Milkman.Imaging;
 using System;
 using System.Collections.Generic;
 using System.Device.Location;
@@ -84,50 +85,49 @@ namespace Milkman.Common
             tile.BackgroundImage = new Uri("/Assets/FlipCycleTileMedium.png", UriKind.Relative);
             tile.SmallBackgroundImage = new Uri("/Assets/FlipCycleTileSmall.png", UriKind.Relative);
 
-            List<Task> tasksOverdue = new List<Task>();
             List<Task> tasksDueToday = new List<Task>();
-
+            List<Task> tasksOverdue = new List<Task>();
+            
             if (data.Tasks != null)
             {
-                tasksOverdue = data.Tasks.Where(z => z.DueDateTime.HasValue &&
-                                                     z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
                 tasksDueToday = data.Tasks.Where(z => z.DueDateTime.HasValue &&
                                                       z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
+                tasksOverdue = data.Tasks.Where(z => z.DueDateTime.HasValue &&
+                                                     z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
             }
 
             tile.Title = data.Name;
             tile.Count = tasksOverdue.Count + tasksDueToday.Count;
 
+            FlipTileTemplate image = new FlipTileTemplate();
+            string imagePath = "/Shared/ShellContent/" + data.Id + ".png";
+            
+            FlipTileTemplateWide imageWide = new FlipTileTemplateWide();
+            string imageWidePath = "/Shared/ShellContent/" + data.Id + "wide.png";
+
             if (tasksDueToday.Count > 0)
             {
-                tile.BackContent = tasksDueToday.First().Name;
+                image.RenderLiveTileImage(imagePath, Strings.LiveTileDueToday + ":", FormatFlipTileTemplateContent(tasksDueToday));
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                if (tasksDueToday.Count > 1)
-                {
-                    tile.BackTitle = (tasksDueToday.Count - 1) + " " + Strings.LiveTileMoreDueToday;
-                }
-                else
-                {
-                    tile.BackTitle = Strings.LiveTileDueToday;
-                }
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.LiveTileDueToday + ":", FormatFlipTileTemplateWideContent(tasksDueToday));
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
             else if (tasksOverdue.Count > 0)
             {
-                tile.BackContent = tasksOverdue.First().Name;
+                image.RenderLiveTileImage(imagePath, Strings.LiveTileOverdue + ":", FormatFlipTileTemplateContent(tasksOverdue));
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                if (tasksOverdue.Count > 1)
-                {
-                    tile.BackTitle = (tasksOverdue.Count - 1) + " " + Strings.LiveTileMoreOverdue;
-                }
-                else
-                {
-                    tile.BackTitle = Strings.LiveTileOverdue;
-                }
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.LiveTileOverdue + ":", FormatFlipTileTemplateWideContent(tasksOverdue));
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
             else
             {
-                tile.BackContent = "";
-                tile.BackTitle = "";
+                image.RenderLiveTileImage(imagePath, Strings.EmptyTaskList, "");
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
+
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.EmptyTaskList, "");
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
 
             return tile;
@@ -140,55 +140,54 @@ namespace Milkman.Common
             tile.BackgroundImage = new Uri("/Assets/FlipCycleTileMedium.png", UriKind.Relative);
             tile.SmallBackgroundImage = new Uri("/Assets/FlipCycleTileSmall.png", UriKind.Relative);
 
-            List<Task> tasksOverdue = new List<Task>();
             List<Task> tasksDueToday = new List<Task>();
-
+            List<Task> tasksOverdue = new List<Task>();
+            
             if (App.RtmClient.TaskLists != null)
             {
                 var tasks = App.RtmClient.GetTasksByTag()[tagName];
 
                 if (tasks != null)
                 {
-                    tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
-                                                    z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
                     tasksDueToday = tasks.Where(z => z.DueDateTime.HasValue &&
                                                      z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
+                    tasksOverdue = tasks.Where(z => z.DueDateTime.HasValue &&
+                                                    z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
                 }
             }
 
             tile.Title = tagName;
             tile.Count = tasksOverdue.Count + tasksDueToday.Count;
 
+            FlipTileTemplate image = new FlipTileTemplate();
+            string imagePath = "/Shared/ShellContent/" + tagName + ".png";
+
+            FlipTileTemplateWide imageWide = new FlipTileTemplateWide();
+            string imageWidePath = "/Shared/ShellContent/" + tagName + "wide.png";
+
             if (tasksDueToday.Count > 0)
             {
-                tile.BackContent = tasksDueToday.First().Name;
+                image.RenderLiveTileImage(imagePath, Strings.LiveTileDueToday + ":", FormatFlipTileTemplateContent(tasksDueToday));
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                if (tasksDueToday.Count > 1)
-                {
-                    tile.BackTitle = (tasksDueToday.Count - 1) + " " + Strings.LiveTileMoreDueToday;
-                }
-                else
-                {
-                    tile.BackTitle = Strings.LiveTileDueToday;
-                }
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.LiveTileDueToday + ":", FormatFlipTileTemplateWideContent(tasksDueToday));
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
             else if (tasksOverdue.Count > 0)
             {
-                tile.BackContent = tasksOverdue.First().Name;
+                image.RenderLiveTileImage(imagePath, Strings.LiveTileOverdue + ":", FormatFlipTileTemplateContent(tasksOverdue));
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                if (tasksOverdue.Count > 1)
-                {
-                    tile.BackTitle = (tasksOverdue.Count - 1) + " " + Strings.LiveTileMoreOverdue;
-                }
-                else
-                {
-                    tile.BackTitle = Strings.LiveTileOverdue;
-                }
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.LiveTileOverdue + ":", FormatFlipTileTemplateWideContent(tasksOverdue));
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
             else
             {
-                tile.BackContent = "";
-                tile.BackTitle = "";
+                image.RenderLiveTileImage(imagePath, Strings.EmptyTaskList, "");
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
+
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.EmptyTaskList, "");
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
 
             return tile;
@@ -227,26 +226,46 @@ namespace Milkman.Common
             tile.Title = Strings.Nearby;
             tile.Count = tasksNearby.Count;
 
+            FlipTileTemplate image = new FlipTileTemplate();
+            string imagePath = "/Shared/ShellContent/nearby.png";
+
+            FlipTileTemplateWide imageWide = new FlipTileTemplateWide();
+            string imageWidePath = "/Shared/ShellContent/nearbywide.png";
+
             if (tasksNearby.Count > 0)
             {
-                tile.BackContent = tasksNearby.First().Name;
+                image.RenderLiveTileImage(imagePath, Strings.LiveTileNearby + ":", FormatFlipTileTemplateContent(tasksNearby));
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                if (tasksNearby.Count > 1)
-                {
-                    tile.BackTitle = (tasksNearby.Count - 1) + " " + Strings.LiveTileMoreNearby;
-                }
-                else
-                {
-                    tile.BackTitle = Strings.LiveTileNearby;
-                }
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.LiveTileNearby + ":", FormatFlipTileTemplateWideContent(tasksNearby));
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
             else
             {
-                tile.BackContent = "";
-                tile.BackTitle = "";
+                image.RenderLiveTileImage(imagePath, Strings.EmptyNearbyTaskList, "");
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
+
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.EmptyNearbyTaskList, "");
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
 
             return tile;
+        }
+
+        private static string FormatFlipTileTemplateContent(List<Task> data)
+        {
+            return data.First().Name;
+        }
+
+        private static string FormatFlipTileTemplateWideContent(List<Task> data)
+        {
+            string content = "";
+            foreach (Task item in data.Take(3))
+            {
+                content += item.Name + "\n";
+            }
+
+            return content;
         }
     }
 }
