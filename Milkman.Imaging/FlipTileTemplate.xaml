@@ -20,7 +20,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="19,13,19,0">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="19,13,19,-19">
             <TextBlock x:Name="txtTitle" Style="{StaticResource PhoneTextTitle2Style}" FontSize="{StaticResource PhoneFontSizeExtraLarge}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Margin="0,0,0,6" TextWrapping="Wrap" />
             <TextBlock x:Name="txtContent" Style="{StaticResource PhoneTextLargeStyle}" Margin="0,0,0,0" TextWrapping="Wrap" />
         </StackPanel>
