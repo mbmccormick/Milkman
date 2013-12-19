@@ -29,12 +29,13 @@ namespace Milkman.Imaging
 
             using (IsolatedStorageFile output = IsolatedStorageFile.GetUserStoreForApplication())
             {
+                if (output.FileExists(filename))
+                    output.DeleteFile(filename);
+
                 using (var stream = output.OpenFile(filename, System.IO.FileMode.OpenOrCreate))
                 {
                     image.WritePNG(stream);
                 }
-
-                output.Dispose();
             }
         }
     }
