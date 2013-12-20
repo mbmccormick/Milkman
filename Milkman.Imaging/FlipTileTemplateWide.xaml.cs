@@ -19,6 +19,9 @@ namespace Milkman.Imaging
             this.txtTitle.Text = title;
             this.txtContent.Text = content;
 
+            if (String.IsNullOrEmpty(this.txtTitle.Text) == true)
+                this.txtTitle.Visibility = Visibility.Collapsed;
+
             this.Measure(new Size(691, 336));
             this.Arrange(new Rect(0, 0, 691, 336));
             this.UpdateLayout();
