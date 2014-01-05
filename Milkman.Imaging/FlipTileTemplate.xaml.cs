@@ -22,10 +22,11 @@ namespace Milkman.Imaging
             if (String.IsNullOrEmpty(this.txtTitle.Text) == true)
                 this.txtTitle.Visibility = Visibility.Collapsed;
 
-            this.Measure(new Size(336, 336));
-            this.Arrange(new Rect(0, 0, 336, 336));
             this.UpdateLayout();
-
+            this.Measure(new Size(336, 336));
+            this.UpdateLayout();
+            this.Arrange(new Rect(0, 0, 336, 336));
+            
             WriteableBitmap image = new WriteableBitmap(336, 336);
             image.Render(this, null);
             image.Invalidate();
