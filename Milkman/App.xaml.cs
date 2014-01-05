@@ -2,10 +2,13 @@
 using IronCow.Resources;
 using IronCow.Rest;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Notification;
 using Microsoft.Phone.Scheduler;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
+using Microsoft.WindowsAzure.MobileServices;
 using Milkman.Common;
+using Milkman.Common.Models;
 using System;
 using System.IO.IsolatedStorage;
 using System.Linq;
@@ -28,6 +31,11 @@ namespace Milkman
         public static DateTime LastUpdated;
 
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
+
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+            "https://milkman.azure-mobile.net/",
+            "dSiXpghIVfinlEYGqpGROOvclqFWnl56"
+        );
 
         public static string VersionNumber
         {
@@ -150,7 +158,7 @@ namespace Milkman
 
             RtmClient.Resources = App.Current.Resources;
 
-            NotificationsManager.ClearNotifications();
+            NotificationsManager.ResetLiveTiles();
 
             if (ScheduledActionService.Find("BackgroundWorker") != null)
                 ScheduledActionService.Remove("BackgroundWorker");
@@ -189,6 +197,11 @@ namespace Milkman
             SmartDispatcher.Initialize(RootFrame.Dispatcher);
 
             LoadData();
+
+            if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
+            {
+                AcquirePushChannel(0.0, 0.0);
+            }
         }
 
         public static void PromptForMarketplaceReview()
@@ -322,6 +335,52 @@ namespace Milkman
                 System.Diagnostics.Debugger.Break();
             }
         }
+
+        #region Push Notifications
+
+        public static HttpNotificationChannel CurrentChannel { get; private set; }
+        
+        public static async void AcquirePushChannel(double latitude, double longitude)
+        {
+            CurrentChannel = HttpNotificationChannel.Find("MyPushChannel");
+            
+            if (CurrentChannel == null)
+            {
+                CurrentChannel = new HttpNotificationChannel("MyPushChannel");
+                CurrentChannel.Open();
+                CurrentChannel.BindToShellToast();
+            }
+
+            IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
+
+            var existingRegistrations = await registrationsTable.Where(z => z.AuthenticationToken == App.RtmClient.AuthToken).ToCollectionAsync();
+
+            if (existingRegistrations.Count > 0)
+            {
+                var registration = existingRegistrations.First();
+                registration.Handle = CurrentChannel.ChannelUri.AbsoluteUri;
+                registration.Latitude = latitude;
+                registration.Longitude = longitude;
+                registration.ReminderInterval = new AppSettings().TaskRemindersEnabled;
+                                
+                await registrationsTable.UpdateAsync(registration);
+            }
+            else
+            {
+                var registration = new Registrations
+                {
+                    AuthenticationToken = App.RtmClient.AuthToken,
+                    Handle = CurrentChannel.ChannelUri.AbsoluteUri,
+                    Latitude = latitude,
+                    Longitude = longitude,
+                    ReminderInterval = new AppSettings().TaskRemindersEnabled
+                };
+
+                await registrationsTable.InsertAsync(registration);
+            }
+        }
+
+        #endregion
 
         #region Phone application initialization
 
