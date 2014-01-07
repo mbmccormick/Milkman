@@ -260,7 +260,10 @@ namespace Milkman
         {
             LoadDataInBackground();
 
-            NotificationsManager.SetupNotifications(_watcher.Position.Location);
+            Deployment.Current.Dispatcher.BeginInvoke(delegate
+            {
+                NotificationsManager.SetupNotifications(_watcher.Position.Location);
+            });
         }
 
         private void LoadDataInBackground()

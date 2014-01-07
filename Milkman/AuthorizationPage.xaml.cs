@@ -144,6 +144,11 @@ namespace Milkman
             StartAuth();
         }
 
+        private void webAuthorization_Navigating(object sender, NavigatingEventArgs e)
+        {
+            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
+        }
+
         private void webAuthorization_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
         {
             GlobalLoading.Instance.IsLoading = false;
@@ -152,11 +157,6 @@ namespace Milkman
             {
                 complete.IsEnabled = true;
             }
-        }
-
-        private void webAuthorization_Navigating(object sender, NavigatingEventArgs e)
-        {
-            GlobalLoading.Instance.IsLoadingText(Strings.Loading);
         }
 
         private void mnuAbout_Click(object sender, EventArgs e)

@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Media;
 using IronCow.Rest;
 using IronCow.Resources;
+using System.Windows;
 
 namespace IronCow
 {
@@ -1543,6 +1544,28 @@ namespace IronCow
                         return null;
                     else
                         return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
+            }
+        }
+
+        public Visibility HasNotesVisibility
+        {
+            get
+            {
+                if (this.Notes.Count > 0)
+                    return System.Windows.Visibility.Visible;
+                else
+                    return System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        public Visibility HasRecurrenceVisibility
+        {
+            get
+            {
+                if (this.HasRecurrence == true)
+                    return System.Windows.Visibility.Visible;
+                else
+                    return System.Windows.Visibility.Collapsed;
             }
         }
     }

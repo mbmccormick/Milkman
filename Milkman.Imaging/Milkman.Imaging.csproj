@@ -83,9 +83,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Common\EditableImage.cs" />
-    <Compile Include="Common\PngEncoder.cs" />
-    <Compile Include="Common\PngHelper.cs" />
+    <Compile Include="Common\ToolStackCRCLib.cs" />
+    <Compile Include="Common\ToolStackPNGWriterLib.cs" />
+    <Compile Include="Common\ToolStackPNGWriterWBext.cs" />
     <Compile Include="FlipTileTemplate.xaml.cs">
       <DependentUpon>FlipTileTemplate.xaml</DependentUpon>
     </Compile>

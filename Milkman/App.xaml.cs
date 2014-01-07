@@ -206,15 +206,8 @@ namespace Milkman
 
         public static void PromptForMarketplaceReview()
         {
-            string currentVersion = App.VersionNumber;
-            if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<string>("CurrentVersion", out currentVersion) == false)
-                currentVersion = App.VersionNumber;
-
             DateTime installDate = DateTime.UtcNow;
             if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<DateTime>("InstallDate", out installDate) == false)
-                installDate = DateTime.UtcNow;
-
-            if (currentVersion != App.VersionNumber) // override if this is a new version
                 installDate = DateTime.UtcNow;
 
             if (DateTime.UtcNow.AddDays(-3) >= installDate) // prompt after 3 days
@@ -234,8 +227,6 @@ namespace Milkman
                     {
                         case CustomMessageBoxResult.LeftButton:
                             installDate = DateTime.MaxValue; // they have rated, don't prompt again
-
-                            IsolatedStorageSettings.ApplicationSettings["CurrentVersion"] = currentVersion; // save current version of application
                             IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
 
                             MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
@@ -244,8 +235,6 @@ namespace Milkman
                             break;
                         default:
                             installDate = DateTime.UtcNow; // they did not rate, prompt again in 2 days
-
-                            IsolatedStorageSettings.ApplicationSettings["CurrentVersion"] = currentVersion; // save current version of application
                             IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
 
                             break;
@@ -255,7 +244,6 @@ namespace Milkman
                 messageBox.Show();
             }
 
-            IsolatedStorageSettings.ApplicationSettings["CurrentVersion"] = currentVersion; // save current version of application
             IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
         }
 

@@ -28,7 +28,11 @@ namespace Milkman.Background
         {
             if (e.ExceptionObject is WebException)
             {
-
+                // ignore these exceptions
+            }
+            else if (e.ExceptionObject is OutOfMemoryException)
+            {
+                // ignore these exceptions
             }
             else
             {

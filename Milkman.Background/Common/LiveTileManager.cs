@@ -124,10 +124,10 @@ namespace Milkman.Background.Common
             }
             else
             {
-                image.RenderLiveTileImage(imagePath, Strings.EmptyTaskList, "");
+                image.RenderLiveTileImage(imagePath, "", Strings.EmptyTaskList);
                 tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                imageWide.RenderLiveTileImage(imageWidePath, Strings.EmptyTaskList, "");
+                imageWide.RenderLiveTileImage(imageWidePath, "", Strings.EmptyTaskList);
                 tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
 
@@ -184,10 +184,10 @@ namespace Milkman.Background.Common
             }
             else
             {
-                image.RenderLiveTileImage(imagePath, Strings.EmptyTaskList, "");
+                image.RenderLiveTileImage(imagePath, "", Strings.EmptyTaskList);
                 tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                imageWide.RenderLiveTileImage(imageWidePath, Strings.EmptyTaskList, "");
+                imageWide.RenderLiveTileImage(imageWidePath, "", Strings.EmptyTaskList);
                 tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
 
@@ -243,10 +243,10 @@ namespace Milkman.Background.Common
             }
             else
             {
-                image.RenderLiveTileImage(imagePath, Strings.EmptyNearbyTaskList, "");
+                image.RenderLiveTileImage(imagePath, "", Strings.EmptyNearbyTaskList);
                 tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                imageWide.RenderLiveTileImage(imageWidePath, Strings.EmptyNearbyTaskList, "");
+                imageWide.RenderLiveTileImage(imageWidePath, "", Strings.EmptyNearbyTaskList);
                 tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
 

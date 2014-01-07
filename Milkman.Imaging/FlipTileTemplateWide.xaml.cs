@@ -1,4 +1,4 @@
-﻿using Milkman.Imaging.Common;
+﻿using System;
 using System.IO.IsolatedStorage;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +19,9 @@ namespace Milkman.Imaging
             this.txtTitle.Text = title;
             this.txtContent.Text = content;
 
+            if (String.IsNullOrEmpty(this.txtTitle.Text) == true)
+                this.txtTitle.Visibility = Visibility.Collapsed;
+
             this.Measure(new Size(691, 336));
             this.Arrange(new Rect(0, 0, 691, 336));
             this.UpdateLayout();
@@ -29,12 +32,13 @@ namespace Milkman.Imaging
 
             using (IsolatedStorageFile output = IsolatedStorageFile.GetUserStoreForApplication())
             {
+                if (output.FileExists(filename))
+                    output.DeleteFile(filename);
+
                 using (var stream = output.OpenFile(filename, System.IO.FileMode.OpenOrCreate))
                 {
-                    image.SavePng(stream);
+                    image.WritePNG(stream);
                 }
-
-                output.Dispose();
             }
         }
     }
