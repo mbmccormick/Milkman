@@ -29,11 +29,11 @@ namespace Milkman.Background.Common
         {
             if (location != null)
             {
-                App.AcquirePushChannel(0.0, 0.0);
+                App.AcquirePushChannel(location.Latitude, location.Longitude);
             }
             else
             {
-                App.AcquirePushChannel(location.Latitude, location.Longitude);
+                App.AcquirePushChannel(0.0, 0.0);
             }
         }
 

@@ -28,7 +28,14 @@ namespace Milkman.Common
                 ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
             // ping notifications server
-            App.AcquirePushChannel(location.Latitude, location.Longitude);
+            if (location != null)
+            {
+                App.AcquirePushChannel(location.Latitude, location.Longitude); 
+            }
+            else
+            {
+                App.AcquirePushChannel(0.0, 0.0);
+            }
 
             // update live tiles
             UpdateLiveTiles(location);
