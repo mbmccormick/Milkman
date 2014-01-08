@@ -221,7 +221,14 @@ namespace Milkman.Background.Common
 
             if (App.RtmClient.TaskLists != null)
             {
-                tasksNearby = App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius).ToList();
+                if (location != null)
+                {
+                    tasksNearby = App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius).ToList();
+                }
+                else
+                {
+                    tasksNearby = App.RtmClient.GetNearbyTasks(0.0, 0.0, radius).ToList();
+                }
             }
 
             tile.Title = Strings.Nearby;

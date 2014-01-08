@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Milkman.Common.Models
+namespace Milkman.Background.Common.Models
 {
     public class Registrations
     {
