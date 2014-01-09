@@ -126,8 +126,8 @@ namespace Milkman.Background
 
                 registration.Latitude = latitude;
                 registration.Longitude = longitude;
-                registration.ReminderInterval = new AppSettings().TaskRemindersEnabled;
-                registration.NearbyInterval = new AppSettings().NearbyRadius;
+                registration.ReminderInterval = new AppSettings().FriendlyReminderInterval;
+                registration.NearbyInterval = new AppSettings().FriendlyNearbyRadius;
 
                 await registrationsTable.UpdateAsync(registration);
             }
@@ -138,8 +138,8 @@ namespace Milkman.Background
                     AuthenticationToken = App.RtmClient.AuthToken,
                     Latitude = latitude,
                     Longitude = longitude,
-                    ReminderInterval = new AppSettings().TaskRemindersEnabled,
-                    NearbyInterval = new AppSettings().NearbyRadius
+                    ReminderInterval = new AppSettings().FriendlyReminderInterval,
+                    NearbyInterval = new AppSettings().FriendlyNearbyRadius
                 };
 
                 await registrationsTable.InsertAsync(registration);

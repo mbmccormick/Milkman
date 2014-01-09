@@ -350,8 +350,8 @@ namespace Milkman
                 registration.Handle = CurrentChannel.ChannelUri.AbsoluteUri;
                 registration.Latitude = latitude;
                 registration.Longitude = longitude;
-                registration.ReminderInterval = new AppSettings().TaskRemindersEnabled;
-                registration.NearbyInterval = new AppSettings().NearbyRadius;
+                registration.ReminderInterval = new AppSettings().FriendlyReminderInterval;
+                registration.NearbyInterval = new AppSettings().FriendlyNearbyRadius;
                                 
                 await registrationsTable.UpdateAsync(registration);
             }
@@ -363,8 +363,8 @@ namespace Milkman
                     Handle = CurrentChannel.ChannelUri.AbsoluteUri,
                     Latitude = latitude,
                     Longitude = longitude,
-                    ReminderInterval = new AppSettings().TaskRemindersEnabled,
-                    NearbyInterval = new AppSettings().NearbyRadius
+                    ReminderInterval = new AppSettings().FriendlyReminderInterval,
+                    NearbyInterval = new AppSettings().FriendlyNearbyRadius
                 };
 
                 await registrationsTable.InsertAsync(registration);
