@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="ContentPanel" Grid.Row="0" Margin="0">
-            <phone:WebBrowser Name="webAuthorization" Grid.Row="0" Navigating="webAuthorization_Navigating" Navigated="webAuthorization_Navigated" />
+            <phone:WebBrowser Name="webAuthorization" Grid.Row="0" IsScriptEnabled="True" Navigating="webAuthorization_Navigating" Navigated="webAuthorization_Navigated" />
         </Grid>
     </Grid>
 
