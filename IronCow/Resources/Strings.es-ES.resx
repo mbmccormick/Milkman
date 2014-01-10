@@ -732,142 +732,142 @@
   <data name="TaskUpper" xml:space="preserve">
     <value>TAREA</value>
   </data>
-  <data name="EmptyNearbyTaskList">
+  <data name="EmptyNearbyTaskList" xml:space="preserve">
     <value>No tienen ninguna tarea cercana en esta lista. Fantástico!</value>
   </data>
-  <data name="LocationRemindersSetting">
+  <data name="LocationRemindersSetting" xml:space="preserve">
     <value>Avisarme cuando las tareas están cercanas</value>
   </data>
-  <data name="TaskRemindersSetting1">
-    <value>discapacitado</value>
+  <data name="TaskRemindersSetting1" xml:space="preserve">
+    <value>0 minutos</value>
   </data>
-  <data name="TaskRemindersSetting2">
+  <data name="TaskRemindersSetting2" xml:space="preserve">
     <value>30 minutos</value>
   </data>
-  <data name="TaskRemindersSetting3">
+  <data name="TaskRemindersSetting3" xml:space="preserve">
     <value>1 hora</value>
   </data>
-  <data name="TaskRemindersSetting4">
+  <data name="TaskRemindersSetting4" xml:space="preserve">
     <value>2 horas</value>
   </data>
-  <data name="NearbyRadiusSetting">
+  <data name="NearbyRadiusSetting" xml:space="preserve">
     <value>Cerca de radio de ubicación</value>
   </data>
-  <data name="NearbyRadiusSetting1">
+  <data name="NearbyRadiusSetting1" xml:space="preserve">
     <value>1,5 kilometros</value>
   </data>
-  <data name="NearbyRadiusSetting2">
+  <data name="NearbyRadiusSetting2" xml:space="preserve">
     <value>3 kilometros</value>
   </data>
-  <data name="NearbyRadiusSetting3">
+  <data name="NearbyRadiusSetting3" xml:space="preserve">
     <value>8 kilometros</value>
   </data>
-  <data name="NearbyRadiusSetting4">
+  <data name="NearbyRadiusSetting4" xml:space="preserve">
     <value>16 kilometros</value>
   </data>
-  <data name="NearbyRadiusSetting5">
+  <data name="NearbyRadiusSetting5" xml:space="preserve">
     <value>32 kilometros</value>
   </data>
-  <data name="Error">
+  <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
-  <data name="WorkingOffline">
+  <data name="WorkingOffline" xml:space="preserve">
     <value>Milkman está trabajando sin conexión</value>
   </data>
-  <data name="NetworkConnectionDialogTitle">
+  <data name="NetworkConnectionDialogTitle" xml:space="preserve">
     <value>Error al ponerse en contacto con el servidor</value>
   </data>
-  <data name="NetworkConnectionDialog">
+  <data name="NetworkConnectionDialog" xml:space="preserve">
     <value>Hubo un error al intentar contactar con los servidores de Remember The Milk. ¿Estás conectado a la red?</value>
   </data>
-  <data name="OfflineConnectionDialogTitle">
+  <data name="OfflineConnectionDialogTitle" xml:space="preserve">
     <value>Conexión de red no disponible</value>
   </data>
-  <data name="OfflineConnectionDialog">
+  <data name="OfflineConnectionDialog" xml:space="preserve">
     <value>Actualmente no tiene una conexión de red activa disponible. ¿Le gustaría cambiar al modo offline para esta sesión?</value>
   </data>
-  <data name="AddTask">
+  <data name="AddTask" xml:space="preserve">
     <value>Agregar tarea</value>
   </data>
-  <data name="AddTaskLower">
+  <data name="AddTaskLower" xml:space="preserve">
     <value>agregar tarea</value>
   </data>
-  <data name="AddTaskUpper">
+  <data name="AddTaskUpper" xml:space="preserve">
     <value>AGREGAR TAREA</value>
   </data>
-  <data name="IgnorePrioritySetting">
+  <data name="IgnorePrioritySetting" xml:space="preserve">
     <value>Ignorar la prioridad al ordenar tareas</value>
   </data>
-  <data name="AddTaskDialogSetting">
+  <data name="AddTaskDialogSetting" xml:space="preserve">
     <value>Utilice el cuadro de diálogo para agregar tareas Smart Add</value>
   </data>
-  <data name="EmptyDashboardLists">
+  <data name="EmptyDashboardLists" xml:space="preserve">
     <value>No tienes ninguna lista para mostrar.</value>
   </data>
-  <data name="Lists">
+  <data name="Lists" xml:space="preserve">
     <value>Listas</value>
   </data>
-  <data name="ListsLower">
+  <data name="ListsLower" xml:space="preserve">
     <value>listas</value>
   </data>
-  <data name="ListUpper">
+  <data name="ListUpper" xml:space="preserve">
     <value>LISTAS</value>
   </data>
-  <data name="TagsLower">
+  <data name="TagsLower" xml:space="preserve">
     <value>etiquetas</value>
   </data>
-  <data name="TagsUpper">
+  <data name="TagsUpper" xml:space="preserve">
     <value>ETIQUETAS</value>
   </data>
-  <data name="EmptyDashboardTags">
+  <data name="EmptyDashboardTags" xml:space="preserve">
     <value>No tienes ninguna etiquetas para mostrar.</value>
   </data>
-  <data name="NoLower">
+  <data name="NoLower" xml:space="preserve">
     <value>no</value>
   </data>
-  <data name="YesLower">
+  <data name="YesLower" xml:space="preserve">
     <value>sí</value>
   </data>
-  <data name="CompletingTasks">
+  <data name="CompletingTasks" xml:space="preserve">
     <value>Completar tareas...</value>
   </data>
-  <data name="DeletingTasks">
+  <data name="DeletingTasks" xml:space="preserve">
     <value>Eliminar tareas...</value>
   </data>
-  <data name="PostponingTasks">
+  <data name="PostponingTasks" xml:space="preserve">
     <value>Aplazar las tareas...</value>
   </data>
-  <data name="AuthorizationDialog">
+  <data name="AuthorizationDialog" xml:space="preserve">
     <value>Milkman necesita permiso para utilizar su cuenta de Remember The Milk para continuar. Iniciar sesión en su cuenta y toque el botón completo para continue.\n\nMilkman nunca guardar o compartir su información personal.</value>
   </data>
-  <data name="LastUpdated">
+  <data name="LastUpdated" xml:space="preserve">
     <value>Última actualización</value>
   </data>
-  <data name="MinutesAgo">
+  <data name="MinutesAgo" xml:space="preserve">
     <value>hace minutos</value>
   </data>
-  <data name="OverAnHourAgo">
+  <data name="OverAnHourAgo" xml:space="preserve">
     <value>hace una hora</value>
   </data>
-  <data name="RegistrationDialog">
+  <data name="RegistrationDialog" xml:space="preserve">
     <value>Milkman requiere una cuenta de Remember The Milk para sincronizar tus tareas en la web y a través de todos los dispositivos. Crear una cuenta y regreso a Lechero a continue.\n\nMilkman nunca guardar o compartir su información personal.</value>
   </data>
-  <data name="RegistrationDialogTitle">
+  <data name="RegistrationDialogTitle" xml:space="preserve">
     <value>Registro</value>
   </data>
-  <data name="UpToDate">
+  <data name="UpToDate" xml:space="preserve">
     <value>Lechero está actualizado</value>
   </data>
-  <data name="LiveTileNearby">
+  <data name="LiveTileNearby" xml:space="preserve">
     <value>Cerca</value>
   </data>
-  <data name="LiveTileDueToday">
+  <data name="LiveTileDueToday" xml:space="preserve">
     <value>Debido hoy</value>
   </data>
-  <data name="LiveTileMoreDueToday">
+  <data name="LiveTileMoreDueToday" xml:space="preserve">
     <value>hoy más debido</value>
   </data>
-  <data name="LiveTileMoreNearby">
+  <data name="LiveTileMoreNearby" xml:space="preserve">
     <value>más cercano</value>
   </data>
   <data name="DonateDialog" xml:space="preserve">

@@ -640,7 +640,7 @@
     <value>Sync data automatically</value>
   </data>
   <data name="TaskRemindersSetting1" xml:space="preserve">
-    <value>disabled</value>
+    <value>0 minutes</value>
   </data>
   <data name="TaskRemindersSetting3" xml:space="preserve">
     <value>1 hour</value>

@@ -2086,7 +2086,7 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to disabled.
+        ///   Looks up a localized string similar to 0 minutes.
         /// </summary>
         public static string TaskRemindersSetting1 {
             get {
