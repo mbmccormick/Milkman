@@ -40,6 +40,9 @@
 
     </Item>
     <Item Title="what's new?" Type="text">
+      Version 3.3
+      This release adds improved live tile functionality and other performance enhancements.
+      
       Version 3.2
       This release adds new live tile functionality, implements background syncing, and greatly reduces the start up time. This release also includes several user interface improvements, icon resolution improvments, and bug fixes.
       

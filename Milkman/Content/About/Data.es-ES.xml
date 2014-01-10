@@ -40,6 +40,9 @@
 
     </Item>
     <Item Title="¿qué novedades?" Type="text">
+      Version 3.3
+      Esta versión añade funcionalidad mejorada suelos vivos y otras mejoras de rendimiento.
+
       Versión 3.2
       Esta versión implementa sincronización de fondo y reduce considerablemente el tiempo de inicio. Esta versión también incluye varias mejoras de la interfaz de usuario, icono resolución mejoras y correcciones.
 
