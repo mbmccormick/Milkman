@@ -330,44 +330,51 @@ namespace Milkman
         
         public static async void AcquirePushChannel(double latitude, double longitude)
         {
-            CurrentChannel = HttpNotificationChannel.Find("MyPushChannel");
-            
-            if (CurrentChannel == null)
+            try
             {
-                CurrentChannel = new HttpNotificationChannel("MyPushChannel");
-                CurrentChannel.Open();
-                CurrentChannel.BindToShellToast();
-            }
+                CurrentChannel = HttpNotificationChannel.Find("MyPushChannel");
 
-            IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
-
-            var existingRegistrations = await registrationsTable.Where(z => z.AuthenticationToken == App.RtmClient.AuthToken).ToCollectionAsync();
-
-            if (existingRegistrations.Count > 0)
-            {
-                var registration = existingRegistrations.First();
-
-                registration.Handle = CurrentChannel.ChannelUri.AbsoluteUri;
-                registration.Latitude = latitude;
-                registration.Longitude = longitude;
-                registration.ReminderInterval = new AppSettings().FriendlyReminderInterval;
-                registration.NearbyInterval = new AppSettings().FriendlyNearbyRadius;
-                                
-                await registrationsTable.UpdateAsync(registration);
-            }
-            else
-            {
-                var registration = new Registrations
+                if (CurrentChannel == null)
                 {
-                    AuthenticationToken = App.RtmClient.AuthToken,
-                    Handle = CurrentChannel.ChannelUri.AbsoluteUri,
-                    Latitude = latitude,
-                    Longitude = longitude,
-                    ReminderInterval = new AppSettings().FriendlyReminderInterval,
-                    NearbyInterval = new AppSettings().FriendlyNearbyRadius
-                };
+                    CurrentChannel = new HttpNotificationChannel("MyPushChannel");
+                    CurrentChannel.Open();
+                    CurrentChannel.BindToShellToast();
+                }
 
-                await registrationsTable.InsertAsync(registration);
+                IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
+
+                var existingRegistrations = await registrationsTable.Where(z => z.AuthenticationToken == App.RtmClient.AuthToken).ToCollectionAsync();
+
+                if (existingRegistrations.Count > 0)
+                {
+                    var registration = existingRegistrations.First();
+
+                    registration.Handle = CurrentChannel.ChannelUri.AbsoluteUri;
+                    registration.Latitude = latitude;
+                    registration.Longitude = longitude;
+                    registration.ReminderInterval = new AppSettings().FriendlyReminderInterval;
+                    registration.NearbyInterval = new AppSettings().FriendlyNearbyRadius;
+
+                    await registrationsTable.UpdateAsync(registration);
+                }
+                else
+                {
+                    var registration = new Registrations
+                    {
+                        AuthenticationToken = App.RtmClient.AuthToken,
+                        Handle = CurrentChannel.ChannelUri.AbsoluteUri,
+                        Latitude = latitude,
+                        Longitude = longitude,
+                        ReminderInterval = new AppSettings().FriendlyReminderInterval,
+                        NearbyInterval = new AppSettings().FriendlyNearbyRadius
+                    };
+
+                    await registrationsTable.InsertAsync(registration);
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                // do nothing
             }
         }
 

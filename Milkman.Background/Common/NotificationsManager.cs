@@ -1,4 +1,5 @@
 ﻿using IronCow;
+using IronCow.Resources;
 using Microsoft.Phone.Shell;
 using Milkman.Common;
 using System;
@@ -85,10 +86,13 @@ namespace Milkman.Background.Common
             {
                 if (tile.NavigationUri.ToString() == "/")
                 {
-                    StandardTileData data = new StandardTileData();
+                    FlipTileData data = new FlipTileData();
 
-                    data.BackTitle = "";
-                    data.BackContent = "";
+                    data.BackgroundImage = new Uri("/Assets/FlipCycleTileMedium.png", UriKind.Relative);
+                    data.SmallBackgroundImage = new Uri("/Assets/FlipCycleTileSmall.png", UriKind.Relative);
+                    data.WideBackgroundImage = new Uri("/Assets/FlipCycleTileWide.png", UriKind.Relative);
+                    data.Title = Strings.Milkman;
+                    data.Count = 0;
 
                     tile.Update(data);
                 }
