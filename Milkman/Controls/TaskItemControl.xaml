@@ -10,10 +10,18 @@
     d:DesignHeight="480" d:DesignWidth="480">
 
     <StackPanel x:Name="LayoutRoot" Background="Transparent">
-        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="36" Margin="0,0,12,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding List}" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" Foreground="{Binding DueDateForegroundBrush}" />
-            <TextBlock Text="{Binding FriendlyTagsString}" TextWrapping="NoWrap" Margin="24,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" Foreground="{Binding DueDateForegroundBrush}" />
-        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="0">
+                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="36" Margin="0,0,12,0" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{Binding PriorityForegroundBrush}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding List}" TextWrapping="NoWrap" Margin="0,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" Foreground="{Binding DueDateForegroundBrush}" />
+                    <TextBlock Text="{Binding FriendlyTagsString}" TextWrapping="NoWrap" Margin="24,0,0,0" Style="{StaticResource PhoneTextSubtleStyle}" FontWeight="Normal" Foreground="{Binding DueDateForegroundBrush}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
     </StackPanel>
 </UserControl>

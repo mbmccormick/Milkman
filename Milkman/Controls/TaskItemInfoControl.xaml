@@ -10,32 +10,40 @@
     d:DesignHeight="480" d:DesignWidth="480">
 
     <StackPanel x:Name="LayoutRoot" Background="Transparent">
-        <TextBlock Text="{Binding FriendlyShortDueDate}" TextWrapping="NoWrap" Margin="0,0,12,0" HorizontalAlignment="Right" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding ShortDueDateForegroundBrush}" FontFamily="{StaticResource PhoneFontFamilyNormal}" />
-        <StackPanel Orientation="Horizontal" Margin="0,0,12,0" HorizontalAlignment="Right" Height="30">
-            <StackPanel x:Name="stkDark" Visibility="Collapsed">
-                <Viewbox Width="30" Height="30" Stretch="UniformToFill" Margin="6,0,-4,0" Visibility="{Binding HasNotesVisibility}">
-                    <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" Canvas.Left="0" Canvas.Top="0">
-                        <Path Width="36" Height="42" Canvas.Left="20" Canvas.Top="17" Stretch="Fill" Fill="#99FFFFFF" Data="F1 M 20,17L 42.25,17L 56,30.75L 56,59L 20,59L 20,17 Z M 25,22L 25,54L 51,54L 51,37L 36,37L 36,22L 25,22 Z M 41,22.25L 41,32L 50.75,32L 41,22.25 Z " />
-                    </Canvas>
-                </Viewbox>
-                <Viewbox Width="30" Height="30" Stretch="UniformToFill" Margin="6,0,-4,0" Visibility="{Binding HasRecurrenceVisibility}">
-                    <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" Canvas.Left="0" Canvas.Top="0">
-                        <Path Width="44.3334" Height="38" Canvas.Left="15.8333" Canvas.Top="19" Stretch="Fill" Fill="#99FFFFFF" Data="F1 M 15.8335,42.75L 15.8334,25.3333L 46.3125,25.3333L 39.5833,19L 49.875,19L 60.1667,28.5L 49.875,38L 39.5833,38L 46.3125,31.6667L 22.1667,31.6667L 22.1667,37.2083L 15.8335,42.75 Z M 60.1667,33.25L 60.1667,50.6667L 29.6875,50.6667L 36.4167,57L 26.125,57L 15.8333,47.5L 26.125,38L 36.4167,38L 29.6875,44.3334L 53.8333,44.3333L 53.8333,38.7917L 60.1667,33.25 Z " />
-                    </Canvas>
-                </Viewbox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="78" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,7,0,0">
+                <TextBlock Text="{Binding FriendlyShortDueDate}" TextWrapping="NoWrap" Margin="0,0,12,0" HorizontalAlignment="Right" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="{Binding ShortDueDateForegroundBrush}" FontFamily="{StaticResource PhoneFontFamilyNormal}" />
+                <StackPanel Orientation="Horizontal" Margin="0,0,12,0" HorizontalAlignment="Right" Height="30">
+                    <StackPanel x:Name="stkDark" Visibility="Collapsed">
+                        <Viewbox Width="30" Height="30" Stretch="UniformToFill" Margin="6,0,-4,0" Visibility="{Binding HasNotesVisibility}">
+                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" Canvas.Left="0" Canvas.Top="0">
+                                <Path Width="36" Height="42" Canvas.Left="20" Canvas.Top="17" Stretch="Fill" Fill="#99FFFFFF" Data="F1 M 20,17L 42.25,17L 56,30.75L 56,59L 20,59L 20,17 Z M 25,22L 25,54L 51,54L 51,37L 36,37L 36,22L 25,22 Z M 41,22.25L 41,32L 50.75,32L 41,22.25 Z " />
+                            </Canvas>
+                        </Viewbox>
+                        <Viewbox Width="30" Height="30" Stretch="UniformToFill" Margin="6,0,-4,0" Visibility="{Binding HasRecurrenceVisibility}">
+                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" Canvas.Left="0" Canvas.Top="0">
+                                <Path Width="44.3334" Height="38" Canvas.Left="15.8333" Canvas.Top="19" Stretch="Fill" Fill="#99FFFFFF" Data="F1 M 15.8335,42.75L 15.8334,25.3333L 46.3125,25.3333L 39.5833,19L 49.875,19L 60.1667,28.5L 49.875,38L 39.5833,38L 46.3125,31.6667L 22.1667,31.6667L 22.1667,37.2083L 15.8335,42.75 Z M 60.1667,33.25L 60.1667,50.6667L 29.6875,50.6667L 36.4167,57L 26.125,57L 15.8333,47.5L 26.125,38L 36.4167,38L 29.6875,44.3334L 53.8333,44.3333L 53.8333,38.7917L 60.1667,33.25 Z " />
+                            </Canvas>
+                        </Viewbox>
+                    </StackPanel>
+                    <StackPanel x:Name="stkLight" Visibility="Collapsed">
+                        <Viewbox Width="30" Height="30" Stretch="UniformToFill" Margin="6,0,-4,0" Visibility="{Binding HasNotesVisibility}">
+                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" Canvas.Left="0" Canvas.Top="0">
+                                <Path Width="36" Height="42" Canvas.Left="20" Canvas.Top="17" Stretch="Fill" Fill="#66000000" Data="F1 M 20,17L 42.25,17L 56,30.75L 56,59L 20,59L 20,17 Z M 25,22L 25,54L 51,54L 51,37L 36,37L 36,22L 25,22 Z M 41,22.25L 41,32L 50.75,32L 41,22.25 Z " />
+                            </Canvas>
+                        </Viewbox>
+                        <Viewbox Width="30" Height="30" Stretch="UniformToFill" Margin="6,0,-4,0" Visibility="{Binding HasRecurrenceVisibility}">
+                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" Canvas.Left="0" Canvas.Top="0">
+                                <Path Width="44.3334" Height="38" Canvas.Left="15.8333" Canvas.Top="19" Stretch="Fill" Fill="#66000000" Data="F1 M 15.8335,42.75L 15.8334,25.3333L 46.3125,25.3333L 39.5833,19L 49.875,19L 60.1667,28.5L 49.875,38L 39.5833,38L 46.3125,31.6667L 22.1667,31.6667L 22.1667,37.2083L 15.8335,42.75 Z M 60.1667,33.25L 60.1667,50.6667L 29.6875,50.6667L 36.4167,57L 26.125,57L 15.8333,47.5L 26.125,38L 36.4167,38L 29.6875,44.3334L 53.8333,44.3333L 53.8333,38.7917L 60.1667,33.25 Z " />
+                            </Canvas>
+                        </Viewbox>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
-            <StackPanel x:Name="stkLight" Visibility="Collapsed">
-                <Viewbox Width="30" Height="30" Stretch="UniformToFill" Margin="6,0,-4,0" Visibility="{Binding HasNotesVisibility}">
-                    <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" Canvas.Left="0" Canvas.Top="0">
-                        <Path Width="36" Height="42" Canvas.Left="20" Canvas.Top="17" Stretch="Fill" Fill="#66000000" Data="F1 M 20,17L 42.25,17L 56,30.75L 56,59L 20,59L 20,17 Z M 25,22L 25,54L 51,54L 51,37L 36,37L 36,22L 25,22 Z M 41,22.25L 41,32L 50.75,32L 41,22.25 Z " />
-                    </Canvas>
-                </Viewbox>
-                <Viewbox Width="30" Height="30" Stretch="UniformToFill" Margin="6,0,-4,0" Visibility="{Binding HasRecurrenceVisibility}">
-                    <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0" Canvas.Left="0" Canvas.Top="0">
-                        <Path Width="44.3334" Height="38" Canvas.Left="15.8333" Canvas.Top="19" Stretch="Fill" Fill="#66000000" Data="F1 M 15.8335,42.75L 15.8334,25.3333L 46.3125,25.3333L 39.5833,19L 49.875,19L 60.1667,28.5L 49.875,38L 39.5833,38L 46.3125,31.6667L 22.1667,31.6667L 22.1667,37.2083L 15.8335,42.75 Z M 60.1667,33.25L 60.1667,50.6667L 29.6875,50.6667L 36.4167,57L 26.125,57L 15.8333,47.5L 26.125,38L 36.4167,38L 29.6875,44.3334L 53.8333,44.3333L 53.8333,38.7917L 60.1667,33.25 Z " />
-                    </Canvas>
-                </Viewbox>
-            </StackPanel>
-        </StackPanel>
+        </Grid>
     </StackPanel>
 </UserControl>
