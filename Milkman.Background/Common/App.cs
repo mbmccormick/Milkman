@@ -7,6 +7,7 @@ using Milkman.Common;
 using System;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Net.Http;
 
 namespace Milkman.Background
 {
@@ -116,33 +117,44 @@ namespace Milkman.Background
 
         public static async void AcquirePushChannel(double latitude, double longitude)
         {
-            IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
-
-            var existingRegistrations = await registrationsTable.Where(z => z.AuthenticationToken == App.RtmClient.AuthToken).ToCollectionAsync();
-
-            if (existingRegistrations.Count > 0)
+            try
             {
-                var registration = existingRegistrations.First();
+                IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
 
-                registration.Latitude = latitude;
-                registration.Longitude = longitude;
-                registration.ReminderInterval = new AppSettings().FriendlyReminderInterval;
-                registration.NearbyInterval = new AppSettings().FriendlyNearbyRadius;
+                var existingRegistrations = await registrationsTable.Where(z => z.AuthenticationToken == App.RtmClient.AuthToken).ToCollectionAsync();
 
-                await registrationsTable.UpdateAsync(registration);
-            }
-            else
-            {
-                var registration = new Registrations
+                if (existingRegistrations.Count > 0)
                 {
-                    AuthenticationToken = App.RtmClient.AuthToken,
-                    Latitude = latitude,
-                    Longitude = longitude,
-                    ReminderInterval = new AppSettings().FriendlyReminderInterval,
-                    NearbyInterval = new AppSettings().FriendlyNearbyRadius
-                };
+                    var registration = existingRegistrations.First();
 
-                await registrationsTable.InsertAsync(registration);
+                    registration.Latitude = latitude;
+                    registration.Longitude = longitude;
+                    registration.ReminderInterval = new AppSettings().FriendlyReminderInterval;
+                    registration.NearbyInterval = new AppSettings().FriendlyNearbyRadius;
+
+                    await registrationsTable.UpdateAsync(registration);
+                }
+                else
+                {
+                    var registration = new Registrations
+                    {
+                        AuthenticationToken = App.RtmClient.AuthToken,
+                        Latitude = latitude,
+                        Longitude = longitude,
+                        ReminderInterval = new AppSettings().FriendlyReminderInterval,
+                        NearbyInterval = new AppSettings().FriendlyNearbyRadius
+                    };
+
+                    await registrationsTable.InsertAsync(registration);
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                // do nothing
+            }
+            catch (HttpRequestException ex)
+            {
+                // do nothing
             }
         }
 

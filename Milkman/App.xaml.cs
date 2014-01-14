@@ -12,6 +12,7 @@ using Milkman.Common.Models;
 using System;
 using System.IO.IsolatedStorage;
 using System.Linq;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
@@ -373,6 +374,10 @@ namespace Milkman
                 }
             }
             catch (NullReferenceException ex)
+            {
+                // do nothing
+            }
+            catch (HttpRequestException ex)
             {
                 // do nothing
             }
