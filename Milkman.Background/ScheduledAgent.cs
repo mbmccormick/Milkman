@@ -5,6 +5,7 @@ using System;
 using System.Device.Location;
 using System.Net;
 using System.Windows;
+using System.Reflection;
 
 namespace Milkman.Background
 {
@@ -31,6 +32,10 @@ namespace Milkman.Background
                 // ignore these exceptions
             }
             else if (e.ExceptionObject is OutOfMemoryException)
+            {
+                // ignore these exceptions
+            }
+            else if (e.ExceptionObject is TargetInvocationException)
             {
                 // ignore these exceptions
             }

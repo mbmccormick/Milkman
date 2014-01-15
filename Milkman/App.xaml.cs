@@ -375,11 +375,15 @@ namespace Milkman
             }
             catch (NullReferenceException ex)
             {
-                // do nothing
+                // ignore these errors
             }
             catch (HttpRequestException ex)
             {
-                // do nothing
+                // ignore these errors
+            }
+            catch (MobileServiceInvalidOperationException ex)
+            {
+                // ignore these errors
             }
         }
 
