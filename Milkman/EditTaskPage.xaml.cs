@@ -353,6 +353,18 @@ namespace Milkman
                 NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
         }
 
+        private void lstLocation_LayoutUpdated(object sender, EventArgs e)
+        {
+            try
+            {
+                this.scvLayout.ScrollToVerticalOffset(this.scvLayout.ScrollableHeight);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         #endregion
     }
 }
