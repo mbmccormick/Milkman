@@ -80,7 +80,7 @@
                     <TextBox x:Name="txtEstimate" Margin="0,-12,0,0" Grid.Row="6" Grid.Column="1" InputScope="Text" />
 
                     <TextBlock Text="{Binding Resources.Tags, Source={StaticResource Strings}}" Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}" />
-                    <TextBox x:Name="txtTags" Margin="0,-12,0,0" Grid.Row="7" Grid.Column="1" InputScope="Text" />
+                    <toolkit:AutoCompleteBox x:Name="txtTags" Margin="0,-12,0,0" Grid.Row="7" Grid.Column="1" InputScope="Text" DropDownOpening="txtTags_DropDownOpening" GotFocus="txtTags_GotFocus" LostFocus="txtTags_LostFocus" TextChanged="txtTags_TextChanged" SelectionChanged="txtTags_SelectionChanged" />
 
                     <TextBlock Text="{Binding Resources.Location, Source={StaticResource Strings}}" Grid.Row="8" Grid.Column="0" TextWrapping="Wrap" Margin="12,0,0,12" Style="{StaticResource PhoneTextSubtleStyle}" FontSize="{StaticResource PhoneFontSizeNormal}" />
                     <toolkit:ListPicker x:Name="lstLocation" Margin="12,-12,12,24" Grid.Row="8" Grid.Column="1" FullModeHeader="{Binding Resources.Location, Source={StaticResource Strings}}" LayoutUpdated="lstLocation_LayoutUpdated">

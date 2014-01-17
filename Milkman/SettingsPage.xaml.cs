@@ -126,7 +126,7 @@ namespace Milkman
             }
             catch (Exception ex)
             {
-
+                // do nothing
             }
         }
     }
