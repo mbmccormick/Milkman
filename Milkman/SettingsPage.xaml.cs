@@ -117,5 +117,17 @@ namespace Milkman
 
             this.lstNearbyRadius.IsEnabled = this.togLocationReminders.IsChecked.Value;
         }
+
+        private void lstTaskReminders_LayoutUpdated(object sender, EventArgs e)
+        {
+            try
+            {
+                this.scvLayout.ScrollToVerticalOffset(this.scvLayout.ScrollableHeight);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }
