@@ -50,6 +50,8 @@ namespace Milkman.Background
             {
                 System.Diagnostics.Debugger.Break();
             }
+
+            NotifyComplete();
         }
 
         GeoCoordinateWatcher _watcher = null;
