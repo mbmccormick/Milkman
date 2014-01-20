@@ -1,5 +1,6 @@
 ﻿using IronCow.Resources;
 using Microsoft.Phone.Controls;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -113,7 +114,10 @@ namespace Milkman.Controls
         {
             TextBlock target = (TextBlock)sender;
 
-            txtDetails.Text = txtDetails.Text + " " + target.Text;
+            if (txtDetails.Text.Substring(Math.Max(0, txtDetails.Text.Length - 1)).Equals(" ") == false)
+                txtDetails.Text = txtDetails.Text + " " + target.Text;
+            else
+                txtDetails.Text = txtDetails.Text + target.Text;
 
             txtDetails.Focus();
             txtDetails.SelectionStart = this.txtDetails.Text.Length;
