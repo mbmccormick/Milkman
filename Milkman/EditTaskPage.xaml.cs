@@ -33,19 +33,6 @@ namespace Milkman
 
         #endregion
 
-        #region TaskTags Property
-
-        public static readonly DependencyProperty TaskTagsProperty =
-            DependencyProperty.Register("TaskTags", typeof(ObservableCollection<string>), typeof(EditTaskPage), new PropertyMetadata(new ObservableCollection<string>()));
-
-        private ObservableCollection<string> TaskTags
-        {
-            get { return (ObservableCollection<string>)GetValue(TaskTagsProperty); }
-            set { SetValue(TaskTagsProperty, value); }
-        }
-
-        #endregion
-
         #region TaskLocations Property
 
         public static readonly DependencyProperty TaskLocationsProperty =
@@ -71,8 +58,6 @@ namespace Milkman
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             this.BuildApplicationBar();
-
-            this.txtTags.TextFilter += searchTags;
         }
 
         private void BuildApplicationBar()
@@ -132,15 +117,6 @@ namespace Milkman
                     }
 
                     this.lstList.ItemsSource = TaskLists;
-
-                    // bind tags autocomplete box
-                    TaskTags.Clear();
-                    foreach (string t in App.RtmClient.GetTags())
-                    {
-                        TaskTags.Add(t);
-                    }
-
-                    this.txtTags.ItemsSource = TaskTags;
 
                     // bind locations list picker
                     TaskLocations.Clear();
@@ -377,98 +353,6 @@ namespace Milkman
                 NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
         }
 
-        private void lstLocation_LayoutUpdated(object sender, EventArgs e)
-        {
-            try
-            {
-                this.scvLayout.ScrollToVerticalOffset(this.scvLayout.ScrollableHeight);
-            }
-            catch (Exception ex)
-            {
-                // do nothing
-            }
-        }
-
         #endregion
-
-        private bool tagsFocused = false;
-
-        private void txtTags_DropDownOpening(object sender, RoutedPropertyChangingEventArgs<bool> e)
-        {
-            if (!tagsFocused)
-                e.Cancel = true;
-        }
-
-        private void txtTags_GotFocus(object sender, RoutedEventArgs e)
-        {
-            tagsFocused = true;
-        }
-
-        private void txtTags_LostFocus(object sender, RoutedEventArgs e)
-        {
-            tagsFocused = false;
-        }
-
-        private string autocompleteBoxTags = "";
-
-        private void txtTags_TextChanged(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (this.txtTags.Text.Length == 0)
-                    autocompleteBoxTags = "";
-                
-                if (this.txtTags.Text.Contains(", "))
-                {
-                    int pos = this.txtTags.Text.LastIndexOf(", ");
-                    if (pos > 0) autocompleteBoxTags = this.txtTags.Text.Substring(0, pos + 2);
-                }
-            }
-            catch (Exception ex)
-            {
-                // do nothing
-            }
-        }
-
-        private void txtTags_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                if (e.RemovedItems.Count > 0) return;
-                if (e.AddedItems.Count > 0)
-                {
-                    if (!autocompleteBoxTags.Contains(this.txtTags.Text))
-                    {
-                        this.txtTags.Text = autocompleteBoxTags + this.txtTags.Text;
-                        this.txtTags.SelectedItem = this.txtTags.Text;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // do nothing
-            }
-        }
-
-        private bool searchTags(string search, string value)
-        {
-            if (!string.IsNullOrEmpty(search))
-            {
-                string currentText = search;
-                string filterText = currentText;
-                if (currentText.Contains(", "))
-                {
-                    int pos = currentText.LastIndexOf(", ");
-                    filterText = currentText.Substring(pos + 2);
-                }
-
-                if (value.ToLower().StartsWith(filterText) && !autocompleteBoxTags.Contains(value))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
     }
 }
