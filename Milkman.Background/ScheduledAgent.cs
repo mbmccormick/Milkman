@@ -82,8 +82,6 @@ namespace Milkman.Background
                     if (System.Diagnostics.Debugger.IsAttached)
                         ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
-                    App.SaveData();
-
                     NotifyComplete();
                 });
             }
@@ -102,6 +100,8 @@ namespace Milkman.Background
         {
             Deployment.Current.Dispatcher.BeginInvoke(delegate
             {
+                App.SaveData();
+
                 if (_watcher != null)
                     NotificationsManager.SetupNotifications(_watcher.Position.Location);
                 else
