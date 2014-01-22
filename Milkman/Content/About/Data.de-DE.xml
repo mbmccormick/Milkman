@@ -12,7 +12,7 @@
               AppPublisherLabel="Übersetzer:"
               AppVersionLabel="Version:"
               AppAdditionalNotesLabel="Zusätzliche Hinweise:"
-              AppReviewButtonContent="Überprüfen Sie diese app!">
+              AppReviewButtonContent="überprüfen sie diese app">
       <Links>
         <Link NavigateUri="http://mbmccormick.com"
               Content="http://mbmccormick.com"

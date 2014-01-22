@@ -12,7 +12,7 @@
               AppPublisherLabel=""
               AppVersionLabel="Version:"
               AppAdditionalNotesLabel="Additional Notes:"
-              AppReviewButtonContent="Review this app!">
+              AppReviewButtonContent="review this app">
       <Links>
         <Link NavigateUri="http://mbmccormick.com"
               Content="http://mbmccormick.com"
