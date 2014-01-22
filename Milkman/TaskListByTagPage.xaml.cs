@@ -204,8 +204,6 @@ namespace Milkman
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                App.PromptForMarketplaceReview();
-
                 sFirstLaunch = true;
             }
 

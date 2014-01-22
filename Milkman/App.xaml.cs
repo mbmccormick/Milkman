@@ -205,49 +205,6 @@ namespace Milkman
             }
         }
 
-        public static void PromptForMarketplaceReview()
-        {
-            DateTime installDate = DateTime.UtcNow;
-            if (IsolatedStorageSettings.ApplicationSettings.TryGetValue<DateTime>("InstallDate", out installDate) == false)
-                installDate = DateTime.UtcNow;
-
-            if (DateTime.UtcNow.AddDays(-3) >= installDate) // prompt after 3 days
-            {
-                CustomMessageBox messageBox = new CustomMessageBox()
-                {
-                    Caption = Strings.MarketplaceDialogTitle,
-                    Message = Strings.MarketplaceDialog,
-                    LeftButtonContent = Strings.YesLower,
-                    RightButtonContent = Strings.NoLower,
-                    IsFullScreen = false
-                };
-
-                messageBox.Dismissed += (s1, e1) =>
-                {
-                    switch (e1.Result)
-                    {
-                        case CustomMessageBoxResult.LeftButton:
-                            installDate = DateTime.MaxValue; // they have rated, don't prompt again
-                            IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
-
-                            MarketplaceReviewTask marketplaceReviewTask = new MarketplaceReviewTask();
-                            marketplaceReviewTask.Show();
-
-                            break;
-                        default:
-                            installDate = DateTime.UtcNow; // they did not rate, prompt again in 2 days
-                            IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
-
-                            break;
-                    }
-                };
-
-                messageBox.Show();
-            }
-
-            IsolatedStorageSettings.ApplicationSettings["InstallDate"] = installDate; // save install date
-        }
-
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             LoadData();
