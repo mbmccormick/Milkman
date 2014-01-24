@@ -2158,6 +2158,26 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The timezone on your Remember The Milk account does not match the timezone that your phone is set to. This may cause problems with due dates and reminders..
+        /// </summary>
+        public static string TimezoneMismatchDialog {
+            get {
+                return ResourceManager.GetString("TimezoneMismatchDialog", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The timezone on your Remember The Milk account does not match the timezone that your phone is set to. This may cause problems with due dates and reminders..
+        /// </summary>
+        public static string TimezoneMismatchDialogTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("TimezoneMismatchDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string Title {

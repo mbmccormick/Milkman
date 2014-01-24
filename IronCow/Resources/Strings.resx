@@ -882,4 +882,10 @@
   <data name="LiveTileOverdue" xml:space="preserve">
     <value>Overdue</value>
   </data>
+  <data name="TimezoneMismatchDialog" xml:space="preserve">
+    <value>The timezone on your Remember The Milk account does not match the timezone that your phone is set to. This may cause problems with due dates and reminders.</value>
+  </data>
+  <data name="TimezoneMismatchDialogTitle" xml:space="preserve">
+    <value>Timezone mismatch</value>
+  </data>
 </root>

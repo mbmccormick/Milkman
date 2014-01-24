@@ -307,7 +307,7 @@ namespace Milkman
 
             if (rtmTimezone != TimeZoneInfo.Local.StandardName)
             {
-                MessageBox.Show("The timezone on your Remember The Milk account does not match the timezone that your phone is set to. This may cause problems with due dates and reminders.", "Timezone mismatch", MessageBoxButton.OK);
+                MessageBox.Show(Strings.TimezoneMismatchDialog, Strings.TimezoneMismatchDialogTitle, MessageBoxButton.OK);
             }
         }
 
