@@ -209,6 +209,8 @@ namespace Milkman
 
             LoadData();
 
+            App.CheckTimezone();
+
             base.OnNavigatedTo(e);
         }
 
