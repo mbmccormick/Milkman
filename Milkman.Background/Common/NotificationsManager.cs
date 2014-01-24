@@ -1,4 +1,5 @@
 ﻿using IronCow;
+using IronCow.Resources;
 using Microsoft.Phone.Shell;
 using Milkman.Common;
 using System;
@@ -13,13 +14,8 @@ namespace Milkman.Background.Common
         {
             AppSettings settings = new AppSettings();
 
-            // setup location notifications
-            if (settings.LocationRemindersEnabled == true &&
-                location != null)
-            {
-                // check for nearby tasks
-                UpdateLocationNotifications(location);
-            }
+            // check for nearby tasks
+            UpdateLocationNotifications(location);
 
             // update live tiles
             UpdateLiveTiles(location);
@@ -32,34 +28,13 @@ namespace Milkman.Background.Common
 
         public static void UpdateLocationNotifications(GeoCoordinate location)
         {
-            AppSettings settings = new AppSettings();
-
-            double radius;
-            if (settings.NearbyRadius == 0)
-                radius = 1.0;
-            else if (settings.NearbyRadius == 1)
-                radius = 2.0;
-            else if (settings.NearbyRadius == 2)
-                radius = 5.0;
-            else if (settings.NearbyRadius == 3)
-                radius = 10.0;
-            else if (settings.NearbyRadius == 4)
-                radius = 20.0;
-            else
-                radius = 0.0; 
-            
-            foreach (Task t in App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius))
+            if (location != null)
             {
-                if (t.HasDueTime &&
-                    t.DueDateTime.Value <= DateTime.Now)
-                {
-                    ShellToast toast = new ShellToast();
-
-                    toast.Title = t.Location.Name;
-                    toast.Content = t.Name;
-                    toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
-                    toast.Show();
-                }
+                App.AcquirePushChannel(location.Latitude, location.Longitude);
+            }
+            else
+            {
+                App.AcquirePushChannel(0.0, 0.0);
             }
         }
 
@@ -111,10 +86,13 @@ namespace Milkman.Background.Common
             {
                 if (tile.NavigationUri.ToString() == "/")
                 {
-                    StandardTileData data = new StandardTileData();
+                    FlipTileData data = new FlipTileData();
 
-                    data.BackTitle = "";
-                    data.BackContent = "";
+                    data.BackgroundImage = new Uri("/Assets/FlipCycleTileMedium.png", UriKind.Relative);
+                    data.SmallBackgroundImage = new Uri("/Assets/FlipCycleTileSmall.png", UriKind.Relative);
+                    data.WideBackgroundImage = new Uri("/Assets/FlipCycleTileWide.png", UriKind.Relative);
+                    data.Title = Strings.Milkman;
+                    data.Count = 0;
 
                     tile.Update(data);
                 }

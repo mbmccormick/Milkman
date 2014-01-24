@@ -15,8 +15,11 @@ namespace Milkman.Common
         {
             FlipTileData tile = new FlipTileData();
 
-            List<Task> tasksOverdue = new List<Task>();
+            tile.BackgroundImage = new Uri("/Assets/FlipCycleTileMedium.png", UriKind.Relative);
+            tile.SmallBackgroundImage = new Uri("/Assets/FlipCycleTileSmall.png", UriKind.Relative);
+
             List<Task> tasksDueToday = new List<Task>();
+            List<Task> tasksOverdue = new List<Task>();
 
             if (App.RtmClient.TaskLists != null)
             {
@@ -43,36 +46,35 @@ namespace Milkman.Common
             tile.Title = Strings.Milkman;
             tile.Count = tasksOverdue.Count + tasksDueToday.Count;
 
+            FlipTileTemplate image = new FlipTileTemplate();
+            string imagePath = "/Shared/ShellContent/default.png";
+
+            FlipTileTemplateWide imageWide = new FlipTileTemplateWide();
+            string imageWidePath = "/Shared/ShellContent/defaultwide.png";
+
             if (tasksDueToday.Count > 0)
             {
-                tile.BackContent = tasksDueToday.First().Name;
+                image.RenderLiveTileImage(imagePath, Strings.LiveTileDueToday + ":", FormatFlipTileTemplateContent(tasksDueToday));
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                if (tasksDueToday.Count > 1)
-                {
-                    tile.BackTitle = (tasksDueToday.Count - 1) + " " + Strings.LiveTileMoreDueToday;
-                }
-                else
-                {
-                    tile.BackTitle = Strings.LiveTileDueToday;
-                }
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.LiveTileDueToday + ":", FormatFlipTileTemplateWideContent(tasksDueToday));
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
             else if (tasksOverdue.Count > 0)
             {
-                tile.BackContent = tasksOverdue.First().Name;
+                image.RenderLiveTileImage(imagePath, Strings.LiveTileOverdue + ":", FormatFlipTileTemplateContent(tasksOverdue));
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
 
-                if (tasksOverdue.Count > 1)
-                {
-                    tile.BackTitle = (tasksOverdue.Count - 1) + " " + Strings.LiveTileMoreOverdue;
-                }
-                else
-                {
-                    tile.BackTitle = Strings.LiveTileOverdue;
-                }
+                imageWide.RenderLiveTileImage(imageWidePath, Strings.LiveTileOverdue + ":", FormatFlipTileTemplateWideContent(tasksOverdue));
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
             else
             {
-                tile.BackContent = "";
-                tile.BackTitle = "";
+                image.RenderLiveTileImage(imagePath, "", Strings.EmptyTaskList);
+                tile.BackgroundImage = new Uri("isostore:" + imagePath, UriKind.Absolute);
+
+                imageWide.RenderLiveTileImage(imageWidePath, "", Strings.EmptyTaskList);
+                tile.WideBackgroundImage = new Uri("isostore:" + imageWidePath, UriKind.Absolute);
             }
 
             return tile;

@@ -732,142 +732,142 @@
   <data name="URL" xml:space="preserve">
     <value>URL</value>
   </data>
-  <data name="EmptyNearbyTaskList">
+  <data name="EmptyNearbyTaskList" xml:space="preserve">
     <value>Нет задач поблизости. Ура!</value>
   </data>
-  <data name="TaskRemindersSetting4">
+  <data name="TaskRemindersSetting4" xml:space="preserve">
     <value>2 часа</value>
   </data>
-  <data name="TaskRemindersSetting2">
+  <data name="TaskRemindersSetting2" xml:space="preserve">
     <value>30 минут</value>
   </data>
-  <data name="TaskRemindersSetting3">
+  <data name="TaskRemindersSetting3" xml:space="preserve">
     <value>1 час</value>
   </data>
-  <data name="LocationRemindersSetting">
+  <data name="LocationRemindersSetting" xml:space="preserve">
     <value>Уведомлять о задачах поблизости</value>
   </data>
-  <data name="TaskRemindersSetting1">
-    <value>отключено</value>
+  <data name="TaskRemindersSetting1" xml:space="preserve">
+    <value>0 минут</value>
   </data>
-  <data name="AddTask">
+  <data name="AddTask" xml:space="preserve">
     <value>Добавить задачу</value>
   </data>
-  <data name="NearbyRadiusSetting3">
+  <data name="NearbyRadiusSetting3" xml:space="preserve">
     <value>8 километров</value>
   </data>
-  <data name="NearbyRadiusSetting1">
+  <data name="NearbyRadiusSetting1" xml:space="preserve">
     <value>1,5 километра</value>
   </data>
-  <data name="NearbyRadiusSetting2">
+  <data name="NearbyRadiusSetting2" xml:space="preserve">
     <value>3 километра</value>
   </data>
-  <data name="NearbyRadiusSetting4">
+  <data name="NearbyRadiusSetting4" xml:space="preserve">
     <value>16 километров</value>
   </data>
-  <data name="NearbyRadiusSetting5">
+  <data name="NearbyRadiusSetting5" xml:space="preserve">
     <value>32 километра</value>
   </data>
-  <data name="WorkingOffline">
+  <data name="WorkingOffline" xml:space="preserve">
     <value>Milkman работает в автономном режиме</value>
   </data>
-  <data name="Error">
+  <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
   </data>
-  <data name="NearbyRadiusSetting">
+  <data name="NearbyRadiusSetting" xml:space="preserve">
     <value>Радиус приближенности</value>
   </data>
-  <data name="NetworkConnectionDialog">
+  <data name="NetworkConnectionDialog" xml:space="preserve">
     <value>Произошла ошибка при попытке связаться с серверами Remember The Milk. Подключены ли вы к сети?</value>
   </data>
-  <data name="NetworkConnectionDialogTitle">
+  <data name="NetworkConnectionDialogTitle" xml:space="preserve">
     <value>Ошибка связи с сервером</value>
   </data>
-  <data name="OfflineConnectionDialog">
+  <data name="OfflineConnectionDialog" xml:space="preserve">
     <value>В настоящее время нет активного подключения к сети. Вы бы хотели перейти в автономный режим для этой сессии?</value>
   </data>
-  <data name="OfflineConnectionDialogTitle">
+  <data name="OfflineConnectionDialogTitle" xml:space="preserve">
     <value>Сетевое подключение недоступно</value>
   </data>
-  <data name="AddTaskLower">
+  <data name="AddTaskLower" xml:space="preserve">
     <value>добавить задачу</value>
   </data>
-  <data name="AddTaskUpper">
+  <data name="AddTaskUpper" xml:space="preserve">
     <value>ДОБАВИТЬ  ЗАДАЧУ</value>
   </data>
-  <data name="IgnorePrioritySetting">
+  <data name="IgnorePrioritySetting" xml:space="preserve">
     <value>Игнорировать приоритет при сортировке задач</value>
   </data>
-  <data name="AddTaskDialogSetting">
+  <data name="AddTaskDialogSetting" xml:space="preserve">
     <value>Использовать Smart Add для добавления задачи</value>
   </data>
-  <data name="TagsLower">
+  <data name="TagsLower" xml:space="preserve">
     <value>теги</value>
   </data>
-  <data name="TagsUpper">
+  <data name="TagsUpper" xml:space="preserve">
     <value>ТЕГИ</value>
   </data>
-  <data name="ListUpper">
+  <data name="ListUpper" xml:space="preserve">
     <value>СПИСКИ</value>
   </data>
-  <data name="Lists">
+  <data name="Lists" xml:space="preserve">
     <value>Списки</value>
   </data>
-  <data name="ListsLower">
+  <data name="ListsLower" xml:space="preserve">
     <value>списки</value>
   </data>
-  <data name="EmptyDashboardLists">
+  <data name="EmptyDashboardLists" xml:space="preserve">
     <value>У вас нет списков для отображения.</value>
   </data>
-  <data name="EmptyDashboardTags">
+  <data name="EmptyDashboardTags" xml:space="preserve">
     <value>У вас нет тегов для отображения.</value>
   </data>
-  <data name="NoLower">
+  <data name="NoLower" xml:space="preserve">
     <value>нет</value>
   </data>
-  <data name="YesLower">
+  <data name="YesLower" xml:space="preserve">
     <value>да</value>
   </data>
-  <data name="UpToDate">
+  <data name="UpToDate" xml:space="preserve">
     <value>Milkman актуальна</value>
   </data>
-  <data name="RegistrationDialogTitle">
+  <data name="RegistrationDialogTitle" xml:space="preserve">
     <value>Регистрация</value>
   </data>
-  <data name="RegistrationDialog">
+  <data name="RegistrationDialog" xml:space="preserve">
     <value>Milkman требуется учетная запись Remember The Milk чтобы синхронизировать ваши задачи в сети и между вашими устройствами. Создайте учетную запись и возвращайтесь к Milkman чтобы продолжить.\n\nMilkman никогда не будет хранить или передавать вашу личную информацию.</value>
   </data>
-  <data name="PostponingTasks">
+  <data name="PostponingTasks" xml:space="preserve">
     <value>Откладываю задачи...</value>
   </data>
-  <data name="OverAnHourAgo">
+  <data name="OverAnHourAgo" xml:space="preserve">
     <value>более часа назад</value>
   </data>
-  <data name="MinutesAgo">
+  <data name="MinutesAgo" xml:space="preserve">
     <value>минут назад</value>
   </data>
-  <data name="LastUpdated">
+  <data name="LastUpdated" xml:space="preserve">
     <value>Последнее обновление</value>
   </data>
-  <data name="DeletingTasks">
+  <data name="DeletingTasks" xml:space="preserve">
     <value>Удаляю задачи...</value>
   </data>
-  <data name="CompletingTasks">
+  <data name="CompletingTasks" xml:space="preserve">
     <value>Завершаю задачи...</value>
   </data>
-  <data name="AuthorizationDialog">
+  <data name="AuthorizationDialog" xml:space="preserve">
     <value>Milkman необходимо разрешение на использование вашей учетной записи Remember The Milk чтобы продолжить. Войдите в свой аккаунт и нажмите кнопку Завершить для продолжения.\n\nMilkman никогда не будет хранить или передавать вашу личную информацию.</value>
   </data>
-  <data name="LiveTileNearby">
+  <data name="LiveTileNearby" xml:space="preserve">
     <value>Поблизости</value>
   </data>
-  <data name="LiveTileDueToday">
+  <data name="LiveTileDueToday" xml:space="preserve">
     <value>На сегодня</value>
   </data>
-  <data name="LiveTileMoreDueToday">
+  <data name="LiveTileMoreDueToday" xml:space="preserve">
     <value>еще на сегодня</value>
   </data>
-  <data name="LiveTileMoreNearby">
+  <data name="LiveTileMoreNearby" xml:space="preserve">
     <value>еще поблизости</value>
   </data>
   <data name="DonateDialog" xml:space="preserve">

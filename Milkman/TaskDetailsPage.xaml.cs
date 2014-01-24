@@ -104,12 +104,12 @@ namespace Milkman
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                App.PromptForMarketplaceReview();
-
                 sFirstLaunch = true;
             }
 
             LoadData();
+
+            App.CheckTimezone();
 
             base.OnNavigatedTo(e);
         }

@@ -80,8 +80,13 @@ namespace Milkman
 
             this.BuildApplicationBar();
 
-            _watcher = new GeoCoordinateWatcher();
-            _watcher.Start();
+            AppSettings settings = new AppSettings();
+
+            if (settings.LocationRemindersEnabled == true)
+            {
+                _watcher = new GeoCoordinateWatcher();
+                _watcher.Start();
+            }
         }
 
         private void BuildApplicationBar()
@@ -179,12 +184,12 @@ namespace Milkman
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                App.PromptForMarketplaceReview();
-
                 sFirstLaunch = true;
             }
 
             LoadData();
+
+            App.CheckTimezone();
 
             // check for voice command entry
             if (e.IsNavigationInitiator == false &&
@@ -288,7 +293,10 @@ namespace Milkman
 
             Deployment.Current.Dispatcher.BeginInvoke(delegate
             {
-                NotificationsManager.SetupNotifications(_watcher.Position.Location);
+                if (_watcher != null)
+                    NotificationsManager.SetupNotifications(_watcher.Position.Location);
+                else
+                    NotificationsManager.SetupNotifications(null);
             });
         }
 
@@ -813,7 +821,12 @@ namespace Milkman
                 else
                     radius = 0.0;
 
-                int count = App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).Count;
+                int count = 0;
+                
+                if (_watcher != null)
+                    count = App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius).Count;
+                else
+                    count = App.RtmClient.GetNearbyTasks(0.0, 0.0, radius).Count;
 
                 if (count == 0)
                     target.Text = Strings.HubTileEmpty;
@@ -962,7 +975,10 @@ namespace Milkman
                     if (this.pivLayout.SelectedIndex == 1 &&
                         MostRecentTaskListClick.Name.ToLower() == Strings.NearbyLower)
                     {
-                        data = LiveTileManager.RenderNearbyLiveTile(_watcher.Position.Location);
+                        if (_watcher != null)
+                            data = LiveTileManager.RenderNearbyLiveTile(_watcher.Position.Location);
+                        else
+                            data = LiveTileManager.RenderNearbyLiveTile(null);
 
                         ShellTile.Create(new Uri("/TaskListByLocationPage.xaml?id=" + MostRecentTaskListClick.Id, UriKind.Relative), data, true);
                     }

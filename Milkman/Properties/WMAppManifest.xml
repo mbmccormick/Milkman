@@ -8,17 +8,15 @@
     <Language code="fr-FR" />
     <Language code="de-DE" />
   </Languages>
-  <App xmlns="" ProductID="{39713eb4-d173-46ee-932a-0d49bd2eb3c1}" Title="Milkman" RuntimeType="Silverlight" Version="3.3.0.0" Genre="apps.normal" Author="Matt McCormick" Description="Remember The Milk for Windows Phone" Publisher="Matt McCormick" BitsPerPixel="32" PublisherID="{99bc19ba-5660-436e-a3d8-7e7fc12151b8}">
+  <App xmlns="" ProductID="{39713eb4-d173-46ee-932a-0d49bd2eb3c1}" Title="Milkman" RuntimeType="Silverlight" Version="3.3.11.0" Genre="apps.normal" Author="Matt McCormick" Description="Remember The Milk for Windows Phone" Publisher="Matt McCormick" BitsPerPixel="32" PublisherID="{99bc19ba-5660-436e-a3d8-7e7fc12151b8}">
     <IconPath IsRelative="true" IsResource="false">Assets/ApplicationIcon.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
-      <Capability Name="ID_CAP_IDENTITY_USER" />
       <Capability Name="ID_CAP_LOCATION" />
       <Capability Name="ID_CAP_MICROPHONE" />
       <Capability Name="ID_CAP_NETWORKING" />
-      <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
       <Capability Name="ID_CAP_SPEECH_RECOGNITION" />
+      <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
@@ -36,8 +34,12 @@
           </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\FlipCycleTileWide.png</LargeBackgroundImageURI>
+          <LargeBackContent />
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
           <DeviceLockImageURI IsRelative="true" IsResource="false">Assets\LockImage.png</DeviceLockImageURI>
-          <HasLarge>False</HasLarge>
+          <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>

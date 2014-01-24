@@ -149,5 +149,39 @@ namespace Milkman.Background.Common
                 Save();
             }
         }
+
+        public int FriendlyNearbyRadius
+        {
+            get
+            {
+                if (TaskRemindersEnabled == 0)
+                    return 1;
+                else if (TaskRemindersEnabled == 1)
+                    return 2;
+                else if (TaskRemindersEnabled == 2)
+                    return 5;
+                else if (TaskRemindersEnabled == 3)
+                    return 10;
+                else
+                    return 0;
+            }
+        }
+
+        public int FriendlyReminderInterval
+        {
+            get
+            {
+                if (TaskRemindersEnabled == 0)
+                    return 0;
+                else if (TaskRemindersEnabled == 1)
+                    return 30;
+                else if (TaskRemindersEnabled == 2)
+                    return 60;
+                else if (TaskRemindersEnabled == 3)
+                    return 120;
+                else
+                    return 0;
+            }
+        }
     }
 }

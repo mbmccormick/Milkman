@@ -634,7 +634,7 @@
     <value>Synchroniser les données automatiquement</value>
   </data>
   <data name="TaskRemindersSetting1" xml:space="preserve">
-    <value>handicapé</value>
+    <value>0 minutes</value>
   </data>
   <data name="TaskRemindersSetting3" xml:space="preserve">
     <value>1 heure</value>
@@ -798,76 +798,76 @@
   <data name="IgnorePrioritySetting" xml:space="preserve">
     <value>Ignorer la priorité lors du tri des tâches</value>
   </data>
-  <data name="AddTaskDialogSetting">
+  <data name="AddTaskDialogSetting" xml:space="preserve">
     <value>Utilisez la boîte de dialogue pour ajouter des tâches Smart Add</value>
   </data>
-  <data name="EmptyDashboardLists">
+  <data name="EmptyDashboardLists" xml:space="preserve">
     <value>Vous n&amp;#39;avez pas les listes à afficher.</value>
   </data>
-  <data name="Lists">
+  <data name="Lists" xml:space="preserve">
     <value>Listes</value>
   </data>
-  <data name="ListsLower">
+  <data name="ListsLower" xml:space="preserve">
     <value>listes</value>
   </data>
-  <data name="ListUpper">
+  <data name="ListUpper" xml:space="preserve">
     <value>LISTES</value>
   </data>
-  <data name="TagsLower">
+  <data name="TagsLower" xml:space="preserve">
     <value>balises</value>
   </data>
-  <data name="TagsUpper">
+  <data name="TagsUpper" xml:space="preserve">
     <value>BALISES</value>
   </data>
-  <data name="EmptyDashboardTags">
+  <data name="EmptyDashboardTags" xml:space="preserve">
     <value>Vous n&amp;#39;avez pas les balises à afficher.</value>
   </data>
-  <data name="NoLower">
+  <data name="NoLower" xml:space="preserve">
     <value>ne</value>
   </data>
-  <data name="YesLower">
+  <data name="YesLower" xml:space="preserve">
     <value>oui</value>
   </data>
-  <data name="UpToDate">
+  <data name="UpToDate" xml:space="preserve">
     <value>Milkman está actualizado</value>
   </data>
-  <data name="RegistrationDialogTitle">
+  <data name="RegistrationDialogTitle" xml:space="preserve">
     <value>Enregistrement</value>
   </data>
-  <data name="PostponingTasks">
+  <data name="PostponingTasks" xml:space="preserve">
     <value>Le report de les tâches...</value>
   </data>
-  <data name="RegistrationDialog">
+  <data name="RegistrationDialog" xml:space="preserve">
     <value>Milkman requiert un compte de Remember The Milk pour synchroniser vos tâches sur le web et sur l'ensemble de vos appareils. Créer un compte et retour au laitier à continue.\n\nMilkman ne sera jamais stocker ou partager vos renseignements personnels.</value>
   </data>
-  <data name="OverAnHourAgo">
+  <data name="OverAnHourAgo" xml:space="preserve">
     <value>plus d'une heure il y a</value>
   </data>
-  <data name="MinutesAgo">
+  <data name="MinutesAgo" xml:space="preserve">
     <value>Il y a</value>
   </data>
-  <data name="LastUpdated">
+  <data name="LastUpdated" xml:space="preserve">
     <value>Dernière mise à jour</value>
   </data>
-  <data name="DeletingTasks">
+  <data name="DeletingTasks" xml:space="preserve">
     <value>Suppression de les tâches...</value>
   </data>
-  <data name="CompletingTasks">
+  <data name="CompletingTasks" xml:space="preserve">
     <value>Fin de tâches...</value>
   </data>
-  <data name="AuthorizationDialog">
+  <data name="AuthorizationDialog" xml:space="preserve">
     <value>Milkman a besoin de la permission d'utiliser votre compte de Remember The Milk pour continuer. Connectez-vous à votre compte et le robinet le bouton complet à continue.\n\nMilkman ne sera jamais stocker ou partager vos renseignements personnels.</value>
   </data>
-  <data name="LiveTileNearby">
+  <data name="LiveTileNearby" xml:space="preserve">
     <value>Proche</value>
   </data>
-  <data name="LiveTileDueToday">
+  <data name="LiveTileDueToday" xml:space="preserve">
     <value>En raison aujourd'hui</value>
   </data>
-  <data name="LiveTileMoreDueToday">
+  <data name="LiveTileMoreDueToday" xml:space="preserve">
     <value>plus raison aujourd'hui</value>
   </data>
-  <data name="LiveTileMoreNearby">
+  <data name="LiveTileMoreNearby" xml:space="preserve">
     <value>plus proche</value>
   </data>
   <data name="DonateDialog" xml:space="preserve">

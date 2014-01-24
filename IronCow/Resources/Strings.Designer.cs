@@ -2086,7 +2086,7 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to disabled.
+        ///   Looks up a localized string similar to 0 minutes.
         /// </summary>
         public static string TaskRemindersSetting1 {
             get {
@@ -2154,6 +2154,26 @@ namespace IronCow.Resources {
         public static string TimeSingle {
             get {
                 return ResourceManager.GetString("TimeSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The timezone on your Remember The Milk account does not match the timezone that your phone is set to. This may cause problems with due dates and reminders..
+        /// </summary>
+        public static string TimezoneMismatchDialog {
+            get {
+                return ResourceManager.GetString("TimezoneMismatchDialog", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to The timezone on your Remember The Milk account does not match the timezone that your phone is set to. This may cause problems with due dates and reminders..
+        /// </summary>
+        public static string TimezoneMismatchDialogTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("TimezoneMismatchDialogTitle", resourceCulture);
             }
         }
         

@@ -12,7 +12,7 @@
               AppPublisherLabel="Traduttore:"
               AppVersionLabel="Versione:"
               AppAdditionalNotesLabel="Note aggiuntive:"
-              AppReviewButtonContent="Vota questa applicazione!">
+              AppReviewButtonContent="vota questa applicazione">
       <Links>
         <Link NavigateUri="http://mbmccormick.com"
               Content="http://mbmccormick.com"

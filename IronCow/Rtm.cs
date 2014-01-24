@@ -40,6 +40,7 @@ namespace IronCow
         public event ResponseCallback CacheTasksEvent;
         public event ResponseCallback CacheListsEvent;
         public event ResponseCallback CacheLocationsEvent;
+        public event ResponseCallback CacheUserSettingsEvent;
 
         #endregion
 
@@ -55,7 +56,7 @@ namespace IronCow
 
         public void SyncEverything(SyncCallback callback)
         {
-            SyncUserSettings(() =>
+            CacheUserSettings(() =>
             {
                 CacheLocations(() =>
                 {
@@ -377,6 +378,30 @@ namespace IronCow
                         }
                     }
                 });
+            }
+        }
+        #endregion
+
+        #region Settings
+        public void CacheUserSettings(VoidCallback callback)
+        {
+            GetResponse("rtm.settings.getList", response =>
+            {
+                LoadUserSettingsFromResponse(response);
+
+                if (CacheUserSettingsEvent != null)
+                    CacheUserSettingsEvent(response);
+
+                callback();
+            });
+        }
+
+        public void LoadUserSettingsFromResponse(Response response)
+        {
+            if (response.Settings != null)
+            {
+                UserSettings temp = new IronCow.UserSettings(response.Settings);
+                System.Threading.Interlocked.Exchange(ref mUserSettings, temp);
             }
         }
         #endregion

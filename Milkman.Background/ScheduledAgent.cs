@@ -5,6 +5,7 @@ using System;
 using System.Device.Location;
 using System.Net;
 using System.Windows;
+using System.Reflection;
 
 namespace Milkman.Background
 {
@@ -34,6 +35,10 @@ namespace Milkman.Background
             {
                 // ignore these exceptions
             }
+            else if (e.ExceptionObject is TargetInvocationException)
+            {
+                // ignore these exceptions
+            }
             else
             {
                 LittleWatson.ReportException(e.ExceptionObject, null);
@@ -45,6 +50,8 @@ namespace Milkman.Background
             {
                 System.Diagnostics.Debugger.Break();
             }
+
+            NotifyComplete();
         }
 
         GeoCoordinateWatcher _watcher = null;
@@ -75,8 +82,6 @@ namespace Milkman.Background
                     if (System.Diagnostics.Debugger.IsAttached)
                         ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
-                    App.SaveData();
-
                     NotifyComplete();
                 });
             }
@@ -95,6 +100,8 @@ namespace Milkman.Background
         {
             Deployment.Current.Dispatcher.BeginInvoke(delegate
             {
+                App.SaveData();
+
                 if (_watcher != null)
                     NotificationsManager.SetupNotifications(_watcher.Position.Location);
                 else

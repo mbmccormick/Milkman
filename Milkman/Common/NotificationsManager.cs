@@ -27,90 +27,18 @@ namespace Milkman.Common
             if (System.Diagnostics.Debugger.IsAttached)
                 ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
-            // remove existing reminders
-            ResetReminders();
-
-            // setup task reminders
-            if (settings.TaskRemindersEnabled > 0)
+            // ping notifications server
+            if (location != null)
             {
-                UpdateReminders();
+                App.AcquirePushChannel(location.Latitude, location.Longitude); 
+            }
+            else
+            {
+                App.AcquirePushChannel(0.0, 0.0);
             }
 
             // update live tiles
             UpdateLiveTiles(location);
-        }
-
-        public static void ClearNotifications()
-        {
-            ResetReminders();
-            ResetLiveTiles();
-        }
-
-        public static void UpdateReminders()
-        {
-            AppSettings settings = new AppSettings();
-
-            double interval;
-            if (settings.TaskRemindersEnabled == 1)
-                interval = -0.5;
-            else if (settings.TaskRemindersEnabled == 2)
-                interval = -1.0;
-            else if (settings.TaskRemindersEnabled == 3)
-                interval = -2.0;
-            else
-                interval = -1.0;
-
-            // create new reminders
-            if (App.RtmClient.TaskLists != null)
-            {
-                foreach (TaskList l in App.RtmClient.TaskLists)
-                {
-                    if (l.IsSmart == false &&
-                        l.Tasks != null)
-                    {
-                        foreach (Task t in l.Tasks)
-                        {
-                            if (t.HasDueTime &&
-                                t.DueDateTime.Value.AddHours(interval) >= DateTime.Now)
-                            {
-                                Reminder r = new Reminder(t.Id);
-
-                                if (t.Name.Length > 63)
-                                    r.Title = t.Name.Substring(0, 60) + "...";
-                                else
-                                    r.Title = t.Name;
-
-                                r.Content = Strings.TaskReminderPrefix + " " + t.FriendlyDueDate.Replace(Strings.Due + " ", "") + ".";
-                                r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
-                                r.BeginTime = t.DueDateTime.Value.AddHours(interval);
-
-                                try
-                                {
-                                    ScheduledActionService.Add(r);
-                                }
-                                catch (Exception ex)
-                                {
-                                    // do nothing
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        public static void ResetReminders()
-        {
-            try
-            {
-                // delete all existing reminders
-                foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                    ScheduledActionService.Remove(item.Name);
-            }
-            catch (Exception ex)
-            {
-                // do nothing
-            }
         }
 
         public static void UpdateLiveTiles(GeoCoordinate location)
@@ -161,10 +89,13 @@ namespace Milkman.Common
             {
                 if (tile.NavigationUri.ToString() == "/")
                 {
-                    StandardTileData data = new StandardTileData();
+                    FlipTileData data = new FlipTileData();
 
-                    data.BackTitle = "";
-                    data.BackContent = "";
+                    data.BackgroundImage = new Uri("/Assets/FlipCycleTileMedium.png", UriKind.Relative);
+                    data.SmallBackgroundImage = new Uri("/Assets/FlipCycleTileSmall.png", UriKind.Relative);
+                    data.WideBackgroundImage = new Uri("/Assets/FlipCycleTileWide.png", UriKind.Relative);
+                    data.Title = Strings.Milkman;
+                    data.Count = 0;
 
                     tile.Update(data);
                 }

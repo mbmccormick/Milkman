@@ -5,7 +5,7 @@
     
     Version 2.0
     
-    The primary goals of this format is to allow a simple XML format
+    The primary goals of this format is to allow a simple XML format 
     that is mostly human readable. The generation and parsing of the 
     various data types are done through the TypeConverter classes 
     associated with the data types.
@@ -718,7 +718,7 @@
     <value>Erinnere mich bevor diese Aufgabe fällig ist</value>
   </data>
   <data name="TaskRemindersSetting1" xml:space="preserve">
-    <value>Ausgeschaltet</value>
+    <value>0 Minuten</value>
   </data>
   <data name="TaskRemindersSetting2" xml:space="preserve">
     <value>30 Minuten</value>
@@ -801,73 +801,73 @@
   <data name="WorkingOffline" xml:space="preserve">
     <value>Milkman ist im Offline-Modus</value>
   </data>
-  <data name="AddTaskDialogSetting">
+  <data name="AddTaskDialogSetting" xml:space="preserve">
     <value>Den Smart Add Dialog zum Hinzufügen von Aufgaben verwenden</value>
   </data>
-  <data name="EmptyDashboardLists">
+  <data name="EmptyDashboardLists" xml:space="preserve">
     <value>Du hast keine Listen zum Anzeigen.</value>
   </data>
-  <data name="Lists">
+  <data name="Lists" xml:space="preserve">
     <value>Listen</value>
   </data>
-  <data name="ListsLower">
+  <data name="ListsLower" xml:space="preserve">
     <value>Listen</value>
   </data>
-  <data name="ListUpper">
+  <data name="ListUpper" xml:space="preserve">
     <value>LISTEN</value>
   </data>
-  <data name="EmptyDashboardTags">
+  <data name="EmptyDashboardTags" xml:space="preserve">
     <value>Du hast keine Tags zum Anzeigen.</value>
   </data>
-  <data name="TagsLower">
+  <data name="TagsLower" xml:space="preserve">
     <value>Tags</value>
   </data>
-  <data name="TagsUpper">
+  <data name="TagsUpper" xml:space="preserve">
     <value>TAGS</value>
   </data>
-  <data name="NoLower">
+  <data name="NoLower" xml:space="preserve">
     <value>Nein</value>
   </data>
-  <data name="YesLower">
+  <data name="YesLower" xml:space="preserve">
     <value>ja</value>
   </data>
-  <data name="UpToDate">
+  <data name="UpToDate" xml:space="preserve">
     <value>Milkman ist auf dem neuesten Stand</value>
   </data>
-  <data name="RegistrationDialogTitle">
+  <data name="RegistrationDialogTitle" xml:space="preserve">
     <value>Registrierung</value>
   </data>
-  <data name="RegistrationDialog">
+  <data name="RegistrationDialog" xml:space="preserve">
     <value>Milkman erfordert einen Remember The Milk-Account um deine Aufgaben auf allen Geräten zu synchronisieren. Erstell dir jetzt dein kostenloses Benutzerkonto.\n\nMilkman speichert keinerlei persönliche Informationen.</value>
   </data>
-  <data name="PostponingTasks">
+  <data name="PostponingTasks" xml:space="preserve">
     <value>Aufgaben werden aufgeschoben...</value>
   </data>
-  <data name="OverAnHourAgo">
+  <data name="OverAnHourAgo" xml:space="preserve">
     <value>über einer Stunde</value>
   </data>
-  <data name="MinutesAgo">
+  <data name="MinutesAgo" xml:space="preserve">
     <value>Minuten</value>
   </data>
-  <data name="LastUpdated">
+  <data name="LastUpdated" xml:space="preserve">
     <value>Letzte Aktualisierung vor</value>
   </data>
-  <data name="DeletingTasks">
+  <data name="DeletingTasks" xml:space="preserve">
     <value>Lösche Aufgaben...</value>
   </data>
-  <data name="CompletingTasks">
+  <data name="CompletingTasks" xml:space="preserve">
     <value>Erledige Aufgaben...</value>
   </data>
-  <data name="LiveTileNearby">
+  <data name="LiveTileNearby" xml:space="preserve">
     <value>In der Nähe</value>
   </data>
-  <data name="LiveTileDueToday">
+  <data name="LiveTileDueToday" xml:space="preserve">
     <value>Heute fällig</value>
   </data>
-  <data name="LiveTileMoreDueToday">
+  <data name="LiveTileMoreDueToday" xml:space="preserve">
     <value>Mehr heute fällig</value>
   </data>
-  <data name="LiveTileMoreNearby">
+  <data name="LiveTileMoreNearby" xml:space="preserve">
     <value>weitere in der Nähe</value>
   </data>
   <data name="DonateDialog" xml:space="preserve">

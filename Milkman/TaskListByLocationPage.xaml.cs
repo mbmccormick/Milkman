@@ -94,13 +94,16 @@ namespace Milkman
             InitializeComponent();
 
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
-            
-            TiltEffect.TiltableItems.Add(typeof(LongListMultiSelectorItem));
 
             this.BuildApplicationBar();
 
-            _watcher = new GeoCoordinateWatcher();
-            _watcher.Start();
+            AppSettings settings = new AppSettings();
+
+            if (settings.LocationRemindersEnabled == true)
+            {
+                _watcher = new GeoCoordinateWatcher();
+                _watcher.Start();
+            }
         }
 
         private void BuildApplicationBar()
@@ -199,12 +202,12 @@ namespace Milkman
             {
                 LittleWatson.CheckForPreviousException(true);
 
-                App.PromptForMarketplaceReview();
-
                 sFirstLaunch = true;
             }
 
             LoadData();
+
+            App.CheckTimezone();
 
             base.OnNavigatedTo(e);
         }
@@ -262,7 +265,10 @@ namespace Milkman
 
             Deployment.Current.Dispatcher.BeginInvoke(delegate
             {
-                NotificationsManager.SetupNotifications(_watcher.Position.Location);
+                if (_watcher != null)
+                    NotificationsManager.SetupNotifications(_watcher.Position.Location);
+                else
+                    NotificationsManager.SetupNotifications(null);
             });
         }
 
