@@ -209,7 +209,10 @@ namespace Milkman
 
             LoadData();
 
-            App.CheckTimezone();
+            if (e.IsNavigationInitiator == false)
+            {
+                App.CheckTimezone();
+            }
 
             base.OnNavigatedTo(e);
         }

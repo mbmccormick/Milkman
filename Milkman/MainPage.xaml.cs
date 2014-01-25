@@ -189,7 +189,10 @@ namespace Milkman
 
             LoadData();
 
-            App.CheckTimezone();
+            if (e.IsNavigationInitiator == false)
+            {
+                App.CheckTimezone();
+            }
 
             // check for voice command entry
             if (e.IsNavigationInitiator == false &&
