@@ -303,11 +303,18 @@ namespace Milkman
 
         public static void CheckTimezone()
         {
-            string rtmTimezone = OlsonTimeZoneToTimeZoneInfo(App.RtmClient.UserSettings.TimeZone);
-
-            if (rtmTimezone != TimeZoneInfo.Local.StandardName)
+            try
             {
-                MessageBox.Show(Strings.TimezoneMismatchDialog, Strings.TimezoneMismatchDialogTitle, MessageBoxButton.OK);
+                string rtmTimezone = OlsonTimeZoneToTimeZoneInfo(App.RtmClient.UserSettings.TimeZone);
+
+                if (rtmTimezone != TimeZoneInfo.Local.StandardName)
+                {
+                    MessageBox.Show(Strings.TimezoneMismatchDialog, Strings.TimezoneMismatchDialogTitle, MessageBoxButton.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                // do nothing
             }
         }
 
