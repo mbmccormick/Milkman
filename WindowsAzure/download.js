@@ -35,13 +35,36 @@ function Download() {
                 var registrationsTable = tables.getTable('Registrations');
                 registrationsTable.read({
                     success: function (registrations) {
-                        registrations.forEach(function (registration) {
+                        var currentRegistrations = partitionGroupsByMinute(registrations);
+                        currentRegistrations.forEach(function (registration) {
                             getUserSettings(registration, timezones);
                         });
                     }
                 });
             }
         });
+    }
+
+    function partitionGroupsByMinute(registrations) {
+        var size = 60;
+        var partitions = [];
+
+        for (var i = 0; i < 60; i++) {
+            partitions[i] = [];
+        }
+
+        var index = 0;
+        registrations.forEach(function (registration) {
+            partitions[index].push(registration);
+            index++;
+
+            if (index == 60) index = 0;
+        });
+
+        var now = new Date();
+        var minute = now.getMinutes();
+
+        return partitions[minute];
     }
 
     function getUserSettings(registration, timezones) {
