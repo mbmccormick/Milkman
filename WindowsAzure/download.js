@@ -1,54 +1,10 @@
-function Reminders() {
+function Download() {
     var RtmApiKey = "09b03090fc9303804aedd945872fdefc";
     var RtmSharedKey = "d2ffaf49356b07f9";
 
-    var registrationsTable = tables.getTable('Registrations');
-    registrationsTable.read({
-        success: function (registrations) {
-            registrations.forEach(function (registration) {
-                processRegistration(registration);
-            });
-        }
-    });
+    getTimezones();
 
-    function processRegistration(registration) {
-        getTimezone(registration);
-    }
-
-    function getTimezone(registration) {
-        var httpRequest = require('request');
-
-        var url = "https://api.rememberthemilk.com/services/rest/?method=rtm.settings.getList&api_key=" + RtmApiKey + "&format=json&auth_token=" + registration.authenticationToken;
-
-        var params = RtmSharedKey + "api_key" + RtmApiKey + "auth_token" + registration.authenticationToken + "format" + "json" + "method" + "rtm.settings.getList";
-
-        var crypto = require('crypto');
-        var signature = crypto.createHash('md5').update(params).digest('hex');
-
-        url = url + "&api_sig=" + signature;
-
-        httpRequest.get({
-            url: url
-        },
-        function (err, response, body) {
-            if (err) {
-                console.error("Unable to connect to RTM:", response);
-            }
-            else if (response.statusCode != 200) {
-                console.error("Error communicating with RTM:", response);
-            }
-            else {
-                // console.log("Request succeeded:", body);
-
-                var data = JSON.parse(body);
-                var timezone = data.rsp.settings.timezone;
-
-                getTimezoneOffset(registration, timezone);
-            }
-        });
-    }
-
-    function getTimezoneOffset(registration, timezone) {
+    function getTimezones() {
         var httpRequest = require('request');
 
         var url = "https://api.rememberthemilk.com/services/rest/?method=rtm.timezones.getList&api_key=" + RtmApiKey + "&format=json";
@@ -76,6 +32,46 @@ function Reminders() {
                 var data = JSON.parse(body);
                 var timezones = data.rsp.timezones.timezone;
 
+                var registrationsTable = tables.getTable('Registrations');
+                registrationsTable.read({
+                    success: function (registrations) {
+                        registrations.forEach(function (registration) {
+                            getUserSettings(registration, timezones);
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    function getUserSettings(registration, timezones) {
+        var httpRequest = require('request');
+
+        var url = "https://api.rememberthemilk.com/services/rest/?method=rtm.settings.getList&api_key=" + RtmApiKey + "&format=json&auth_token=" + registration.authenticationToken;
+
+        var params = RtmSharedKey + "api_key" + RtmApiKey + "auth_token" + registration.authenticationToken + "format" + "json" + "method" + "rtm.settings.getList";
+
+        var crypto = require('crypto');
+        var signature = crypto.createHash('md5').update(params).digest('hex');
+
+        url = url + "&api_sig=" + signature;
+
+        httpRequest.get({
+            url: url
+        },
+        function (err, response, body) {
+            if (err) {
+                console.error("Unable to connect to RTM:", response);
+            }
+            else if (response.statusCode != 200) {
+                console.error("Error communicating with RTM:", response);
+            }
+            else {
+                // console.log("Request succeeded:", body);
+
+                var data = JSON.parse(body);
+                var timezone = data.rsp.settings.timezone;
+
                 timezones.forEach(function (item) {
                     if (item.name == timezone) {
                         getTasks(registration, item.current_offset);
@@ -83,7 +79,7 @@ function Reminders() {
                 });
             }
         });
-    }
+    }    
 
     function getTasks(registration, timezoneOffset) {
         var httpRequest = require('request');
@@ -127,13 +123,9 @@ function Reminders() {
                                     var dueDateTime = new Date(item2.task.due);
                                     var localDueDateTime = new Date(dueDateTime.getTime() + timezoneOffset * 1000);
 
-                                    var start = new Date(now.getTime() + reminderInterval - 60000);
-                                    var end = new Date(now.getTime() + reminderInterval);
-
-                                    if (dueDateTime > start &&
-                                        dueDateTime <= end) {
+                                    if (now < dueDateTime) {
                                         var dueTime = formatDateTime(localDueDateTime);
-                                        sendToastNotification(registration, item2.name, "This task is due at " + dueTime + " today.");
+                                        insertReminder(registration, item2, item2.name, "This task is due at " + dueTime + " today.", dueDateTime);
                                     }
                                 }
                             });
@@ -144,13 +136,9 @@ function Reminders() {
                                 var dueDateTime = new Date(tasks.task.due);
                                 var localDueDateTime = new Date(dueDateTime.getTime() + timezoneOffset * 1000);
 
-                                var start = new Date(now.getTime() + reminderInterval - 60000);
-                                var end = new Date(now.getTime() + reminderInterval);
-
-                                if (dueDateTime > start &&
-                                    dueDateTime <= end) {
+                                if (now < dueDateTime) {
                                     var dueTime = formatDateTime(localDueDateTime);
-                                    sendToastNotification(registration, tasks.name, "This task is due at " + dueTime + " today.");
+                                    insertReminder(registration, tasks, tasks.name, "This task is due at " + dueTime + " today.", dueDateTime);
                                 }
                             }
                         }
@@ -189,14 +177,40 @@ function Reminders() {
         return hour + ":" + minutes + ampm;
     }
 
-    function sendToastNotification(registration, text1, text2) {
-        push.mpns.sendToast(registration.handle, {
+    function insertReminder(registration, data, text1, text2, dueDateTime) {
+        var remindersTable = tables.getTable('Reminders');
+        remindersTable.insert({
+            id: data.id,
             text1: text1,
-            text2: text2
+            text2: text2,
+            dueDateTime: dueDateTime,
+            registrationId: registration.id
         },
         {
-            success: function (pushResponse) {
-                console.log("Sent push:", pushResponse);
+            success: function (reminders) {
+                // console.log("Record inserted.", reminders);
+            },
+            error: function (reminders) {
+                updateReminder(registration, data, text1, text2, dueDateTime);
+            }
+        });
+    }
+
+    function updateReminder(registration, data, text1, text2, dueDateTime) {
+        var remindersTable = tables.getTable('Reminders');
+        remindersTable.update({
+            id: data.id,
+            text1: text1,
+            text2: text2,
+            dueDateTime: dueDateTime,
+            registrationId: registration.id
+        },
+        {
+            success: function (reminders) {
+                // console.log("Record updated.", reminders);
+            },
+            error: function (reminders) {
+                console.error('Could not insert or update record.', reminders);
             }
         });
     }
