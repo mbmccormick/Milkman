@@ -1,19 +1,10 @@
-function Locations() {
+function update(registration, user, request) {
     var RtmApiKey = "09b03090fc9303804aedd945872fdefc";
     var RtmSharedKey = "d2ffaf49356b07f9";
 
-    var registrationsTable = tables.getTable('Registrations');
-    registrationsTable.read({
-        success: function (registrations) {
-            registrations.forEach(function (registration) {
-                processRegistration(registration);
-            });
-        }
-    });
+    getLocations(registration);
 
-    function processRegistration(registration) {
-        getLocations(registration);
-    }
+    request.execute();
 
     function getLocations(registration) {
         var httpRequest = require('request');
@@ -53,7 +44,7 @@ function Locations() {
                             var nearbyInterval = registration.nearbyInterval;
 
                             if (distance(registration.latitude, registration.longitude, item.latitude, item.longitude) <= nearbyInterval) {
-                                getTasks(registration, item.id);
+                                getTasks(registration, item.name);
                             }
                         });
                     }
