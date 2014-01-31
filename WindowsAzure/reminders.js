@@ -21,7 +21,7 @@ function Reminders() {
                     var now = new Date();
 
                     var reminderInterval = registration.reminderInterval * 60000;
-                    var start = new Date(now.getTime() + reminderInterval - 60000);
+                    var start = new Date(now.getTime() + reminderInterval - 30000);
 
                     if (start >= reminder.dueDateTime) {
                         sendToastNotification(registration, reminder.text1, reminder.text2);
