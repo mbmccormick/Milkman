@@ -146,7 +146,7 @@ function Download() {
                                     var dueDateTime = new Date(item2.task.due);
                                     var localDueDateTime = new Date(dueDateTime.getTime() + timezoneOffset * 1000);
 
-                                    var start = new Date(now.getTime() + reminderInterval - 60000);
+                                    var start = new Date(now.getTime() + reminderInterval - 30000);
 
                                     if (start < dueDateTime) {
                                         var dueTime = formatDateTime(localDueDateTime);
@@ -161,7 +161,7 @@ function Download() {
                                 var dueDateTime = new Date(tasks.task.due);
                                 var localDueDateTime = new Date(dueDateTime.getTime() + timezoneOffset * 1000);
 
-                                var start = new Date(now.getTime() + reminderInterval - 60000);
+                                var start = new Date(now.getTime() + reminderInterval - 30000);
 
                                 if (start < dueDateTime) {
                                     var dueTime = formatDateTime(localDueDateTime);
