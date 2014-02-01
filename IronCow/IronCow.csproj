@@ -114,11 +114,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.it-IT.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\Strings1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\StringsProvider.cs">
       <SubType>Code</SubType>
     </Compile>
