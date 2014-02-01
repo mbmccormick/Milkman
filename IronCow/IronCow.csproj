@@ -114,6 +114,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.it-IT.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Strings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\StringsProvider.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -212,6 +217,7 @@
     <EmbeddedResource Include="Resources\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Strings1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.ru-RU.resx">
       <SubType>Designer</SubType>
