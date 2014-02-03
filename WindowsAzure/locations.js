@@ -89,12 +89,14 @@ function update(registration, user, request) {
                 // console.log("Request succeeded:", body);
 
                 var data = JSON.parse(body);
-                var lists = data.rsp.tasks.list;
-
-                if (lists !== undefined) {
+                
+                if (data.rsp.tasks !== undefined &&
+                    data.rsp.tasks.list !== undefined) {
+                    var lists = data.rsp.tasks.list;
+    
                     lists.forEach(function (item1) {
                         var tasks = item1.taskseries;
-
+    
                         try {
                             tasks.forEach(function (item2) {
                                 sendToastNotification(registration, item2.name, "This task is nearby.");
