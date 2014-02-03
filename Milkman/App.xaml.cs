@@ -40,18 +40,7 @@ namespace Milkman
             "https://milkman.azure-mobile.net/",
             "dSiXpghIVfinlEYGqpGROOvclqFWnl56"
         );
-
-        public static string VersionNumber
-        {
-            get
-            {
-                string assembly = System.Reflection.Assembly.GetExecutingAssembly().FullName;
-                string[] version = assembly.Split('=')[1].Split(',')[0].Split('.');
-
-                return version[0] + "." + version[1];
-            }
-        }
-
+        
         public static string ExtendedVersionNumber
         {
             get
