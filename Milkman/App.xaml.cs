@@ -17,6 +17,7 @@ using System.Net.Http;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Navigation;
+using System.Windows.Threading;
 using Windows.Phone.Speech.VoiceCommands;
 
 namespace Milkman
@@ -752,6 +753,8 @@ namespace Milkman
                 if (CurrentChannel == null)
                 {
                     CurrentChannel = new HttpNotificationChannel("MyPushChannel");
+                    CurrentChannel.ShellToastNotificationReceived += CurrentChannel_ShellToastNotificationReceived;
+
                     CurrentChannel.Open();
                     CurrentChannel.BindToShellToast();
                 }
@@ -799,6 +802,11 @@ namespace Milkman
             {
                 // ignore these errors
             }
+        }
+
+        private static void CurrentChannel_ShellToastNotificationReceived(object sender, NotificationEventArgs e)
+        {
+            MessageBox.Show(e.Collection["wp:Text2"], e.Collection["wp:Text1"], MessageBoxButton.OK);
         }
 
         #endregion
