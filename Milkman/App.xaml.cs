@@ -278,6 +278,10 @@ namespace Milkman
                     MessageBox.Show(ex.Message, Strings.Error + " " + ex.Code, MessageBoxButton.OK);
                 });
             }
+            else if (e.ExceptionObject is InvalidOperationException)
+            {
+                // ignore these exceptions
+            }
             else
             {
                 LittleWatson.ReportException(e.ExceptionObject, null);
