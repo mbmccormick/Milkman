@@ -24,7 +24,7 @@ function Reminders() {
                     var start = new Date(now.getTime() + reminderInterval - 30000);
 
                     if (start >= reminder.dueDateTime) {
-                        sendToastNotification(registration, reminder.text1, reminder.text2);
+                        sendToastNotification(registration, reminder.text1, reminder.text2, '/TaskDetailsPage.xaml?id=' + reminder.id);
                         deleteReminder(reminder);
                     }
                 });
@@ -41,10 +41,11 @@ function Reminders() {
         });
     }
 
-    function sendToastNotification(registration, text1, text2) {
+    function sendToastNotification(registration, text1, text2, param) {
         push.mpns.sendToast(registration.handle, {
             text1: text1,
-            text2: text2
+            text2: text2,
+            param: param
         },
         {
             success: function (pushResponse) {
