@@ -45,7 +45,7 @@ namespace Milkman.Background.Common
             }
 
             tile.Title = Strings.Milkman;
-            tile.Count = tasksOverdue.Count + tasksDueToday.Count;
+            tile.Count = tasksOverdue.Count; // + tasksDueToday.Count;
 
             FlipTileTemplate image = new FlipTileTemplate();
             string imagePath = "/Shared/ShellContent/default.png";
@@ -100,7 +100,7 @@ namespace Milkman.Background.Common
             }
 
             tile.Title = data.Name;
-            tile.Count = tasksOverdue.Count + tasksDueToday.Count;
+            tile.Count = tasksOverdue.Count; // + tasksDueToday.Count;
 
             FlipTileTemplate image = new FlipTileTemplate();
             string imagePath = "/Shared/ShellContent/" + data.Id + ".png";
@@ -160,7 +160,7 @@ namespace Milkman.Background.Common
             }
 
             tile.Title = tagName;
-            tile.Count = tasksOverdue.Count + tasksDueToday.Count;
+            tile.Count = tasksOverdue.Count; // + tasksDueToday.Count;
 
             FlipTileTemplate image = new FlipTileTemplate();
             string imagePath = "/Shared/ShellContent/" + tagName + ".png";
