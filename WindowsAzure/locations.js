@@ -2,7 +2,10 @@ function update(registration, user, request) {
     var RtmApiKey = "09b03090fc9303804aedd945872fdefc";
     var RtmSharedKey = "d2ffaf49356b07f9";
 
-    getLocations(registration);
+    if ((registration.latitude == 0.0 &&
+        registration.longitude == 0.0) == false) {
+        getLocations(registration);
+    }
 
     request.execute();
 
