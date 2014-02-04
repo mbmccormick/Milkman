@@ -107,7 +107,14 @@ namespace Milkman
                 sFirstLaunch = true;
             }
 
-            LoadData();
+            if (sFirstLaunch)
+            {
+                SyncData();
+            }
+            else
+            {
+                LoadData();
+            }
 
             if (e.IsNavigationInitiator == false)
             {
@@ -120,6 +127,19 @@ namespace Milkman
         #endregion
 
         #region Loading Data
+
+        private void SyncData()
+        {
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
+            });
+
+            App.RtmClient.SyncEverything(() =>
+            {
+                LoadData();
+            });
+        }
 
         private void LoadData()
         {

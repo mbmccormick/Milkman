@@ -158,15 +158,14 @@ namespace Milkman
             LocationsResponse = null;
             SettingsResponse = null;
 
+            App.DeletePushChannel();
+
             RtmClient.Resources = App.Current.Resources;
 
             NotificationsManager.ResetLiveTiles();
 
             if (ScheduledActionService.Find("BackgroundWorker") != null)
                 ScheduledActionService.Remove("BackgroundWorker");
-
-            foreach (var item in ScheduledActionService.GetActions<Microsoft.Phone.Scheduler.Reminder>())
-                ScheduledActionService.Remove(item.Name);
 
             ShellTile primaryTile = ShellTile.ActiveTiles.First();
             if (primaryTile != null)
@@ -793,9 +792,44 @@ namespace Milkman
             }
         }
 
+        public static async void DeletePushChannel()
+        {
+            try
+            {
+                CurrentChannel = HttpNotificationChannel.Find("MyPushChannel");
+                CurrentChannel.Dispose();                
+
+                IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
+
+                var existingRegistrations = await registrationsTable.Where(z => z.AuthenticationToken == App.RtmClient.AuthToken).ToCollectionAsync();
+
+                if (existingRegistrations.Count > 0)
+                {
+                    var registration = existingRegistrations.First();
+
+                    await registrationsTable.DeleteAsync(registration);
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                // ignore these errors
+            }
+            catch (HttpRequestException ex)
+            {
+                // ignore these errors
+            }
+            catch (MobileServiceInvalidOperationException ex)
+            {
+                // ignore these errors
+            }
+        }
+
         private static void CurrentChannel_ShellToastNotificationReceived(object sender, NotificationEventArgs e)
         {
-            MessageBox.Show(e.Collection["wp:Text2"], e.Collection["wp:Text1"], MessageBoxButton.OK);
+            SmartDispatcher.BeginInvoke(() =>
+            {
+                MessageBox.Show(e.Collection["wp:Text2"], e.Collection["wp:Text1"], MessageBoxButton.OK);
+            });
         }
 
         #endregion
