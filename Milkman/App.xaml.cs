@@ -741,11 +741,12 @@ namespace Milkman
                 if (CurrentChannel == null)
                 {
                     CurrentChannel = new HttpNotificationChannel("MyPushChannel");
-                    CurrentChannel.ShellToastNotificationReceived += CurrentChannel_ShellToastNotificationReceived;
 
                     CurrentChannel.Open();
                     CurrentChannel.BindToShellToast();
                 }
+                
+                CurrentChannel.ShellToastNotificationReceived += CurrentChannel_ShellToastNotificationReceived;
 
                 IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
 
