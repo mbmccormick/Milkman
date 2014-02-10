@@ -25,618 +25,618 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 <data name="About" xml:space="preserve">
-	<value>Über</value>
+	<value>About</value>
 </data>
 <data name="AboutLower" xml:space="preserve">
-	<value>Über</value>
+	<value>about</value>
 </data>
 <data name="AboutMenu" xml:space="preserve">
-	<value>Über Milkman</value>
+	<value>About Milkman</value>
 </data>
 <data name="AboutMenuLower" xml:space="preserve">
-	<value>Über Milkman</value>
+	<value>about milkman</value>
 </data>
 <data name="AboutMenuUpper" xml:space="preserve">
-	<value>ÜBER MILKMAN</value>
+	<value>ABOUT MILKMAN</value>
 </data>
 <data name="AboutUpper" xml:space="preserve">
-	<value>ÜBER</value>
+	<value>ABOUT</value>
 </data>
 <data name="AddButton" xml:space="preserve">
-	<value>Hinzufügen</value>
+	<value>add</value>
 </data>
 <data name="AddingNote" xml:space="preserve">
-	<value>Notiz anfügen…</value>
+	<value>Adding note...</value>
 </data>
 <data name="AddingTask" xml:space="preserve">
-	<value>Aufgabe hinzufügen…</value>
+	<value>Adding task...</value>
 </data>
 <data name="AddMenu" xml:space="preserve">
-	<value>Hinzufügen</value>
+	<value>Add</value>
 </data>
 <data name="AddMenuLower" xml:space="preserve">
-	<value>Hinzufügen</value>
+	<value>add</value>
 </data>
 <data name="AddMenuUpper" xml:space="preserve">
-	<value>Hinzufügen</value>
+	<value>ADD</value>
 </data>
 <data name="AddNote" xml:space="preserve">
-	<value>Notiz anfügen</value>
+	<value>Add Note</value>
 </data>
 <data name="AddNoteLower" xml:space="preserve">
-	<value>Notiz anfügen</value>
+	<value>add note</value>
 </data>
 <data name="AddNoteUpper" xml:space="preserve">
-	<value>NOTIZ ANFÜGEN</value>
+	<value>ADD NOTE</value>
 </data>
 <data name="AddTaskDialogTitle" xml:space="preserve">
-	<value>Aufgabe hinzufügen</value>
+	<value>Add Task</value>
 </data>
 <data name="AllTasks" xml:space="preserve">
-	<value>Alle Aufgaben</value>
+	<value>All Tasks</value>
 </data>
 <data name="AllTasksLower" xml:space="preserve">
-	<value>Alle Aufgaben</value>
+	<value>all tasks</value>
 </data>
 <data name="AllTasksUpper" xml:space="preserve">
-	<value>ALLE AUFGABEN</value>
+	<value>ALL TASKS</value>
 </data>
 <data name="Authorization" xml:space="preserve">
-	<value>Autorisation</value>
+	<value>Authorization</value>
 </data>
 <data name="AuthorizationDialog" xml:space="preserve">
-	<value>Milkman erfordert die Zustimmung zur Nutzung deines Remember The Milk-Accounts. Melden dich an deinem Konto an und autorisiere Milkman.
+	<value>Milkman needs permission to use your Remember The Milk account to continue. Sign in to your account and tap the Complete button to continue.
 
-Milkman speichert keinerlei persönlichen Informationen.</value>
+Milkman will never store or share your personal information.</value>
 </data>
 <data name="AuthorizationDialogTitle" xml:space="preserve">
-	<value>Autorisation</value>
+	<value>Authorization</value>
 </data>
 <data name="AuthorizationLower" xml:space="preserve">
-	<value>Autorisation</value>
+	<value>authorization</value>
 </data>
 <data name="AuthorizationUpper" xml:space="preserve">
-	<value>AUTORISATION</value>
+	<value>AUTHORIZATION</value>
 </data>
 <data name="Authorizing" xml:space="preserve">
-	<value>Autorisiere…</value>
+	<value>Authorizing...</value>
 </data>
 <data name="Body" xml:space="preserve">
-	<value>Inhalt</value>
+	<value>Body</value>
 </data>
 <data name="BodyLower" xml:space="preserve">
-	<value>Inhalt</value>
+	<value>body</value>
 </data>
 <data name="BodyUpper" xml:space="preserve">
-	<value>INHALT</value>
+	<value>BODY</value>
 </data>
 <data name="CancelButton" xml:space="preserve">
-	<value>Abbrechen</value>
+	<value>cancel</value>
 </data>
 <data name="CancelMenu" xml:space="preserve">
-	<value>Abbrechen</value>
+	<value>Cancel</value>
 </data>
 <data name="CancelMenuLower" xml:space="preserve">
-	<value>Abbrechen</value>
+	<value>cancel</value>
 </data>
 <data name="CancelMenuUpper" xml:space="preserve">
-	<value>ABBRECHEN</value>
+	<value>CANCEL</value>
 </data>
 <data name="CompleteMenu" xml:space="preserve">
-	<value>Erledigt</value>
+	<value>Complete</value>
 </data>
 <data name="CompleteMenuLower" xml:space="preserve">
-	<value>Erledigt</value>
+	<value>complete</value>
 </data>
 <data name="CompleteMenuUpper" xml:space="preserve">
-	<value>ERLEDIGT</value>
+	<value>COMPLETE</value>
 </data>
 <data name="Dashboard" xml:space="preserve">
-	<value>Startseite</value>
+	<value>Dashboard</value>
 </data>
 <data name="DashboardLower" xml:space="preserve">
-	<value>Startseite</value>
+	<value>dashboard</value>
 </data>
 <data name="DashboardUpper" xml:space="preserve">
-	<value>STARTSEITE</value>
+	<value>DASHBOARD</value>
 </data>
 <data name="DonateMenu" xml:space="preserve">
-	<value>Spenden</value>
+	<value>Donate</value>
 </data>
 <data name="DonateMenuLower" xml:space="preserve">
-	<value>Spenden</value>
+	<value>donate</value>
 </data>
 <data name="DonateMenuUpper" xml:space="preserve">
-	<value>SPENDEN</value>
+	<value>DONATE</value>
 </data>
 <data name="EmptyDashboardLists" xml:space="preserve">
-	<value>Du hast keine Listen zum Anzeigen.</value>
+	<value>You have no lists to display.</value>
 </data>
 <data name="FeedbackMenu" xml:space="preserve">
 	<value>Feedback</value>
 </data>
 <data name="FeedbackMenuLower" xml:space="preserve">
-	<value>Feedback</value>
+	<value>feedback</value>
 </data>
 <data name="FeedbackMenuUpper" xml:space="preserve">
 	<value>FEEDBACK</value>
 </data>
 <data name="HubTileEmpty" xml:space="preserve">
-	<value>Keine Aufgaben</value>
+	<value>No tasks</value>
 </data>
 <data name="HubTilePlural" xml:space="preserve">
-	<value>Aufgaben</value>
+	<value>tasks</value>
 </data>
 <data name="HubTileSingle" xml:space="preserve">
-	<value>Aufgabe</value>
+	<value>task</value>
 </data>
 <data name="JustAMoment" xml:space="preserve">
-	<value>Einen kleinen Moment…</value>
+	<value>Just a moment...</value>
 </data>
 <data name="Loading" xml:space="preserve">
-	<value>Lade…</value>
+	<value>Loading...</value>
 </data>
 <data name="Milkman" xml:space="preserve">
 	<value>Milkman</value>
 </data>
 <data name="MilkmanLower" xml:space="preserve">
-	<value>Milkman</value>
+	<value>milkman</value>
 </data>
 <data name="MilkmanUpper" xml:space="preserve">
 	<value>MILKMAN</value>
 </data>
 <data name="Nearby" xml:space="preserve">
-	<value>In der Nähe</value>
+	<value>Nearby</value>
 </data>
 <data name="NearbyLower" xml:space="preserve">
-	<value>In der Nähe</value>
+	<value>nearby</value>
 </data>
 <data name="NearbyUpper" xml:space="preserve">
-	<value>IN DER NÄHE</value>
+	<value>NEARBY</value>
 </data>
 <data name="PinToStart" xml:space="preserve">
-	<value>Auf Startseite hinzufügen</value>
+	<value>Pin to Start</value>
 </data>
 <data name="PinToStartDialog" xml:space="preserve">
-	<value>Diese Liste wurde bereits auf der Startseite gespeichert. Falls du es ersetzen möchtest, entferne das Live-Tile von der Startseite und starte Milkman anschließend erneut.</value>
+	<value>This list is already pinned to your start screen. If you need to replace it, remove the tile from your start screen and then reopen Milkman.</value>
 </data>
 <data name="PinToStartDialogTitle" xml:space="preserve">
-	<value>Auf Startseite hinzufügen</value>
+	<value>Pin To Start</value>
 </data>
 <data name="PinToStartLower" xml:space="preserve">
-	<value>Auf Startseite hinzufügen</value>
+	<value>pin to start</value>
 </data>
 <data name="PinToStartUpper" xml:space="preserve">
-	<value>AUF STARTSEITE HINZUFÜGEN</value>
+	<value>PIN TO START</value>
 </data>
 <data name="Register" xml:space="preserve">
-	<value>Registrieren</value>
+	<value>Register</value>
 </data>
 <data name="RegisterLower" xml:space="preserve">
-	<value>Registrieren</value>
+	<value>register</value>
 </data>
 <data name="RegisterUpper" xml:space="preserve">
-	<value>REGISTRIEREN</value>
+	<value>REGISTER</value>
 </data>
 <data name="RetryMenu" xml:space="preserve">
-	<value>Erneut versuchen</value>
+	<value>Retry</value>
 </data>
 <data name="RetryMenuLower" xml:space="preserve">
-	<value>Erneut versuchen</value>
+	<value>retry</value>
 </data>
 <data name="RetryMenuUpper" xml:space="preserve">
-	<value>ERNEUT VERSUCHEN</value>
+	<value>RETRY</value>
 </data>
 <data name="SaveMenu" xml:space="preserve">
-	<value>Speichern</value>
+	<value>Save</value>
 </data>
 <data name="SaveMenuLower" xml:space="preserve">
-	<value>Speichern</value>
+	<value>save</value>
 </data>
 <data name="SaveMenuUpper" xml:space="preserve">
-	<value>SPEICHERN</value>
+	<value>SAVE</value>
 </data>
 <data name="SettingsMenu" xml:space="preserve">
-	<value>Einstellungen</value>
+	<value>Settings</value>
 </data>
 <data name="SettingsMenuLower" xml:space="preserve">
-	<value>Einstellungen</value>
+	<value>settings</value>
 </data>
 <data name="SettingsMenuUpper" xml:space="preserve">
-	<value>EINSTELLUNGEN</value>
+	<value>SETTINGS</value>
 </data>
 <data name="SignIn" xml:space="preserve">
-	<value>Einloggen</value>
+	<value>Sign In</value>
 </data>
 <data name="SignInLower" xml:space="preserve">
-	<value>Einloggen</value>
+	<value>sign in</value>
 </data>
 <data name="SignInUpper" xml:space="preserve">
-	<value>EINLOGGEN</value>
+	<value>SIGN IN</value>
 </data>
 <data name="SignOutDialog" xml:space="preserve">
-	<value>Bist du sicher das du dich aus Milkman ausloggen willst? Deine Daten werden dabei auf dem Telefon gelöscht.</value>
+	<value>Are you sure you want to sign out of Milkman and remove all of your data?</value>
 </data>
 <data name="SignOutDialogTitle" xml:space="preserve">
-	<value>Ausloggen</value>
+	<value>Sign Out</value>
 </data>
 <data name="SignOutMenu" xml:space="preserve">
-	<value>Ausloggen</value>
+	<value>Sign Out</value>
 </data>
 <data name="SignOutMenuLower" xml:space="preserve">
-	<value>Ausloggen</value>
+	<value>sign out</value>
 </data>
 <data name="SignOutMenuUpper" xml:space="preserve">
-	<value>AUSLOGGEN</value>
+	<value>SIGN OUT</value>
 </data>
 <data name="SyncingTasks" xml:space="preserve">
-	<value>Synchronisiere Aufgaben…</value>
+	<value>Syncing tasks...</value>
 </data>
 <data name="SyncMenu" xml:space="preserve">
-	<value>Synchronisieren</value>
+	<value>Sync</value>
 </data>
 <data name="SyncMenuLower" xml:space="preserve">
-	<value>Synchronisieren</value>
+	<value>sync</value>
 </data>
 <data name="SyncMenuUpper" xml:space="preserve">
-	<value>SYNCHRONISIEREN</value>
+	<value>SYNC</value>
 </data>
 <data name="Title" xml:space="preserve">
-	<value>Beschreibung</value>
+	<value>Title</value>
 </data>
 <data name="TitleLower" xml:space="preserve">
-	<value>Beschreibung</value>
+	<value>title</value>
 </data>
 <data name="TitleUpper" xml:space="preserve">
-	<value>BESCHREIBUNG</value>
+	<value>TITLE</value>
 </data>
 <data name="Welcome" xml:space="preserve">
-	<value>Willkommen</value>
+	<value>Welcome</value>
 </data>
 <data name="WelcomeLower" xml:space="preserve">
-	<value>Willkommen</value>
+	<value>welcome</value>
 </data>
 <data name="WelcomeUpper" xml:space="preserve">
-	<value>WILLKOMMEN</value>
+	<value>WELCOME</value>
 </data>
 <data name="CompleteDialog" xml:space="preserve">
-	<value>Soll diese Aufgabe als erledigt markiert werden?</value>
+	<value>Are you sure you want to mark this task as complete?</value>
 </data>
 <data name="CompleteDialogTitle" xml:space="preserve">
-	<value>Erledigt</value>
+	<value>Complete</value>
 </data>
 <data name="CompletingTask" xml:space="preserve">
-	<value>Erledige Aufgaben…</value>
+	<value>Completing task...</value>
 </data>
 <data name="Date" xml:space="preserve">
-	<value>Datum</value>
+	<value>Date</value>
 </data>
 <data name="DateLower" xml:space="preserve">
-	<value>Datum</value>
+	<value>date</value>
 </data>
 <data name="DateTime" xml:space="preserve">
-	<value>Datum &amp; Uhrzeit</value>
+	<value>Date &amp; Time</value>
 </data>
 <data name="DateTimeLower" xml:space="preserve">
-	<value>Datum &amp; Uhrzeit</value>
+	<value>date &amp; time</value>
 </data>
 <data name="DateTimeUpper" xml:space="preserve">
-	<value>DATUM &amp; UHRZEIT</value>
+	<value>DATE &amp; TIME</value>
 </data>
 <data name="DateUpper" xml:space="preserve">
-	<value>DATUM</value>
+	<value>DATE</value>
 </data>
 <data name="DeleteMenu" xml:space="preserve">
-	<value>Löschen</value>
+	<value>Delete</value>
 </data>
 <data name="DeleteMenuLower" xml:space="preserve">
-	<value>Löschen</value>
+	<value>delete</value>
 </data>
 <data name="DeleteMenuUpper" xml:space="preserve">
-	<value>LÖSCHEN</value>
+	<value>DELETE</value>
 </data>
 <data name="DeleteNoteDialog" xml:space="preserve">
-	<value>Soll diese Notiz gelöscht werden?</value>
+	<value>Are you sure you want to delete this note?</value>
 </data>
 <data name="DeleteNoteDialogTitle" xml:space="preserve">
-	<value>Löschen</value>
+	<value>Delete</value>
 </data>
 <data name="DeleteTaskDialog" xml:space="preserve">
-	<value>Soll diese Aufgabe gelöscht werden?</value>
+	<value>Are you sure you want to delete this task?</value>
 </data>
 <data name="DeleteTaskDialogTitle" xml:space="preserve">
-	<value>Löschen</value>
+	<value>Delete</value>
 </data>
 <data name="DeletingNote" xml:space="preserve">
-	<value>Lösche Notiz…</value>
+	<value>Deleting note...</value>
 </data>
 <data name="DeletingTask" xml:space="preserve">
-	<value>Lösche Aufgabe…</value>
+	<value>Deleting task...</value>
 </data>
 <data name="DueDate" xml:space="preserve">
-	<value>Fälligkeitsdatum</value>
+	<value>Due Date</value>
 </data>
 <data name="EditMenu" xml:space="preserve">
-	<value>Bearbeiten</value>
+	<value>Edit</value>
 </data>
 <data name="EditMenuLower" xml:space="preserve">
-	<value>Bearbeiten</value>
+	<value>edit</value>
 </data>
 <data name="EditMenuUpper" xml:space="preserve">
-	<value>BEARBEITEN</value>
+	<value>EDIT</value>
 </data>
 <data name="EditNote" xml:space="preserve">
-	<value>Notiz bearbeiten</value>
+	<value>Edit Note</value>
 </data>
 <data name="EditNoteLower" xml:space="preserve">
-	<value>Notiz bearbeiten</value>
+	<value>edit note</value>
 </data>
 <data name="EditNoteUpper" xml:space="preserve">
-	<value>NOTIZ BEARBEITEN</value>
+	<value>EDIT NOTE</value>
 </data>
 <data name="EditTask" xml:space="preserve">
-	<value>Aufgabe bearbeiten</value>
+	<value>Edit Task</value>
 </data>
 <data name="EditTaskLower" xml:space="preserve">
-	<value>Aufgabe bearbeiten</value>
+	<value>edit task</value>
 </data>
 <data name="EditTaskUpper" xml:space="preserve">
-	<value>AUFGABE BEARBEITEN</value>
+	<value>EDIT TASK</value>
 </data>
 <data name="EmptyNotes" xml:space="preserve">
-	<value>Es gibt keine Notizen für diese Aufgabe.</value>
+	<value>There are no notes for this task.</value>
 </data>
 <data name="Estimate" xml:space="preserve">
-	<value>Geschätzt</value>
+	<value>Estimate</value>
 </data>
 <data name="List" xml:space="preserve">
-	<value>Liste</value>
+	<value>List</value>
 </data>
 <data name="Location" xml:space="preserve">
-	<value>Ort</value>
+	<value>Location</value>
 </data>
 <data name="Name" xml:space="preserve">
 	<value>Name</value>
 </data>
 <data name="None" xml:space="preserve">
-	<value>Keine</value>
+	<value>None</value>
 </data>
 <data name="NoneLower" xml:space="preserve">
-	<value>Keine</value>
+	<value>none</value>
 </data>
 <data name="NoneUpper" xml:space="preserve">
-	<value>KEINE</value>
+	<value>NONE</value>
 </data>
 <data name="Notes" xml:space="preserve">
-	<value>Notizen</value>
+	<value>Notes</value>
 </data>
 <data name="NotesLower" xml:space="preserve">
-	<value>Notizen</value>
+	<value>notes</value>
 </data>
 <data name="NotesUpper" xml:space="preserve">
-	<value>NOTIZEN</value>
+	<value>NOTES</value>
 </data>
 <data name="Postponed" xml:space="preserve">
-	<value>Aufgeschoben</value>
+	<value>Postponed</value>
 </data>
 <data name="PostponeDialog" xml:space="preserve">
-	<value>Soll diese Aufgabe aufgeschoben werden?</value>
+	<value>Are you sure you want to postpone this task?</value>
 </data>
 <data name="PostponeDialogTitle" xml:space="preserve">
-	<value>Aufschieben</value>
+	<value>Postpone</value>
 </data>
 <data name="PostponeMenu" xml:space="preserve">
-	<value>Aufschieben</value>
+	<value>Postpone</value>
 </data>
 <data name="PostponeMenuLower" xml:space="preserve">
-	<value>Aufschieben</value>
+	<value>postpone</value>
 </data>
 <data name="PostponeMenuUpper" xml:space="preserve">
-	<value>AUFSCHIEBEN</value>
+	<value>POSTPONE</value>
 </data>
 <data name="PostponingTask" xml:space="preserve">
-	<value>Aufgabe wird aufgeschoben…</value>
+	<value>Postponing task...</value>
 </data>
 <data name="Priority" xml:space="preserve">
-	<value>Priorität</value>
+	<value>Priority</value>
 </data>
 <data name="Repeat" xml:space="preserve">
-	<value>Wiederholen</value>
+	<value>Repeat</value>
 </data>
 <data name="SavingNote" xml:space="preserve">
-	<value>Speichere Notiz…</value>
+	<value>Saving note...</value>
 </data>
 <data name="SavingTask" xml:space="preserve">
-	<value>Speichere Aufgabe…</value>
+	<value>Saving task...</value>
 </data>
 <data name="Tags" xml:space="preserve">
 	<value>Tags</value>
 </data>
 <data name="TaskDetails" xml:space="preserve">
-	<value>Aufgabendetails</value>
+	<value>Task Details</value>
 </data>
 <data name="TaskDetailsLower" xml:space="preserve">
-	<value>Aufgabendetails</value>
+	<value>task details</value>
 </data>
 <data name="TaskDetailsUpper" xml:space="preserve">
-	<value>AUFGABENDETAILS</value>
+	<value>TASK DETAILS</value>
 </data>
 <data name="All" xml:space="preserve">
-	<value>Alle</value>
+	<value>All</value>
 </data>
 <data name="AllLower" xml:space="preserve">
-	<value>Alle</value>
+	<value>all</value>
 </data>
 <data name="AllUpper" xml:space="preserve">
-	<value>ALLES</value>
+	<value>ALL</value>
 </data>
 <data name="CompleteTaskPluralDialog" xml:space="preserve">
-	<value>Sollen die ausgewählten Aufgaben als erledigt markiert werden?</value>
+	<value>Are you sure you want to mark the selected tasks as complete?</value>
 </data>
 <data name="CompleteTaskSingleDialog" xml:space="preserve">
-	<value>Soll die ausgewählte Aufgabe als erledigt markiert werden?</value>
+	<value>Are you sure you want to mark the selected task as complete?</value>
 </data>
 <data name="DashboardMenu" xml:space="preserve">
-	<value>Startseite</value>
+	<value>Dashboard</value>
 </data>
 <data name="DashboardMenuLower" xml:space="preserve">
-	<value>Startseite</value>
+	<value>dashboard</value>
 </data>
 <data name="DashboardMenuUpper" xml:space="preserve">
-	<value>STARTSEITE</value>
+	<value>DASHBOARD</value>
 </data>
 <data name="DeleteTaskPluralDialog" xml:space="preserve">
-	<value>Sollen die ausgewählten Aufgaben gelöscht werden?</value>
+	<value>Are you sure you want to delete the selected tasks?</value>
 </data>
 <data name="DeleteTaskSingleDialog" xml:space="preserve">
-	<value>Soll die ausgewählte Aufgabe gelöscht werden?</value>
+	<value>Are you sure you want to delete the selected task?</value>
 </data>
 <data name="EmptyTaskList" xml:space="preserve">
-	<value>Du hast keine unvollständigen Aufgaben in dieser Liste. Woohoo!</value>
+	<value>You have no incomplete tasks in this list. Woohoo!</value>
 </data>
 <data name="Overdue" xml:space="preserve">
-	<value>Überfällig</value>
+	<value>Overdue</value>
 </data>
 <data name="OverdueLower" xml:space="preserve">
-	<value>Überfällig</value>
+	<value>overdue</value>
 </data>
 <data name="OverdueUpper" xml:space="preserve">
-	<value>ÜBERFÄLLIG</value>
+	<value>OVERDUE</value>
 </data>
 <data name="PostponeTaskPluralDialog" xml:space="preserve">
-	<value>Sollen die ausgewählten Aufgaben aufgeschoben werden?</value>
+	<value>Are you sure you want to postpone the selected tasks?</value>
 </data>
 <data name="PostponeTaskSingleDialog" xml:space="preserve">
-	<value>Soll die ausgewählte Aufgabe aufgeschoben werden?</value>
+	<value>Are you sure you want to postpone the selected task?</value>
 </data>
 <data name="SelectMenu" xml:space="preserve">
-	<value>Auswählen</value>
+	<value>Select</value>
 </data>
 <data name="SelectMenuLower" xml:space="preserve">
-	<value>Auswählen</value>
+	<value>select</value>
 </data>
 <data name="SelectMenuUpper" xml:space="preserve">
-	<value>AUSWÄHLEN</value>
+	<value>SELECT</value>
 </data>
 <data name="Today" xml:space="preserve">
-	<value>Heute</value>
+	<value>Today</value>
 </data>
 <data name="TodayLower" xml:space="preserve">
-	<value>Heute</value>
+	<value>today</value>
 </data>
 <data name="TodayUpper" xml:space="preserve">
-	<value>HEUTE</value>
+	<value>TODAY</value>
 </data>
 <data name="Tomorrow" xml:space="preserve">
-	<value>Morgen</value>
+	<value>Tomorrow</value>
 </data>
 <data name="TomorrowLower" xml:space="preserve">
-	<value>Morgen</value>
+	<value>tomorrow</value>
 </data>
 <data name="TomorrowUpper" xml:space="preserve">
-	<value>MORGEN</value>
+	<value>TOMORROW</value>
 </data>
 <data name="Week" xml:space="preserve">
-	<value>Woche</value>
+	<value>Week</value>
 </data>
 <data name="WeekLower" xml:space="preserve">
-	<value>Woche</value>
+	<value>week</value>
 </data>
 <data name="WeekUpper" xml:space="preserve">
-	<value>WOCHE</value>
+	<value>WEEK</value>
 </data>
 <data name="AutomaticSyncSetting" xml:space="preserve">
-	<value>Daten automatisch synchronisieren</value>
+	<value>Sync data automatically</value>
 </data>
 <data name="TaskRemindersSetting1" xml:space="preserve">
-	<value>0 Minuten</value>
+	<value>0 minutes</value>
 </data>
 <data name="TaskRemindersSetting3" xml:space="preserve">
-	<value>1 Stunde</value>
+	<value>1 hour</value>
 </data>
 <data name="Settings" xml:space="preserve">
-	<value>Einstellungen</value>
+	<value>Settings</value>
 </data>
 <data name="SettingsLower" xml:space="preserve">
-	<value>Einstellungen</value>
+	<value>settings</value>
 </data>
 <data name="SettingsUpper" xml:space="preserve">
-	<value>EINSTELLUNGEN</value>
+	<value>SETTINGS</value>
 </data>
 <data name="TaskRemindersSetting" xml:space="preserve">
-	<value>Erinnere mich bevor diese Aufgabe fällig ist</value>
+	<value>Notify me before tasks are due</value>
 </data>
 <data name="TaskRemindersSetting2" xml:space="preserve">
-	<value>30 Minuten</value>
+	<value>30 minutes</value>
 </data>
 <data name="TaskRemindersSetting4" xml:space="preserve">
-	<value>2 Stunden</value>
+	<value>2 hours</value>
 </data>
 <data name="Off" xml:space="preserve">
-	<value>Aus</value>
+	<value>Off</value>
 </data>
 <data name="On" xml:space="preserve">
-	<value>An</value>
+	<value>On</value>
 </data>
 <data name="SettingsErrorDialog" xml:space="preserve">
-	<value>Igendwas ist beim Laden deiner Einstellungen schief gelaufen. Du solltest diese Seite noch einmal aufrufen um sicherzustellen, das deine Einstellungen korrekt geladen wurden.</value>
+	<value>Something went wrong while loading your settings. You may want to reload this page to ensure that your settings are loaded correctly.</value>
 </data>
 <data name="SettingsErrorDialogTitle" xml:space="preserve">
-	<value>Fehler</value>
+	<value>Error</value>
 </data>
 <data name="Due" xml:space="preserve">
-	<value>Fällig</value>
+	<value>Due</value>
 </data>
 <data name="PeriodicTaskDescription" xml:space="preserve">
-	<value>Verwaltet Erinnerungen, Ortsbenachrichtigungen und Live-Tile-Updates.</value>
+	<value>Manages task reminders, location notifications, and live tile updates.</value>
 </data>
 <data name="TaskReminderPrefix" xml:space="preserve">
-	<value>Diese Aufgabe ist fällig</value>
+	<value>This task is due</value>
 </data>
 <data name="UnhandledCrashDialog" xml:space="preserve">
-	<value>Ein Ausnahmefehler ist während der letzten Nutzung dieser App aufgetreten. Soll ein Fehlerreport per Mail versendet werden?</value>
+	<value>An unhandled error occurred the last time you ran this application. Would you like to send an email to report it?</value>
 </data>
 <data name="UnhandledErrorDialog" xml:space="preserve">
-	<value>Ein Ausnahmefehler ist aufgetreten. Soll ein Fehlerreport per Mail versendet werden?</value>
+	<value>An unhandled error has just occurred. Would you like to send an email to report it?</value>
 </data>
 <data name="UnhandledErrorDialogTitle" xml:space="preserve">
-	<value>Fehlerreport</value>
+	<value>Error Report</value>
 </data>
 <data name="MarketplaceDialog" xml:space="preserve">
-	<value>Es ist jetzt ein paar Tage her seit dem du Milkman heruntergeladen hast. Möchtest du eine Bewertung im Marketplace vornehmen?</value>
+	<value>It&apos;s been a few days since you downloaded Milkman. Would you like to leave a review for it on the Windows Phone Store?</value>
 </data>
 <data name="MarketplaceDialogTitle" xml:space="preserve">
-	<value>Bewerte Milkman</value>
+	<value>Review Milkman</value>
 </data>
 <data name="Never" xml:space="preserve">
-	<value>Niemals</value>
+	<value>Never</value>
 </data>
 <data name="NeverLower" xml:space="preserve">
-	<value>Niemals</value>
+	<value>never</value>
 </data>
 <data name="NeverUpper" xml:space="preserve">
-	<value>NIEMALS</value>
+	<value>NEVER</value>
 </data>
 <data name="DueAt" xml:space="preserve">
-	<value>am</value>
+	<value>at</value>
 </data>
 <data name="NoDueDate" xml:space="preserve">
-	<value>Kein Fälligkeitsdatum</value>
+	<value>No due date</value>
 </data>
 <data name="NoTasks" xml:space="preserve">
-	<value>Keine Aufgaben</value>
+	<value>No tasks</value>
 </data>
 <data name="TaskPlural" xml:space="preserve">
-	<value>Aufgaben</value>
+	<value>tasks</value>
 </data>
 <data name="TaskSingle" xml:space="preserve">
-	<value>Aufgabe</value>
+	<value>task</value>
 </data>
 <data name="TimePlural" xml:space="preserve">
-	<value>mal</value>
+	<value>times</value>
 </data>
 <data name="TimeSingle" xml:space="preserve">
-	<value>mal</value>
+	<value>time</value>
 </data>
 <data name="URL" xml:space="preserve">
 	<value>URL</value>
@@ -645,159 +645,159 @@ Milkman speichert keinerlei persönlichen Informationen.</value>
 	<value>Details</value>
 </data>
 <data name="DetailsLower" xml:space="preserve">
-	<value>Details</value>
+	<value>details</value>
 </data>
 <data name="DetailsUpper" xml:space="preserve">
 	<value>DETAILS</value>
 </data>
 <data name="Task" xml:space="preserve">
-	<value>Aufgabe</value>
+	<value>Task</value>
 </data>
 <data name="TaskLower" xml:space="preserve">
-	<value>Aufgabe</value>
+	<value>task</value>
 </data>
 <data name="TaskUpper" xml:space="preserve">
-	<value>AUFGABE</value>
+	<value>TASK</value>
 </data>
 <data name="EmptyNearbyTaskList" xml:space="preserve">
-	<value>Es gibt keine Aufgaben in der Nähe. Woohoo!</value>
+	<value>There are no tasks nearby. Woohoo!</value>
 </data>
 <data name="LocationRemindersSetting" xml:space="preserve">
-	<value>Bei Aufgaben in der Nähe benachrichtigen.</value>
+	<value>Notify me when tasks are nearby</value>
 </data>
 <data name="NearbyRadiusSetting" xml:space="preserve">
-	<value>Im Umkreis von</value>
+	<value>Nearby location radius</value>
 </data>
 <data name="NearbyRadiusSetting1" xml:space="preserve">
-	<value>1,6 km</value>
+	<value>1 mile</value>
 </data>
 <data name="NearbyRadiusSetting2" xml:space="preserve">
-	<value>3,2 km</value>
+	<value>2 miles</value>
 </data>
 <data name="NearbyRadiusSetting3" xml:space="preserve">
-	<value>8 km</value>
+	<value>5 miles</value>
 </data>
 <data name="NearbyRadiusSetting4" xml:space="preserve">
-	<value>16 km</value>
+	<value>10 miles</value>
 </data>
 <data name="NearbyRadiusSetting5" xml:space="preserve">
-	<value>32 km</value>
+	<value>20 miles</value>
 </data>
 <data name="Error" xml:space="preserve">
-	<value>Fehler</value>
+	<value>Error</value>
 </data>
 <data name="NetworkConnectionDialog" xml:space="preserve">
-	<value>Bei der Serververbindung zu Remember The Milk ist ein Fehler aufgetreten. Besteht eine Internetverbindung?</value>
+	<value>There was an error when trying to contact the Remember The Milk servers. Are you connected to the network?</value>
 </data>
 <data name="NetworkConnectionDialogTitle" xml:space="preserve">
-	<value>Fehler beim Verbindungsaufbau</value>
+	<value>Error Contacting Server</value>
 </data>
 <data name="OfflineConnectionDialog" xml:space="preserve">
-	<value>Es besteht derzeit keine aktive Internetverbindung. Möchtest du für diese Sitzung in den Offline-Modus wechseln?</value>
+	<value>You currently do not have an active network connection available. Would you like to switch to offline mode for this session?</value>
 </data>
 <data name="OfflineConnectionDialogTitle" xml:space="preserve">
-	<value>Keine Internetverbindung</value>
+	<value>Network Connection Unavailable</value>
 </data>
 <data name="WorkingOffline" xml:space="preserve">
-	<value>Milkman ist im Offline-Modus</value>
+	<value>Milkman is working offline</value>
 </data>
 <data name="AddTask" xml:space="preserve">
-	<value>Aufgabe hinzufügen</value>
+	<value>Add Task</value>
 </data>
 <data name="AddTaskLower" xml:space="preserve">
-	<value>Aufgabe hinzufügen</value>
+	<value>add task</value>
 </data>
 <data name="AddTaskUpper" xml:space="preserve">
-	<value>AUFGABE HINZUFÜGEN</value>
+	<value>ADD TASK</value>
 </data>
 <data name="IgnorePrioritySetting" xml:space="preserve">
-	<value>Ignoriere Priorität beim Sortieren der Aufgaben</value>
+	<value>Ignore priority when sorting tasks</value>
 </data>
 <data name="AddTaskDialogSetting" xml:space="preserve">
-	<value>Den Smart Add Dialog zum Hinzufügen von Aufgaben verwenden</value>
+	<value>Use the Smart Add dialog for adding tasks</value>
 </data>
 <data name="Lists" xml:space="preserve">
-	<value>Listen</value>
+	<value>Lists</value>
 </data>
 <data name="ListsLower" xml:space="preserve">
-	<value>Listen</value>
+	<value>lists</value>
 </data>
 <data name="ListUpper" xml:space="preserve">
-	<value>LISTEN</value>
+	<value>LISTS</value>
 </data>
 <data name="TagsLower" xml:space="preserve">
-	<value>Tags</value>
+	<value>tags</value>
 </data>
 <data name="TagsUpper" xml:space="preserve">
 	<value>TAGS</value>
 </data>
 <data name="EmptyDashboardTags" xml:space="preserve">
-	<value>Du hast keine Tags zum Anzeigen.</value>
+	<value>You have no tags to display.</value>
 </data>
 <data name="NoLower" xml:space="preserve">
-	<value>Nein</value>
+	<value>no</value>
 </data>
 <data name="YesLower" xml:space="preserve">
-	<value>ja</value>
+	<value>yes</value>
 </data>
 <data name="CompletingTasks" xml:space="preserve">
-	<value>Erledige Aufgaben...</value>
+	<value>Completing tasks...</value>
 </data>
 <data name="DeletingTasks" xml:space="preserve">
-	<value>Lösche Aufgaben...</value>
+	<value>Deleting tasks...</value>
 </data>
 <data name="LastUpdated" xml:space="preserve">
-	<value>Letzte Aktualisierung vor</value>
+	<value>Last updated</value>
 </data>
 <data name="MinutesAgo" xml:space="preserve">
-	<value>Minuten</value>
+	<value>minutes ago</value>
 </data>
 <data name="PostponingTasks" xml:space="preserve">
-	<value>Aufgaben werden aufgeschoben...</value>
+	<value>Postponing tasks...</value>
 </data>
 <data name="UpToDate" xml:space="preserve">
-	<value>Milkman ist auf dem neuesten Stand</value>
+	<value>Milkman is up-to-date</value>
 </data>
 <data name="OverAnHourAgo" xml:space="preserve">
-	<value>über einer Stunde</value>
+	<value>over an hour ago</value>
 </data>
 <data name="RegistrationDialog" xml:space="preserve">
-	<value>Milkman erfordert einen Remember The Milk-Account um deine Aufgaben auf allen Geräten zu synchronisieren. Erstell dir jetzt dein kostenloses Benutzerkonto.
+	<value>Milkman requires a Remember The Milk account to sync your tasks to the web and across all of your devices. Create an account and return to Milkman to continue.
 
-Milkman speichert keinerlei persönliche Informationen.</value>
+Milkman will never store or share your personal information.</value>
 </data>
 <data name="RegistrationDialogTitle" xml:space="preserve">
-	<value>Registrierung</value>
+	<value>Registration</value>
 </data>
 <data name="LiveTileDueToday" xml:space="preserve">
-	<value>Heute fällig</value>
+	<value>Due today</value>
 </data>
 <data name="LiveTileMoreDueToday" xml:space="preserve">
-	<value>Mehr heute fällig</value>
+	<value>more due today</value>
 </data>
 <data name="LiveTileMoreNearby" xml:space="preserve">
-	<value>weitere in der Nähe</value>
+	<value>more nearby</value>
 </data>
 <data name="LiveTileNearby" xml:space="preserve">
-	<value>In der Nähe</value>
+	<value>Nearby</value>
 </data>
 <data name="DonateDialog" xml:space="preserve">
-	<value>Vielen Dank für Ihre Spende! Deine Unterstützung motiviert mich für Milkman, der beste Remember The Milk client für Windows Phone-Entwicklung zu halten.</value>
+	<value>Thank you for your donation! Your support motivates me to keep developing for Milkman, the best Remember The Milk client for Windows Phone.</value>
 </data>
 <data name="DonateDialogTitle" xml:space="preserve">
-	<value>Vielen Dank</value>
+	<value>Thank You</value>
 </data>
 <data name="LiveTileMoreOverdue" xml:space="preserve">
-	<value>weitere überfällig</value>
+	<value>more overdue</value>
 </data>
 <data name="LiveTileOverdue" xml:space="preserve">
-	<value>Überfällig</value>
+	<value>Overdue</value>
 </data>
 <data name="TimezoneMismatchDialog" xml:space="preserve">
-	<value>Die Zeitzone deines Remember The Milk-Kontos entspricht nicht der Zeitzone auf deinem Telefon. Dies kann zu Problemen mit Terminen und Erinnerungen führen.</value>
+	<value>The timezone on your Remember The Milk account does not match the timezone that your phone is set to. This may cause problems with due dates and reminders.</value>
 </data>
 <data name="TimezoneMismatchDialogTitle" xml:space="preserve">
-	<value>Zeitzonenkonflikt</value>
+	<value>Timezone mismatch</value>
 </data>
 
 </root>

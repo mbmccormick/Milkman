@@ -25,10 +25,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 <data name="About" xml:space="preserve">
-	<value>Sur</value>
+	<value>À propos</value>
 </data>
 <data name="AboutLower" xml:space="preserve">
-	<value>sur</value>
+	<value>à propos</value>
 </data>
 <data name="AboutMenu" xml:space="preserve">
 	<value>À propos de Milkman</value>
@@ -37,7 +37,7 @@
 	<value>à propos de milkman</value>
 </data>
 <data name="AboutMenuUpper" xml:space="preserve">
-	<value>A PROPOS milkman</value>
+	<value>A PROPOS MILKMAN</value>
 </data>
 <data name="AboutUpper" xml:space="preserve">
 	<value>À PROPOS</value>
@@ -46,7 +46,7 @@
 	<value>ajouter</value>
 </data>
 <data name="AddingNote" xml:space="preserve">
-	<value>Ajout de note ...</value>
+	<value>Ajout d&apos;une note ...</value>
 </data>
 <data name="AddingTask" xml:space="preserve">
 	<value>Ajout de la tâche ...</value>
@@ -76,7 +76,7 @@
 	<value>Toutes les tâches</value>
 </data>
 <data name="AllTasksLower" xml:space="preserve">
-	<value>l&amp;#39;ensemble des tâches</value>
+	<value>Toutes les tâches</value>
 </data>
 <data name="AllTasksUpper" xml:space="preserve">
 	<value>TOUTES LES TACHES</value>
@@ -85,9 +85,9 @@
 	<value>Autorisation</value>
 </data>
 <data name="AuthorizationDialog" xml:space="preserve">
-	<value>Milkman a besoin de la permission d&apos;utiliser votre compte de Remember The Milk pour continuer. Connectez-vous à votre compte et le robinet le bouton complet à continue.
+	<value>Milkman a besoin de la permission pour utiliser votre compte  Remember The Milk pour continuer. Connectez-vous à votre compte et cliquer sur le bouton complété pour continuer.
 
-Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value>
+Milkman n&apos;enregistre pas et ne partage pas vos renseignements personnels.</value>
 </data>
 <data name="AuthorizationDialogTitle" xml:space="preserve">
 	<value>Autorisation</value>
@@ -123,13 +123,13 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>ANNULER</value>
 </data>
 <data name="CompleteMenu" xml:space="preserve">
-	<value>Compléter</value>
+	<value>Complété</value>
 </data>
 <data name="CompleteMenuLower" xml:space="preserve">
-	<value>compléter</value>
+	<value>complété</value>
 </data>
 <data name="CompleteMenuUpper" xml:space="preserve">
-	<value>REMPLIR</value>
+	<value>COMPLÉTÉ</value>
 </data>
 <data name="Dashboard" xml:space="preserve">
 	<value>Tableau de bord</value>
@@ -147,16 +147,16 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>donner</value>
 </data>
 <data name="DonateMenuUpper" xml:space="preserve">
-	<value>FAITES UN DON</value>
+	<value>DONNER</value>
 </data>
 <data name="EmptyDashboardLists" xml:space="preserve">
-	<value>Vous n&amp;#39;avez pas les listes à afficher.</value>
+	<value>Vous n&apos;avez pas de liste à afficher.</value>
 </data>
 <data name="FeedbackMenu" xml:space="preserve">
-	<value>Réaction</value>
+	<value>Commentaires</value>
 </data>
 <data name="FeedbackMenuLower" xml:space="preserve">
-	<value>réaction</value>
+	<value>commentaires</value>
 </data>
 <data name="FeedbackMenuUpper" xml:space="preserve">
 	<value>COMMENTAIRES</value>
@@ -183,7 +183,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>milkman</value>
 </data>
 <data name="MilkmanUpper" xml:space="preserve">
-	<value>Milkman</value>
+	<value>MILKMAN</value>
 </data>
 <data name="Nearby" xml:space="preserve">
 	<value>Proche</value>
@@ -192,67 +192,67 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>proche</value>
 </data>
 <data name="NearbyUpper" xml:space="preserve">
-	<value>PROXIMITÉ</value>
+	<value>PROCHE</value>
 </data>
 <data name="PinToStart" xml:space="preserve">
-	<value>Pin à démarrer</value>
+	<value>Éplingler sur l&apos;écran d&apos;acceuil</value>
 </data>
 <data name="PinToStartDialog" xml:space="preserve">
-	<value>Cette liste est déjà épinglé à votre écran de démarrage. Si vous avez besoin de le remplacer, retirer le carrelage de votre écran de démarrage et puis rouvrez Milkman.</value>
+	<value>Cette liste est déjà épinglé sur votre écran d&apos;acceuil. Si vous avez besoin de le remplacer, retirer la tuile de votre écran d&apos;acceuil et puis ré-ouvrez Milkman.</value>
 </data>
 <data name="PinToStartDialogTitle" xml:space="preserve">
-	<value>Pin Pour Commencer</value>
+	<value>Éplingler sur l&apos;écran d&apos;acceuil</value>
 </data>
 <data name="PinToStartLower" xml:space="preserve">
-	<value>broche pour commencer</value>
+	<value>éplingler sur l&apos;écran d&apos;acceuil</value>
 </data>
 <data name="PinToStartUpper" xml:space="preserve">
-	<value>PIN TO START</value>
+	<value>ÉPINGLER SUR L&apos;ÉCRAN D&apos;ACCEUIL</value>
 </data>
 <data name="Register" xml:space="preserve">
-	<value>Enregistrer</value>
+	<value>Inscrivez-vous</value>
 </data>
 <data name="RegisterLower" xml:space="preserve">
-	<value>enregistrer</value>
+	<value>inscrivez-vous</value>
 </data>
 <data name="RegisterUpper" xml:space="preserve">
 	<value>INSCRIVEZ-VOUS</value>
 </data>
 <data name="RetryMenu" xml:space="preserve">
-	<value>Refaire</value>
+	<value>Recommencer</value>
 </data>
 <data name="RetryMenuLower" xml:space="preserve">
-	<value>refaire</value>
+	<value>recommencer</value>
 </data>
 <data name="RetryMenuUpper" xml:space="preserve">
-	<value>RETRY</value>
+	<value>RECOMMENCER</value>
 </data>
 <data name="SaveMenu" xml:space="preserve">
-	<value>Sauver</value>
+	<value>Sauvegarder</value>
 </data>
 <data name="SaveMenuLower" xml:space="preserve">
-	<value>sauver</value>
+	<value>sauvegarder</value>
 </data>
 <data name="SaveMenuUpper" xml:space="preserve">
-	<value>CONSERVEZ</value>
+	<value>SAUVEGARDER</value>
 </data>
 <data name="SettingsMenu" xml:space="preserve">
-	<value>Réglages</value>
+	<value>Paramétres</value>
 </data>
 <data name="SettingsMenuLower" xml:space="preserve">
 	<value>paramètres</value>
 </data>
 <data name="SettingsMenuUpper" xml:space="preserve">
-	<value>RÉGLAGES</value>
+	<value>PARAMÈTRES</value>
 </data>
 <data name="SignIn" xml:space="preserve">
 	<value>Se connecter</value>
 </data>
 <data name="SignInLower" xml:space="preserve">
-	<value>connexion</value>
+	<value>se connecter</value>
 </data>
 <data name="SignInUpper" xml:space="preserve">
-	<value>Ouvrir</value>
+	<value>SE CONNECTER</value>
 </data>
 <data name="SignOutDialog" xml:space="preserve">
 	<value>Êtes-vous sûr de vouloir vous déconnecter de milkman et de supprimer toutes vos données?</value>
@@ -264,22 +264,22 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Déconnexion</value>
 </data>
 <data name="SignOutMenuLower" xml:space="preserve">
-	<value>déconnecter</value>
+	<value>déconnexion</value>
 </data>
 <data name="SignOutMenuUpper" xml:space="preserve">
-	<value>Se déconnecter</value>
+	<value>DÉCONNEXION</value>
 </data>
 <data name="SyncingTasks" xml:space="preserve">
 	<value>Synchronisation des tâches ...</value>
 </data>
 <data name="SyncMenu" xml:space="preserve">
-	<value>Synchronisez</value>
+	<value>Synchroniser</value>
 </data>
 <data name="SyncMenuLower" xml:space="preserve">
 	<value>synchroniser</value>
 </data>
 <data name="SyncMenuUpper" xml:space="preserve">
-	<value>SYNC</value>
+	<value>SYNCHRONISER</value>
 </data>
 <data name="Title" xml:space="preserve">
 	<value>Titre</value>
@@ -291,10 +291,10 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>TITRE</value>
 </data>
 <data name="Welcome" xml:space="preserve">
-	<value>Accueil</value>
+	<value>Bienvenue</value>
 </data>
 <data name="WelcomeLower" xml:space="preserve">
-	<value>accueil</value>
+	<value>bienvenue</value>
 </data>
 <data name="WelcomeUpper" xml:space="preserve">
 	<value>BIENVENUE</value>
@@ -303,7 +303,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Etes-vous sûr que vous voulez marquer cette tâche comme terminée?</value>
 </data>
 <data name="CompleteDialogTitle" xml:space="preserve">
-	<value>Compléter</value>
+	<value>Complété</value>
 </data>
 <data name="CompletingTask" xml:space="preserve">
 	<value>Fin de tâche...</value>
@@ -315,22 +315,22 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>date</value>
 </data>
 <data name="DateTime" xml:space="preserve">
-	<value>Date</value>
+	<value>Date &amp; Heure</value>
 </data>
 <data name="DateTimeLower" xml:space="preserve">
-	<value>date</value>
+	<value>date &amp; heure</value>
 </data>
 <data name="DateTimeUpper" xml:space="preserve">
-	<value>DATE</value>
+	<value>DATE &amp; HEURE</value>
 </data>
 <data name="DateUpper" xml:space="preserve">
 	<value>DATE</value>
 </data>
 <data name="DeleteMenu" xml:space="preserve">
-	<value>Effacer</value>
+	<value>Supprimer</value>
 </data>
 <data name="DeleteMenuLower" xml:space="preserve">
-	<value>effacer</value>
+	<value>Supprimer</value>
 </data>
 <data name="DeleteMenuUpper" xml:space="preserve">
 	<value>SUPPRIMER</value>
@@ -339,13 +339,13 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Êtes-vous sûr de vouloir supprimer cette note?</value>
 </data>
 <data name="DeleteNoteDialogTitle" xml:space="preserve">
-	<value>Effacer</value>
+	<value>Supprimer</value>
 </data>
 <data name="DeleteTaskDialog" xml:space="preserve">
 	<value>Êtes-vous sûr de vouloir supprimer cette tâche?</value>
 </data>
 <data name="DeleteTaskDialogTitle" xml:space="preserve">
-	<value>Effacer</value>
+	<value>Supprimer</value>
 </data>
 <data name="DeletingNote" xml:space="preserve">
 	<value>Suppression de la note...</value>
@@ -354,25 +354,25 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Suppression de la tâche...</value>
 </data>
 <data name="DueDate" xml:space="preserve">
-	<value>Due Date</value>
+	<value>Échéance</value>
 </data>
 <data name="EditMenu" xml:space="preserve">
-	<value>Éditer</value>
+	<value>Modifier</value>
 </data>
 <data name="EditMenuLower" xml:space="preserve">
-	<value>éditer</value>
+	<value>modifier</value>
 </data>
 <data name="EditMenuUpper" xml:space="preserve">
-	<value>EDIT</value>
+	<value>MODIFIER</value>
 </data>
 <data name="EditNote" xml:space="preserve">
-	<value>Remarque Modifier</value>
+	<value>Modifier la note</value>
 </data>
 <data name="EditNoteLower" xml:space="preserve">
 	<value>modifier la note</value>
 </data>
 <data name="EditNoteUpper" xml:space="preserve">
-	<value>NOTE EDIT</value>
+	<value>MODIFIER LA NOTE</value>
 </data>
 <data name="EditTask" xml:space="preserve">
 	<value>Modifier la tâche</value>
@@ -381,10 +381,10 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>modifier la tâche</value>
 </data>
 <data name="EditTaskUpper" xml:space="preserve">
-	<value>EDIT TASK</value>
+	<value>MODIFIER LA TÂCHE</value>
 </data>
 <data name="EmptyNotes" xml:space="preserve">
-	<value>Il ya aucune note pour cette tâche.</value>
+	<value>Il n&apos;y a aucune note pour cette tâche.</value>
 </data>
 <data name="Estimate" xml:space="preserve">
 	<value>Estimer</value>
@@ -405,10 +405,10 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>aucun</value>
 </data>
 <data name="NoneUpper" xml:space="preserve">
-	<value>NONE</value>
+	<value>AUCUN</value>
 </data>
 <data name="Notes" xml:space="preserve">
-	<value>Remarques</value>
+	<value>Notes</value>
 </data>
 <data name="NotesLower" xml:space="preserve">
 	<value>notes</value>
@@ -435,7 +435,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>REPORTER</value>
 </data>
 <data name="PostponingTask" xml:space="preserve">
-	<value>Le report de la tâche...</value>
+	<value>Report de la tâche...</value>
 </data>
 <data name="Priority" xml:space="preserve">
 	<value>Priorité</value>
@@ -444,10 +444,10 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Répéter</value>
 </data>
 <data name="SavingNote" xml:space="preserve">
-	<value>Sauvegarde de la remarque ...</value>
+	<value>Enregistrement de la note...</value>
 </data>
 <data name="SavingTask" xml:space="preserve">
-	<value>Enregistrement tâche ...</value>
+	<value>Enregistrement de la tâche ...</value>
 </data>
 <data name="Tags" xml:space="preserve">
 	<value>Balises</value>
@@ -492,7 +492,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Êtes-vous sûr de vouloir supprimer la tâche sélectionnée?</value>
 </data>
 <data name="EmptyTaskList" xml:space="preserve">
-	<value>Vous n&amp;#39;avez pas les tâches incomplètes dans cette liste.</value>
+	<value>Vous n&apos;avez pas de tâche incomplète dans cette liste.</value>
 </data>
 <data name="Overdue" xml:space="preserve">
 	<value>En retard</value>
@@ -501,7 +501,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>en retard</value>
 </data>
 <data name="OverdueUpper" xml:space="preserve">
-	<value>RETARD</value>
+	<value>EN RETARD</value>
 </data>
 <data name="PostponeTaskPluralDialog" xml:space="preserve">
 	<value>Êtes-vous sûr de vouloir reporter les tâches sélectionnées?</value>
@@ -516,16 +516,16 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>sélectionner</value>
 </data>
 <data name="SelectMenuUpper" xml:space="preserve">
-	<value>SELECT</value>
+	<value>SÉLECTIONNER</value>
 </data>
 <data name="Today" xml:space="preserve">
-	<value>Aujourd&amp;#39;hui</value>
+	<value>Aujourd&apos;hui</value>
 </data>
 <data name="TodayLower" xml:space="preserve">
-	<value>aujourd&amp;#39;hui</value>
+	<value>aujourd&apos;hui</value>
 </data>
 <data name="TodayUpper" xml:space="preserve">
-	<value>AUJOURD&amp;#39;HUI</value>
+	<value>AUJOURD&apos;HUI</value>
 </data>
 <data name="Tomorrow" xml:space="preserve">
 	<value>Demain</value>
@@ -555,16 +555,16 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>1 heure</value>
 </data>
 <data name="Settings" xml:space="preserve">
-	<value>Réglages</value>
+	<value>Paramètres</value>
 </data>
 <data name="SettingsLower" xml:space="preserve">
 	<value>paramètres</value>
 </data>
 <data name="SettingsUpper" xml:space="preserve">
-	<value>RÉGLAGES</value>
+	<value>PARAMÈTRES</value>
 </data>
 <data name="TaskRemindersSetting" xml:space="preserve">
-	<value>Prévenez-moi avant les tâches sont dues</value>
+	<value>Prévenez-moi avant que les tâches soient dues</value>
 </data>
 <data name="TaskRemindersSetting2" xml:space="preserve">
 	<value>30 minutes</value>
@@ -573,13 +573,13 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>2 heures</value>
 </data>
 <data name="Off" xml:space="preserve">
-	<value>De</value>
+	<value>Désactivé</value>
 </data>
 <data name="On" xml:space="preserve">
-	<value>Sur</value>
+	<value>Activé</value>
 </data>
 <data name="SettingsErrorDialog" xml:space="preserve">
-	<value>Une erreur s&amp;#39;est produite lors du chargement de vos paramètres.</value>
+	<value>Une erreur s&apos;est produite lors du chargement de vos paramètres.</value>
 </data>
 <data name="SettingsErrorDialogTitle" xml:space="preserve">
 	<value>Erreur</value>
@@ -588,13 +588,13 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Dû</value>
 </data>
 <data name="PeriodicTaskDescription" xml:space="preserve">
-	<value>Gère les rappels de tâches, des notifications emplacement, de tuiles et mises à jour en direct.</value>
+	<value>Gère les rappels des tâches, des notificationsd&apos; emplacement, et les mise à jour des tuiles.</value>
 </data>
 <data name="TaskReminderPrefix" xml:space="preserve">
 	<value>Cette tâche est dû</value>
 </data>
 <data name="UnhandledCrashDialog" xml:space="preserve">
-	<value>Une erreur non gérée s&amp;#39;est produite la dernière fois que vous avez exécuté cette application.</value>
+	<value>Une erreur non gérée s&apos;est produite la dernière fois que vous avez exécuté cette application.</value>
 </data>
 <data name="UnhandledErrorDialog" xml:space="preserve">
 	<value>Une erreur non gérée vient de se produire.</value>
@@ -603,10 +603,10 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Signaler une erreur</value>
 </data>
 <data name="MarketplaceDialog" xml:space="preserve">
-	<value>Il a été depuis quelques jours vous avez téléchargé milkman.</value>
+	<value>Il y a quelques jours que vous avez télécharger Milkman. Voulez-vous donner votre avis sur le marché Windows Phone?</value>
 </data>
 <data name="MarketplaceDialogTitle" xml:space="preserve">
-	<value>Taux Milkman</value>
+	<value>Donner votre avis sur Milkman</value>
 </data>
 <data name="Never" xml:space="preserve">
 	<value>Jamais</value>
@@ -621,7 +621,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>à</value>
 </data>
 <data name="NoDueDate" xml:space="preserve">
-	<value>Aucune date d&amp;#39;échéance</value>
+	<value>Aucune date d&apos;échéance</value>
 </data>
 <data name="NoTasks" xml:space="preserve">
 	<value>Pas de tâches</value>
@@ -636,7 +636,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>fois</value>
 </data>
 <data name="TimeSingle" xml:space="preserve">
-	<value>temps</value>
+	<value>fois</value>
 </data>
 <data name="URL" xml:space="preserve">
 	<value>URL</value>
@@ -648,7 +648,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>détails</value>
 </data>
 <data name="DetailsUpper" xml:space="preserve">
-	<value>COORDONNÉES</value>
+	<value>DÉTAILS</value>
 </data>
 <data name="Task" xml:space="preserve">
 	<value>Tâche</value>
@@ -660,7 +660,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>TÂCHE</value>
 </data>
 <data name="EmptyNearbyTaskList" xml:space="preserve">
-	<value>Il n&amp;#39;y a pas à proximité tâches.</value>
+	<value>Il n&apos;y a pas de taches à proximité. Woohoo!</value>
 </data>
 <data name="LocationRemindersSetting" xml:space="preserve">
 	<value>Prévenez-moi lorsque les tâches sont à proximité</value>
@@ -687,16 +687,16 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Erreur</value>
 </data>
 <data name="NetworkConnectionDialog" xml:space="preserve">
-	<value>Il y avait une erreur lorsque vous essayez de contacter le souvenir Les serveurs de lait.</value>
+	<value>Il y avait une erreur lorsque vous essayez de contacter le serveur de Remember The Milk. Êtes-vous connecté au réseau?</value>
 </data>
 <data name="NetworkConnectionDialogTitle" xml:space="preserve">
-	<value>Server Error contacter</value>
+	<value>Erreur lors de la connexion au serveur.</value>
 </data>
 <data name="OfflineConnectionDialog" xml:space="preserve">
-	<value>Vous avez actuellement ne disposent pas d&amp;#39;une connexion réseau active.</value>
+	<value>Présentement, vous n&apos;avez pas de connexion active. Voulez-vous passer en mode hors connexion pour cette session?</value>
 </data>
 <data name="OfflineConnectionDialogTitle" xml:space="preserve">
-	<value>Connexion réseau n&amp;#39;est pas disponible</value>
+	<value>Connexion réseau non disponible</value>
 </data>
 <data name="WorkingOffline" xml:space="preserve">
 	<value>Milkman travaille hors connexion</value>
@@ -708,13 +708,13 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>ajouter une tâche</value>
 </data>
 <data name="AddTaskUpper" xml:space="preserve">
-	<value>Ajouter une tâche</value>
+	<value>AJOUTER UNE TÂCHE</value>
 </data>
 <data name="IgnorePrioritySetting" xml:space="preserve">
 	<value>Ignorer la priorité lors du tri des tâches</value>
 </data>
 <data name="AddTaskDialogSetting" xml:space="preserve">
-	<value>Utilisez la boîte de dialogue pour ajouter des tâches Smart Add</value>
+	<value>Utilisez la boîte de dialogue intelligente pour ajouter des tâches.</value>
 </data>
 <data name="Lists" xml:space="preserve">
 	<value>Listes</value>
@@ -732,10 +732,10 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>BALISES</value>
 </data>
 <data name="EmptyDashboardTags" xml:space="preserve">
-	<value>Vous n&amp;#39;avez pas les balises à afficher.</value>
+	<value>Vous n&apos;avez pas les balises à afficher.</value>
 </data>
 <data name="NoLower" xml:space="preserve">
-	<value>ne</value>
+	<value>non</value>
 </data>
 <data name="YesLower" xml:space="preserve">
 	<value>oui</value>
@@ -744,7 +744,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Fin de tâches...</value>
 </data>
 <data name="DeletingTasks" xml:space="preserve">
-	<value>Suppression de les tâches...</value>
+	<value>Suppression des tâches...</value>
 </data>
 <data name="LastUpdated" xml:space="preserve">
 	<value>Dernière mise à jour</value>
@@ -753,18 +753,18 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Il y a</value>
 </data>
 <data name="PostponingTasks" xml:space="preserve">
-	<value>Le report de les tâches...</value>
+	<value>Report de les tâches...</value>
 </data>
 <data name="UpToDate" xml:space="preserve">
-	<value>Milkman está actualizado</value>
+	<value>Milkman est à jour</value>
 </data>
 <data name="OverAnHourAgo" xml:space="preserve">
-	<value>plus d&apos;une heure il y a</value>
+	<value>il y a plus d&apos;une heure</value>
 </data>
 <data name="RegistrationDialog" xml:space="preserve">
-	<value>Milkman requiert un compte de Remember The Milk pour synchroniser vos tâches sur le web et sur l&apos;ensemble de vos appareils. Créer un compte et retour au laitier à continue.
+	<value>Milkman requiert un compte Remember The Milk pour synchroniser vos tâches sur le web et sur l&apos;ensemble de vos appareils. Créer un compte et retourner à Milkman pour continuer.
 
-Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value>
+Milkman n&apos;enregistre pas et ne partage pas vos renseignements personnels.</value>
 </data>
 <data name="RegistrationDialogTitle" xml:space="preserve">
 	<value>Enregistrement</value>
@@ -782,7 +782,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>Proche</value>
 </data>
 <data name="DonateDialog" xml:space="preserve">
-	<value>Je vous remercie pour votre don ! Votre soutien me motive à continuer à développer pour Milkman, le meilleur client de Remember The Milk pour Windows Phone.</value>
+	<value>Je vous remercie pour votre don ! Votre soutien me motive à continuer à développer Milkman, le meilleur client de Remember The Milk pour Windows Phone.</value>
 </data>
 <data name="DonateDialogTitle" xml:space="preserve">
 	<value>Merci</value>
@@ -794,7 +794,7 @@ Milkman ne sera jamais stocker ou partager vos renseignements personnels.</value
 	<value>En retard</value>
 </data>
 <data name="TimezoneMismatchDialog" xml:space="preserve">
-	<value>Le fuseau horaire sur votre compte de Remember The Milk ne correspond pas le fuseau horaire défini sur votre téléphone. Cela peut provoquer des problèmes avec les dates d&apos;échéance et rappel.</value>
+	<value>Le fuseau horaire sur votre compte de Remember The Milk ne correspond pas au fuseau horaire défini sur votre téléphone. Cela peut provoquer des problèmes avec les dates d&apos;échéance et de rappel.</value>
 </data>
 <data name="TimezoneMismatchDialogTitle" xml:space="preserve">
 	<value>Décalage de fuseau horaire</value>
