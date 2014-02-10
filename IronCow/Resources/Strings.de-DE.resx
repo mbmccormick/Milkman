@@ -85,7 +85,7 @@
 	<value>Autorisation</value>
 </data>
 <data name="AuthorizationDialog" xml:space="preserve">
-	<value>Milkman erfordert die Zustimmung zur Nutzung Ihres Remember The Milk-Accounts. Melden dich an deinem Konto an und autorisiere Milkman.
+	<value>Milkman erfordert die Zustimmung zur Nutzung deines Remember The Milk-Accounts. Melden dich an deinem Konto an und autorisiere Milkman.
 
 Milkman speichert keinerlei persönlichen Informationen.</value>
 </data>
@@ -255,7 +255,7 @@ Milkman speichert keinerlei persönlichen Informationen.</value>
 	<value>EINLOGGEN</value>
 </data>
 <data name="SignOutDialog" xml:space="preserve">
-	<value>Bist du sicher das du dich aus Milkman ausloggen willst? Deine Daten werden dabei gelöscht.</value>
+	<value>Bist du sicher das du dich aus Milkman ausloggen willst? Deine Daten werden dabei auf dem Telefon gelöscht.</value>
 </data>
 <data name="SignOutDialogTitle" xml:space="preserve">
 	<value>Ausloggen</value>
@@ -663,7 +663,7 @@ Milkman speichert keinerlei persönlichen Informationen.</value>
 	<value>Es gibt keine Aufgaben in der Nähe. Woohoo!</value>
 </data>
 <data name="LocationRemindersSetting" xml:space="preserve">
-	<value>Benachrichtige mich bei Aufgaben in der Nähe</value>
+	<value>Bei Aufgaben in der Nähe benachrichtigen.</value>
 </data>
 <data name="NearbyRadiusSetting" xml:space="preserve">
 	<value>Im Umkreis von</value>
@@ -794,10 +794,10 @@ Milkman speichert keinerlei persönliche Informationen.</value>
 	<value>Überfällig</value>
 </data>
 <data name="TimezoneMismatchDialog" xml:space="preserve">
-	<value>Die Zeitzone auf Ihrem Konto Remember The Milk entspricht nicht die Zeitzone, die auf Ihrem Telefon. Dies kann Probleme mit Termine und Erinnerungen führen.</value>
+	<value>Die Zeitzone deines Remember The Milk-Kontos entspricht nicht der Zeitzone auf deinem Telefon. Dies kann zu Problemen mit Terminen und Erinnerungen führen.</value>
 </data>
 <data name="TimezoneMismatchDialogTitle" xml:space="preserve">
-	<value>TimeZone-Konflikt</value>
+	<value>Zeitzonenkonflikt</value>
 </data>
 
 </root>
