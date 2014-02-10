@@ -746,8 +746,6 @@ namespace Milkman
                     CurrentChannel.BindToShellToast();
                 }
                 
-                CurrentChannel.ShellToastNotificationReceived += CurrentChannel_ShellToastNotificationReceived;
-
                 IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
 
                 var existingRegistrations = await registrationsTable.Where(z => z.AuthenticationToken == App.RtmClient.AuthToken).ToCollectionAsync();
@@ -823,14 +821,6 @@ namespace Milkman
             {
                 // ignore these errors
             }
-        }
-
-        private static void CurrentChannel_ShellToastNotificationReceived(object sender, NotificationEventArgs e)
-        {
-            SmartDispatcher.BeginInvoke(() =>
-            {
-                MessageBox.Show(e.Collection["wp:Text2"], e.Collection["wp:Text1"], MessageBoxButton.OK);
-            });
         }
 
         #endregion
