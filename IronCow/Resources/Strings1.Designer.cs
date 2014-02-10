@@ -304,7 +304,9 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Milkman needs permission to use your Remember The Milk account to continue. Sign in to your account and tap the Complete button to continue.\n\nMilkman will never store or share your personal information..
+        ///   Looks up a localized string similar to Milkman needs permission to use your Remember The Milk account to continue. Sign in to your account and tap the Complete button to continue.
+        ///
+        ///Milkman will never store or share your personal information..
         /// </summary>
         public static string AuthorizationDialog {
             get {
@@ -1078,6 +1080,33 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show number of overdue tasks on Live Tile.
+        /// </summary>
+        public static string LiveTileCounterSetting {
+            get {
+                return ResourceManager.GetString("LiveTileCounterSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to due today and overdue.
+        /// </summary>
+        public static string LiveTileCounterSetting1 {
+            get {
+                return ResourceManager.GetString("LiveTileCounterSetting1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to overdue.
+        /// </summary>
+        public static string LiveTileCounterSetting2 {
+            get {
+                return ResourceManager.GetString("LiveTileCounterSetting2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Due today.
         /// </summary>
         public static string LiveTileDueToday {
@@ -1681,7 +1710,9 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Milkman requires a Remember The Milk account to sync your tasks to the web and across all of your devices. Create an account and return to Milkman to continue.\n\nMilkman will never store or share your personal information..
+        ///   Looks up a localized string similar to Milkman requires a Remember The Milk account to sync your tasks to the web and across all of your devices. Create an account and return to Milkman to continue.
+        ///
+        ///Milkman will never store or share your personal information..
         /// </summary>
         public static string RegistrationDialog {
             get {
@@ -2165,14 +2196,12 @@ namespace IronCow.Resources {
                 return ResourceManager.GetString("TimezoneMismatchDialog", resourceCulture);
             }
         }
-
+        
         /// <summary>
-        ///   Looks up a localized string similar to The timezone on your Remember The Milk account does not match the timezone that your phone is set to. This may cause problems with due dates and reminders..
+        ///   Looks up a localized string similar to Timezone Mismatch.
         /// </summary>
-        public static string TimezoneMismatchDialogTitle
-        {
-            get
-            {
+        public static string TimezoneMismatchDialogTitle {
+            get {
                 return ResourceManager.GetString("TimezoneMismatchDialogTitle", resourceCulture);
             }
         }

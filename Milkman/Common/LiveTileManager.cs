@@ -43,8 +43,14 @@ namespace Milkman.Common
                                                         z.DueDateTime.Value.Date == DateTime.Now.Date).ToList();
             }
 
+            AppSettings settings = new AppSettings();
+
             tile.Title = Strings.Milkman;
-            tile.Count = tasksOverdue.Count; // + tasksDueToday.Count;
+
+            if (settings.LiveTileCounter == 0)
+                tile.Count = tasksOverdue.Count + tasksDueToday.Count;
+            else
+                tile.Count = tasksOverdue.Count;
 
             FlipTileTemplate image = new FlipTileTemplate();
             string imagePath = "/Shared/ShellContent/default.png";
@@ -98,8 +104,14 @@ namespace Milkman.Common
                                                      z.DueDateTime.Value.Date < DateTime.Now.Date).ToList();
             }
 
+            AppSettings settings = new AppSettings();
+
             tile.Title = data.Name;
-            tile.Count = tasksOverdue.Count; // + tasksDueToday.Count;
+
+            if (settings.LiveTileCounter == 0)
+                tile.Count = tasksOverdue.Count + tasksDueToday.Count;
+            else
+                tile.Count = tasksOverdue.Count;
 
             FlipTileTemplate image = new FlipTileTemplate();
             string imagePath = "/Shared/ShellContent/" + data.Id + ".png";
@@ -158,8 +170,14 @@ namespace Milkman.Common
                 }
             }
 
+            AppSettings settings = new AppSettings();
+
             tile.Title = tagName;
-            tile.Count = tasksOverdue.Count; // + tasksDueToday.Count;
+
+            if (settings.LiveTileCounter == 0)
+                tile.Count = tasksOverdue.Count + tasksDueToday.Count;
+            else
+                tile.Count = tasksOverdue.Count;
 
             FlipTileTemplate image = new FlipTileTemplate();
             string imagePath = "/Shared/ShellContent/" + tagName + ".png";

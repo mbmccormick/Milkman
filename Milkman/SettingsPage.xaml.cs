@@ -83,6 +83,18 @@ namespace Milkman
                 MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
             }
 
+            try
+            {
+                binding = new Binding("LiveTileCounter");
+                binding.Mode = BindingMode.TwoWay;
+                binding.Source = settings;
+                this.lstLiveTileCounter.SetBinding(ListPicker.SelectedIndexProperty, binding);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(Strings.SettingsErrorDialog, Strings.SettingsErrorDialogTitle, MessageBoxButton.OK);
+            }
+
             this.togAddTaskDialog.Checked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Checked);
             this.togAddTaskDialog.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
             
@@ -119,6 +131,18 @@ namespace Milkman
         }
 
         private void lstTaskReminders_LayoutUpdated(object sender, EventArgs e)
+        {
+            try
+            {
+                this.scvLayout.ScrollToVerticalOffset(this.scvLayout.ScrollableHeight);
+            }
+            catch (Exception ex)
+            {
+                // do nothing
+            }
+        }
+
+        private void lstLiveTileCounter_LayoutUpdated(object sender, EventArgs e)
         {
             try
             {

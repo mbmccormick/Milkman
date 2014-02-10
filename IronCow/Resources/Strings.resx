@@ -892,4 +892,13 @@ Milkman will never store or share your personal information.</value>
   <data name="TimezoneMismatchDialogTitle" xml:space="preserve">
     <value>Timezone Mismatch</value>
   </data>
+  <data name="LiveTileCounterSetting1" xml:space="preserve">
+    <value>due today and overdue</value>
+  </data>
+  <data name="LiveTileCounterSetting2" xml:space="preserve">
+    <value>overdue</value>
+  </data>
+  <data name="LiveTileCounterSetting" xml:space="preserve">
+    <value>Show number of overdue tasks on Live Tile</value>
+  </data>
 </root>

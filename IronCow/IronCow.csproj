@@ -99,20 +99,10 @@
     <Compile Include="Request.cs" />
     <Compile Include="RequestCollection.cs" />
     <Compile Include="RequestManager.cs" />
-    <Compile Include="Resources\Strings.Designer.cs">
+    <Compile Include="Resources\Strings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\Strings.es-ES.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.es-ES.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Strings.it-IT.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.it-IT.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\StringsProvider.cs">
       <SubType>Code</SubType>

@@ -14,6 +14,7 @@ namespace Milkman.Common
         const string LocationRemindersEnabledSettingKeyName = "LocationRemindersEnabled";
         const string NearbyRadiusSettingKeyName = "NearbyRadius";
         const string TaskRemindersEnabledSettingKeyName = "TaskRemindersEnabled";
+        const string LiveTileCounterSettingKeyName = "LiveTileCounter";
 
         public AppSettings()
         {
@@ -146,6 +147,19 @@ namespace Milkman.Common
             set
             {
                 AddOrUpdateValue(TaskRemindersEnabledSettingKeyName, value);
+                Save();
+            }
+        }
+
+        public int LiveTileCounter
+        {
+            get
+            {
+                return GetValueOrDefault<int>(LiveTileCounterSettingKeyName, 0);
+            }
+            set
+            {
+                AddOrUpdateValue(LiveTileCounterSettingKeyName, value);
                 Save();
             }
         }
