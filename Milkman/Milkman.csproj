@@ -118,7 +118,6 @@
     </Compile>
     <Compile Include="Common\LittleWatson.cs" />
     <Compile Include="Common\LiveTileManager.cs" />
-    <Compile Include="Common\Models\Registrations.cs" />
     <Compile Include="Common\SortableObservableCollection.cs" />
     <Compile Include="Controls\AddTaskDialog.cs" />
     <Compile Include="AddTaskPage.xaml.cs">
@@ -391,7 +390,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" />
+      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />

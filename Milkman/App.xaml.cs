@@ -8,7 +8,6 @@ using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Milkman.Common;
-using Milkman.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
@@ -35,11 +34,6 @@ namespace Milkman
         public static DateTime LastUpdated;
 
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
-
-        public static MobileServiceClient MobileService = new MobileServiceClient(
-            "https://milkman.azure-mobile.net/",
-            "dSiXpghIVfinlEYGqpGROOvclqFWnl56"
-        );
         
         public static string ExtendedVersionNumber
         {
@@ -158,10 +152,9 @@ namespace Milkman
             LocationsResponse = null;
             SettingsResponse = null;
 
-            App.DeletePushChannel();
-
             RtmClient.Resources = App.Current.Resources;
 
+            NotificationsManager.ResetReminders();
             NotificationsManager.ResetLiveTiles();
 
             if (ScheduledActionService.Find("BackgroundWorker") != null)
@@ -204,11 +197,6 @@ namespace Milkman
             SmartDispatcher.Initialize(RootFrame.Dispatcher);
 
             LoadData();
-
-            if (!string.IsNullOrEmpty(App.RtmClient.AuthToken))
-            {
-                AcquirePushChannel(0.0, 0.0);
-            }
         }
 
         private void Application_Activated(object sender, ActivatedEventArgs e)
@@ -727,104 +715,7 @@ namespace Milkman
         }
 
         #endregion
-
-        #region Push Notifications
-
-        public static HttpNotificationChannel CurrentChannel { get; private set; }
-
-        public static async void AcquirePushChannel(double latitude, double longitude)
-        {
-            try
-            {
-                CurrentChannel = HttpNotificationChannel.Find("MyPushChannel");
-
-                if (CurrentChannel == null)
-                {
-                    CurrentChannel = new HttpNotificationChannel("MyPushChannel");
-
-                    CurrentChannel.Open();
-                    CurrentChannel.BindToShellToast();
-                }
-                
-                IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
-
-                var existingRegistrations = await registrationsTable.Where(z => z.AuthenticationToken == App.RtmClient.AuthToken).ToCollectionAsync();
-
-                if (existingRegistrations.Count > 0)
-                {
-                    var registration = existingRegistrations.First();
-
-                    registration.Handle = CurrentChannel.ChannelUri.AbsoluteUri;
-                    registration.Latitude = latitude;
-                    registration.Longitude = longitude;
-                    registration.ReminderInterval = new AppSettings().FriendlyReminderInterval;
-                    registration.NearbyInterval = new AppSettings().FriendlyNearbyRadius;
-
-                    await registrationsTable.UpdateAsync(registration);
-                }
-                else
-                {
-                    var registration = new Registrations
-                    {
-                        AuthenticationToken = App.RtmClient.AuthToken,
-                        Handle = CurrentChannel.ChannelUri.AbsoluteUri,
-                        Latitude = latitude,
-                        Longitude = longitude,
-                        ReminderInterval = new AppSettings().FriendlyReminderInterval,
-                        NearbyInterval = new AppSettings().FriendlyNearbyRadius
-                    };
-
-                    await registrationsTable.InsertAsync(registration);
-                }
-            }
-            catch (NullReferenceException ex)
-            {
-                // ignore these errors
-            }
-            catch (HttpRequestException ex)
-            {
-                // ignore these errors
-            }
-            catch (MobileServiceInvalidOperationException ex)
-            {
-                // ignore these errors
-            }
-        }
-
-        public static async void DeletePushChannel()
-        {
-            try
-            {
-                CurrentChannel = HttpNotificationChannel.Find("MyPushChannel");
-                CurrentChannel.Dispose();                
-
-                IMobileServiceTable<Registrations> registrationsTable = App.MobileService.GetTable<Registrations>();
-
-                var existingRegistrations = await registrationsTable.Where(z => z.AuthenticationToken == App.RtmClient.AuthToken).ToCollectionAsync();
-
-                if (existingRegistrations.Count > 0)
-                {
-                    var registration = existingRegistrations.First();
-
-                    await registrationsTable.DeleteAsync(registration);
-                }
-            }
-            catch (NullReferenceException ex)
-            {
-                // ignore these errors
-            }
-            catch (HttpRequestException ex)
-            {
-                // ignore these errors
-            }
-            catch (MobileServiceInvalidOperationException ex)
-            {
-                // ignore these errors
-            }
-        }
-
-        #endregion
-
+        
         #region Phone application initialization
 
         private bool phoneApplicationInitialized = false;
