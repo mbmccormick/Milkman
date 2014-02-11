@@ -35,19 +35,7 @@ namespace Milkman.Background.Common
         {
             AppSettings settings = new AppSettings();
 
-            double radius;
-            if (settings.NearbyRadius == 0)
-                radius = 1.0;
-            else if (settings.NearbyRadius == 1)
-                radius = 2.0;
-            else if (settings.NearbyRadius == 2)
-                radius = 5.0;
-            else if (settings.NearbyRadius == 3)
-                radius = 10.0;
-            else if (settings.NearbyRadius == 4)
-                radius = 20.0;
-            else
-                radius = 0.0;
+            double radius = settings.FriendlyNearbyRadius;
 
             foreach (Task t in App.RtmClient.GetNearbyTasks(location.Latitude, location.Longitude, radius))
             {

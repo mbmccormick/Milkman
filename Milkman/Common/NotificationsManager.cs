@@ -31,10 +31,7 @@ namespace Milkman.Common
             ResetReminders();
 
             // setup task reminders
-            if (settings.TaskRemindersEnabled > 0)
-            {
-                UpdateReminders();
-            }
+            UpdateReminders();
 
             // update live tiles
             UpdateLiveTiles(location);
@@ -44,15 +41,7 @@ namespace Milkman.Common
         {
             AppSettings settings = new AppSettings();
 
-            double interval;
-            if (settings.TaskRemindersEnabled == 1)
-                interval = -0.5;
-            else if (settings.TaskRemindersEnabled == 2)
-                interval = -1.0;
-            else if (settings.TaskRemindersEnabled == 3)
-                interval = -2.0;
-            else
-                interval = -1.0;
+            double interval = settings.FriendlyReminderInterval;
 
             // create new reminders
             if (App.RtmClient.TaskLists != null)
@@ -65,7 +54,7 @@ namespace Milkman.Common
                         foreach (Task t in l.Tasks)
                         {
                             if (t.HasDueTime &&
-                                t.DueDateTime.Value.AddHours(interval) >= DateTime.Now)
+                                t.DueDateTime.Value.AddMinutes(interval) >= DateTime.Now)
                             {
                                 Reminder r = new Reminder(t.Id);
 
