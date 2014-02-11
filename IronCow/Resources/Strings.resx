@@ -899,6 +899,6 @@ Milkman will never store or share your personal information.</value>
     <value>overdue</value>
   </data>
   <data name="LiveTileCounterSetting" xml:space="preserve">
-    <value>Show number of overdue tasks on Live Tile</value>
+    <value>Show number of tasks on Live Tile counter</value>
   </data>
 </root>

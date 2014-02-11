@@ -1080,7 +1080,7 @@ namespace IronCow.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Show number of overdue tasks on Live Tile.
+        ///   Looks up a localized string similar to Show number of tasks on Live Tile counter.
         /// </summary>
         public static string LiveTileCounterSetting {
             get {

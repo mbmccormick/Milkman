@@ -50,7 +50,7 @@
                 </StackPanel>
                 <StackPanel Margin="12,12,12,12">
                     <TextBlock Text="{Binding Resources.TaskRemindersSetting, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
-                    <toolkit:ListPicker x:Name="lstTaskReminders" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1" LayoutUpdated="lstTaskReminders_LayoutUpdated">
+                    <toolkit:ListPicker x:Name="lstTaskReminders" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1" SizeChanged="lstTaskReminders_SizeChanged">
                         <toolkit:ListPickerItem Content="{Binding Resources.TaskRemindersSetting1, Source={StaticResource Strings}}" />
                         <toolkit:ListPickerItem Content="{Binding Resources.TaskRemindersSetting2, Source={StaticResource Strings}}" />
                         <toolkit:ListPickerItem Content="{Binding Resources.TaskRemindersSetting3, Source={StaticResource Strings}}" />
@@ -59,7 +59,7 @@
                 </StackPanel>
                 <StackPanel Margin="12,12,12,12">
                     <TextBlock Text="{Binding Resources.LiveTileCounterSetting, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0,0,0,12" />
-                    <toolkit:ListPicker x:Name="lstLiveTileCounter" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1" LayoutUpdated="lstLiveTileCounter_LayoutUpdated">
+                    <toolkit:ListPicker x:Name="lstLiveTileCounter" Margin="0,-12,0,12" Grid.Row="3" Grid.Column="1" SizeChanged="lstLiveTileCounter_SizeChanged">
                         <toolkit:ListPickerItem Content="{Binding Resources.LiveTileCounterSetting1, Source={StaticResource Strings}}" />
                         <toolkit:ListPickerItem Content="{Binding Resources.LiveTileCounterSetting2, Source={StaticResource Strings}}" />
                     </toolkit:ListPicker>
