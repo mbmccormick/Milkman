@@ -130,29 +130,19 @@ namespace Milkman
             this.lstNearbyRadius.IsEnabled = this.togLocationReminders.IsChecked.Value;
         }
 
-        private void lstTaskReminders_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void ListPicker_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            try
+            if (GlobalLoading.Instance.IsLoading == false)
             {
-                this.scvLayout.UpdateLayout();
-                this.scvLayout.ScrollToVerticalOffset(this.scvLayout.ScrollableHeight);
-            }
-            catch (Exception ex)
-            {
-                // do nothing
-            }
-        }
-
-        private void lstLiveTileCounter_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            try
-            {
-                this.scvLayout.UpdateLayout();
-                this.scvLayout.ScrollToVerticalOffset(this.scvLayout.ScrollableHeight);
-            }
-            catch (Exception ex)
-            {
-                // do nothing
+                try
+                {
+                    this.scvLayout.UpdateLayout();
+                    this.scvLayout.ScrollToVerticalOffset(this.scvLayout.ScrollableHeight);
+                }
+                catch (Exception ex)
+                {
+                    // do nothing
+                }
             }
         }
     }

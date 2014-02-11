@@ -353,6 +353,22 @@ namespace Milkman
                 NavigationService.Navigate(new Uri("/TaskDetailsPage.xaml?id=" + CurrentTask.Id, UriKind.Relative));
         }
 
+        private void ListPicker_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (GlobalLoading.Instance.IsLoading == false)
+            {
+                try
+                {
+                    this.scvLayout.UpdateLayout();
+                    this.scvLayout.ScrollToVerticalOffset(this.scvLayout.ScrollableHeight);
+                }
+                catch (Exception ex)
+                {
+                    // do nothing
+                }
+            }
+        }
+
         #endregion
     }
 }
