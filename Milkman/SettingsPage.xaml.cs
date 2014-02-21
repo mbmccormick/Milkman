@@ -12,7 +12,8 @@ namespace Milkman
         public SettingsPage()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(SettingsPage_Loaded);            
+
+            this.Loaded += new RoutedEventHandler(SettingsPage_Loaded);
         }
 
         private void SettingsPage_Loaded(object sender, EventArgs e)
@@ -105,6 +106,9 @@ namespace Milkman
             this.togLocationReminders.Unchecked += new EventHandler<RoutedEventArgs>(ToggleSwitch_Unchecked);
 
             this.lstNearbyRadius.IsEnabled = this.togLocationReminders.IsChecked.Value;
+
+            this.scvLayout.UpdateLayout();
+            this.scvLayout.ScrollToVerticalOffset(0);
 
             GlobalLoading.Instance.IsLoading = false;
         }

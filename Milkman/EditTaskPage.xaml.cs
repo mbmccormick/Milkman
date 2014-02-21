@@ -55,11 +55,13 @@ namespace Milkman
         {
             InitializeComponent();
 
+            this.Loaded += new RoutedEventHandler(EditTaskPage_Loaded);
+
             App.UnhandledExceptionHandled += new EventHandler<ApplicationUnhandledExceptionEventArgs>(App_UnhandledExceptionHandled);
 
             this.BuildApplicationBar();
         }
-
+                
         private void BuildApplicationBar()
         {
             save = new ApplicationBarIconButton();
@@ -75,6 +77,12 @@ namespace Milkman
             // build application bar
             ApplicationBar.Buttons.Add(save);
             ApplicationBar.Buttons.Add(cancel);
+        }
+
+        private void EditTaskPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.scvLayout.UpdateLayout();
+            this.scvLayout.ScrollToVerticalOffset(0);
         }
 
         private void App_UnhandledExceptionHandled(object sender, ApplicationUnhandledExceptionEventArgs e)
