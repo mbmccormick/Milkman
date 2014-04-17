@@ -1,9 +1,8 @@
-﻿using IronCow.Resources;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Tasks;
-using System;
+﻿using System;
 using System.IO;
 using System.IO.IsolatedStorage;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Tasks;
 
 namespace Milkman.Common
 {
@@ -53,16 +52,16 @@ namespace Milkman.Common
                 {
                     string messageBoxText = null;
                     if (isFirstRun)
-                        messageBoxText = Strings.UnhandledCrashDialog;
+                        messageBoxText = "An unhandled error occurred the last time you ran this application. Would you like to send an email to report it?";
                     else
-                        messageBoxText = Strings.UnhandledErrorDialog;
+                        messageBoxText = "An unhandled error has just occurred. Would you like to send an email to report it?";
 
                     CustomMessageBox messageBox = new CustomMessageBox()
                     {
-                        Caption = Strings.UnhandledErrorDialogTitle,
+                        Caption = "Error Report",
                         Message = messageBoxText,
-                        LeftButtonContent = Strings.YesLower,
-                        RightButtonContent = Strings.NoLower,
+                        LeftButtonContent = "yes",
+                        RightButtonContent = "no",
                         IsFullScreen = false
                     };
 
@@ -71,14 +70,9 @@ namespace Milkman.Common
                         switch (e1.Result)
                         {
                             case CustomMessageBoxResult.LeftButton:
-                                EmailComposeTask email = new EmailComposeTask();
-                                email.To = "feedback@mbmccormick.com";
-                                email.Subject = "Milkman Error Report";
-                                email.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n" + contents;
+                                FeedbackHelper.Default.Feedback(contents, true);
 
                                 SafeDeleteFile(IsolatedStorageFile.GetUserStoreForApplication());
-
-                                email.Show();
 
                                 break;
                             default:

@@ -33,6 +33,8 @@ namespace Milkman
         public static Response SettingsResponse;
         public static DateTime LastUpdated;
 
+        public static string FeedbackEmailAddress = "feedback@mbmccormick.com";
+
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
         
         public static string ExtendedVersionNumber

@@ -219,6 +219,8 @@ namespace Milkman
             if (e.IsNavigationInitiator == false)
             {
                 App.CheckTimezone();
+
+                FeedbackHelper.PromptForRating();
             }
 
             base.OnNavigatedTo(e);
@@ -821,12 +823,7 @@ namespace Milkman
 
         private void mnuFeedback_Click(object sender, EventArgs e)
         {
-            EmailComposeTask emailComposeTask = new EmailComposeTask();
-
-            emailComposeTask.To = "feedback@mbmccormick.com";
-            emailComposeTask.Subject = "Milkman Feedback";
-            emailComposeTask.Body = "Version " + App.ExtendedVersionNumber + " (" + App.PlatformVersionNumber + ")\n\n";
-            emailComposeTask.Show();
+            FeedbackHelper.Default.Feedback();
         }
 
         private async void mnuDonate_Click(object sender, EventArgs e)

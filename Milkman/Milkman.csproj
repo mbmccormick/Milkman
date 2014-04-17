@@ -116,6 +116,7 @@
     <Compile Include="AddNotePage.xaml.cs">
       <DependentUpon>AddNotePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\FeedbackHelper.cs" />
     <Compile Include="Common\LittleWatson.cs" />
     <Compile Include="Common\LiveTileManager.cs" />
     <Compile Include="Common\SortableObservableCollection.cs" />
@@ -390,7 +391,7 @@
   -->
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_BuildVersioningStyle="None.None.None.None" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_UpdateFileVersion="False" />
+      <UserProperties BuildVersion_UpdateFileVersion="False" BuildVersion_UpdateAssemblyVersion="False" BuildVersion_BuildVersioningStyle="None.None.None.None" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />

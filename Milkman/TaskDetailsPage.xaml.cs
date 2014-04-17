@@ -119,6 +119,8 @@ namespace Milkman
             if (e.IsNavigationInitiator == false)
             {
                 App.CheckTimezone();
+
+                FeedbackHelper.PromptForRating();
             }
 
             base.OnNavigatedTo(e);
