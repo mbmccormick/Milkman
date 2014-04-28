@@ -119,6 +119,7 @@
     <Compile Include="Common\NotificationsManager.cs" />
     <Compile Include="Common\SmartDispatcher.cs" />
     <Compile Include="Common\SortableObservableCollection.cs" />
+    <Compile Include="GeofenceAgent.cs" />
     <Compile Include="ScheduledAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

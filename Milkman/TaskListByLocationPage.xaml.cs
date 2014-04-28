@@ -283,92 +283,88 @@ namespace Milkman
             {
                 GlobalLoading.Instance.IsLoadingText(Strings.SyncingTasks);
 
-                string id;
-                if (NavigationContext.QueryString.TryGetValue("id", out id))
+                var tempAllTasks = new SortableObservableCollection<Task>();
+                var tempTodayTasks = new SortableObservableCollection<Task>();
+                var tempTomorrowTasks = new SortableObservableCollection<Task>();
+                var tempOverdueTasks = new SortableObservableCollection<Task>();
+                var tempWeekTasks = new SortableObservableCollection<Task>();
+
+                AppSettings settings = new AppSettings();
+
+                double radius;
+                if (settings.NearbyRadius == 0)
+                    radius = 1.0;
+                else if (settings.NearbyRadius == 1)
+                    radius = 2.0;
+                else if (settings.NearbyRadius == 2)
+                    radius = 5.0;
+                else if (settings.NearbyRadius == 3)
+                    radius = 10.0;
+                else if (settings.NearbyRadius == 3)
+                    radius = 20.0;
+                else
+                    radius = 0.0;
+
+                foreach (Task t in App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius))
                 {
-                    var tempAllTasks = new SortableObservableCollection<Task>();
-                    var tempTodayTasks = new SortableObservableCollection<Task>();
-                    var tempTomorrowTasks = new SortableObservableCollection<Task>();
-                    var tempOverdueTasks = new SortableObservableCollection<Task>();
-                    var tempWeekTasks = new SortableObservableCollection<Task>();
+                    if (t.IsCompleted == true ||
+                        t.IsDeleted == true) continue;
 
-                    AppSettings settings = new AppSettings();
+                    tempAllTasks.Add(t);
 
-                    double radius;
-                    if (settings.NearbyRadius == 0)
-                        radius = 1.0;
-                    else if (settings.NearbyRadius == 1)
-                        radius = 2.0;
-                    else if (settings.NearbyRadius == 2)
-                        radius = 5.0;
-                    else if (settings.NearbyRadius == 3)
-                        radius = 10.0;
-                    else if (settings.NearbyRadius == 3)
-                        radius = 20.0;
-                    else
-                        radius = 0.0;
-
-                    foreach (Task t in App.RtmClient.GetNearbyTasks(_watcher.Position.Location.Latitude, _watcher.Position.Location.Longitude, radius))
+                    if (t.DueDateTime.HasValue &&
+                        t.DueDateTime.Value.Date == DateTime.Now.Date)
                     {
-                        if (t.IsCompleted == true ||
-                            t.IsDeleted == true) continue;
-
-                        tempAllTasks.Add(t);
-
-                        if (t.DueDateTime.HasValue &&
-                            t.DueDateTime.Value.Date == DateTime.Now.Date)
-                        {
-                            tempTodayTasks.Add(t);
-                        }
-
-                        if (t.DueDateTime.HasValue &&
-                            t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1))
-                        {
-                            tempTomorrowTasks.Add(t);
-                        }
-
-                        if (t.IsLate == true)
-                        {
-                            tempOverdueTasks.Add(t);
-                        }
-
-                        if (t.DueDateTime.HasValue &&
-                            t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7))
-                        {
-                            tempWeekTasks.Add(t);
-                        }
+                        tempTodayTasks.Add(t);
                     }
 
-                    if (settings.IgnorePriorityEnabled == true)
+                    if (t.DueDateTime.HasValue &&
+                        t.DueDateTime.Value.Date == DateTime.Now.Date.AddDays(1))
                     {
-                        tempAllTasks.Sort(Task.CompareByDate);
-                        tempTodayTasks.Sort(Task.CompareByDate);
-                        tempTomorrowTasks.Sort(Task.CompareByDate);
-                        tempOverdueTasks.Sort(Task.CompareByDate);
-                        tempWeekTasks.Sort(Task.CompareByDate);
-                    }
-                    else
-                    {
-                        tempAllTasks.Sort(Task.CompareByPriority);
-                        tempTodayTasks.Sort(Task.CompareByPriority);
-                        tempTomorrowTasks.Sort(Task.CompareByPriority);
-                        tempOverdueTasks.Sort(Task.CompareByPriority);
-                        tempWeekTasks.Sort(Task.CompareByPriority);
+                        tempTomorrowTasks.Add(t);
                     }
 
-                    AllTasks = tempAllTasks;
-                    TodayTasks = tempTodayTasks;
-                    TomorrowTasks = tempTomorrowTasks;
-                    OverdueTasks = tempOverdueTasks;
-                    WeekTasks = tempWeekTasks;
+                    if (t.IsLate == true)
+                    {
+                        tempOverdueTasks.Add(t);
+                    }
 
-                    ToggleLoadingText();
-                    ToggleEmptyText();
-
-                    GlobalLoading.Instance.IsLoading = false;
-
-                    ShowLastUpdatedStatus();
+                    if (t.DueDateTime.HasValue &&
+                        t.DueDateTime.Value.Date <= DateTime.Now.Date.AddDays(7))
+                    {
+                        tempWeekTasks.Add(t);
+                    }
                 }
+
+                if (settings.IgnorePriorityEnabled == true)
+                {
+                    tempAllTasks.Sort(Task.CompareByDate);
+                    tempTodayTasks.Sort(Task.CompareByDate);
+                    tempTomorrowTasks.Sort(Task.CompareByDate);
+                    tempOverdueTasks.Sort(Task.CompareByDate);
+                    tempWeekTasks.Sort(Task.CompareByDate);
+                }
+                else
+                {
+                    tempAllTasks.Sort(Task.CompareByPriority);
+                    tempTodayTasks.Sort(Task.CompareByPriority);
+                    tempTomorrowTasks.Sort(Task.CompareByPriority);
+                    tempOverdueTasks.Sort(Task.CompareByPriority);
+                    tempWeekTasks.Sort(Task.CompareByPriority);
+                }
+
+                AllTasks = tempAllTasks;
+                TodayTasks = tempTodayTasks;
+                TomorrowTasks = tempTomorrowTasks;
+                OverdueTasks = tempOverdueTasks;
+                WeekTasks = tempWeekTasks;
+
+                ToggleLoadingText();
+                ToggleEmptyText();
+
+                GlobalLoading.Instance.IsLoading = false;
+
+                ShowLastUpdatedStatus();
             });
         }
 

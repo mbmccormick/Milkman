@@ -8,8 +8,8 @@
     <Language code="fr-FR" />
     <Language code="de-DE" />
   </Languages>
-  <App xmlns="" ProductID="{39713eb4-d173-46ee-932a-0d49bd2eb3c1}" Title="Milkman" RuntimeType="Silverlight" Version="3.4.1.0" Genre="apps.normal" Author="Matt McCormick" Description="Remember The Milk for Windows Phone" Publisher="Matt McCormick" BitsPerPixel="32" PublisherID="{99bc19ba-5660-436e-a3d8-7e7fc12151b8}">
-    <IconPath IsRelative="true" IsResource="false">Assets/ApplicationIcon.png</IconPath>
+  <App xmlns="" ProductID="{39713eb4-d173-46ee-932a-0d49bd2eb3c1}" Title="Milkman" RuntimeType="Silverlight" Version="4.0.0.0" Genre="apps.normal" Author="Matt McCormick" Description="Remember The Milk for Windows Phone" Publisher="Matt McCormick" BitsPerPixel="32" PublisherID="{99bc19ba-5660-436e-a3d8-7e7fc12151b8}">
+    <IconPath IsRelative="true" IsResource="false">Assets\Background.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_LOCATION" />
       <Capability Name="ID_CAP_MICROPHONE" />
@@ -23,16 +23,20 @@
     <Tokens>
       <PrimaryToken TokenID="MilkmanToken" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\FlipCycleTileSmall.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\SquareTile71x71.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\FlipCycleTileMedium.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\SquareTile150x150.png</BackgroundImageURI>
           <Title>Milkman</Title>
-          <BackContent></BackContent>
-          <BackBackgroundImageURI IsRelative="true" IsResource="false"></BackBackgroundImageURI>
-          <BackTitle></BackTitle>
-          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\FlipCycleTileWide.png</LargeBackgroundImageURI>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false">
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\WideLogo.png</LargeBackgroundImageURI>
           <LargeBackContent />
-          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false"></LargeBackBackgroundImageURI>
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
           <DeviceLockImageURI IsRelative="true" IsResource="false">Assets\LockImage.png</DeviceLockImageURI>
           <HasLarge>True</HasLarge>
         </TemplateFlip>

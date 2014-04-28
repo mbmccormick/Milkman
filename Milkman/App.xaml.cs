@@ -156,11 +156,10 @@ namespace Milkman
 
             RtmClient.Resources = App.Current.Resources;
 
-            NotificationsManager.ResetReminders();
             NotificationsManager.ResetLiveTiles();
 
-            if (ScheduledActionService.Find("BackgroundWorker") != null)
-                ScheduledActionService.Remove("BackgroundWorker");
+            if (ScheduledActionService.Find("BackgroundTask") != null)
+                ScheduledActionService.Remove("BackgroundTask");
 
             ShellTile primaryTile = ShellTile.ActiveTiles.First();
             if (primaryTile != null)

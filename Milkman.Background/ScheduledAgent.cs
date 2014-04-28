@@ -80,17 +80,17 @@ namespace Milkman.Background
                     LoadData();
 
                     if (System.Diagnostics.Debugger.IsAttached)
-                        ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+                        ScheduledActionService.LaunchForTest("BackgroundTask", new TimeSpan(0, 0, 1, 0)); // every minute
 
                     NotifyComplete();
                 });
             }
             else
             {
-                NotificationsManager.ClearNotifications();
+                NotificationsManager.ResetLiveTiles();
 
                 if (System.Diagnostics.Debugger.IsAttached)
-                    ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+                    ScheduledActionService.LaunchForTest("BackgroundTask", new TimeSpan(0, 0, 1, 0)); // every minute
 
                 NotifyComplete();
             }

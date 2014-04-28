@@ -5,19 +5,28 @@ using Microsoft.Phone.Shell;
 using System;
 using System.Device.Location;
 using System.Linq;
+using Windows.Devices.Geolocation.Geofencing;
+using Windows.Devices.Geolocation;
+using Windows.ApplicationModel.Background;
 
 namespace Milkman.Common
 {
     public class NotificationsManager
     {
-        public static void SetupNotifications(GeoCoordinate location)
+        public async static void SetupNotifications(GeoCoordinate location)
         {
             AppSettings settings = new AppSettings();
 
+            // update geofences
+            UpdateGeofences();
+
+            // update live tiles
+            UpdateLiveTiles(location);
+
             // create background worker, if necessary
-            if (ScheduledActionService.Find("BackgroundWorker") == null)
+            if (ScheduledActionService.Find("BackgroundTask") == null)
             {
-                PeriodicTask task = new PeriodicTask("BackgroundWorker");
+                PeriodicTask task = new PeriodicTask("BackgroundTask");
                 task.Description = Strings.PeriodicTaskDescription;
 
                 ScheduledActionService.Add(task);
@@ -25,74 +34,53 @@ namespace Milkman.Common
 
             // increase background worder interval for debug mode
             if (System.Diagnostics.Debugger.IsAttached)
-                ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
+                ScheduledActionService.LaunchForTest("BackgroundTask", new TimeSpan(0, 0, 1, 0)); // every minute
 
-            // remove existing reminders
-            ResetReminders();
-
-            // setup task reminders
-            UpdateReminders();
-
-            // update live tiles
-            UpdateLiveTiles(location);
-        }
-
-        public static void UpdateReminders()
-        {
-            AppSettings settings = new AppSettings();
-
-            double interval = settings.FriendlyReminderInterval;
-
-            // create new reminders
-            if (App.RtmClient.TaskLists != null)
+            // register for background geofence updates
+            var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
+            var geofenceTaskBuilder = new BackgroundTaskBuilder
             {
-                foreach (TaskList l in App.RtmClient.TaskLists)
-                {
-                    if (l.IsSmart == false &&
-                        l.Tasks != null)
-                    {
-                        foreach (Task t in l.Tasks)
-                        {
-                            if (t.HasDueTime &&
-                                t.DueDateTime.Value.AddMinutes(interval) >= DateTime.Now)
-                            {
-                                Reminder r = new Reminder(t.Id);
+                Name = "GeofenceAgent",
+                TaskEntryPoint = "AgHost.BackgroundTask"
+            };
 
-                                if (t.Name.Length > 63)
-                                    r.Title = t.Name.Substring(0, 60) + "...";
-                                else
-                                    r.Title = t.Name;
+            var trigger = new LocationTrigger(LocationTriggerType.Geofence);
+            geofenceTaskBuilder.SetTrigger(trigger);
 
-                                r.Content = Strings.TaskReminderPrefix + " " + t.FriendlyDueDate.Replace(Strings.Due + " ", "") + ".";
-                                r.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
-                                r.BeginTime = t.DueDateTime.Value.AddHours(interval);
-
-                                try
-                                {
-                                    ScheduledActionService.Add(r);
-                                }
-                                catch (Exception ex)
-                                {
-                                    // do nothing
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        public static void ResetReminders()
-        {
-            try
-            {
-                // delete all existing reminders
-                foreach (var item in ScheduledActionService.GetActions<Reminder>())
-                    ScheduledActionService.Remove(item.Name);
-            }
-            catch (Exception ex)
+            var geofenceTask = geofenceTaskBuilder.Register();
+            geofenceTask.Completed += (sender, args) =>
             {
                 // do nothing
+            };
+        }
+
+        public static void UpdateGeofences()
+        {
+            var geofenceMonitor = GeofenceMonitor.Current;
+
+            AppSettings settings = new AppSettings();
+
+            while (geofenceMonitor.Geofences.Count > 0)
+            {
+                geofenceMonitor.Geofences.RemoveAt(0);
+            }
+            
+            if (App.RtmClient.Locations != null)
+            {
+                foreach (Location l in App.RtmClient.Locations)
+                {
+                    var location = new Geopoint(new BasicGeoposition()
+                    {
+                        Latitude = l.Latitude,
+                        Longitude = l.Longitude
+                    });
+
+                    var radius = settings.FriendlyNearbyRadius * 1609; // convert to meters
+
+                    var geofence = new Geofence(l.Id, new Geocircle(location.Position, radius), MonitoredGeofenceStates.Entered | MonitoredGeofenceStates.Exited, false, TimeSpan.FromSeconds(10));
+
+                    geofenceMonitor.Geofences.Add(geofence);
+                }
             }
         }
 

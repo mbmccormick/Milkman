@@ -14,24 +14,54 @@ namespace Milkman.Background.Common
         {
             AppSettings settings = new AppSettings();
 
+            // check for task reminders
+            CheckForReminderNotifications();
+
             // check for nearby tasks
             if (settings.LocationRemindersEnabled == true &&
                 location != null)
             {
                 // check for nearby tasks
-                UpdateLocationNotifications(location);
+                CheckForLocationNotifications(location);
             }
 
             // update live tiles
             UpdateLiveTiles(location);
         }
 
-        public static void ClearNotifications()
+        public static void CheckForReminderNotifications()
         {
-            ResetLiveTiles();
+            AppSettings settings = new AppSettings();
+
+            double interval = settings.FriendlyReminderInterval;
+
+            // create new reminders
+            if (App.RtmClient.TaskLists != null)
+            {
+                foreach (TaskList l in App.RtmClient.TaskLists)
+                {
+                    if (l.IsSmart == false &&
+                        l.Tasks != null)
+                    {
+                        foreach (Task t in l.Tasks)
+                        {
+                            if (t.HasDueTime &&
+                                t.DueDateTime.Value <= DateTime.Now.AddMinutes(interval))
+                            {
+                                ShellToast toast = new ShellToast();
+
+                                toast.Title = t.Name;
+                                toast.Content = Strings.TaskReminderPrefix + " " + t.FriendlyDueDate.Replace(Strings.Due + " ", "") + ".";
+                                toast.NavigationUri = new Uri("/TaskDetailsPage.xaml?id=" + t.Id, UriKind.Relative);
+                                toast.Show();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        public static void UpdateLocationNotifications(GeoCoordinate location)
+        public static void CheckForLocationNotifications(GeoCoordinate location)
         {
             AppSettings settings = new AppSettings();
 
