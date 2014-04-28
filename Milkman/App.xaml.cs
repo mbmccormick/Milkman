@@ -156,7 +156,6 @@ namespace Milkman
 
             RtmClient.Resources = App.Current.Resources;
 
-            NotificationsManager.ResetReminders();
             NotificationsManager.ResetLiveTiles();
 
             if (ScheduledActionService.Find("BackgroundWorker") != null)
