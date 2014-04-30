@@ -37,25 +37,6 @@ namespace Milkman
 
         public static event EventHandler<ApplicationUnhandledExceptionEventArgs> UnhandledExceptionHandled;
         
-        public static string ExtendedVersionNumber
-        {
-            get
-            {
-                string assembly = System.Reflection.Assembly.GetExecutingAssembly().FullName;
-                string[] version = assembly.Split('=')[1].Split(',')[0].Split('.');
-
-                return version[0] + "." + version[1] + "." + version[2];
-            }
-        }
-
-        public static string PlatformVersionNumber
-        {
-            get
-            {
-                return System.Environment.OSVersion.Version.ToString(3);
-            }
-        }
-
         public PhoneApplicationFrame RootFrame { get; private set; }
 
         public App()
