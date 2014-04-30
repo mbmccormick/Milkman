@@ -14,14 +14,24 @@ namespace Milkman.Common
         {
             AppSettings settings = new AppSettings();
 
-            // create background worker, if necessary
-            if (ScheduledActionService.Find("BackgroundWorker") == null)
+            // remove background worker, if necessary
+            if (ScheduledActionService.Find("BackgroundWorker") != null)
             {
-                PeriodicTask task = new PeriodicTask("BackgroundWorker");
-                task.Description = Strings.PeriodicTaskDescription;
-
-                ScheduledActionService.Add(task);
+                try
+                {
+                    ScheduledActionService.Remove("BackgroundWorker");
+                }
+                catch (Exception)
+                {
+                    // do nothing
+                }
             }
+
+            // create background worker
+            PeriodicTask task = new PeriodicTask("BackgroundWorker");
+            task.Description = Strings.PeriodicTaskDescription;
+
+            ScheduledActionService.Add(task);
 
             // increase background worder interval for debug mode
             if (System.Diagnostics.Debugger.IsAttached)
