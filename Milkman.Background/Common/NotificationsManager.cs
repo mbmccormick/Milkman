@@ -15,7 +15,7 @@ namespace Milkman.Background.Common
             AppSettings settings = new AppSettings();
 
             // check for task reminders
-            CheckForLocationNotifications(location);
+            CheckForReminderNotifications();
 
             if (settings.LocationRemindersEnabled == true &&
                 location != null)
