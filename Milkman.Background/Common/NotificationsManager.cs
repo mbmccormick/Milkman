@@ -45,7 +45,8 @@ namespace Milkman.Background.Common
                         foreach (Task t in l.Tasks)
                         {
                             if (t.HasDueTime &&
-                                t.DueDateTime.Value <= DateTime.Now.AddMinutes(interval))
+                                t.DueDateTime.Value <= DateTime.Now.AddMinutes(interval) &&
+                                t.DueDateTime.Value.ToUniversalTime() >= ScheduledAgent.LastBackgroundExecutionTime)
                             {
                                 ShellToast toast = new ShellToast();
 

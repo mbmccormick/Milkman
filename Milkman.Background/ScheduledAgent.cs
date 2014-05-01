@@ -6,11 +6,14 @@ using System.Device.Location;
 using System.Net;
 using System.Windows;
 using System.Reflection;
+using System.IO.IsolatedStorage;
 
 namespace Milkman.Background
 {
     public class ScheduledAgent : ScheduledTaskAgent
     {
+        public static DateTime LastBackgroundExecutionTime;
+
         private static volatile bool _classInitialized;
 
         public ScheduledAgent()
@@ -62,6 +65,11 @@ namespace Milkman.Background
 
             AppSettings settings = new AppSettings();
 
+            LastBackgroundExecutionTime = IsolatedStorageHelper.GetObject<DateTime>("LastBackgroundExecutionTime");
+
+            if (LastBackgroundExecutionTime == DateTime.MinValue)
+                LastBackgroundExecutionTime = DateTime.UtcNow;
+
             if (settings.LocationRemindersEnabled == true)
             {
                 _watcher = new GeoCoordinateWatcher();
@@ -79,6 +87,11 @@ namespace Milkman.Background
                 {
                     LoadData();
 
+                    LastBackgroundExecutionTime = DateTime.UtcNow;
+                    IsolatedStorageHelper.SaveObject<DateTime>("LastBackgroundExecutionTime", LastBackgroundExecutionTime);
+
+                    IsolatedStorageSettings.ApplicationSettings.Save();
+
                     if (System.Diagnostics.Debugger.IsAttached)
                         ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
 
@@ -88,6 +101,11 @@ namespace Milkman.Background
             else
             {
                 NotificationsManager.ResetLiveTiles();
+
+                LastBackgroundExecutionTime = DateTime.UtcNow;
+                IsolatedStorageHelper.SaveObject<DateTime>("LastBackgroundExecutionTime", LastBackgroundExecutionTime);
+
+                IsolatedStorageSettings.ApplicationSettings.Save();
 
                 if (System.Diagnostics.Debugger.IsAttached)
                     ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
