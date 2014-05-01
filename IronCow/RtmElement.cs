@@ -85,13 +85,9 @@ namespace IronCow
         public static void OnPropertyChanged(object sender, string propertyName, PropertyChangedEventHandler propertyChanged)
         {
             if (propertyChanged != null)
-                if (Rtm.Dispatcher != null && !Rtm.Dispatcher.CheckAccess())
-                    Rtm.Dispatcher.BeginInvoke(new Action(() =>
-                        {
-                            propertyChanged(sender, new PropertyChangedEventArgs(propertyName));
-                        }));
-                else
-                    propertyChanged(sender, new PropertyChangedEventArgs(propertyName));
+            {
+                propertyChanged(sender, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }

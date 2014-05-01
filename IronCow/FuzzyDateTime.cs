@@ -69,7 +69,7 @@ namespace IronCow
             if (mHasTime)
                 return mDateTime.ToString();
             else
-                return mDateTime.ToShortDateString();
+                return mDateTime.ToString("yyyy-MM-dd");
         }
 
         #region IComparable Members

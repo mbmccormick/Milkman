@@ -1,0 +1,70 @@
+﻿<Page
+    x:Class="Milkman.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Milkman"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:uc="using:MilkmanMX.Controls"
+    mc:Ignorable="d"
+    Margin="0,0,0,0"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Grid x:Name="LayoutRoot" Background="#FFFFFFFF" Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="0" Grid.Row="0" Background="#FF0060BF">
+            <TextBlock Text="Milkman" FontSize="36" FontWeight="Thin" Foreground="#FFFFFFFF" Margin="24,24,30,24" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" Background="#FF0060BF">
+            <ListBox x:Name="lstLists" ItemsSource="{Binding TaskLists}" Background="Transparent" Margin="0">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" FontSize="16" FontWeight="Normal" Foreground="#FFFFFFFF" Margin="14,3,0,3" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Background="#FFEEEEEE">
+            <TextBlock Text="All Tasks" FontSize="36" FontWeight="Thin" Foreground="#FF0060BF" Margin="24" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Background="#FFEEEEEE">
+            <ListBox x:Name="lstTasks" ItemsSource="{Binding AllTasks}" Background="Transparent">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="12,0,0,0" Tapped="ItemContent_Tapped">
+                            <uc:TaskItemControl />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <TextBlock x:Name="txtDashboardLoading" Grid.Column="1" Grid.Row="1" Visibility="Visible" TextWrapping="Wrap" Text="Just a moment..." Style="{StaticResource SubtitleTextBlockStyle}" Foreground="#FF0060BF" />
+        <TextBlock x:Name="txtDashboardEmpty" Grid.Column="1" Grid.Row="1" Visibility="Collapsed" TextWrapping="Wrap" Text="You have no incomplete tasks in this list! Woohoo!" Style="{StaticResource SubtitleTextBlockStyle}" Foreground="#FF0060BF" />
+    </Grid>
+
+</Page>

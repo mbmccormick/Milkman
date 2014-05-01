@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Windows.Media;
 using IronCow.Rest;
 using IronCow.Resources;
 using System.Windows;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace IronCow
 {
@@ -225,15 +227,15 @@ namespace IronCow
             {
                 RestRequest req = CreateStandardRequest(this, "rtm.tasks.moveTo", () =>
                 {
-                    Rtm.Dispatcher.BeginInvoke(() =>
-                    {
+                    //Rtm.Dispatcher.BeginInvoke(() =>
+                    //{
                         mParent.Tasks.RemoveNoSync(this);
                         mParent = list;
                         if (Parent.Tasks != null)
                             Parent.Tasks.AddNoSync(this);
                         OnPropertyChanged("Parent");
                         OnPropertyChanged("List");
-                    });
+                    //});
                     callback();
                 });
 
@@ -1552,9 +1554,9 @@ namespace IronCow
             get
             {
                 if (this.Notes.Count > 0)
-                    return System.Windows.Visibility.Visible;
+                    return Windows.UI.Xaml.Visibility.Visible;
                 else
-                    return System.Windows.Visibility.Collapsed;
+                    return Windows.UI.Xaml.Visibility.Collapsed;
             }
         }
 
@@ -1563,9 +1565,9 @@ namespace IronCow
             get
             {
                 if (this.HasRecurrence == true)
-                    return System.Windows.Visibility.Visible;
+                    return Windows.UI.Xaml.Visibility.Visible;
                 else
-                    return System.Windows.Visibility.Collapsed;
+                    return Windows.UI.Xaml.Visibility.Collapsed;
             }
         }
     }

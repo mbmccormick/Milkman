@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Threading;
+// using System.Windows.Threading;
 using IronCow.Rest;
 using System.Windows;
 using IronCow.Common;
+using Windows.UI.Xaml;
+using Windows.UI.Core;
 
 namespace IronCow
 {
@@ -128,7 +130,7 @@ namespace IronCow
         #endregion
 
         #region Public Properties
-        public static Dispatcher Dispatcher { get; set; }
+        public static CoreDispatcher Dispatcher { get; set; }
 
         private IRestClient mClient;
         public IRestClient Client

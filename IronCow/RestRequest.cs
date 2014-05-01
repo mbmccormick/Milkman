@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Threading;
+// using System.Windows.Threading;
 using IronCow.Rest;
 
 namespace IronCow
 {
     public class RestRequest : Request
     {
-        private struct ResponseGetterAsyncState
-        {
-            public Func<Response> ResponseGetter;
-            public Dispatcher CallbackDispatcher;
+        //private struct ResponseGetterAsyncState
+        //{
+        //    public Func<Response> ResponseGetter;
+        //    public Dispatcher CallbackDispatcher;
 
-            public ResponseGetterAsyncState(Func<Response> responseGetter, Dispatcher callbackDispatcher)
-            {
-                ResponseGetter = responseGetter;
-                CallbackDispatcher = callbackDispatcher;
-            }
-        }
+        //    public ResponseGetterAsyncState(Func<Response> responseGetter, Dispatcher callbackDispatcher)
+        //    {
+        //        ResponseGetter = responseGetter;
+        //        CallbackDispatcher = callbackDispatcher;
+        //    }
+        //}
 
         public string Method { get; set; }
         public Action<Response> Callback { get; set; }

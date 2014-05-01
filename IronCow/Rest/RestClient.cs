@@ -3,7 +3,7 @@ using System.Collections.Specialized;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Security.Cryptography;
+using Windows.Security.Cryptography;
 using System.Text;
 using System.Xml.Serialization;
 using System.Collections.Generic;
@@ -794,12 +794,12 @@ namespace IronCow.Rest
             {
                 lock (mThrottlingLock)
                 {
-                    TimeSpan timeSinceLastRequest = DateTime.Now - mLastRequestTime;
-                    if (timeSinceLastRequest < Throttling)
-                    {
-                        TimeSpan wait = Throttling - timeSinceLastRequest;
-                        System.Threading.Thread.Sleep((int)Math.Ceiling(wait.TotalMilliseconds));
-                    }
+                    //TimeSpan timeSinceLastRequest = DateTime.Now - mLastRequestTime;
+                    //if (timeSinceLastRequest < Throttling)
+                    //{
+                    //    TimeSpan wait = Throttling - timeSinceLastRequest;
+                    //    System.Threading.Thread.Sleep((int)Math.Ceiling(wait.TotalMilliseconds));
+                    //}
 
                     GetRawResponse(url, variables, (r) => {
                         if (Cache != null)
@@ -807,7 +807,7 @@ namespace IronCow.Rest
 
                         StringReader responseReader = new StringReader(r);
                         Response response = (Response)sResponseSerializer.Deserialize(responseReader);
-                        responseReader.Close();
+                        responseReader.Dispose();
 
                         if (throwOnError && response.Status != ResponseStatus.OK)
                             throw new RtmException(response.Error);
@@ -828,7 +828,7 @@ namespace IronCow.Rest
             }
             // Initialise the web request
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.UserAgent = UserAgent;
+            // req.UserAgent = UserAgent;
 
             IAsyncResult res = (IAsyncResult)req.BeginGetResponse((IAsyncResult result) =>
             {
