@@ -87,10 +87,17 @@ namespace Milkman.Background
                 {
                     LoadData();
 
-                    LastBackgroundExecutionTime = DateTime.UtcNow;
-                    IsolatedStorageHelper.SaveObject<DateTime>("LastBackgroundExecutionTime", LastBackgroundExecutionTime);
+                    try
+                    {
+                        LastBackgroundExecutionTime = DateTime.UtcNow;
+                        IsolatedStorageHelper.SaveObject<DateTime>("LastBackgroundExecutionTime", LastBackgroundExecutionTime);
 
-                    IsolatedStorageSettings.ApplicationSettings.Save();
+                        IsolatedStorageSettings.ApplicationSettings.Save();
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        // do nothing
+                    }
 
                     if (System.Diagnostics.Debugger.IsAttached)
                         ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
@@ -102,10 +109,17 @@ namespace Milkman.Background
             {
                 NotificationsManager.ResetLiveTiles();
 
-                LastBackgroundExecutionTime = DateTime.UtcNow;
-                IsolatedStorageHelper.SaveObject<DateTime>("LastBackgroundExecutionTime", LastBackgroundExecutionTime);
+                try
+                {
+                    LastBackgroundExecutionTime = DateTime.UtcNow;
+                    IsolatedStorageHelper.SaveObject<DateTime>("LastBackgroundExecutionTime", LastBackgroundExecutionTime);
 
-                IsolatedStorageSettings.ApplicationSettings.Save();
+                    IsolatedStorageSettings.ApplicationSettings.Save();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    // do nothing
+                }
 
                 if (System.Diagnostics.Debugger.IsAttached)
                     ScheduledActionService.LaunchForTest("BackgroundWorker", new TimeSpan(0, 0, 1, 0)); // every minute
