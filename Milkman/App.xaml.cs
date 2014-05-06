@@ -49,6 +49,21 @@ namespace Milkman
 
             RootFrame.Navigating += new NavigatingCancelEventHandler(RootFrame_Navigating);
 
+            Resources.Remove("PhoneAccentColor");
+            Resources.Add("PhoneAccentColor", Color.FromArgb(255, 0, 96, 191));
+
+            ((SolidColorBrush)Resources["PhoneAccentBrush"]).Color = Color.FromArgb(255, 0, 96, 191);
+
+            //Resources.Remove("PhoneForegroundColor");
+            //Resources.Add("PhoneForegroundColor", Color.FromArgb(255, 130, 130, 130));
+
+            //((SolidColorBrush)Resources["PhoneForegroundBrush"]).Color = Color.FromArgb(255, 130, 130, 130);
+
+            Resources.Remove("PhoneBackgroundColor");
+            Resources.Add("PhoneBackgroundColor", Color.FromArgb(255, 255, 255, 255));
+
+            ((SolidColorBrush)Resources["PhoneBackgroundBrush"]).Color = Color.FromArgb(255, 255, 255, 255);
+
             if (System.Diagnostics.Debugger.IsAttached)
                 MetroGridHelper.IsVisible = true;
         }
@@ -101,8 +116,6 @@ namespace Milkman
                 RtmClient.LoadTasksFromResponse(TasksResponse);
             }
 
-            RtmClient.Resources = App.Current.Resources;
-
             await VoiceCommandService.InstallCommandSetsFromFileAsync(new Uri("ms-appx:///Commands.xml"));
         }
 
@@ -134,8 +147,6 @@ namespace Milkman
             ListsResponse = null;
             LocationsResponse = null;
             SettingsResponse = null;
-
-            RtmClient.Resources = App.Current.Resources;
 
             NotificationsManager.ResetLiveTiles();
 
