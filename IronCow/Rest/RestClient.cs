@@ -829,6 +829,7 @@ namespace IronCow.Rest
             // Initialise the web request
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.UserAgent = UserAgent;
+            req.Headers[HttpRequestHeader.IfModifiedSince] = DateTime.UtcNow.ToString();
 
             IAsyncResult res = (IAsyncResult)req.BeginGetResponse((IAsyncResult result) =>
             {
