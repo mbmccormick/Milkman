@@ -283,7 +283,7 @@ namespace Milkman.Common
             string platformVersion = System.Environment.OSVersion.Version.ToString();
 
             // Body text including hardware, firmware and software info
-            string body = string.Format("```\n" + contents + "\n```" + "\n\n---------------------------------\nDevice Name: {0}\nDevice Manufacturer: {1}\nDevice Firmware Version: {2}\nDevice Hardware Version: {3}\nPlatform Version: {4}\nApplication Version: {5}\n---------------------------------\n\nNote: This e-mail exchange is governed by {6}’s privacy policy. You can find more details on the About page in the application.",
+            string body = string.Format(contents + "\n\n---------------------------------\nDevice Name: {0}\nDevice Manufacturer: {1}\nDevice Firmware Version: {2}\nDevice Hardware Version: {3}\nPlatform Version: {4}\nApplication Version: {5}\n---------------------------------\n\nNote: This e-mail exchange is governed by {6}’s privacy policy. You can find more details on the About page in the application.",
                  DeviceStatus.DeviceName,
                  DeviceStatus.DeviceManufacturer,
                  DeviceStatus.DeviceFirmwareVersion,
@@ -291,13 +291,11 @@ namespace Milkman.Common
                  platformVersion,
                  version,
                  "Milkman");
-                 
-            string errorMessage = contents.Trim().Split('\n')[0];
 
             // Email task
             var email = new EmailComposeTask();
             email.To = App.FeedbackEmailAddress;
-            email.Subject = error ? errorMessage + " #Milkman #ErrorReport" : "Milkman Feedback";
+            email.Subject = error ? "Milkman Error Report" : "Milkman Feedback";
             email.Body = body;
 
             email.Show();
