@@ -14,17 +14,17 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#FF000000" shell:SystemTray.ForegroundColor="#FFFFFFFF"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="{StaticResource PhoneBackgroundColor}"
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Grid x:Name="LayoutRoot" Background="#FFFFFFFF">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="#FF000000">
+        <controls:Pivot x:Name="pivLayout" Title="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}">
             <controls:PivotItem Header="{Binding Resources.DashboardLower, Source={StaticResource Strings}}" FontWeight="Normal" Margin="12,24,0,0">
                 <Grid Margin="0,5,0,0">
                     <toolkit:LongListMultiSelector x:Name="lstTasks" ItemsSource="{Binding DashboardTasks}" LayoutMode="List" SelectionChanged="LongListMultiSelector_SelectionChanged" IsSelectionEnabledChanged="LongListMultiSelector_IsSelectionEnabledChanged">
@@ -52,8 +52,8 @@
                         </toolkit:LongListMultiSelector.ItemInfoTemplate>
                     </toolkit:LongListMultiSelector>
 
-                    <TextBlock x:Name="txtDashboardLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FF0060BF" />
-                    <TextBlock x:Name="txtDashboardEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FF0060BF" />
+                    <TextBlock x:Name="txtDashboardLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" />
+                    <TextBlock x:Name="txtDashboardEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyTaskList, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" />
                 </Grid>
             </controls:PivotItem>
 
@@ -67,9 +67,9 @@
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Background="#FF0060BF" Width="173" Height="173" Margin="12,12,0,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="#FFFFFFFF" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
-                                    <TextBlock Text="{Binding CountString}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FFFFFFFF" Margin="12,12,12,12" VerticalAlignment="Bottom" Loaded="TaskListCount_Loaded" />
+                                <StackPanel Background="{StaticResource PhoneAccentBrush}" Width="173" Height="173" Margin="12,12,0,0" Tap="ItemContent_Tap">
+                                    <TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="White" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
+                                    <TextBlock Text="{Binding CountString}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="White" Margin="12,12,12,12" VerticalAlignment="Bottom" Loaded="TaskListCount_Loaded" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -81,8 +81,8 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <TextBlock x:Name="txtListsLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FF0060BF" />
-                    <TextBlock x:Name="txtListsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboardLists, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FF0060BF" />
+                    <TextBlock x:Name="txtListsLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" />
+                    <TextBlock x:Name="txtListsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboardLists, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" />
                 </Grid>
             </controls:PivotItem>
 
@@ -96,9 +96,9 @@
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Background="#FF0060BF" Width="173" Height="173" Margin="12,12,0,0" Tap="ItemContent_Tap">
-                                    <TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="#FFFFFFFF" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
-                                    <TextBlock Text="{Binding CountString}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="#FFFFFFFF" Margin="12,12,12,12" VerticalAlignment="Bottom" />
+                                <StackPanel Background="{StaticResource PhoneAccentBrush}" Width="173" Height="173" Margin="12,12,0,0" Tap="ItemContent_Tap">
+                                    <TextBlock Text="{Binding Name}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="White" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
+                                    <TextBlock Text="{Binding CountString}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="White" Margin="12,12,12,12" VerticalAlignment="Bottom" />
 
                                     <toolkit:ContextMenuService.ContextMenu>
                                         <toolkit:ContextMenu>
@@ -110,15 +110,15 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
 
-                    <TextBlock x:Name="txtTagsLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FF0060BF" />
-                    <TextBlock x:Name="txtTagsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboardTags, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FF0060BF" />
+                    <TextBlock x:Name="txtTagsLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" />
+                    <TextBlock x:Name="txtTagsEmpty" Visibility="Collapsed" TextWrapping="Wrap" Text="{Binding Resources.EmptyDashboardTags, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" />
                 </Grid>
             </controls:PivotItem>
         </controls:Pivot>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar BackgroundColor="#FF000000" ForegroundColor="#FFFFFFFF" IsVisible="True" IsMenuEnabled="True">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

@@ -13,18 +13,18 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#FF000000" shell:SystemTray.ForegroundColor="#FFFFFFFF"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="{StaticResource PhoneBackgroundColor}"
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Grid x:Name="LayoutRoot" Background="#FFFFFFFF" DataContext="{Binding Task}">
+    <Grid x:Name="LayoutRoot" Background="Transparent" DataContext="{Binding Task}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.EditTaskUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="#FF000000" />
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.EditTaskUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
         </StackPanel>
 
         <ScrollViewer x:Name="scvLayout" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="12,0,0,0">
@@ -101,13 +101,13 @@
                     <TextBox x:Name="txtURL" Margin="0,-12,0,12" Grid.Row="9" Grid.Column="1" InputScope="Url" />
                 </StackPanel>
 
-                <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="#FF0060BF" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,0,12,0" />
+                <TextBlock x:Name="txtLoading" Visibility="Visible" TextWrapping="Wrap" Text="{Binding Resources.JustAMoment, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextLargeStyle}" Foreground="{StaticResource PhoneAccentBrush}" FontSize="{StaticResource PhoneFontSizeLarge}" Margin="12,0,12,0" />
             </Grid>
         </ScrollViewer>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar BackgroundColor="#FF000000" ForegroundColor="#FFFFFFFF" IsVisible="True" IsMenuEnabled="True">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

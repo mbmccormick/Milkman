@@ -1505,9 +1505,12 @@ namespace IronCow
             {
                 if (this.DueDateTime.HasValue &&
                     this.DueDateTime.Value.Date <= DateTime.Now.Date)
-                    return new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
+                    return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
                 else
-                    return new SolidColorBrush(Color.FromArgb(255, 187, 187, 187));
+                    if (Owner == null)
+                        return null;
+                    else
+                        return (SolidColorBrush)Owner.Resources["PhoneSubtleBrush"];
             }
         }
 
@@ -1517,9 +1520,12 @@ namespace IronCow
             {
                 if (this.DueDateTime.HasValue &&
                     this.DueDateTime.Value.Date <= DateTime.Now.Date)
-                    return new SolidColorBrush(Color.FromArgb(255, 0, 96, 191));
+                    return (SolidColorBrush)Owner.Resources["PhoneAccentBrush"];
                 else
-                    return new SolidColorBrush(Color.FromArgb(255, 187, 187, 187));
+                    if (Owner == null)
+                        return null;
+                    else
+                        return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
             }
         }
 
@@ -1534,7 +1540,10 @@ namespace IronCow
                 else if (this.Priority == TaskPriority.Three)
                     return new SolidColorBrush(Color.FromArgb(255, 53, 154, 255));
                 else
-                    return new SolidColorBrush(Color.FromArgb(255, 0, 0, 0));
+                    if (Owner == null)
+                        return null;
+                    else
+                        return (SolidColorBrush)Owner.Resources["PhoneForegroundBrush"];
             }
         }
 

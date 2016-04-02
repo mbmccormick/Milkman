@@ -14,19 +14,19 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="#FF000000" shell:SystemTray.ForegroundColor="#FFFFFFFF"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.BackgroundColor="{StaticResource PhoneBackgroundColor}"
     toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}}">
 
-    <Grid x:Name="LayoutRoot" Background="#FFFFFFFF">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,24">
-            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" Foreground="#FF000000" />
-            <TextBlock x:Name="PageTitle" Text="{Binding Resources.WelcomeLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FF000000" />
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Resources.MilkmanUpper, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextNormalStyle}" FontSize="{StaticResource PhoneFontSizeMedium}" FontFamily="{StaticResource PhoneFontFamilySemiBold}" />
+            <TextBlock x:Name="PageTitle" Text="{Binding Resources.WelcomeLower, Source={StaticResource Strings}}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" />
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -37,18 +37,18 @@
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBoxItem>
-                    <StackPanel Background="#FF0060BF" Width="173" Height="173" Margin="12,12,0,0" Tap="stkSignIn_Tap">
-                        <TextBlock Text="{Binding Resources.SignIn, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="#FFFFFFFF" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
+                    <StackPanel Background="{StaticResource PhoneAccentBrush}" Width="173" Height="173" Margin="12,12,0,0" Tap="stkSignIn_Tap">
+                        <TextBlock Text="{Binding Resources.SignIn, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="White" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <StackPanel Background="#FF0060BF" Width="173" Height="173" Margin="12,12,0,0" Tap="stkRegister_Tap">
-                        <TextBlock Text="{Binding Resources.Register, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="#FFFFFFFF" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
+                    <StackPanel Background="{StaticResource PhoneAccentBrush}" Width="173" Height="173" Margin="12,12,0,0" Tap="stkRegister_Tap">
+                        <TextBlock Text="{Binding Resources.Register, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="White" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
-                    <StackPanel Background="#FF0060BF" Width="173" Height="173" Margin="12,12,0,0" Tap="stkAbout_Tap">
-                        <TextBlock Text="{Binding Resources.About, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="#FFFFFFFF" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
+                    <StackPanel Background="{StaticResource PhoneAccentBrush}" Width="173" Height="173" Margin="12,12,0,0" Tap="stkAbout_Tap">
+                        <TextBlock Text="{Binding Resources.About, Source={StaticResource Strings}}" Style="{StaticResource PhoneTextTitle2Style}" Foreground="White" TextWrapping="Wrap" Margin="12,6,12,12" Height="106" />
                     </StackPanel>
                 </ListBoxItem>
             </ListBox>
@@ -56,7 +56,7 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar BackgroundColor="#FF000000" ForegroundColor="#FFFFFFFF" IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" Mode="Minimized">
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

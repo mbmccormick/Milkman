@@ -11,6 +11,8 @@ namespace IronCow
 {
     public class Rtm
     {
+        public ResourceDictionary Resources;
+
         #region Callback Delegates
 
         public delegate void VoidCallback();

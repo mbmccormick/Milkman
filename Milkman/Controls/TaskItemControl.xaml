@@ -9,7 +9,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <StackPanel x:Name="LayoutRoot" Background="#FFFFFFFF">
+    <StackPanel x:Name="LayoutRoot" Background="Transparent">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
